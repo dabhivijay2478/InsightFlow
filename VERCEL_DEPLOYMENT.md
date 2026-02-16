@@ -1,18 +1,18 @@
-# Vercel Deployment Guide: ETL, API (NestJS), and Meltano
+# Vercel Deployment Guide: API, ETL, and App
 
-This guide covers deploying the ai-bi monorepo to Vercel: **ETL (FastAPI)**, **API (NestJS)**, and **Meltano pipelines** (dynamic mode).
+Deploy the ai-bi monorepo to Vercel: **API (NestJS)**, **ETL (FastAPI)**, and **App (Next.js)**.
 
 ## Architecture
 
 ```
 ┌─────────────────────┐     ┌─────────────────────┐     ┌─────────────────────┐
-│  App / Website      │────▶│  API (NestJS)       │────▶│  ETL (FastAPI)      │
-│  Next.js            │     │  api.ai-bi.vercel.app│     │  etl.ai-bi.vercel.app│
-│  app.ai-bi.vercel.app│     │                     │     │                     │
-└─────────────────────┘     │  - Pipelines        │     │  - /collect         │
-                            │  - Data sources     │     │  - /emit            │
-                            │  - runMeltanoPipeline│    │  - /run-meltano-pipeline│
-                            └─────────────────────┘     └─────────────────────┘
+│  App (Next.js)      │────▶│  API (NestJS)        │────▶│  ETL (FastAPI)       │
+│  app.ai-bi.vercel.app│     │  api.ai-bi.vercel.app │     │  etl.ai-bi.vercel.app│
+└─────────────────────┘     │                      │     │                      │
+                            │  - Pipelines         │     │  - /collect          │
+                            │  - Data sources      │     │  - /emit             │
+                            │  - runMeltanoPipeline│     │  - /run-meltano-pipeline│
+                            └──────────────────────┘     └──────────────────────┘
                                      │
                                      ▼
                             ┌─────────────────────┐
@@ -27,9 +27,7 @@ This guide covers deploying the ai-bi monorepo to Vercel: **ETL (FastAPI)**, **A
 
 - The API fetches connection config from `data_source_connections`
 - The API calls `POST /run-meltano-pipeline` on the ETL with those configs
-- ETL uses Singer taps (tap-postgres, tap-mongodb) for collect + emit
-
-This avoids Meltano's `meltano install` (large, and `target-mongodb` fails on Python 3.12).
+- ETL uses Singer taps (tap-postgres, tap-mongodb, tap-mysql) for collect + emit
 
 ---
 
@@ -47,33 +45,23 @@ This avoids Meltano's `meltano install` (large, and `target-mongodb` fails on Py
 | Output Directory | *(auto)* |
 | Install Command | `pip install --upgrade pip setuptools wheel && pip install -r requirements.txt && pip install -e ./connectors/tap-postgres && pip install -e ./connectors/tap-mysql && pip install -e ./connectors/tap-mongodb` |
 
-### Environment Variables
-
-| Variable | Required | Description |
-|----------|----------|-------------|
-| `SUPABASE_JWT_SECRET` | Yes | JWT secret for auth validation |
-| `CORS_ORIGINS` | No | Comma-separated origins, or `*` |
-| `LOG_LEVEL` | No | `INFO` (default) |
-| `PYTHON_VERSION` | No | `3.11` (set in vercel.json) |
-
-### Function Timeouts
-
-ETL operations (collect, emit, run-meltano-pipeline) can be slow. Set `maxDuration`:
-
-- **Hobby**: 10s (may timeout on large syncs)
-- **Pro**: 60s
-- **Enterprise**: 300s
-
-Configure in `apps/etl/vercel.json` or Vercel Dashboard → Settings → Functions.
-
 ### Deploy
 
 ```bash
 cd apps/etl
 vercel link
 vercel env add SUPABASE_JWT_SECRET production
+vercel env add CORS_ORIGINS production  # e.g. https://app.ai-bi.vercel.app,https://api.ai-bi.vercel.app
 vercel --prod
 ```
+
+### Function Timeouts
+
+ETL operations can be slow. Set `maxDuration` in `apps/etl/vercel.json` or Vercel Dashboard:
+
+- **Hobby**: 10s (may timeout on large syncs)
+- **Pro**: 60s
+- **Enterprise**: 300s
 
 ---
 
@@ -90,52 +78,53 @@ vercel --prod
 | Build Command | `bun run build:deploy` |
 | Install Command | `bun install` |
 
-### Environment Variables
-
-| Variable | Required | Description |
-|----------|----------|-------------|
-| `DATABASE_URL` | Yes | Postgres connection (Supabase) |
-| `ETL_PYTHON_SERVICE_URL` | Yes | ETL Vercel URL, e.g. `https://ai-bi-etl.vercel.app` |
-| `ETL_PYTHON_SERVICE_TOKEN` | Yes | Same as `SUPABASE_JWT_SECRET` (or `SUPABASE_SERVICE_ROLE_KEY`) |
-| `SUPABASE_SERVICE_ROLE_KEY` | Yes | Supabase service role key |
-| `SUPABASE_URL` | Yes | Supabase project URL |
-| `ALLOWED_ORIGINS` | Yes | Comma-separated: `https://app.ai-bi.vercel.app,https://api.ai-bi.vercel.app` |
-| `FRONTEND_URL` | No | Frontend URL |
-| `APP_URL` | No | `https://api.ai-bi.vercel.app` |
-
-### Build & Migrations
-
-`build:deploy` runs `nest build` then `db:migrate`. Ensure `DATABASE_URL` is set so migrations succeed.
-
 ### Deploy
 
 ```bash
 cd apps/api
 vercel link
 vercel env add DATABASE_URL production
-vercel env add ETL_PYTHON_SERVICE_URL production  # Your ETL URL
-vercel env add ETL_PYTHON_SERVICE_TOKEN production
+vercel env add ETL_PYTHON_SERVICE_URL production   # Your ETL URL, e.g. https://ai-bi-etl.vercel.app
+vercel env add ETL_PYTHON_SERVICE_TOKEN production # Same as SUPABASE_JWT_SECRET or SUPABASE_SERVICE_ROLE_KEY
+vercel env add SUPABASE_URL production
+vercel env add SUPABASE_SERVICE_ROLE_KEY production
+vercel env add ALLOWED_ORIGINS production
+vercel --prod
+```
+
+`build:deploy` runs `nest build` then `db:migrate`. Ensure `DATABASE_URL` is set before first deploy.
+
+---
+
+## 3. App (Next.js) Deployment
+
+**Root directory:** `apps/app`
+
+### Vercel Project Settings
+
+| Setting | Value |
+|---------|-------|
+| Framework Preset | Next.js |
+| Root Directory | `apps/app` |
+| Build Command | `bun run build` |
+| Install Command | `bun install` |
+
+### Deploy
+
+```bash
+cd apps/app
+vercel link
+vercel env add NEXT_PUBLIC_API_URL production       # e.g. https://ai-bi-api.vercel.app
+vercel env add NEXT_PUBLIC_SUPABASE_URL production
+vercel env add NEXT_PUBLIC_SUPABASE_ANON_KEY production
+vercel env add NEXT_PUBLIC_SITE_URL production      # e.g. https://ai-bi-app.vercel.app
+vercel env add SUPABASE_SERVICE_ROLE_KEY production
 vercel --prod
 ```
 
 ---
 
-## 3. App / Website (Next.js) Deployment
-
-**Root directory:** `apps/app` or `apps/website`
-
-| Setting | Value |
-|---------|-------|
-| Framework Preset | Next.js |
-| Root Directory | `apps/app` (or `apps/website`) |
-| Build Command | `bun run build` |
-| Install Command | `bun install` |
-
-Set `NEXT_PUBLIC_API_URL` to your API URL.
-
----
-
-## 4. Monorepo Setup (Multiple Projects)
+## 4. Monorepo Setup (3 Projects)
 
 Create **3 separate Vercel projects** from the same repo:
 
@@ -153,34 +142,76 @@ Create **3 separate Vercel projects** from the same repo:
 
 ## 5. Cross-Service URLs
 
-After deployment, set:
+After deployment, set these so services can talk to each other:
 
 **API project:**
 ```
 ETL_PYTHON_SERVICE_URL=https://ai-bi-etl.vercel.app
+ALLOWED_ORIGINS=https://ai-bi-app.vercel.app,https://ai-bi-api.vercel.app
 ```
 
 **App project:**
 ```
 NEXT_PUBLIC_API_URL=https://ai-bi-api.vercel.app
+NEXT_PUBLIC_SITE_URL=https://ai-bi-app.vercel.app
 ```
 
 ---
 
-## 6. Meltano Pipelines (Dynamic Mode)
+## 6. Required Environment Variables Reference
 
-Pipelines run via the API → ETL flow:
+### ETL (`apps/etl`)
 
-1. User triggers pipeline in the app
-2. API fetches `source_connection_config` and `dest_connection_config` from DB
-3. API calls `POST https://ai-bi-etl.vercel.app/run-meltano-pipeline`
-4. ETL runs collect → (transform) → emit
+| Variable | Required | Description |
+|----------|----------|-------------|
+| `SUPABASE_JWT_SECRET` | Yes | JWT secret for auth validation (same as Supabase JWT secret) |
+| `CORS_ORIGINS` | No | Comma-separated origins, or `*` for all |
+| `LOG_LEVEL` | No | `INFO` (default) |
+| `PORT` | No | `8001` (default) |
+| `TAP_TIMEOUT_SECONDS` | No | `1200` (default) |
+| `EMIT_CHUNK_SIZE` | No | `1000` (default) |
+| `PYTHON_VERSION` | No | `3.11` (set in vercel.json) |
 
-No Meltano binary or `meltano.yml` config needed on Vercel.
+### API (`apps/api`)
+
+| Variable | Required | Description |
+|----------|----------|-------------|
+| `DATABASE_URL` | Yes | Postgres connection string (Supabase) |
+| `DATABASE_DIRECT_URL` | No | Direct Postgres URL for pgmq/pg_cron (session mode) |
+| `ETL_PYTHON_SERVICE_URL` | Yes | ETL base URL, e.g. `https://ai-bi-etl.vercel.app` |
+| `ETL_PYTHON_SERVICE_TOKEN` | Yes | Token for ETL auth (use `SUPABASE_SERVICE_ROLE_KEY` or `SUPABASE_JWT_SECRET`) |
+| `SUPABASE_URL` | Yes | Supabase project URL |
+| `SUPABASE_SERVICE_ROLE_KEY` | Yes | Supabase service role key |
+| `SUPABASE_ANON_KEY` | No | Supabase anon key (for some guards) |
+| `ALLOWED_ORIGINS` | Yes | Comma-separated: `https://app.ai-bi.vercel.app,https://api.ai-bi.vercel.app` |
+| `FRONTEND_URL` | No | Frontend URL for CORS/redirects |
+| `SUPABASE_WEBHOOK_SECRET` | No | For Supabase user webhooks |
+
+### App (`apps/app`)
+
+| Variable | Required | Description |
+|----------|----------|-------------|
+| `NEXT_PUBLIC_API_URL` | Yes | API base URL, e.g. `https://ai-bi-api.vercel.app` |
+| `NEXT_PUBLIC_SUPABASE_URL` | Yes | Supabase project URL |
+| `NEXT_PUBLIC_SUPABASE_ANON_KEY` | Yes | Supabase anon key (public) |
+| `NEXT_PUBLIC_SITE_URL` | Yes | App URL, e.g. `https://ai-bi-app.vercel.app` |
+| `SUPABASE_SERVICE_ROLE_KEY` | Yes | Supabase service role key (server-side) |
+| `NEXT_PUBLIC_PYTHON_SERVICE_URL` | No | ETL URL (if app calls ETL directly) |
+| `GOOGLE_FONTS_API_KEY` | No | For Google Fonts API |
 
 ---
 
 ## 7. Troubleshooting
+
+### ETL: Conflicting functions and builds / Unmatched function pattern
+
+Use **`builds` only** (not `functions`) for Python. The `functions` pattern doesn't match Python serverless functions, and you cannot use both. Set `maxDuration` in the build config:
+
+```json
+"builds": [{"src": "api/index.py", "use": "@vercel/python", "config": {"maxDuration": 60}}]
+```
+
+See [Conflicting functions and builds](https://vercel.com/docs/errors/error-list#conflicting-functions-and-builds-configuration) and [Unmatched function pattern](https://vercel.com/docs/errors/error-list#unmatched-function-pattern).
 
 ### ETL: ModuleNotFoundError tap_postgres
 
@@ -188,7 +219,7 @@ Ensure `installCommand` includes the tap connectors. Check `apps/etl/vercel.json
 
 ### ETL: Function timeout
 
-Increase `maxDuration` in `vercel.json` (Pro: 60s, Enterprise: 300s). Or reduce sync batch size.
+Increase `maxDuration` in `vercel.json` (Pro: 60s, Enterprise: 300s).
 
 ### API: ETL_PYTHON_SERVICE_URL must be valid
 
@@ -198,6 +229,10 @@ Set `ETL_PYTHON_SERVICE_URL` to your deployed ETL URL. Must include `https://`.
 
 Set `DATABASE_URL` in Vercel before first deploy. Migrations run in `build:deploy`.
 
+### App: NEXT_PUBLIC_API_URL not set
+
+Set `NEXT_PUBLIC_API_URL` to your deployed API URL. Required for API calls.
+
 ---
 
 ## 8. Quick Reference
@@ -206,4 +241,5 @@ Set `DATABASE_URL` in Vercel before first deploy. Migrations run in `build:deplo
 |---------|-------------|--------------|
 | ETL | `https://[project].vercel.app` | `GET /health` |
 | API | `https://[project].vercel.app` | `GET /api` |
+| App | `https://[project].vercel.app` | — |
 | Meltano pipeline | `POST /run-meltano-pipeline` (on ETL) | — |
