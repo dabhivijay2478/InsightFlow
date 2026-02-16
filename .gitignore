@@ -1,0 +1,40 @@
+# Dependencies
+node_modules/
+.venv/
+venv/
+env/
+
+# Build outputs
+dist/
+build/
+*.pyc
+__pycache__/
+
+# Logs and test artifacts (local only)
+test-logs/
+test-run.log
+*.log
+logs/
+
+# Testing - local only (do not push to GitHub)
+tests/
+apps/api/test/
+apps/etl/tests/
+docker-compose.test.yml
+
+# Environment and secrets
+.env
+.env.*
+!.env.example
+*.env.e2e
+!*.env.e2e.example
+
+# IDE and OS
+.vscode/
+.idea/
+.DS_Store
+
+# Coverage
+coverage/
+.nyc_output/
+.pytest_cache/
