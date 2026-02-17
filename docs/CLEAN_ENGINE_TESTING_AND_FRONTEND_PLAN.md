@@ -14,6 +14,17 @@
 
 **All phases complete.** Optional: run `./scripts/verify-clean-engine-phase1.sh` and manual discovery/CDC tests.
 
+### Frontend Implementation Plan (CLEAN_ENGINE_FRONTEND_IMPLEMENTATION_PLAN.md)
+
+| FE Phase | Status |
+|----------|--------|
+| 1. Remove Legacy UI | ✅ Done |
+| 2. Metadata-Driven Connection Forms | ✅ Done |
+| 3. dbt Model Selector | ✅ Done |
+| 4. Pipeline Run Tracking & CDC Feedback | ✅ Done |
+| 5. Full Sync vs CDC Toggle | ✅ Done |
+| 6. Cleanup & Polish | ✅ Done |
+
 ---
 
 ## 1. Backend Verification & Testing Steps ✅ DONE

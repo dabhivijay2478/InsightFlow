@@ -18,24 +18,21 @@ cd apps/etl
 
 if ! command -v meltano &>/dev/null; then
   echo "WARN: meltano not in PATH. Install with: pip install meltano"
-  echo "      Or run inside Docker: docker compose -f docker-compose.test.yml run etl meltano install"
+  echo "      Or use Docker: docker build -t ai-bi-etl -f apps/etl/Dockerfile apps/etl"
   echo "      Skipping meltano checks."
 else
   # Upgrade psutil before meltano install to avoid macOS + Python 3.12 bug:
   # "SystemError: cpu_count_logical returned a result with an exception set"
-  PIP_CMD="pip"
-  [ -f .venv/bin/pip ] && PIP_CMD=".venv/bin/pip"
+  # Use python3 -m pip so we upgrade in the same env meltano uses (usually system Python)
   echo "Upgrading psutil (fixes macOS/Python 3.12 cpu_count_logical bug)..."
-  $PIP_CMD install --upgrade "psutil>=6.0.0" --quiet 2>/dev/null || true
+  python3 -m pip install --upgrade "psutil>=6.0.0" --quiet 2>/dev/null || true
   echo "Running: meltano install"
   MELTANO_OUT=$(meltano install 2>&1) || MELTANO_RC=$?
   echo "$MELTANO_OUT" | tail -25
   if [ "${MELTANO_RC:-0}" -ne 0 ]; then
     echo ""
-    echo "WARN: meltano install failed (e.g. psutil on macOS). Options:"
-    echo "  - Docker: docker build -t ai-bi-etl -f apps/etl/Dockerfile apps/etl"
-    echo "  - If meltano via pipx: pipx inject meltano 'psutil>=6.0.0' && meltano install"
-    echo "  - If meltano in venv: pip install --upgrade 'psutil>=6.0.0' && meltano install"
+    echo "WARN: meltano install failed. Try: python3 -m pip install --upgrade 'psutil>=6.0.0'"
+    echo "  Or use Docker: docker build -t ai-bi-etl -f apps/etl/Dockerfile apps/etl"
     echo "  Continuing verification..."
   fi
 
