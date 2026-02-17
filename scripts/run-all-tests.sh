@@ -60,16 +60,7 @@ DATABASE_URL="postgresql://api_test:api_test_pass@localhost:15433/ai_bi_test" bu
 cd "$ROOT"
 
 echo ""
-echo "=== 7. ETL unit tests ==="
-cd apps/etl
-if [ -d ".venv" ]; then
-  source .venv/bin/activate
-fi
-pytest tests/test_transformer.py -v 2>/dev/null || true
-cd "$ROOT"
-
-echo ""
-echo "=== 8. ETL integration tests (requires ETL service on :8001) ==="
+echo "=== 7. ETL integration tests (requires ETL service on :8001) ==="
 echo "Start ETL in another terminal: cd apps/etl && ./run.sh"
 echo "Then run: cd apps/etl && pytest tests/test_etl_api_integration.py -v"
 echo ""

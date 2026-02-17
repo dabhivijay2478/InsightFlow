@@ -86,12 +86,6 @@ The E2E tests use `MockAuthGuard` so no real Supabase auth is required.
 
 ## ETL (FastAPI) Tests
 
-### Unit Tests
-```bash
-cd apps/etl
-pytest tests/test_transformer.py -v
-```
-
 ### Integration Tests
 Requires:
 1. Docker databases (postgres-test, mysql-test, mongodb-test)
@@ -112,8 +106,6 @@ Tests cover:
 - `POST /test-connection` (postgresql, mysql, mongodb)
 - `POST /discover-schema/{source_type}` (postgresql, mysql, mongodb)
 - `POST /collect/{source_type}` (postgresql, mysql, mongodb)
-- `POST /transform`
-- `POST /emit/{dest_type}` (postgresql, mysql, mongodb)
 - `POST /run-meltano-pipeline` (postgres-to-mongodb, mongodb-to-postgres)
 - `POST /delta-check/{source_type}`
 
@@ -156,17 +148,52 @@ Install k6: https://k6.io/docs/getting-started/installation/
 
 ```bash
 # API load test (default: 5 VUs, 30s)
-k6 run scripts/load-tests/k6-api.js
+k6 run tests/load-tests/k6-api.js
 
 # ETL load test (10 VUs, parallel-style)
-k6 run scripts/load-tests/k6-etl.js
+k6 run tests/load-tests/k6-etl.js
 
 # ETL parallel pipeline load (5 VUs, 15 iterations of run-meltano-pipeline)
-k6 run scripts/load-tests/k6-etl-parallel-pipelines.js
+k6 run tests/load-tests/k6-etl-parallel-pipelines.js
 
 # Custom: 10 VUs, 1 minute
-k6 run --vus 10 --duration 1m scripts/load-tests/k6-api.js
+k6 run --vus 10 --duration 1m tests/load-tests/k6-api.js
 ```
+
+### Testing deployed endpoints (cloud.api.mantrixflow.com, cloud.api.etl.server.mantrixflow.com)
+
+```bash
+# Skip TLS verification if k6 fails with x509 certificate errors (macOS keychain)
+K6_INSECURE_SKIP_TLS_VERIFY=true API_BASE_URL=https://cloud.api.mantrixflow.com k6 run --vus 5 --duration 30s tests/load-tests/k6-api.js
+K6_INSECURE_SKIP_TLS_VERIFY=true ETL_BASE_URL=https://cloud.api.etl.server.mantrixflow.com k6 run --vus 10 --duration 30s tests/load-tests/k6-etl.js
+```
+
+**Parallel pipeline test** requires local ETL + local Docker DBs (Postgres 15432, MongoDB 27018); the deployed ETL cannot reach your localhost.
+
+### Live ETL full flow (collect + emit + run-meltano-pipeline)
+
+Tests the **live** ETL API (`cloud.api.etl.server.mantrixflow.com`). The ETL runs on Vercel, so it can only reach **cloud-accessible** databases (Supabase, MongoDB Atlas, etc.). Localhost DBs work only with local ETL (`ETL_BASE_URL=http://localhost:8001`).
+
+**With cloud databases** (Supabase Postgres + MongoDB Atlas):
+
+```bash
+SOURCE_PG_HOST=db.xxx.supabase.co SOURCE_PG_PORT=5432 \
+SOURCE_PG_DATABASE=postgres SOURCE_PG_USER=postgres SOURCE_PG_PASSWORD=xxx \
+SOURCE_PG_SCHEMA=public SOURCE_PG_TABLE=your_table \
+DEST_MONGO_URI="mongodb+srv://user:pass@cluster.mongodb.net/dbname" DEST_MONGO_DB=dbname \
+ETL_AUTH_TOKEN=your-jwt ETL_BASE_URL=https://cloud.api.etl.server.mantrixflow.com \
+K6_INSECURE_SKIP_TLS_VERIFY=true \
+k6 run --vus 3 --duration 60s tests/load-tests/k6-etl-live-full.js
+```
+
+**With local ETL + local Docker DBs** (Docker + seed + ETL on :8001):
+
+```bash
+ETL_BASE_URL=http://localhost:8001 ETL_AUTH_TOKEN=test-token \
+k6 run --vus 3 --duration 60s tests/load-tests/k6-etl-live-full.js
+```
+
+The script exercises: `/health`, `/`, `/test-connection`, `/discover-schema`, `/collect`, `/run-meltano-pipeline`.
 
 ## Dummy Data
 

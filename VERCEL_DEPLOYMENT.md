@@ -73,10 +73,12 @@ ETL operations can be slow. Set `maxDuration` in `apps/etl/vercel.json` or Verce
 
 | Setting | Value |
 |---------|-------|
-| Framework Preset | **NestJS** |
+| Framework Preset | **Other** |
 | Root Directory | `apps/api` |
 | Build Command | `bun run build:deploy` |
 | Install Command | `bun install` |
+
+> **Note:** Do not use Framework Preset "NestJS". The project uses `api/index.ts` + `@vercel/node` with rewrites so all requests hit a single exported handler. The legacy NestJS preset expects `main.js` to export a handler, which causes "No exports found in module" errors.
 
 ### Deploy
 
@@ -148,6 +150,11 @@ After deployment, set these so services can talk to each other:
 ```
 ETL_PYTHON_SERVICE_URL=https://ai-bi-etl.vercel.app
 ALLOWED_ORIGINS=https://ai-bi-app.vercel.app,https://ai-bi-api.vercel.app
+```
+
+For MantrixFlow domains, include the frontend origin:
+```
+ALLOWED_ORIGINS=https://cloud.mantrixflow.com,https://cloud.api.mantrixflow.com
 ```
 
 **App project:**
@@ -228,6 +235,25 @@ Set `ETL_PYTHON_SERVICE_URL` to your deployed ETL URL. Must include `https://`.
 ### API: Migration fails during build
 
 Set `DATABASE_URL` in Vercel before first deploy. Migrations run in `build:deploy`.
+
+### API: "No exports found in module main.js"
+
+The NestJS Framework Preset loads `main.js`, which does not export a handler. Fix:
+
+1. Set Framework Preset to **Other** (not NestJS).
+2. Ensure `apps/api/vercel.json` has `builds` + `rewrites`:
+   ```json
+   "builds": [{ "src": "api/index.ts", "use": "@vercel/node" }],
+   "rewrites": [{ "source": "/(.*)", "destination": "/api" }]
+   ```
+3. The entrypoint `api/index.ts` re-exports the handler from `src/vercel.ts`.
+
+### API: CORS blocked – "No Access-Control-Allow-Origin header"
+
+1. Set `ALLOWED_ORIGINS` in the API Vercel project to include the frontend origin, e.g.:
+   - `https://cloud.mantrixflow.com` (if frontend is on that domain)
+   - `https://cloud.api.mantrixflow.com` (if calling API from same domain)
+2. CORS is configured in `src/app-factory.ts` from `ALLOWED_ORIGINS`.
 
 ### App: NEXT_PUBLIC_API_URL not set
 

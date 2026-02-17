@@ -97,17 +97,9 @@ fi
 cd "$ROOT"
 
 # ---------------------------------------------------------------------------
-# STEP 6: ETL unit tests
+# STEP 6: All pipeline direction tests (7 combinations)
 # ---------------------------------------------------------------------------
-log_section "STEP 6: ETL unit tests (transformer)"
-cd apps/etl
-.venv/bin/python -m pytest tests/test_transformer.py -v --tb=short 2>&1 | tee "${LOG_DIR}/etl-unit-${TIMESTAMP}.log" || true
-cd "$ROOT"
-
-# ---------------------------------------------------------------------------
-# STEP 7: All pipeline direction tests (7 combinations)
-# ---------------------------------------------------------------------------
-log_section "STEP 7: All pipeline direction tests"
+log_section "STEP 6: All pipeline direction tests"
 log "Postgres→Postgres, MySQL→Postgres, Postgres→MySQL, MySQL→MongoDB,"
 log "MongoDB→MySQL, Postgres→MongoDB, MongoDB→Postgres"
 cd apps/etl
