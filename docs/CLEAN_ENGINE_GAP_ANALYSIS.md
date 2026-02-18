@@ -1,6 +1,18 @@
 # Clean Engine — Gap Analysis (Four Reported Items)
 
 > **Purpose**: Verify whether the four reported "plumbing gaps" are actual gaps or already implemented.
+>
+> **For reviewer response**: See `RESPONSE_TO_REVIEWER_PLUMBING_GAPS.md` for file paths, line numbers, and code snippets.
+
+---
+
+## Why a Reviewer Might Still Report "Gaps"
+
+- Reviewing an **older commit** or **different branch**
+- Reviewing a **different fork** of the repo
+- Checklist based on **outdated** implementation plan
+
+**Action**: Share `RESPONSE_TO_REVIEWER_PLUMBING_GAPS.md` with the reviewer; it contains exact locations and verification commands.
 
 ---
 
