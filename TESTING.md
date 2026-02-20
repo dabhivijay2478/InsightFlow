@@ -60,7 +60,13 @@ DATABASE_URL="postgresql://api_test:api_test_pass@localhost:15433/ai_bi_test" bu
 cd apps/etl
 python scripts/seed_test_data.py
 
-# 4. Run all tests
+# 4. Start ETL service (Terminal 1)
+cd apps/etl && ./run.sh
+
+# 5. Test all ETL endpoints (Terminal 2)
+cd apps/etl && ./scripts/test_all_endpoints.sh
+
+# 6. Run all tests
 ./scripts/run-all-tests.sh
 ```
 
@@ -85,6 +91,19 @@ DATABASE_URL="postgresql://api_test:api_test_pass@localhost:15433/ai_bi_test" bu
 The E2E tests use `MockAuthGuard` so no real Supabase auth is required.
 
 ## ETL (FastAPI) Tests
+
+### Quick Endpoint Test (curl)
+
+Tests all ETL endpoints against local Docker DBs. No pytest/singer_sdk required.
+
+```bash
+# Requires: Docker DBs up, seed done, ETL running on :8001
+cd apps/etl
+./scripts/test_all_endpoints.sh
+# Or: ./scripts/test_all_endpoints.sh http://localhost:8001
+```
+
+Covers: `/`, `/health`, `/test-connection`, `/discover-schema`, `/collect`, `/delta-check`, `/run-meltano-pipeline`, `/dbt-models`, auth rejection.
 
 ### Integration Tests
 Requires:
