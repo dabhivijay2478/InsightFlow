@@ -36,6 +36,11 @@ cd apps/api
 cp -n test/.env.e2e.example test/.env.e2e 2>/dev/null || true
 export DATABASE_URL="postgresql://api_test:api_test_pass@localhost:15433/ai_bi_test"
 bun run db:migrate
+# Apply migrations 0013-0021 not in drizzle journal
+for f in 0013_refactor_to_dynamic_data_sources 0014_pipeline_lifecycle 0015_pipeline_scheduling 0016_pipeline_incremental_sync_fixes 0017_add_polling_trigger_type 0018_add_transform_script 0019_remove_column_mappings 0020_add_migration_state 0021_add_dbt_models_to_destination_schemas; do
+  [ -f "src/database/drizzle/migrations/${f}.sql" ] && PGPASSWORD=api_test_pass psql -h localhost -p 15433 -U api_test -d ai_bi_test -f "src/database/drizzle/migrations/${f}.sql" 2>/dev/null || true
+done
+bun run db:migrate:etl
 cd "$ROOT"
 
 echo ""

@@ -43,7 +43,7 @@ Deploy the ai-bi monorepo to Vercel: **API (NestJS)**, **ETL (FastAPI)**, and **
 | Root Directory | `apps/etl` |
 | Build Command | *(auto)* |
 | Output Directory | *(auto)* |
-| Install Command | `pip install --upgrade pip setuptools wheel && pip install -r requirements.txt && pip install -e ./connectors/tap-postgres && pip install -e ./connectors/tap-mysql && pip install -e ./connectors/tap-mongodb` |
+| Install Command | `pip install --upgrade pip setuptools wheel && pip install -r requirements.txt && pip install meltano && meltano install` |
 
 ### Deploy
 
@@ -222,7 +222,7 @@ See [Conflicting functions and builds](https://vercel.com/docs/errors/error-list
 
 ### ETL: ModuleNotFoundError tap_postgres
 
-Ensure `installCommand` includes the tap connectors. Check `apps/etl/vercel.json`.
+Ensure `installCommand` includes `meltano install`. Check `apps/etl/vercel.json`.
 
 ### ETL: Function timeout
 

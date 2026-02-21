@@ -39,6 +39,14 @@ for i in 1 2 3 4 5 6 7 8 9 10; do
   log "Waiting for PostgreSQL... ($i/10)"
   sleep 2
 done
+for i in 1 2 3 4 5 6 7 8 9 10; do
+  if docker compose -f docker-compose.test.yml exec -T postgres-api-test pg_isready -U api_test -d ai_bi_test 2>/dev/null; then
+    log "PostgreSQL API (15433) ready"
+    break
+  fi
+  log "Waiting for PostgreSQL API... ($i/10)"
+  sleep 2
+done
 for i in 1 2 3 4 5; do
   if docker compose -f docker-compose.test.yml exec -T mysql-test mysqladmin ping -h localhost -u testuser -ptestpass 2>/dev/null; then
     log "MySQL (13306) ready"
@@ -64,10 +72,14 @@ cd apps/api
 export DATABASE_URL="postgresql://api_test:api_test_pass@localhost:15433/ai_bi_test"
 [ ! -f test/.env.e2e ] && cp test/.env.e2e.example test/.env.e2e && log "Created test/.env.e2e from example"
 bun run db:migrate 2>/dev/null || log "WARN: Drizzle migrations failed (DB may not be up)"
-# Apply extra migrations (0014-0020) not in drizzle journal - required for pipeline columns
-for f in 0014_pipeline_lifecycle 0015_pipeline_scheduling 0016_pipeline_incremental_sync_fixes 0017_add_polling_trigger_type 0018_add_transform_script 0019_remove_column_mappings 0020_add_migration_state; do
-  PGPASSWORD=api_test_pass psql -h localhost -p 15433 -U api_test -d ai_bi_test -f "src/database/drizzle/migrations/${f}.sql" 2>/dev/null || true
+# Apply extra migrations (0013-0021) not in drizzle journal - required for full schema
+for f in 0013_refactor_to_dynamic_data_sources 0014_pipeline_lifecycle 0015_pipeline_scheduling 0016_pipeline_incremental_sync_fixes 0017_add_polling_trigger_type 0018_add_transform_script 0019_remove_column_mappings 0020_add_migration_state 0021_add_dbt_models_to_destination_schemas; do
+  if [ -f "src/database/drizzle/migrations/${f}.sql" ]; then
+    PGPASSWORD=api_test_pass psql -h localhost -p 15433 -U api_test -d ai_bi_test -f "src/database/drizzle/migrations/${f}.sql" 2>/dev/null || true
+  fi
 done
+# ETL jobs + pgmq (requires pgmq extension - postgres-api-test uses pg16-pgmq image)
+bun run db:migrate:etl 2>/dev/null || log "WARN: ETL migration failed (ensure postgres-api-test has pgmq)"
 cd "$ROOT"
 
 # ---------------------------------------------------------------------------
@@ -97,9 +109,17 @@ fi
 cd "$ROOT"
 
 # ---------------------------------------------------------------------------
-# STEP 6: All pipeline direction tests (7 combinations)
+# STEP 6: API unit tests
 # ---------------------------------------------------------------------------
-log_section "STEP 6: All pipeline direction tests"
+log_section "STEP 6: API unit tests"
+cd apps/api
+bun run test -- --passWithNoTests 2>&1 | tee "${LOG_DIR}/api-unit-${TIMESTAMP}.log" || true
+cd "$ROOT"
+
+# ---------------------------------------------------------------------------
+# STEP 7: All pipeline direction tests (7 combinations)
+# ---------------------------------------------------------------------------
+log_section "STEP 7: All pipeline direction tests"
 log "Postgres→Postgres, MySQL→Postgres, Postgres→MySQL, MySQL→MongoDB,"
 log "MongoDB→MySQL, Postgres→MongoDB, MongoDB→Postgres"
 cd apps/etl
@@ -107,33 +127,41 @@ ETL_BASE_URL="${ETL_BASE_URL:-http://localhost:8001}" .venv/bin/python -m pytest
 cd "$ROOT"
 
 # ---------------------------------------------------------------------------
-# STEP 8: ETL integration tests
+# STEP 8: ETL unit tests (no Docker required)
 # ---------------------------------------------------------------------------
-log_section "STEP 8: ETL integration tests"
+log_section "STEP 8: ETL unit tests"
+cd apps/etl
+.venv/bin/python -m pytest tests/ -v -m "not integration" --tb=short 2>&1 | tee "${LOG_DIR}/etl-unit-${TIMESTAMP}.log" || true
+cd "$ROOT"
+
+# ---------------------------------------------------------------------------
+# STEP 9: ETL integration tests
+# ---------------------------------------------------------------------------
+log_section "STEP 9: ETL integration tests"
 cd apps/etl
 ETL_BASE_URL="${ETL_BASE_URL:-http://localhost:8001}" .venv/bin/python -m pytest tests/test_etl_api_integration.py -v -m integration --tb=short 2>&1 | tee "${LOG_DIR}/etl-integration-${TIMESTAMP}.log" || true
 cd "$ROOT"
 
 # ---------------------------------------------------------------------------
-# STEP 9: Parallel pipeline tests
+# STEP 10: Parallel pipeline tests
 # ---------------------------------------------------------------------------
-log_section "STEP 9: Parallel pipeline tests (different databases)"
+log_section "STEP 10: Parallel pipeline tests (different databases)"
 cd apps/etl
 ETL_INTEGRATION_FULL=1 ETL_BASE_URL="${ETL_BASE_URL:-http://localhost:8001}" .venv/bin/python -m pytest tests/test_etl_parallel_pipelines.py -v -m integration --tb=short 2>&1 | tee "${LOG_DIR}/parallel-pipelines-${TIMESTAMP}.log" || true
 cd "$ROOT"
 
 # ---------------------------------------------------------------------------
-# STEP 10: API E2E tests
+# STEP 11: API E2E tests
 # ---------------------------------------------------------------------------
-log_section "STEP 10: API E2E tests"
+log_section "STEP 11: API E2E tests"
 cd apps/api
 DATABASE_URL="postgresql://api_test:api_test_pass@localhost:15433/ai_bi_test" bun run test:e2e 2>&1 | tee "${LOG_DIR}/api-e2e-${TIMESTAMP}.log" || true
 cd "$ROOT"
 
 # ---------------------------------------------------------------------------
-# STEP 11: Load testing (k6)
+# STEP 12: Load testing (k6)
 # ---------------------------------------------------------------------------
-log_section "STEP 11: Load testing (k6)"
+log_section "STEP 12: Load testing (k6)"
 if command -v k6 &>/dev/null; then
   log "k6 API load test..."
   if lsof -i :3000 2>/dev/null | grep -q LISTEN; then
