@@ -1,0 +1,7 @@
+{
+  "git.openRepositoryInParentFolders": "always",
+  "git.repositoryScanMaxDepth": 6,
+  "files.exclude": {
+    "**/.git": false
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "folders": [
+    {
+      "name": "Monorepo (InsightFlow)",
+      "path": "."
+    },
+    {
+      "name": "Cloud API",
+      "path": "apps/api"
+    }
+  ],
+  "settings": {
+    "git.autoRepositoryDetection": true,
+    "git.detectSubmodules": true
+  }
+}
