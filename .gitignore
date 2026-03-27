@@ -18,7 +18,7 @@ logs/
 
 # Testing - local only (do not push to GitHub)
 tests/
-apps/api/test/
+apps/api/bin/
 apps/etl/tests/
 docker-compose.test.yml
 

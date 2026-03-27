@@ -2,7 +2,7 @@
 
 **Local only** – no Docker/CI in GitHub. Tests run on your machine with Docker databases.
 
-See `tests/README.md` for consolidated layout: `apps/api/test/`, `apps/etl/tests/`, `tests/load-tests/`.
+See `tests/load-tests/` for k6 scripts. The HTTP API is **Go** in `apps/api` (NestJS removed).
 
 End-to-end testing for all APIs and ETL pipelines using Docker databases.
 
@@ -32,17 +32,13 @@ End-to-end testing for all APIs and ETL pipelines using Docker databases.
 ```
 
 This script:
-1. Starts Docker databases (Postgres 15432/15433, MySQL 13306, MongoDB 27018)
+1. Starts Docker databases (if `docker-compose.test.yml` is present)
 2. Waits for DBs healthy
-3. Runs API migrations
-4. Seeds ETL test data
-5. Starts ETL service (background)
-6. Runs ETL unit tests
-7. Runs **all 7 pipeline direction tests** (Postgres↔Postgres, MySQL↔Postgres, etc.)
-8. Runs ETL integration tests
-9. Runs parallel pipeline tests
-10. Runs API E2E tests
-11. **Load testing (k6)** at the end
+3. Runs **`go test ./...`** in `apps/api`
+4. Seeds ETL test data (if `apps/etl` exists)
+5. Starts ETL service in the background (if configured)
+6–9. ETL pytest stages (if `apps/etl` exists)
+10. **Load testing (k6)** (expects Go API on **:8080** when testing the API)
 
 Logs are saved in `test-logs/`.
 
@@ -52,9 +48,8 @@ Logs are saved in `test-logs/`.
 # 1. Start Docker databases
 docker compose -f docker-compose.test.yml up -d
 
-# 2. Run API migrations
-cd apps/api
-DATABASE_URL="postgresql://api_test:api_test_pass@localhost:15433/ai_bi_test" bun run db:migrate
+# 2. Run Go API unit tests
+cd apps/api && go test ./... && cd ..
 
 # 3. Seed ETL test data (Postgres, MySQL, MongoDB)
 cd apps/etl
@@ -70,25 +65,19 @@ cd apps/etl && ./scripts/test_all_endpoints.sh
 ./scripts/run-all-tests.sh
 ```
 
-## API (NestJS) Tests
-
-### Unit Tests
-```bash
-cd apps/api
-bun run test
-```
-
-### E2E Tests
-Requires `postgres-api-test` running on port 15433.
+## API (Go) Tests
 
 ```bash
 cd apps/api
-cp test/.env.e2e.example test/.env.e2e
-# Edit test/.env.e2e if needed
-DATABASE_URL="postgresql://api_test:api_test_pass@localhost:15433/ai_bi_test" bun run test:e2e
+go test ./...
 ```
 
-The E2E tests use `MockAuthGuard` so no real Supabase auth is required.
+```bash
+# Run the API locally (needs `.env` with DATABASE_URL, secrets, ETL url)
+go run ./cmd/server
+```
+
+Integration/E2E tests for the full HTTP surface can be added under `apps/api` as needed.
 
 ## ETL (FastAPI) Tests
 
@@ -251,4 +240,4 @@ docker compose -f docker-compose.test.yml down
 | MYSQL_TEST_PORT | 13306    | MySQL test port               |
 | MONGO_TEST_PORT | 27018    | MongoDB test port             |
 | ETL_BASE_URL    | localhost:8001 | ETL service URL          |
-| API_BASE_URL    | localhost:3000 | API URL for load tests   |
+| API_BASE_URL    | localhost:8080 | API URL for load tests (Go default `PORT`)   |

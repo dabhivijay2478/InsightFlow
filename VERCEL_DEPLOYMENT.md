@@ -1,12 +1,12 @@
 # Vercel Deployment Guide: API, ETL, and App
 
-Deploy the ai-bi monorepo to Vercel: **API (NestJS)**, **ETL (FastAPI)**, and **App (Next.js)**.
+Deploy the ai-bi stack: **API (Go / [Fiber](https://gofiber.io/) in `apps/api`)**, **ETL (FastAPI)**, and **App (Next.js)**. The NestJS API has been removed; HTTP routes live under **`/api/v1`**.
 
 ## Architecture
 
 ```
 ┌─────────────────────┐     ┌─────────────────────┐     ┌─────────────────────┐
-│  App (Next.js)      │────▶│  API (NestJS)        │────▶│  ETL (FastAPI)       │
+│  App (Next.js)      │────▶│  API (Go / Fiber)      │────▶│  ETL (FastAPI)       │
 │  app.ai-bi.vercel.app│     │  api.ai-bi.vercel.app │     │  etl.ai-bi.vercel.app│
 └─────────────────────┘     │                      │     │                      │
                             │  - Pipelines         │     │  - /collect          │
@@ -65,34 +65,27 @@ ETL operations can be slow. Set `maxDuration` in `apps/etl/vercel.json` or Verce
 
 ---
 
-## 2. API (NestJS) Deployment
+## 2. API (Go) Deployment
 
 **Root directory:** `apps/api`
 
-### Vercel Project Settings
+The service is a standard Go binary (`cmd/server`). Deploy it on any platform that runs containers or long-lived processes (Fly.io, Railway, Kubernetes, ECS, etc.). **Vercel** is optimized for serverless Node/Python; for Go on Vercel use a **Docker** deployment or run the API elsewhere and point `NEXT_PUBLIC_API_URL` at it.
 
-| Setting | Value |
-|---------|-------|
-| Framework Preset | **Other** |
-| Root Directory | `apps/api` |
-| Build Command | `bun run build:deploy` |
-| Install Command | `bun install` |
-
-> **Note:** Do not use Framework Preset "NestJS". The project uses `api/index.ts` + `@vercel/node` with rewrites so all requests hit a single exported handler. The legacy NestJS preset expects `main.js` to export a handler, which causes "No exports found in module" errors.
-
-### Deploy
+### Build and run (any host)
 
 ```bash
 cd apps/api
-vercel link
-vercel env add DATABASE_URL production
-vercel env add ETL_PYTHON_SERVICE_URL production   # Your ETL URL, e.g. https://ai-bi-etl.vercel.app
-vercel env add ETL_PYTHON_SERVICE_TOKEN production # Same as SUPABASE_JWT_SECRET or SUPABASE_SERVICE_ROLE_KEY
-vercel env add SUPABASE_URL production
-vercel env add SUPABASE_SERVICE_ROLE_KEY production
-vercel env add ALLOWED_ORIGINS production
-vercel --prod
+go build -o bin/server ./cmd/server
+./bin/server   # listens on $PORT, default 8080
 ```
+
+### Environment variables
+
+Set the same variables listed in **§6 API (`apps/api`)** below. Required: `DATABASE_URL`, `SUPABASE_JWT_SECRET` (or `JWT_SECRET`), `ENCRYPTION_MASTER_KEY`, `ETL_PYTHON_SERVICE_URL`. Set **`API_PUBLIC_URL`** to the public origin of this API (no trailing slash); ETL callbacks use `{API_PUBLIC_URL}/api/v1/internal/etl-callback` and `{API_PUBLIC_URL}/api/v1/internal/checkpoint/{pipelineId}`.
+
+### Optional: Vercel with Docker
+
+If you use Vercel’s container runtime, add a `Dockerfile` in `apps/api` that builds `cmd/server` and set the project root to `apps/api`. Do not use the old NestJS `api/index.ts` handler.
 
 `build:deploy` runs `nest build` then `db:migrate`. Ensure `DATABASE_URL` is set before first deploy.
 
@@ -163,6 +156,8 @@ NEXT_PUBLIC_API_URL=https://ai-bi-api.vercel.app
 NEXT_PUBLIC_SITE_URL=https://ai-bi-app.vercel.app
 ```
 
+The frontend must call the Go API with the **`/api/v1`** prefix (for example, `{NEXT_PUBLIC_API_URL}/api/v1/organizations/{orgId}/pipelines`).
+
 ---
 
 ## 6. Required Environment Variables Reference
@@ -184,15 +179,19 @@ NEXT_PUBLIC_SITE_URL=https://ai-bi-app.vercel.app
 | Variable | Required | Description |
 |----------|----------|-------------|
 | `DATABASE_URL` | Yes | Postgres connection string (Supabase) |
-| `DATABASE_DIRECT_URL` | No | Direct Postgres URL for pgmq/pg_cron (session mode) |
+| `DATABASE_DIRECT_URL` | No | Direct Postgres URL (port 5432) for pgmq worker if pooler is on 6543 |
+| `SUPABASE_JWT_SECRET` or `JWT_SECRET` | Yes | Supabase JWT signing secret (HS256) |
+| `ENCRYPTION_MASTER_KEY` | Yes | Min 32 chars; must match legacy Nest credential encryption |
 | `ETL_PYTHON_SERVICE_URL` | Yes | ETL base URL, e.g. `https://ai-bi-etl.vercel.app` |
-| `ETL_PYTHON_SERVICE_TOKEN` | Yes | Token for ETL auth (use `SUPABASE_SERVICE_ROLE_KEY` or `SUPABASE_JWT_SECRET`) |
-| `SUPABASE_URL` | Yes | Supabase project URL |
-| `SUPABASE_SERVICE_ROLE_KEY` | Yes | Supabase service role key |
-| `SUPABASE_ANON_KEY` | No | Supabase anon key (for some guards) |
-| `ALLOWED_ORIGINS` | Yes | Comma-separated: `https://app.ai-bi.vercel.app,https://api.ai-bi.vercel.app` |
-| `FRONTEND_URL` | No | Frontend URL for CORS/redirects |
-| `SUPABASE_WEBHOOK_SECRET` | No | For Supabase user webhooks |
+| `ETL_INTERNAL_TOKEN` | Yes* | Sent as `X-ETL-Token` to ETL (`SUPABASE_SERVICE_ROLE_KEY` or dedicated secret) |
+| `API_PUBLIC_URL` | Yes | Public base URL of this API (callbacks; no path suffix) |
+| `CALLBACK_TOKEN` / `INTERNAL_TOKEN` | Yes* | ETL → API: header `X-Callback-Token` or `X-Internal-Token` on `/api/v1/internal/*` |
+| `SUPABASE_URL` | No | Supabase project URL |
+| `SUPABASE_SERVICE_ROLE_KEY` | No | Fallback for token chaining |
+| `ALLOW_SOURCE_DB_MUTATIONS_FOR_CDC` | No | `true` to allow CDC runs that touch source DB |
+| `PORT` | No | HTTP listen port (default `8080`) |
+
+\* At least one ETL auth secret and one internal callback token must match what the ETL service sends.
 
 ### App (`apps/app`)
 
@@ -232,28 +231,17 @@ Increase `maxDuration` in `vercel.json` (Pro: 60s, Enterprise: 300s).
 
 Set `ETL_PYTHON_SERVICE_URL` to your deployed ETL URL. Must include `https://`.
 
-### API: Migration fails during build
+### API: Worker not processing queues
 
-Set `DATABASE_URL` in Vercel before first deploy. Migrations run in `build:deploy`.
+Ensure `DATABASE_DIRECT_URL` (or a session-mode URL on port **5432**) is set if `DATABASE_URL` uses Supavisor on **6543**. The pgmq worker uses `SessionDatabaseURL()`.
 
-### API: "No exports found in module main.js"
+### API: ETL callbacks return 401
 
-The NestJS Framework Preset loads `main.js`, which does not export a handler. Fix:
+Match **`CALLBACK_TOKEN`** / **`INTERNAL_TOKEN`** on the API to the token the ETL sends (`X-Callback-Token` or `X-Internal-Token`).
 
-1. Set Framework Preset to **Other** (not NestJS).
-2. Ensure `apps/api/vercel.json` has `builds` + `rewrites`:
-   ```json
-   "builds": [{ "src": "api/index.ts", "use": "@vercel/node" }],
-   "rewrites": [{ "source": "/(.*)", "destination": "/api" }]
-   ```
-3. The entrypoint `api/index.ts` re-exports the handler from `src/vercel.ts`.
+### API: CORS
 
-### API: CORS blocked – "No Access-Control-Allow-Origin header"
-
-1. Set `ALLOWED_ORIGINS` in the API Vercel project to include the frontend origin, e.g.:
-   - `https://cloud.mantrixflow.com` (if frontend is on that domain)
-   - `https://cloud.api.mantrixflow.com` (if calling API from same domain)
-2. CORS is configured in `src/app-factory.ts` from `ALLOWED_ORIGINS`.
+Add a CORS middleware in `apps/api` if browsers call the API cross-origin; configure allowed origins to match your frontend.
 
 ### App: NEXT_PUBLIC_API_URL not set
 
@@ -266,6 +254,6 @@ Set `NEXT_PUBLIC_API_URL` to your deployed API URL. Required for API calls.
 | Service | URL pattern | Health check |
 |---------|-------------|--------------|
 | ETL | `https://[project].vercel.app` | `GET /health` |
-| API | `https://[project].vercel.app` | `GET /api` |
+| API | `https://[project].vercel.app` | `GET /health` or `GET /api/v1/health` |
 | App | `https://[project].vercel.app` | — |
 | Meltano pipeline | `POST /run-meltano-pipeline` (on ETL) | — |
