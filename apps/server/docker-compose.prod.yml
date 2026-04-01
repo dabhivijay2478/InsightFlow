@@ -48,9 +48,15 @@ services:
       - RATE_LIMIT_GENERAL_MAX=${RATE_LIMIT_GENERAL_MAX:-200}
       - RATE_LIMIT_SYNC_MAX=${RATE_LIMIT_SYNC_MAX:-10}
       - RATE_LIMIT_AUTH_MAX=${RATE_LIMIT_AUTH_MAX:-20}
-      # Worker concurrency — 8 parallel dispatch goroutines max
-      - PGMQ_PARALLEL_WORKERS=${PGMQ_PARALLEL_WORKERS:-8}
+      # Worker concurrency — 2 parallel dispatch goroutines max
+      - PGMQ_PARALLEL_WORKERS=${PGMQ_PARALLEL_WORKERS:-2}
       - PGMQ_POLL_INTERVAL_MS=${PGMQ_POLL_INTERVAL_MS:-3000}
+      # Pipeline execution limits (MVP)
+      - PIPELINE_MAX_CONCURRENT=${PIPELINE_MAX_CONCURRENT:-2}
+      - PIPELINE_MAX_PER_HOUR=${PIPELINE_MAX_PER_HOUR:-3}
+      - PIPELINE_MAX_PER_DAY=${PIPELINE_MAX_PER_DAY:-20}
+      - PIPELINE_MAX_PER_ORG_CONCURRENT=${PIPELINE_MAX_PER_ORG_CONCURRENT:-1}
+      - PIPELINE_MAX_PER_ORG_PER_HOUR=${PIPELINE_MAX_PER_ORG_PER_HOUR:-2}
     networks:
       - mantrixflow-internal
     depends_on:
@@ -97,7 +103,7 @@ services:
       - PORT=8000
       - PYTHONUNBUFFERED=1
       - CALLBACK_URL=http://api:5000/api/v1/internal/etl-callback
-      - MAX_CONCURRENT_RUNS=${MAX_CONCURRENT_RUNS:-10}
+      - MAX_CONCURRENT_RUNS=${MAX_CONCURRENT_RUNS:-2}
       - MAX_TAPS_PER_SOURCE=${MAX_TAPS_PER_SOURCE:-2}
       - DEFAULT_SYNC_TIMEOUT_SECONDS=${DEFAULT_SYNC_TIMEOUT_SECONDS:-300}
     volumes:

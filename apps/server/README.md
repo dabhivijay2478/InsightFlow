@@ -339,7 +339,7 @@ docker exec mantrixflow-etl curl -f http://localhost:8000/health
 ```bash
 docker stats --no-stream
 # Reduce concurrent ETL runs:
-# Edit .env.production → MAX_CONCURRENT_RUNS=10
+# Edit .env.production → MAX_CONCURRENT_RUNS=2
 # Then: docker compose -f docker-compose.prod.yml up -d
 ```
 
