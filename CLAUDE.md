@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Product Overview
 
-MANTrixFlow is a B2B SaaS ETL platform. Users connect source databases, configure data pipelines with transforms, and sync data to destination databases.
+MantrixFlow is a B2B SaaS ETL platform. Users connect source databases, configure data pipelines with transforms, and sync data to destination databases.
 
 ## Monorepo Structure
 
@@ -12,9 +12,13 @@ MANTrixFlow is a B2B SaaS ETL platform. Users connect source databases, configur
 apps/
 ├── app/          ← Next.js 16 + React 19 frontend (App Router)
 ├── api/          ← Go API server (Fiber + GORM) — ACTIVE
-└── new-etl/      ← Python FastAPI ETL server (dlt) — ACTIVE
+├── new-etl/      ← Python FastAPI ETL server (dlt) — ACTIVE
+└── website/      ← Marketing site (Next.js)
+(mantrixflow-docs/) ← Mintlify docs — **not** in this repo; clone: `git clone https://github.com/dabhivijay2478/mantrixflow-docs.git mantrixflow-docs`
 cloud.api.mantrixflow.com/  ← NestJS API (DEPRECATED, reference only)
 ```
+
+**Documentation:** Mintlify source: **https://github.com/dabhivijay2478/mantrixflow-docs.git**. Clone into **`mantrixflow-docs/`** next to this monorepo if needed. Preview: `cd mantrixflow-docs && npm install && npm run dev`. Edit MDX and `docs.json` only in that repository. The marketing site uses `NEXT_PUBLIC_DOCS_URL` and redirects `/docs/*` to the docs host.
 
 **Important:** `cloud.api.mantrixflow.com` is the old NestJS API being replaced by `apps/api`. Use it only as a reference for what routes need to exist in Go. Do not write new NestJS code. Do not import from it.
 
