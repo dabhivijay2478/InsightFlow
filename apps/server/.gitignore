@@ -1,0 +1,10 @@
+# Cloned repos (each is its own git repo)
+main-server/
+etl-server/
+
+# Environment (contains secrets)
+.env.production
+
+# OS
+.DS_Store
+Thumbs.db
