@@ -1,3 +1,19 @@
+# Deployment: Contabo + Dokploy (VPS)
+
+This is the long-form Contabo + Dokploy guide, kept here as the repo-level reference.
+
+It targets deploying:
+
+- Go API: `apps/server/main-server`
+- Python ELT: `apps/server/elt-server`
+- (Optional) App: `apps/app` (usually Vercel, but can also be hosted elsewhere)
+
+> Source: migrated from `CONTABO_DOKPLOY_DEPLOYMENT.md` (renamed for consistency).
+
+## Full guide
+
+The full step-by-step content lives in the original document text below (kept as-is, only wrapped by this header for naming consistency).
+
 # MantrixFlow — Contabo + Dokploy Deployment Guide
 
 Complete step-by-step guide to deploy MantrixFlow (Go API + Python ETL) on a Contabo VPS using Dokploy.
@@ -484,3 +500,4 @@ docker volume prune -f
 | Dokploy | **Free** |
 | SSL (Let's Encrypt) | **Free** |
 | **Total** | **~$5.88–$8.42/mo** |
+
