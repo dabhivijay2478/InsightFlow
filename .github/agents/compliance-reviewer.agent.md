@@ -14,6 +14,11 @@ MantrixFlow handles:
 - Organization-scoped multi-tenant data
 - Supabase-managed authentication (JWT)
 
+Active service paths in this repo:
+- App: `apps/app/`
+- Go API: `apps/server/main-server/`
+- Python ELT: `apps/server/elt-server/`
+
 ## When Invoked
 
 1. Identify which compliance frameworks apply

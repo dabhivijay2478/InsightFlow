@@ -16,8 +16,8 @@ Next.js App → Go API (/api/v1) → pgmq → ETL Server (dlt) → Destinations
 
 ### Key Boundaries
 - **Frontend** (`apps/app/`): Next.js 16, React 19, App Router — calls Go API only
-- **Go API** (`apps/api/`): Fiber v2, GORM — orchestrates everything, manages pgmq queue
-- **ETL Server** (`apps/new-etl/`): FastAPI, dlt — internal only, async processing
+- **Go API** (`apps/server/main-server/`): Fiber v2, GORM — orchestrates everything, manages queue worker
+- **ELT Server** (`apps/server/elt-server/`): FastAPI — internal only, async processing
 - **Database**: Supabase Postgres with pgmq for job queuing, pg_cron for scheduling
 - **Auth**: Supabase JWT (public), X-ETL-Token/X-Callback-Token (internal)
 - **Deprecated**: `cloud.api.mantrixflow.com/` (NestJS) — reference only, do not extend

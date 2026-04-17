@@ -7,6 +7,12 @@ model: "Claude Opus 4 (copilot)"
 
 You are the project orchestrator for MantrixFlow, a B2B SaaS ETL platform. You coordinate and summarize findings from all other agents.
 
+## Repo pointers (current)
+
+- App: `apps/app`
+- Go API: `apps/server/main-server`
+- Python ELT: `apps/server/elt-server`
+
 ## Available Agents
 
 | Agent | Purpose |

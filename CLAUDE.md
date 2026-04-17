@@ -11,8 +11,9 @@ MantrixFlow is a B2B SaaS ETL platform. Users connect source databases, configur
 ```
 apps/
 ├── app/          ← Next.js 16 + React 19 frontend (App Router)
-├── api/          ← Go API server (Fiber + GORM) — ACTIVE
-├── new-etl/      ← Python FastAPI ETL server (dlt) — ACTIVE
+├── server/
+│   ├── main-server/ ← Go API server (Fiber + GORM) — ACTIVE
+│   └── elt-server/  ← Python FastAPI ELT server (DuckDB-staged ELT) — ACTIVE
 └── website/      ← Marketing site (Next.js)
 (mantrixflow-docs/) ← Mintlify docs — **not** in this repo; clone: `git clone https://github.com/dabhivijay2478/mantrixflow-docs.git mantrixflow-docs`
 cloud.api.mantrixflow.com/  ← NestJS API (DEPRECATED, reference only)
@@ -20,7 +21,7 @@ cloud.api.mantrixflow.com/  ← NestJS API (DEPRECATED, reference only)
 
 **Documentation:** Mintlify source: **https://github.com/dabhivijay2478/mantrixflow-docs.git**. Clone into **`mantrixflow-docs/`** next to this monorepo if needed. Preview: `cd mantrixflow-docs && npm install && npm run dev`. Edit MDX and `docs.json` only in that repository. The marketing site uses `NEXT_PUBLIC_DOCS_URL` and redirects `/docs/*` to the docs host.
 
-**Important:** `cloud.api.mantrixflow.com` is the old NestJS API being replaced by `apps/api`. Use it only as a reference for what routes need to exist in Go. Do not write new NestJS code. Do not import from it.
+**Important:** `cloud.api.mantrixflow.com` is the old NestJS API being replaced by `apps/server/main-server`. Use it only as a reference. Do not write new NestJS code. Do not import from it.
 
 ## Architecture
 
@@ -68,14 +69,12 @@ Go API enqueues → ETL /sync (HTTP 202) → dlt pipeline runs async → callbac
 
 ## Commands
 
-### API (Go) — `apps/api/`
+### API (Go) — `apps/server/main-server/`
 
 ```bash
-cd apps/api
+cd apps/server/main-server
 go run ./cmd/server              # Start dev server (default port 5000)
-go build -o bin/server ./cmd/server
 go test ./...
-make swagger                     # Regenerate Swagger docs
 ```
 
 **Key env vars:**
@@ -86,10 +85,10 @@ make swagger                     # Regenerate Swagger docs
 - `API_PUBLIC_URL` — public callback base URL (required in prod)
 - `ETL_INTERNAL_TOKEN` / `CALLBACK_TOKEN` — internal auth secrets
 
-### ETL (Python) — `apps/new-etl/`
+### ELT (Python) — `apps/server/elt-server/`
 
 ```bash
-cd apps/new-etl
+cd apps/server/elt-server
 python3 -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
@@ -131,7 +130,7 @@ Tables in Supabase Postgres:
 
 ## API Routes Reference
 
-### Go API (`apps/api/`) — `/api/v1/`
+### Go API (`apps/server/main-server/`) — `/api/v1/`
 
 All routes require Supabase JWT except `/api/v1/internal/*`:
 - `GET /health` — health check
@@ -143,7 +142,7 @@ All routes require Supabase JWT except `/api/v1/internal/*`:
 - `POST /internal/etl-callback` — ETL posts completion results
 - `POST /internal/checkpoint/:pipelineId` — ETL posts progress updates
 
-### ETL Server (`apps/new-etl/`)
+### ELT Server (`apps/server/elt-server/`)
 
 All routes validate `X-ETL-Token`:
 - `GET/POST /health` — capacity info
@@ -220,10 +219,10 @@ All routes validate `X-ETL-Token`:
 - AI Chat Panel (Vercel AI SDK + ai-elements)
 - Connections catalog page
 
-### Needs Implementation (Go API `apps/api/`)
+### Needs Implementation (Go API `apps/server/main-server/`)
 All routes need implementation. Reference `cloud.api.mantrixflow.com` for expected behavior, then rewrite in Go/Fiber.
 
-### Needs Work (Python ETL `apps/new-etl/`)
+### Needs Work (Python ELT `apps/server/elt-server/`)
 Routes exist but may have issues:
 - test-connection should use SQLAlchemy, not subprocess
 - credential handling must be consistent
@@ -245,13 +244,13 @@ Frontend uses mock data in many places. Replace `MOCK_*` constants with real Tan
 - Accessibility attributes on interactive elements
 - Event handlers: `handleClick`, `handleKeyDown`
 
-### Go (`apps/api/`)
+### Go (`apps/server/main-server/`)
 - Fiber v2 routing (`app.Get`, `app.Post`, `app.Group`)
 - Structured logging with zerolog
 - Thin handlers, thick services
 - GORM models in `internal/models/`
 
-### Python (`apps/new-etl/`)
+### Python (`apps/server/elt-server/`)
 - FastAPI with Pydantic v2
 - dlt for all data movement
 - SQLAlchemy for discovery/test-connection
@@ -267,14 +266,14 @@ Frontend uses mock data in many places. Replace `MOCK_*` constants with real Tan
 
 ## Testing
 
-See `TESTING.md` for full documentation.
+See `md-docs/testing-local.md` for local testing notes.
 
 ```bash
 # Docker test databases (ports: 15432, 13306, 27018)
 docker compose -f docker-compose.test.yml up -d
 
 # Go API tests
-cd apps/api && go test ./...
+cd apps/server/main-server && go test ./...
 
 # Load tests (k6)
 k6 run tests/load-tests/k6-api.js
@@ -283,10 +282,10 @@ k6 run tests/load-tests/k6-etl.js
 
 ## Deployment
 
-See `VERCEL_DEPLOYMENT.md` for detailed guide.
+See `md-docs/deployment-vercel.md` and `md-docs/deployment-contabo-dokploy.md`.
 
 - **App**: Vercel (Next.js preset, root: `apps/app`)
-- **ETL**: Vercel (Python runtime, root: `apps/new-etl`)
+- **ELT**: Container/VM (recommended) (root: `apps/server/elt-server`)
 - **API**: Docker container or Go binary (not ideal for Vercel serverless)
 
 **No Meltano:** The system uses dlt directly — no Singer taps, no Meltano pipelines. ETL fetches connection config from `data_source_connections` and runs dlt pipelines dynamically.

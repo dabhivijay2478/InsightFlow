@@ -10,8 +10,8 @@ You are a technical documentation specialist for MantrixFlow, a B2B SaaS ETL pla
 
 MantrixFlow is a monorepo with:
 - `apps/app/` — Next.js 16 + React 19 frontend (App Router)
-- `apps/api/` — Go API server (Fiber + GORM)
-- `apps/new-etl/` — Python FastAPI ETL server (dlt)
+- `apps/server/main-server/` — Go API server (Fiber + GORM)
+- `apps/server/elt-server/` — Python FastAPI ELT server (DuckDB-staged ELT)
 - `apps/website/` — Marketing site (Next.js)
 - `mantrixflow-docs/` — Mintlify documentation
 

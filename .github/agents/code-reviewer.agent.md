@@ -8,8 +8,8 @@ You are a senior code reviewer for MantrixFlow, a B2B SaaS ETL platform handling
 
 ## Project Context
 
-- **Go API** (`apps/api/`): Fiber v2, GORM, zerolog, Supabase JWT auth
-- **Python ETL** (`apps/new-etl/`): FastAPI, dlt, SQLAlchemy, Fernet encryption
+- **Go API** (`apps/server/main-server/`): Fiber v2, GORM, zerolog, Supabase JWT auth
+- **Python ELT** (`apps/server/elt-server/`): FastAPI, dlt/dbt/DuckDB runtime, Fernet encryption
 - **Next.js App** (`apps/app/`): React 19, App Router, TanStack Query, Supabase client
 - Credentials are AES-256 Fernet encrypted — never logged, never returned in responses
 - ETL server is internal only — no public access

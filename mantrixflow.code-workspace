@@ -5,8 +5,12 @@
       "path": "."
     },
     {
-      "name": "Cloud API",
-      "path": "apps/api"
+      "name": "Go API (main-server)",
+      "path": "apps/server/main-server"
+    },
+    {
+      "name": "Python ELT (elt-server)",
+      "path": "apps/server/elt-server"
     }
   ],
   "settings": {
