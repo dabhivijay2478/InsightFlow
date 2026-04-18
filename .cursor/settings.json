@@ -1,9 +1,1 @@
-{
-  "plugins": {
-    "wozcode-marketplace/woz": {
-      "enabled": true,
-      "gitUrl": "https://github.com/WithWoz/wozcode-plugin",
-      "gitRef": "main"
-    }
-  }
-}
+{}
