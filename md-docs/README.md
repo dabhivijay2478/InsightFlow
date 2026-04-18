@@ -2,6 +2,10 @@
 
 Repository-level notes that are **broader than a single app**.
 
+## ELT product flow
+
+- `source-to-destination-elt-flow.md` — canonical guide for the source-to-destination ELT flow, builder behavior, runtime phases, and cross-service architecture
+
 ## Deployment
 
 - `deployment-vercel.md` — Vercel notes (frontend + constraints for servers)
@@ -9,9 +13,8 @@ Repository-level notes that are **broader than a single app**.
 
 ## Testing
 
-- `testing-local.md` — local testing setup (Docker DBs + basic smoke tests)
+- `testing-local.md` — detailed manual UI testing guide for the local ELT stack
 
 ## Product / connectors
 
 - `saas-sources-group2.md` — SaaS source implementation notes (dlt verified sources)
-
