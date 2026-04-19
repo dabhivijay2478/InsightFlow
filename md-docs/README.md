@@ -4,7 +4,7 @@ Repository-level notes that are **broader than a single app**.
 
 ## ELT product flow
 
-- `source-to-destination-elt-flow.md` — canonical guide for the source-to-destination ELT flow, builder behavior, runtime phases, and cross-service architecture
+- `source-to-destination-elt-flow.md` — canonical guide for the source-to-destination ELT flow, including `output_table` vs `destination_table`, builder behavior, runtime phases, and cross-service architecture
 
 ## Deployment
 
@@ -13,7 +13,7 @@ Repository-level notes that are **broader than a single app**.
 
 ## Testing
 
-- `testing-local.md` — detailed manual UI testing guide for the local ELT stack
+- `testing-local.md` — detailed manual UI testing guide, connector-by-connector checklists, and final-target verification steps for the local ELT stack
 
 ## Product / connectors
 

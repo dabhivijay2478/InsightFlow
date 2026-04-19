@@ -1,39 +1,126 @@
 # MANTrixFlow Source-to-Destination ELT Flow
 
-This guide is the canonical reference for how MANTrixFlow moves data from a
-source to one or more destinations.
+This is the canonical guide for the current MANTrixFlow product flow.
 
-Use this doc when you want the full cross-service picture:
+It describes the real saved contract and runtime behavior across:
 
-- what the builder saves
-- how runs are dispatched
-- what the ELT server stages and transforms
-- what arrives in the client destination
-- what shows up in run details
+- `apps/app`
+- `apps/server/main-server`
+- `apps/server/elt-server`
 
 ## Product overview
 
-MANTrixFlow uses one active runtime model: DuckDB-staged ELT.
+MANTrixFlow is ELT-only.
 
-The product flow is:
+The active product shape is:
 
-- one source node feeding one or more destination nodes
-- source-side table selection and raw preview
+- one source node
+- one or more destination nodes
+- direct source-to-destination edges
+- DuckDB-staged ELT only
 - destination-owned sync mode and replication key
-- destination-owned structural normalisation
+- destination-owned normalisation rules
 - UI-authored SQL dbt models only
-- delivery of final model outputs only
 
-The active product rules are:
+The active rules are:
 
 - sync modes are only `FULL_TABLE` and `INCREMENTAL`
 - replication key is manual entry on each destination
 - `normalisation_rules` live on destination nodes
-- `dbt_config.mode` is `ui_sql`
-- destination delivery requires SQL dbt models
-- Python transform scripts are not part of the active flow
-- GitHub dbt projects are not part of the active flow
-- CDC is not part of the active product flow
+- `dbt_config.mode` is always `ui_sql`
+- Python transform scripts are not part of the active product
+- GitHub dbt projects are not part of the active product
+- CDC is not part of the active product
+- `_dlt_*` metadata must not remain in the client destination
+
+## Canonical delivery contract
+
+Every destination node owns the final delivery contract.
+
+Destination node fields:
+
+- `dest_schema`
+- `replication_method`
+- `replication_key`
+- `normalisation_rules`
+- `dbt_config`
+
+Each SQL model inside `dbt_config.sql_models[]` keeps:
+
+- `source_table`
+- `output_table`
+- `destination_table`
+- `sql`
+
+Meaning:
+
+- `output_table` is the internal dbt/DuckDB model name
+- `destination_table` is the final client table name
+- final client target is `dest_schema.destination_table`
+
+Example:
+
+- source table: `public.company_role_combined`
+- internal DuckDB/dbt model: `dim_company_role_combined`
+- final client target: `public.users`
+
+Example SQL:
+
+```sql
+SELECT
+    id,
+    company_name AS name
+FROM {{ source('raw', 'company_role_combined') }}
+```
+
+Saved model:
+
+```json
+{
+  "source_table": "company_role_combined",
+  "output_table": "dim_company_role_combined",
+  "destination_table": "users",
+  "sql": "SELECT id, company_name AS name FROM {{ source('raw', 'company_role_combined') }}"
+}
+```
+
+Final target:
+
+```text
+public.users
+```
+
+## Active support matrix
+
+### Active end-to-end source connectors
+
+- `postgres`
+- `mysql`
+- `mariadb`
+- `mssql`
+- `oracle`
+- `sqlite`
+- `cockroachdb`
+- `stripe`
+- `shopify`
+- `hubspot`
+- `notion`
+- `github`
+
+### Active end-to-end destination connectors
+
+- `postgres`
+- `mysql`
+- `mariadb`
+- `mssql`
+- `oracle`
+- `sqlite`
+- `cockroachdb`
+
+### Internal-only runtime pieces
+
+- `duckdb` is used internally for staging and dbt execution
+- it is not the user-facing destination target in the normal product flow
 
 ## End-to-end architecture
 
@@ -41,81 +128,70 @@ The active product rules are:
 flowchart LR
   A["Source connection"] --> B["Source preview + table selection"]
   B --> C["Destination config"]
-  C --> D["Go API dispatch (/api/v1)"]
+  C --> D["Go API dispatch"]
   D --> E["Queue worker"]
   E --> F["ELT server"]
   F --> G["DuckDB staging"]
   G --> H["Destination normalisation"]
-  H --> I["UI SQL dbt models"]
-  I --> J["Client destination"]
+  H --> I["dbt model build"]
+  I --> J["Deliver to final client schema/table"]
   J --> K["Callback + run details"]
 ```
 
-## What each layer does
+## Service responsibilities
 
 ### App builder
 
-The builder stores a plain graph:
-
-- one source node
-- one or more destination nodes
-- direct source-to-destination edges
+The app saves the graph and destination metadata.
 
 The source node owns:
 
 - source connection
 - `selected_streams`
 - `stream_configs`
-- raw preview table selection
+- active raw preview table
 
 Each destination node owns:
 
 - destination connection
-- destination schema
+- `dest_schema`
 - `replication_method`
 - `replication_key`
 - `normalisation_rules`
-- `dbt_config`
-- optional schedule fields
+- `dbt_config.sql_models[]`
+- schedule fields
 
 ### Go API
 
-The Go API is the public backend used by the app.
+The Go API is responsible for:
 
-It is responsible for:
-
-- validating pipeline save payloads
-- normalizing legacy graph data into the active ELT shape
-- resolving the targeted `destination_node_id`
-- building the ELT sync payload
-- enqueueing runs
-- proxying preview and validate-SQL requests
-- receiving callbacks from the ELT server
-- writing run metadata back to `pipeline_runs`
+- loading and normalizing saved graph data
+- preserving destination-owned sync settings and normalisation
+- building ELT payloads from destination-node data
+- creating `delivery_table_map`
+- proxying preview and SQL validation
+- receiving ELT callbacks
+- persisting run metadata and delivery outputs
 
 ### Queue worker
 
 The worker is responsible for:
 
-- picking up queued pipeline runs
 - checking ELT disk capacity before dispatch
-- dispatching the resolved destination run to the ELT server
+- dispatching the targeted destination run
 - preserving retry and backoff behavior
 
 ### ELT server
 
-The ELT server executes the actual pipeline run.
+The ELT server is responsible for:
 
-It is responsible for:
-
-- source extraction
-- DuckDB staging
-- destination-scoped structural normalisation
-- temporary dbt project generation from saved SQL models
-- dbt execution inside DuckDB
-- final delivery to the client destination
-- callback payload generation
-- checkpoint extraction and cleanup
+- staging into DuckDB
+- applying destination-scoped normalisation
+- generating temporary dbt projects from UI SQL
+- running dbt inside DuckDB
+- delivering `output_table -> dest_schema.destination_table`
+- cleaning `_dlt_*` artifacts from the client destination
+- extracting checkpoint state and returning callback metadata
 
 ## Builder guide
 
@@ -123,179 +199,196 @@ It is responsible for:
 
 Open the source drawer from the source node.
 
-The source drawer is a preview-first surface where you:
+Use it to:
 
 - confirm the source connection
-- run connection test
-- refresh discovery metadata
-- select which tables are included in the pipeline
-- choose which one is the active preview table
-- inspect raw sample rows for the active preview table
+- test the connection
+- refresh discovery
+- select one or more source tables
+- choose the active preview table
+- inspect raw sample rows
 
 Important behavior:
 
-- a source can include multiple tables
+- one source can include multiple tables
 - preview uses one active table at a time
-- save and reload should keep both the included tables and the active preview table coherent
+- selected tables persist in `selected_streams`
+- per-stream details persist in `stream_configs`
 
-### 2. Add one or more destinations
+### 2. Add destinations
 
 Use the `+` action on the source node to add destination nodes.
 
-Each destination is independent. One source can feed multiple destinations with
-different:
-
-- schemas
-- sync modes
-- replication keys
-- normalisation rules
-- SQL models
-
-### 3. Configure destination sync settings
-
-Open a destination drawer and set:
+Each destination is independent and can have its own:
 
 - destination connection
-- final destination schema
-- `FULL_TABLE` or `INCREMENTAL`
-- manual replication key when using `INCREMENTAL`
+- final schema
+- sync mode
+- replication key
+- normalisation rules
+- SQL models
+- schedule
+
+### 3. Configure destination sync behavior
+
+In the destination `Config` tab set:
+
+- destination connection
+- final delivery schema
+- sync mode
+- manual replication key
 - write mode
 
-Important behavior:
+Rules:
 
+- `FULL_TABLE` does not require a replication key
+- `INCREMENTAL` requires a non-empty replication key
 - sync mode is destination-owned, not source-owned
-- replication key is destination-owned, not source-owned
-- two destinations connected to the same source can use different sync behavior
 
-### 4. Add destination-scoped normalisation
+### 4. Add destination normalisation
 
-Use the destination `Normalisation` tab for structural rules only.
+Use the `Normalisation` tab for structural rules only.
 
 Supported rule types:
 
 - `rename`
 - `cast`
 
-These rules are applied during DuckDB staging for that destination run.
+These rules run during staging for that destination.
 
-Normalisation is not used for:
+Use SQL models, not normalisation rules, for:
 
 - business filtering
 - joins
-- cross-table model logic
-
-Those belong in SQL dbt models.
+- reshaping across tables
+- selecting the final destination columns
 
 ### 5. Write UI SQL dbt models
 
-Use the destination dbt editor to define SQL models.
+In the destination dbt tab, create one or more models.
 
-Each model includes:
+For each model define:
 
-- `source_table`
-- `output_table`
-- `sql`
+- the source table
+- the internal dbt model name in `output_table`
+- the final client table name in `destination_table`
+- the SQL itself
 
-Use source references like:
+The UI shows both identities:
 
-```sql
-SELECT *
-FROM {{ source('raw', 'users') }}
-```
-
-At run time, MANTrixFlow generates a temporary dbt project from the saved SQL.
+- internal model: DuckDB/dbt object name
+- final target: `dest_schema.destination_table`
 
 ### 6. Validate SQL
 
-`Validate SQL` checks the model against an in-memory DuckDB schema.
+`Validate SQL` checks the SQL against an in-memory DuckDB schema.
 
 It should:
 
-- return output columns and types on success
-- return the exact DuckDB error on failure
-- avoid touching the live source database
+- succeed without touching the live source database
+- return output column names and types
+- return exact DuckDB errors for invalid SQL
 
-### 7. Preview destination model output
+### 7. Preview model output
 
-`Preview output` runs a small ELT preview for the selected destination model.
+`Preview output` runs a small ELT preview for the chosen destination model.
 
-It:
+It stages a small sample, applies normalisation, runs the SQL model, and
+returns:
 
-- stages a small sample into DuckDB
-- applies destination normalisation
-- runs the selected SQL model
-- returns `rows`, `columns`, and optional `warning`
+- `rows`
+- `columns`
+- optional `warning`
 
-Empty output is a valid preview result.
+Empty results are valid preview responses.
 
 ### 8. Save and run
 
-Saving the pipeline persists the active ELT graph and node data.
+Saving the pipeline persists the graph.
 
-Running a destination triggers a destination-scoped run, not a source-scoped run.
+A destination run uses the targeted destination node as the source of truth for:
 
-## Runtime guide
+- sync mode
+- replication key
+- normalisation rules
+- SQL models
+- final delivery targets
+
+## Runtime phases
 
 ### Phase 1: Stage
 
 The ELT server:
 
-- restores checkpoint state when needed
-- extracts source rows
-- stages them into an ephemeral DuckDB file
-- applies destination-scoped normalisation
+- restores checkpoint state when the destination is incremental
+- extracts source data
+- stages it into an ephemeral DuckDB file
+- applies destination-scoped normalisation rules
 
 ### Phase 2: dbt Transform
 
 The ELT server:
 
-- generates a temporary dbt project from saved SQL
-- runs dbt inside DuckDB
-- optionally runs dbt tests when enabled
+- generates a temporary dbt project from the saved UI SQL
+- materializes each `output_table` inside DuckDB
+- optionally runs dbt tests
 
 ### Phase 3: Deliver
 
+The ELT server delivers:
+
+- from DuckDB table `output_table`
+- to final client target `dest_schema.destination_table`
+
+The final target mapping comes from destination-node ELT data, not from the
+legacy relational destination row.
+
+### Phase 4: Cleanup and callback
+
 The ELT server:
 
-- reads final model outputs from DuckDB
-- delivers only those outputs to the client destination
-- avoids leaving `_dlt_*` tables in the client destination
+- extracts final checkpoint state
+- deletes the DuckDB file
+- deletes the temporary workspace
+- posts callback metadata to the Go API
 
-### Callback and run details
+## Run details and callback metadata
 
-After the ELT server finishes, it sends callback data to the Go API.
-
-Run details are shown as three phases:
+The user-facing run phases are:
 
 - `Stage`
 - `dbt Transform`
 - `Deliver`
 
-At a high level, run metadata captures:
+Important callback metadata includes:
 
-- execution mode
-- staging size and backend
-- dbt status and failures
-- delivery status and outputs
-- cleanup status
+- `execution_mode`
+- `staging_backend`
+- `staging_size_bytes`
+- `cleanup_status`
+- `dbt_run_status`
+- `dbt_models_run`
+- `dbt_tests_run`
+- `dbt_tests_passed`
+- `dbt_tests_failed`
+- `delivery_status`
+- `delivery_outputs`
+- `delivery_failures`
 
-## Constraints and invariants
+`delivery_outputs` should reflect final client targets such as:
 
-These rules should remain true across the product:
+- `public.users`
+- `analytics.fct_orders`
 
-- only `FULL_TABLE` and `INCREMENTAL` are supported
-- the product does not run CDC flows
-- the product does not run user-authored Python transform scripts
-- the product does not use GitHub dbt projects
-- UI SQL is the only dbt authoring path
-- `normalisation_rules` stay destination-scoped
-- the client destination receives final outputs only
-- `_dlt_*` artifacts stay out of the client destination
+## Invariants
 
-## Related docs
+These rules should always stay true:
 
-- [Manual local testing guide](./testing-local.md)
-- [Repository docs index](./README.md)
-- [App README](../apps/app/README.md)
-- [Go API README](../apps/server/main-server/README.md)
-- [ELT server README](../apps/server/elt-server/README.md)
+- only `FULL_TABLE` and `INCREMENTAL` are active sync modes
+- the runtime path is always DuckDB-staged ELT
+- `output_table` stays internal to DuckDB/dbt
+- `destination_table` is the final client table
+- final delivery target is always `dest_schema.destination_table`
+- destination-node data is the active source of truth
+- legacy relational destination-table fields are mirrors only
+- `_dlt_*` metadata must not remain in the client destination

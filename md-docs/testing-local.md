@@ -1,34 +1,55 @@
 # Local Manual Testing Guide
 
-This is the primary manual UI testing guide for the current MANTrixFlow ELT
-stack:
+This is the main manual testing guide for the current MANTrixFlow ELT product.
 
-- App: `apps/app`
-- Go API: `apps/server/main-server`
-- ELT server: `apps/server/elt-server`
+Use this doc when you want to verify:
 
-Use this guide when you want to verify the source-to-destination pipeline flow
-through the product UI.
+- builder save and reload behavior
+- source preview
+- destination normalisation
+- UI SQL dbt validation
+- UI SQL preview
+- final delivery to the correct client schema and table
+- run details and callback metadata
 
-For the full architecture guide, see
+For the cross-service architecture guide, see
 [source-to-destination-elt-flow.md](./source-to-destination-elt-flow.md).
+
+## Test flow at a glance
+
+```mermaid
+flowchart LR
+  A["Start app + Go API + ELT server"] --> B["Open pipeline builder"]
+  B --> C["Select source tables"]
+  C --> D["Add destination"]
+  D --> E["Set sync mode + replication key"]
+  E --> F["Add normalisation rules"]
+  F --> G["Write SQL model"]
+  G --> H["Validate SQL"]
+  H --> I["Preview output"]
+  I --> J["Save and reload"]
+  J --> K["Run destination"]
+  K --> L["Check Stage / dbt Transform / Deliver"]
+  L --> M["Verify final client target"]
+```
 
 ## Prerequisites
 
 Before testing, make sure you have:
 
-- a working source connection you can use in the builder
-- at least one destination connection
-- local env files configured for the app, Go API, and ELT server
-- a running database and Supabase setup if your local stack depends on them
+- working local env files for the app, Go API, and ELT server
+- a source connection you can query safely
+- a destination connection you can write safely
+- access to the destination database so you can confirm the delivered table
+- required local dependencies installed
 
 Recommended local ports:
 
-- App: `http://localhost:3000`
+- app: `http://localhost:3000`
 - Go API: `http://localhost:5000`
 - ELT server: `http://localhost:8000`
 
-## Start the local stack
+## Start the services
 
 ### 1. Start the app
 
@@ -40,8 +61,8 @@ bun run dev
 
 Expected result:
 
-- the app starts on `http://localhost:3000`
-- the workspace loads without build errors
+- the app boots on `http://localhost:3000`
+- the workspace opens without build errors
 
 ### 2. Start the Go API
 
@@ -52,7 +73,7 @@ go run ./cmd/server
 
 Expected result:
 
-- the API boots without migration or config errors
+- the API boots without migration errors
 - `GET http://localhost:5000/api/v1/health` succeeds
 
 ### 3. Start the ELT server
@@ -65,272 +86,466 @@ python -m uvicorn api.main:app --host 0.0.0.0 --port 8000 --workers 1 --loop asy
 
 Expected result:
 
-- the ELT server boots without import or dependency errors
+- the ELT server boots without import errors
 - `GET http://localhost:8000/health` succeeds
 
-## Step-by-step manual UI test flow
+## End-to-end manual UI test
 
-### 1. Open the app and create or open a pipeline
+### 1. Open or create a pipeline
 
-Open `http://localhost:3000` and navigate to the pipelines builder.
-
-Create a new pipeline or open an existing one you can safely edit.
+Open the app and navigate to the pipeline builder.
 
 Verify:
 
-- the builder loads
-- the source node is visible
-- at least one destination can be added
+- the source node is present
+- the source node only shows `+` and settings actions
+- destination nodes can be added from the source node
 
-### 2. Connect or confirm the source
+### 2. Confirm the source connection
 
-Open the source drawer from the source node.
+Open the source drawer.
 
-Confirm:
+Verify:
 
 - the expected source connection is selected
-- the source connection name and type are correct
+- source connection name and connector type are correct
 
 Optional check:
 
 - click `Test connection`
 
-Verify:
+Expected result:
 
 - loading appears inside the button
-- success is shown by toast and button state
+- success appears as toast and button state
 
-### 3. Refresh discovery metadata
+### 3. Refresh discovery
 
-In the source drawer, click `Refresh tables`.
+Use `Refresh tables` in the source drawer.
 
 Verify:
 
 - the button shows a loading state
-- the source inventory refreshes
-- the source node summary updates with available schema/table counts
+- discovered inventory updates
+- the source node summary reflects the available table count
 
 ### 4. Select multiple source tables
 
-In the source drawer:
+Choose at least two source tables.
 
-- include more than one source table
-- choose one table as the active preview table
+Also choose one active preview table.
 
 Verify:
 
-- the included table list stays selected
-- the active preview table updates the raw preview
-- save/reload should keep the selected tables and preview table coherent
+- the selected tables persist in the source drawer
+- the preview follows the chosen preview table
+- the source node summary reflects the discovered inventory, not only one saved table
 
 ### 5. Confirm raw source preview
 
-Use the source preview area to inspect sample rows for the active preview table.
+Refresh source preview.
 
 Verify:
 
-- preview rows load successfully
-- columns match the selected preview table
-- switching the preview table updates the preview instead of breaking it
+- rows load successfully
+- columns match the active preview table
+- switching the preview table updates the preview correctly
 
-### 6. Add the first destination
+### 6. Add a destination
 
-Use the source node `+` action to add a destination node.
+Use the source `+` action to add a destination node.
 
-Open the destination drawer.
+Verify:
 
-Configure:
+- the new destination node is connected directly to the source
+- no branch-only overlay or branch label is required
+
+### 7. Configure destination basics
+
+In the destination `Config` tab set:
 
 - destination connection
-- destination schema
+- final delivery schema
+- sync mode
+- replication key if incremental
 - write mode
 
-Verify:
+Suggested test values:
 
-- the destination node appears directly connected to the source
-- the connection is a plain source-to-destination edge
-
-### 7. Add a second destination
-
-Use the source node `+` action again and create a second destination.
+- final delivery schema: `public`
+- sync mode: `FULL_TABLE` first
+- replication key: keep blank for `FULL_TABLE`
 
 Verify:
 
-- the second destination connects directly to the same source
-- both destinations remain independently editable
-- deleting one destination does not remove the other
+- the destination drawer shows the schema clearly
+- the destination node summary reflects the destination target
 
-### 8. Configure sync mode and replication key
+### 8. Add normalisation rules
 
-For destination A:
+Open the destination `Normalisation` tab and add:
 
-- choose `FULL_TABLE`
-
-For destination B:
-
-- choose `INCREMENTAL`
-- enter a manual replication key
-
-Verify:
-
-- sync settings are destination-owned, not source-owned
-- each destination keeps its own saved values
-- reloading the builder preserves the values on the correct destination
-
-### 9. Add destination normalisation rules
-
-Open the `Normalisation` tab for a destination and add structural rules such as:
-
-- a `cast`
-- a `rename`
+- one rename rule
+- one cast rule
 
 Verify:
 
 - rules save correctly
-- rules are attached only to that destination
-- another destination can have different rules for the same source table
+- rules stay attached to this destination only
+- another destination could have different rules for the same source table
 
-### 10. Write UI SQL dbt models
+### 9. Add UI SQL dbt models
 
-In the destination dbt editor:
+Open the destination `dbt Layer` tab.
 
-- create at least one SQL model per required source table
-- set output table names
-- use `{{ source('raw', 'table_name') }}` references
+For each required model set:
 
-Verify:
+- `source_table`
+- `output_table`
+- `destination_table`
+- `sql`
 
-- the SQL editors save successfully
-- output table names persist after reload
-- the destination summary reflects model outputs
+Use the `company_role_combined -> users` example if you want a concrete test:
 
-### 11. Validate SQL
+```sql
+SELECT
+    id,
+    company_name AS name
+FROM {{ source('raw', 'company_role_combined') }}
+```
 
-Use `Validate SQL` for at least one model.
+Example target values:
 
-Verify:
-
-- valid SQL returns output schema
-- invalid SQL returns the exact validation error
-- validation does not require a live source query
-
-### 12. Preview destination model output
-
-Use the destination preview tab and preview a selected model.
+- internal dbt model: `dim_company_role_combined`
+- final delivery table: `users`
+- final client target: `public.users`
 
 Verify:
 
-- preview loads rows and columns
-- destination normalisation is reflected in the output
-- empty preview results do not crash the UI
+- the UI shows both the internal dbt model name and the final client target
+- the final target preview reads `public.users`
 
-### 13. Save the pipeline
+### 10. Validate SQL
 
-Save the pipeline and refresh the page.
+Click `Validate SQL`.
 
-Verify after reload:
+Verify:
+
+- valid SQL returns output columns and types
+- invalid SQL returns the exact DuckDB error
+- validation succeeds without depending on a live source query
+
+### 11. Preview destination output
+
+Click `Preview output`.
+
+Verify:
+
+- preview rows load
+- preview columns match the SQL model output
+- empty preview remains a success state with a warning, not a hard crash
+
+### 12. Save the destination and pipeline
+
+Save the destination, then save the pipeline if needed.
+
+Verify:
+
+- destination config persists
+- normalisation rules persist
+- SQL models persist
+- `destination_table` persists with the final client target
+
+### 13. Reload and verify saved state
+
+Refresh the page and reopen the builder.
+
+Verify:
 
 - selected source tables persist
-- the source preview table remains coherent
-- both destinations still exist
-- destination sync mode and replication key persist
+- active preview table remains coherent
+- destination sync mode persists
+- destination replication key persists
 - normalisation rules persist
-- dbt SQL models persist
+- SQL models persist
+- internal `output_table` and final `destination_table` both reload correctly
 
-### 14. Run a destination
+### 14. Run the destination
 
-Trigger a run from a destination node.
+Trigger a run from the destination node.
 
 Verify:
 
-- the run starts from the destination, not the source
-- source node does not expose a run control
-- the run drawer opens and shows progress
+- the run starts from the destination, not from the source
+- the run banner shows the destination target
+- the run does not hang in queued/running forever when the ELT server is healthy
 
-### 15. Review run details
+### 15. Check run details
 
-Wait for the run to complete or reach a stable intermediate state.
+Open run details.
 
-Verify the run details show:
+Verify the three phases:
 
 - `Stage`
 - `dbt Transform`
 - `Deliver`
 
-Also verify:
+Verify metadata:
 
-- destination outputs are listed
-- the run is associated with the destination you triggered
+- delivered outputs show final targets such as `public.users`
+- the run does not claim the internal dbt model name as the final target
 
-## Negative and pathology checks
+### 16. Verify the final destination table
 
-Run these checks before closing the test cycle.
+Connect to the destination database and inspect the final target table.
 
-### Incremental destination without replication key
+For the example above, check:
 
-Try to save or run an `INCREMENTAL` destination without a replication key.
+- schema: `public`
+- table: `users`
+
+Verify:
+
+- rows were written
+- selected and renamed columns match the SQL model
+- `_dlt_*` tables are not left behind in the client destination
+
+## Negative-path checks
+
+### Incremental without replication key
+
+Set a destination to `INCREMENTAL` and leave the replication key empty.
 
 Expected result:
 
-- validation blocks the action
-- the UI points back to the destination configuration
+- destination save should fail validation
+- the run should not dispatch
 
 ### Invalid SQL
 
-Enter broken SQL in a model and run `Validate SQL`.
+Use an invalid column name in the SQL model.
 
 Expected result:
 
 - validation fails
-- the exact DuckDB error is surfaced
+- the exact DuckDB error is shown
 
 ### Empty preview
 
-Preview a model that returns no rows.
+Use SQL that returns zero rows.
 
 Expected result:
 
-- preview succeeds with empty rows
-- the UI remains stable
-- no hard failure screen appears
+- preview succeeds
+- the UI shows an empty state, not a crash
 
 ### Multiple destinations
 
-Create at least two destinations from one source and run them separately.
+Add two destinations from the same source.
 
 Expected result:
 
+- each destination keeps its own sync mode, replication key, normalisation, and SQL models
 - each destination remains independently runnable
-- destination-specific sync settings remain isolated
 
 ## Optional backend spot checks
 
-Use these checks when you want to confirm the UI is backed by healthy services.
+Use these checks when you want more confidence after a UI run.
 
 ### Health endpoints
 
-- `GET http://localhost:5000/api/v1/health`
-- `GET http://localhost:8000/health`
+```bash
+curl http://localhost:5000/api/v1/health
+curl http://localhost:8000/health
+```
 
-Expected result:
+### SQL validation proxy
 
-- both succeed while the stack is running
+Use the builder `Validate SQL` button first. If needed, compare the request path in
+the browser network tab with:
 
-### Preview and validate-SQL proxy sanity
+- Go API: `POST /api/v1/organizations/:orgId/pipelines/:id/validate-sql`
+- ELT server: `POST /validate-sql`
 
-When UI preview or validate-SQL works, it confirms:
+### Preview proxy
 
-- the app can call the Go API
-- the Go API can proxy to the ELT server
-- destination-node context is being resolved correctly
+Use the builder preview buttons first. If needed, compare the request path in
+the browser network tab with:
 
-### Callback and run metadata sanity
+- Go API: `POST /api/v1/organizations/:orgId/pipeline-destination-schemas/:id/preview`
+- ELT server: `POST /preview`
 
-After a run finishes, verify the run details reflect:
+### Callback metadata
 
-- stage status
-- dbt status
-- delivery status
+After a run, inspect run details and confirm the delivered output uses the final
+target:
 
-If you inspect backend data directly, the run should map back to the triggered
-destination node and store ELT metadata in `pipeline_runs.run_metadata`.
+- expected: `public.users`
+- not expected: only `dim_company_role_combined`
+
+## Active source connector checklist
+
+Use the same main test flow for each active source connector, then add the
+connector-specific notes below.
+
+### PostgreSQL source
+
+Check:
+
+- schema discovery returns schema-qualified tables
+- timestamp and numeric replication keys are accepted
+
+### MySQL source
+
+Check:
+
+- discovery resolves database tables correctly
+- incremental keys work with numeric or datetime fields
+
+### MariaDB source
+
+Check:
+
+- discovery and preview behave like MySQL
+- cast rules still reflect the destination contract
+
+### SQL Server source
+
+Check:
+
+- preview returns rows without SQLAlchemy driver issues
+- incremental key validation handles SQL Server column types
+
+### Oracle source
+
+Check:
+
+- discovery resolves owner/schema correctly
+- preview and full runs complete without identifier issues
+
+### SQLite source
+
+Check:
+
+- file-based connection loads and previews correctly
+- small-table full refresh works end to end
+
+### CockroachDB source
+
+Check:
+
+- discovery resolves schema-qualified tables
+- final staged preview works the same as Postgres-style sources
+
+### Stripe source
+
+Check:
+
+- the selected resources preview successfully
+- staged preview and SQL models work against the flattened raw tables
+
+### Shopify source
+
+Check:
+
+- selected resources preview correctly
+- SQL models can rename fields into destination-ready columns
+
+### HubSpot source
+
+Check:
+
+- selected resources preview correctly
+- delivery works with destination normalisation and dbt SQL
+
+### Notion source
+
+Check:
+
+- selected resources preview correctly
+- UI SQL can select and rename the fields needed for delivery
+
+### GitHub source
+
+Check:
+
+- selected resources preview correctly
+- SQL validation and preview work against staged GitHub resource tables
+
+## Active destination connector checklist
+
+Use the same main test flow for each active destination connector, then add the
+connector-specific notes below.
+
+### PostgreSQL destination
+
+Check:
+
+- final target table receives the delivered rows
+- `_dlt_*` artifacts do not remain in the destination schema
+
+### MySQL destination
+
+Check:
+
+- delivered table name matches `dest_schema.destination_table`
+- casts and renames land in the final table as expected
+
+### MariaDB destination
+
+Check:
+
+- write mode behaves correctly
+- final table shape matches the SQL model output
+
+### SQL Server destination
+
+Check:
+
+- final delivery succeeds through the SQLAlchemy/dlt path
+- destination table names are correct
+
+### Oracle destination
+
+Check:
+
+- schema and table names resolve correctly
+- delivered rows land in the expected final table
+
+### SQLite destination
+
+Check:
+
+- delivery writes to the expected file/table target
+- preview and final delivery stay aligned
+
+### CockroachDB destination
+
+Check:
+
+- final rows land in the intended schema and table
+- the destination shows the final table such as `public.users`
+
+## Future-facing or non-runnable UI catalog entries
+
+These connectors still appear in parts of the UI catalog or shared app types,
+but should not be documented as fully active end-to-end ELT paths in the current
+product.
+
+Treat them as future-facing or compatibility-only until backend/runtime support
+is completed end to end:
+
+- `mongodb`
+- `s3`
+- `s3-datalake`
+- `bigquery`
+- `snowflake`
+- `snowflake-cortex`
+- `redshift`
+- `salesforce`
+- `airtable`
+- `google-sheets`
+
+If one of these appears in a manual test environment, do not treat it as a
+product regression by itself. Instead, verify whether the connector is meant to
+be active in the current backend and runtime before filing an ELT runtime bug.
