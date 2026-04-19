@@ -1,39 +1,27 @@
-# Agents + project skills (MantrixFlow)
+# Agents (MantrixFlow)
 
-This repo is set up for multiple coding agents (Cursor agents + Codex-style skills).
+**Authoritative agent onboarding and specialized review personas:**
 
-## Repo architecture (current)
+[`.cursor/rules/agents-and-orchestration.mdc`](.cursor/rules/agents-and-orchestration.mdc)
 
-- **App (Next.js)**: `apps/app`
-- **Go API (Fiber)**: `apps/server/main-server`
-- **Python ELT (FastAPI)**: `apps/server/elt-server`
-- **Repo-level notes**: `md-docs/`
+**Stack map, local dev commands, and repo conventions:**
 
-High-level flow:
+[`.cursor/rules/mantrixflow-repo.mdc`](.cursor/rules/mantrixflow-repo.mdc)
 
-`apps/app` → `apps/server/main-server` (`/api/v1/...`) → queue/worker → `apps/server/elt-server` → callback back to Go API.
+**Backend services (scoped rules — apply when editing those trees):**
 
-## Cursor agents
+- [`.cursor/rules/go-main-server.mdc`](.cursor/rules/go-main-server.mdc) — `apps/server/main-server` (Fiber, dispatch, callbacks, queue)
+- [`.cursor/rules/python-elt-server.mdc`](.cursor/rules/python-elt-server.mdc) — `apps/server/elt-server` (FastAPI, DuckDB-staged runner)
 
-Cursor agents live in `.github/agents/*.agent.md`:
+**Supabase RLS workflow and schema map:**
 
-- `orchestrator` — delegates to other agents and summarizes status
-- `code-reviewer` — bugs/security review
-- `architecture-reviewer` — structure/boundaries/scalability
-- `compliance-reviewer` — SOC2/GDPR/security posture checks
-- `doc-generator` — keeps docs aligned with code
+[`.cursor/rules/supabase-rls.mdc`](.cursor/rules/supabase-rls.mdc)
 
-These agents should treat `apps/server/main-server` + `apps/server/elt-server` as the active backend services.
+**ELT (strict invariants + flow diagram):**
 
-## Project skills (Codex-style)
+- [`.cursor/rules/strict-elt-invariants.mdc`](.cursor/rules/strict-elt-invariants.mdc) — 12 strict ELT invariants
+- [`.cursor/rules/elt-flow-diagram.mdc`](.cursor/rules/elt-flow-diagram.mdc) — 5-phase flow
 
-Project skills live in `codex-skills/`.
+**Human-readable pipeline guide:** [`md-docs/strict-elt-pipeline-guide.md`](md-docs/strict-elt-pipeline-guide.md)
 
-- `codex-skills/mantrixflow-core/SKILL.md` — shared repo conventions + “where to look” map
-- `codex-skills/supabase-rls/SKILL.md` — Supabase RLS workflow for `apps/server/main-server/sql/supabase_rls.sql`
-
-## Cursor skills (symlinks)
-
-`.cursor/skills/` contains symlinks to your global skills library (FastAPI, senior-frontend, etc.).
-Prefer **project skills** (`codex-skills/*`) when instructions must be repo-specific.
-
+**Frontend structure / TS conventions:** [`.cursor/rules/nextjs-typescript-stack.mdc`](.cursor/rules/nextjs-typescript-stack.mdc)

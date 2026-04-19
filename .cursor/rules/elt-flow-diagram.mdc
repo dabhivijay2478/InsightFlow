@@ -1,0 +1,110 @@
+---
+alwaysApply: true
+---
+# MantrixFlow ELT flow (source → stage → transform → deliver)
+
+Use this as the ground truth diagram whenever you touch the pipeline.
+
+```
+USER (apps/app)
+  │  1. selects source connection
+  │  2. enters source tables as `schema.table`
+  │  3. writes one SQL SELECT per source table (dbt staging model)
+  │  4. enters destination as `schema.table` (must already exist)
+  │  5. clicks Run
+  ▼
+Go API  (apps/server/main-server)
+  • validates JWT (Supabase)
+  • decrypts source + destination credentials (Fernet AES-256)
+  • builds RunConfig with:
+      - selected_streams: SourceStreamConfig[]  (stream_key, repl_method,
+        repl_key, duckdb_table_name=schema__table)
+      - dbt_config.sql_models[].dest_table: schema.table
+  • creates `pipeline_runs` row (status=pending)
+  • enqueues pgmq `pipeline_jobs` / `incremental_sync`
+  • returns HTTP 202 { run_id }
+  ▼
+Go Queue Worker  (apps/server/main-server)
+  • polls pgmq every 5 s
+  • MAX_CONCURRENT_RUNS gate
+  • calls ELT /disk-status; requires available_gb ≥ plan_limit × 2
+      └─ on shortfall: run status=waiting, re-queue with 30 s delay
+  • dispatches POST /sync → Python ELT
+  ▼
+Python ELT  (apps/server/elt-server)
+  PHASE 0 — PRE-FLIGHT  (runner/handlers/preflight_handler.py)
+    • disk_guard.ensure_disk_budget
+    • source table discovery (information_schema.tables)
+    • destination table exists (gap 3)  ← fail hard, no CREATE
+    • destination column match (gap 4)  ← fail hard, named column
+
+  PHASE 1 — EXTRACT + STAGE  (runner/paths/duckdb_staged.py)
+    • dlt reads from source
+    • resources renamed so staged table is `raw.public__users` (gap 2)
+    • incremental cursor restored from `last_state` if present (gap 5)
+    • write_disposition: replace (FULL_TABLE) / merge (INCREMENTAL)
+
+  PHASE 2 — DBT TRANSFORM  (runner/handlers/dbt_handler.py)
+    • generates dbt project from dbt_config.sql_models (gap 6)
+    • runs via dlt.dbt.package() on DuckDB
+    • outputs live in DuckDB schema `analytics`
+    • SKIPPED if user provided no sql_models
+
+  PHASE 3 — DELIVER  (runner/handlers/delivery_handler.py)
+    • for each sql_model output:
+        - re-verify destination table exists  (gap 3)
+        - re-verify columns match              (gap 4)
+        - discover primary_keys
+        - dlt write: merge (has PK) or append + warning (no PK, gap 12)
+    • never CREATE TABLE
+
+  PHASE 4 — CLEANUP
+    • state_handler.extract(pipeline) → checkpoint dict (gap 5)
+    • os.remove(<run>.duckdb)  ← ALWAYS in finally
+    • shutil.rmtree(<dbt project>)
+
+  PHASE 5 — CALLBACK  (POST /internal/elt-callback)
+    payload MUST include:
+      status, rows_read, rows_written, duration_seconds, checkpoint,
+      delivery_outputs[], staging_size_bytes, dbt_models_run,
+      delivery_failures[], no_pk_warnings[]            (gap 9, 11, 12)
+  ▼
+Go Callback Handler  (apps/server/main-server/internal/server/callback.go)
+  • updates pipeline_runs (status, rows, duration, run_metadata JSONB)
+  • saves checkpoint to pipelines.checkpoint + last_sync_value
+  • updates pipelines.last_run_status, last_run_at, counters
+  • PublishStatus → Supabase Realtime
+  ▼
+USER sees live update in Run Status Drawer
+  • 3-phase display (Extract+Stage / Transform / Deliver)
+  • delivered table pills (`analytics.hd`, …)
+  • no-PK warning banner if `no_pk_warnings[]` is non-empty
+```
+
+## Directory map of authoritative pieces
+
+- `apps/server/elt-server/runner/paths/duckdb_staged.py` — orchestrator
+- `apps/server/elt-server/runner/handlers/` — per-phase handlers
+  - `preflight_handler.py` (gaps 3, 4, 10)
+  - `state_handler.py`     (gaps 2, 5)
+  - `dbt_handler.py`       (gap 6)
+  - `delivery_handler.py`  (gaps 3, 4, 12)
+  - `disk_guard.py`        (gap 10)
+  - `normalisation_handler.py`
+- `apps/server/elt-server/api/routes/`
+  - `sync.py`, `discover_table.py`, `validate_sql.py`, `disk_status.py`
+- `apps/server/main-server/internal/server/`
+  - `dispatch.go` + `dispatch_incremental.go` — build RunConfig, pre-flight
+  - `staged_delivery.go` — disk guard + waiting-requeue helper
+  - `pipeline_bundle.go` — `buildSourceStreamConfigs`,
+    `buildStrictDBTSQLModels`, `duckdbTableName`
+  - `callback.go` — persists delivery_outputs, staging_size_bytes,
+    dbt_models_run, no_pk_warnings
+- `apps/app/app/workspace/data-pipelines/[id]/builder/`
+  - `panels/DestinationPanel.tsx` — schema.table dest input,
+    `useDiscoverDestinationTable`, column pills, dest_match ✓/✗
+  - `panels/RunStatusDrawer.tsx` — 3-phase display + no-PK banner
+  - `shared/pipelineGraph.ts` — normalises graph → SourceStreamConfig[]
+  - `store/pipelineStore.ts`
+
+Do not introduce parallel code paths. Extend the pieces above.

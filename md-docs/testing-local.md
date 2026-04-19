@@ -549,3 +549,333 @@ is completed end to end:
 If one of these appears in a manual test environment, do not treat it as a
 product regression by itself. Instead, verify whether the connector is meant to
 be active in the current backend and runtime before filing an ELT runtime bug.
+
+---
+
+## Testing Strict ELT Delivery (schema.table Format)
+
+> **New Format**: All source and destination tables must use `schema.table` format.
+> No new tables are created in the destination. Delivery only writes to existing tables.
+
+### Setup
+
+Create test tables in your source and destination databases:
+
+**Source database (PostgreSQL example)**:
+```sql
+CREATE SCHEMA public;
+CREATE TABLE public.users (
+    id INTEGER PRIMARY KEY,
+    email VARCHAR NOT NULL,
+    first_name VARCHAR,
+    last_name VARCHAR,
+    internal_flag BOOLEAN DEFAULT FALSE,
+    created_ts TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    deleted_at TIMESTAMP
+);
+
+INSERT INTO public.users (id, email, first_name, last_name, created_ts) VALUES
+(1, 'alice@example.com', 'Alice', 'Smith', NOW()),
+(2, 'bob@example.com', 'Bob', 'Jones', NOW());
+```
+
+**Destination database (must exist before run)**:
+```sql
+CREATE SCHEMA analytics;
+CREATE TABLE analytics.hd (
+    customer_id INTEGER PRIMARY KEY,
+    email VARCHAR NOT NULL,
+    signup_date TIMESTAMP
+);
+```
+
+### Test 1: Basic schema.table format validation (UI)
+
+1. Open pipeline builder
+2. In Source section, enter table as: `public.users`
+   - ✓ Should accept format
+   - ✗ Should reject: `users` (missing schema)
+   - ✗ Should reject: `public.users.extra` (extra dot)
+   - ✗ Should show error: "Enter as schema.table — for example: public.users"
+
+3. In Destination section, enter table as: `analytics.hd`
+   - ✓ Should accept and call discover-table endpoint
+   - ✓ Should show columns: [customer_id INT PK] [email VARCHAR] [signup_date TIMESTAMP]
+   - ✗ Should reject non-existent table: `analytics.missing`
+   - ✗ Should show error: "Table analytics.missing does not exist"
+
+### Test 2: Source column discovery and SQL validation
+
+1. Enter source table: `public.users`
+2. Click "Discover columns for all tables"
+   - ✓ Should show available columns in SQL editor
+   - ✓ Pills should include: [id] [email] [first_name] [last_name] [created_ts]
+
+3. Write SQL model:
+```sql
+SELECT
+    id AS customer_id,
+    email,
+    created_ts::TIMESTAMP AS signup_date
+FROM {{ source('raw', 'public__users') }}
+WHERE internal_flag = FALSE
+  AND deleted_at IS NULL
+```
+
+4. Click "Validate SQL"
+   - ✓ Should show output schema: [customer_id INTEGER] [email VARCHAR] [signup_date TIMESTAMP]
+   - ✓ Should show dest_match:
+     - matched: [customer_id, email, signup_date]
+     - unmatched_in_dest: []
+     - missing_from_output: []
+
+### Test 3: Column mismatch detection
+
+1. Write SQL that includes a column not in destination:
+```sql
+SELECT
+    id AS customer_id,
+    email,
+    first_name,  -- NOT in analytics.hd!
+    created_ts::TIMESTAMP AS signup_date
+FROM {{ source('raw', 'public__users') }}
+```
+
+2. Click "Validate SQL"
+   - ✓ Should show error: "Column 'first_name' in your SQL does not exist in analytics.hd. 
+                            Remove it or rename it to match an existing column."
+   - ✓ unmatched_in_dest should show: [first_name]
+
+### Test 4: Destination table must exist (pre-flight)
+
+1. Configure pipeline with:
+   - Source: `public.users`
+   - Destination table: `analytics.missing` (doesn't exist)
+   - SQL model to deliver to that table
+
+2. Click "Run"
+   - ✗ Should NOT create the table
+   - ✓ Run should fail with error:
+     - Status: "failed"
+     - Error message: "Destination table analytics.missing does not exist. 
+                       Create the table in your destination database before running this pipeline."
+   - ✓ No partial success (all-or-nothing for each model)
+
+### Test 5: Successful delivery to existing table
+
+1. Configure pipeline with all validations passing:
+   - Source: `public.users` ✓
+   - Destination: `analytics.hd` ✓
+   - SQL matches destination columns ✓
+
+2. Click "Run"
+   - ✓ Phase 1: Staging loads public.users → raw.public__users
+   - ✓ Phase 2: dbt SQL creates analytics.dim_users output
+   - ✓ Phase 3: Delivery writes analytics.dim_users → analytics.hd
+   - ✓ No new columns added to analytics.hd
+   - ✓ Rows merged using primary key (customer_id)
+
+3. Verify in destination database:
+```sql
+SELECT * FROM analytics.hd;
+-- Should show: customer_id | email | signup_date
+--              1          | alice@example.com | 2024-...
+--              2          | bob@example.com   | 2024-...
+```
+
+### Test 6: Incremental sync with schema.table
+
+1. Configure pipeline:
+   - Source: `public.users`
+   - Replication mode: INCREMENTAL
+   - Replication column: `created_ts` ✓
+   - SQL model → analytics.hd
+
+2. Click "Run" (first run)
+   - ✓ All rows synced
+   - ✓ Checkpoint created with last_value of created_ts
+
+3. Insert new row in source:
+```sql
+INSERT INTO public.users (id, email, first_name, created_ts) VALUES
+(3, 'charlie@example.com', 'Charlie', NOW());
+```
+
+4. Click "Run" (second run)
+   - ✓ Only new row synced
+   - ✓ Merged into analytics.hd using customer_id as key
+   - ✓ Total rows: 3
+
+### Error Message Reference
+
+During testing, verify these exact error messages appear:
+
+| Scenario | Expected Error Message |
+|---|---|
+| Invalid format (no dot) | "Enter as schema.table — for example: public.users" |
+| Source table not found | "Table public.xyz not found in this connection" |
+| Destination table not found | "Destination table analytics.xyz does not exist. Create the table in your destination database before running this pipeline." |
+| SQL column not in dest | "Column 'col_name' in your SQL does not exist in analytics.hd. Remove it or rename it to match an existing column." |
+| Missing replication key | "Incremental sync requires a replication column for public.users. Enter the column name to track changes." |
+
+### Success Checklist
+
+- [ ] UI accepts only schema.table format
+- [ ] Destination table discovery works (columns shown)
+- [ ] Column validation shows matched/unmatched correctly
+- [ ] Pre-flight check prevents delivery to non-existent tables
+- [ ] No new tables created in destination
+- [ ] Delivery uses merge with primary key
+- [ ] Incremental syncs work with checkpoint
+- [ ] All error messages match specification
+- [ ] Run fails cleanly (not silently skipped)
+
+## Testing Go API discover-table Endpoint
+
+To verify the new Go API `/api/v1/organizations/{orgId}/elt/discover-table` endpoint works correctly:
+
+### Prerequisites
+
+- Go API running on `http://localhost:5000`
+- Valid Supabase JWT token in Authorization header
+- Existing destination connection in database
+- Test database with a sample table
+
+### Test 1: Discover existing destination table
+
+**Request:**
+```bash
+curl -X POST \
+  http://localhost:5000/api/v1/organizations/{orgId}/elt/discover-table \
+  -H "Authorization: Bearer {jwt_token}" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "table": "public.users",
+    "connector_type": "postgres",
+    "connection_config": {
+      "host": "localhost",
+      "port": 5432,
+      "username": "postgres",
+      "password": "password",
+      "database": "app_test"
+    }
+  }'
+```
+
+**Expected Response (200 OK):**
+```json
+{
+  "exists": true,
+  "schema": "public",
+  "table": "users",
+  "columns": [
+    {"name": "id", "type": "INTEGER", "nullable": false, "primary_key": true},
+    {"name": "email", "type": "VARCHAR", "nullable": false, "primary_key": false},
+    {"name": "created_ts", "type": "TIMESTAMP", "nullable": true, "primary_key": false}
+  ],
+  "primary_keys": ["id"],
+  "error": null
+}
+```
+
+### Test 2: Destination table does not exist
+
+**Request:**
+```bash
+curl -X POST \
+  http://localhost:5000/api/v1/organizations/{orgId}/elt/discover-table \
+  -H "Authorization: Bearer {jwt_token}" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "table": "public.nonexistent",
+    "connector_type": "postgres",
+    "connection_config": { ... }
+  }'
+```
+
+**Expected Response (200 OK):**
+```json
+{
+  "exists": false,
+  "schema": "public",
+  "table": "nonexistent",
+  "columns": [],
+  "primary_keys": [],
+  "error": "Table public.nonexistent does not exist"
+}
+```
+
+### Test 3: Invalid connection credentials
+
+**Request:**
+```bash
+curl -X POST \
+  http://localhost:5000/api/v1/organizations/{orgId}/elt/discover-table \
+  -H "Authorization: Bearer {jwt_token}" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "table": "public.users",
+    "connector_type": "postgres",
+    "connection_config": {
+      "host": "invalid.host",
+      "port": 5432,
+      "username": "wrong",
+      "password": "wrong",
+      "database": "app_test"
+    }
+  }'
+```
+
+**Expected Response (400 Bad Request):**
+```json
+{
+  "status_code": 400,
+  "message": "Invalid request",
+  "error": "Cannot resolve database hostname"
+}
+```
+
+## Testing validate-sql with Destination Hints
+
+The `POST /api/v1/organizations/{orgId}/pipelines/{id}/validate-sql` endpoint now includes destination table information:
+
+### Test: Validate SQL with destination columns
+
+**Request:**
+```bash
+curl -X POST \
+  http://localhost:5000/api/v1/organizations/{orgId}/pipelines/{pipelineId}/validate-sql \
+  -H "Authorization: Bearer {jwt_token}" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "sql": "SELECT email, COUNT(*) FROM {{ source(\"raw\", \"public__users\") }} GROUP BY email",
+    "source_table": "public.users",
+    "preview_rows": 5
+  }'
+```
+
+**Expected Response (200 OK):**
+```json
+{
+  "valid": true,
+  "output_schema": {
+    "email": "VARCHAR",
+    "count": "BIGINT"
+  },
+  "preview_rows": [
+    {"email": "alice@example.com", "count": "5"},
+    {"email": "bob@example.com", "count": "3"}
+  ],
+  "dest_match": {
+    "matched": ["email"],
+    "unmatched_in_dest": [],
+    "missing_from_output": ["created_ts", "id"]
+  }
+}
+```
+
+- ✓ Destination columns included in response
+- ✓ Shows which output columns match destination table
+- ✓ Shows which destination columns are missing from output
+
+

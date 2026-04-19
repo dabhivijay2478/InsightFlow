@@ -1,0 +1,77 @@
+---
+description: Go API (Fiber) — apps/server/main-server conventions, ELT dispatch, queue, callbacks, and boundaries
+globs: apps/server/main-server/**
+alwaysApply: false
+---
+
+# Go main server (`apps/server/main-server`)
+
+Fiber + GORM service between the Next.js app and the Python ELT server. **The
+browser never calls ELT directly** — all authenticated product traffic goes
+through this API.
+
+## Stack
+
+- **Web:** Fiber v2
+- **DB:** GORM + Postgres (Supabase)
+- **Queue:** pgmq (`internal/queue`)
+- **Auth:** Supabase JWT on `/api/v1/*`; internal tokens (`X-ETL-Token`,
+  `X-Callback-Token`) for ELT ↔ Go
+- **Logs:** zerolog — never log credentials, tokens, or raw DSNs
+
+## Layout (where to edit)
+
+| Area | Path |
+| --- | --- |
+| HTTP routes & handlers | `internal/server/` |
+| ELT HTTP client | `internal/elt/` |
+| Queue worker / dispatch | `internal/server/dispatch.go`, `dispatch_incremental.go`, `staged_delivery.go` |
+| Pipeline bundle / RunConfig builders | `internal/server/pipeline_bundle.go`, `pipeline_targets.go` |
+| Callback from Python ELT | `internal/server/callback.go` |
+| DB models | `internal/models/` |
+| Entrypoint | `cmd/server/main.go` |
+
+## ELT-specific files (keep in sync with Python contract)
+
+When changing dispatch or callbacks, align with Pydantic models in the ELT
+server (`apps/server/elt-server/models/run_config.py`):
+
+- `dispatch.go` / `dispatch_incremental.go` — build `selected_streams` as
+  `SourceStreamConfig[]` (not raw `string[]`); `dbt_config.sql_models` with
+  `dest_table` as `schema.table`.
+- `pipeline_bundle.go` — `duckdbTableName`, `buildSourceStreamConfigs`,
+  `buildStrictDBTSQLModels`.
+- `staged_delivery.go` — disk guard (`ErrELTStagingDiskBusy`), `handleDiskBusy`,
+  waiting + 30s re-queue.
+- `callback.go` — persist `delivery_outputs`, `staging_size_bytes`,
+  `dbt_models_run`, `no_pk_warnings` in run metadata.
+
+## Product rules
+
+- Destination contract is **destination-node-first** (`dest_schema`,
+  `sql_models[].output_table`, final delivery as `schema.table`). See
+  `apps/server/main-server/README.md` for the short contract summary.
+- Pipeline runs flow through **pgmq**, not ad-hoc HTTP from the frontend to ELT.
+
+## Row-level security
+
+SQL applied to Supabase: `sql/supabase_rls.sql`. Workflow and table map:
+[`.cursor/rules/supabase-rls.mdc`](./supabase-rls.mdc).
+
+## Cross-links
+
+- Strict ELT invariants (also bind Go dispatch/callback):
+  [`.cursor/rules/strict-elt-invariants.mdc`](./strict-elt-invariants.mdc)
+- 5-phase flow diagram:
+  [`.cursor/rules/elt-flow-diagram.mdc`](./elt-flow-diagram.mdc)
+- Repo-wide map:
+  [`.cursor/rules/mantrixflow-repo.mdc`](./mantrixflow-repo.mdc)
+
+## Local run
+
+```bash
+cd apps/server/main-server
+go run ./cmd/server
+```
+
+Default port is typically **5000** (see service config / README).

@@ -1,0 +1,72 @@
+---
+alwaysApply: true
+---
+
+This repository is **MantrixFlow**.
+
+## Active projects (use these paths)
+
+- Frontend: `apps/app`
+- Go API: `apps/server/main-server`
+- Python ELT: `apps/server/elt-server`
+
+If you see docs or code referring to `apps/api` or `apps/new-etl`, treat it as **outdated** unless proven otherwise.
+
+## Safety / security rules
+
+- Never log or return credentials (DB passwords, tokens, API keys).
+- Treat ELT as **internal-only** and require internal auth headers.
+- Prefer safe defaults (upsert/merge) over destructive modes.
+
+## Where to change what (repo map)
+
+- **New UI flow / component**: `apps/app/app/**` and `apps/app/components/**`
+- **API route or behavior**: `apps/server/main-server/internal/server/**`
+- **DB models**: `apps/server/main-server/internal/models/**`
+- **Supabase RLS SQL**: `apps/server/main-server/sql/supabase_rls.sql` — workflow and table map: [`.cursor/rules/supabase-rls.mdc`](./supabase-rls.mdc)
+- **ELT routes**: `apps/server/elt-server/api/routes/**`
+- **ELT runner logic**: `apps/server/elt-server/runner/**`
+
+## Docs conventions
+
+- One `README.md` per active project (`apps/app`, `apps/server/main-server`, `apps/server/elt-server`).
+- Repo-wide notes in `md-docs/` with kebab-case filenames and `md-docs/README.md` as index.
+
+## Agent guidance
+
+- Onboarding and review personas: [`.cursor/rules/agents-and-orchestration.mdc`](./agents-and-orchestration.mdc) (root `AGENTS.md` is a short pointer).
+
+## Backend Cursor rules (per service)
+
+- Go API: [`.cursor/rules/go-main-server.mdc`](./go-main-server.mdc) (`apps/server/main-server/**`)
+- Python ELT: [`.cursor/rules/python-elt-server.mdc`](./python-elt-server.mdc) (`apps/server/elt-server/**`)
+
+## Local dev commands
+
+**App**
+
+```bash
+cd apps/app
+bun install
+bun run dev
+```
+
+**Go API**
+
+```bash
+cd apps/server/main-server
+go run ./cmd/server
+```
+
+**ELT**
+
+```bash
+cd apps/server/elt-server
+./.venv/bin/python -m uvicorn api.main:app --host 0.0.0.0 --port 8000 --loop asyncio
+```
+
+## Core runtime rules (non-negotiable)
+
+- **Frontend never calls ELT directly** for authenticated product operations — use the Go API.
+- **Credentials are never logged** and never returned in API responses.
+- **ELT is internal**: validate internal auth headers (e.g. `X-ETL-Token`) and callback auth (e.g. `X-Callback-Token`).

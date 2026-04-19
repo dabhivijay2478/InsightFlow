@@ -1,0 +1,81 @@
+---
+description: Python ELT (FastAPI) — apps/server/elt-server DuckDB-staged runner, API routes, and dlt/dbt boundaries
+globs: apps/server/elt-server/**
+alwaysApply: false
+---
+
+# Python ELT server (`apps/server/elt-server`)
+
+FastAPI service for the **active** runtime: DuckDB-staged extract → dbt →
+deliver → callback. Only path: **`duckdb_staged`**.
+
+## Stack
+
+- **API:** FastAPI + Pydantic v2 (`models/`, request parsing in `api/routes/`)
+- **Runtime:** dlt, dbt-duckdb, DuckDB (ephemeral per-run files)
+- **Secrets:** Fernet for any credential material in memory — never log or echo
+  in errors returned to Go/clients
+
+## Layout (where to edit)
+
+| Area | Path |
+| --- | --- |
+| App factory / routers | `api/main.py`, `api/routes/` |
+| Run orchestration | `runner/paths/duckdb_staged.py` |
+| Phase handlers (preflight, state, disk, normalisation) | `runner/handlers/` |
+| dbt project generation + run | `runner/dbt_handler.py` (and related) |
+| Delivery to client DB | Implemented from `runner/paths/duckdb_staged.py` (e.g. `_deliver_dbt_models_to_destination`) — keep delivery logic consistent with pre-flight in `runner/handlers/preflight_handler.py` |
+| Incremental state | `runner/state_sync.py` + `runner/handlers/state_handler.py` |
+| Request/response models | `models/run_config.py`, `models/callback_payload.py` |
+| Tests | `tests/` |
+
+## API surface (representative)
+
+Health, `/sync`, `/discover`, `/preview`, `/validate-sql`, `/discover-table`,
+`/disk-status`, `/test-connection` — keep OpenAPI and `README.md` in sync when
+adding routes.
+
+## Non-negotiables
+
+All pipeline changes must satisfy:
+
+- [`.cursor/rules/strict-elt-invariants.mdc`](./strict-elt-invariants.mdc)
+- [`.cursor/rules/elt-flow-diagram.mdc`](./elt-flow-diagram.mdc)
+
+Human narrative: [`md-docs/strict-elt-pipeline-guide.md`](../../md-docs/strict-elt-pipeline-guide.md).
+
+Short reminders:
+
+- **Never** `CREATE TABLE` on the client destination; pre-flight fails if the
+  table is missing.
+- Extract **checkpoint state before** deleting the DuckDB file (`finally`).
+- `CallbackPayload` must include the audit fields (`delivery_outputs`,
+  `staging_size_bytes`, `dbt_models_run`, `no_pk_warnings`, etc.) — match
+  Go `callback.go` allowlist.
+- `selected_streams` parsed as structured `SourceStreamConfig`; `sql_models`
+  with `dest_table` as `schema.table`.
+
+## Python style
+
+- Prefer explicit types; use `list[str] | None` etc. consistent with existing
+  modules.
+- FastAPI: validate bodies with Pydantic; return structured errors without
+  leaking secrets.
+- Keep new helpers under `runner/handlers/` rather than growing
+  `duckdb_staged.py` indefinitely.
+
+## Local run
+
+```bash
+cd apps/server/elt-server
+./.venv/bin/python -m uvicorn api.main:app --host 0.0.0.0 --port 8000 --loop asyncio
+```
+
+See `README.md` for env vars and dependencies.
+
+## Cross-links
+
+- Go dispatcher / callback (other side of the contract):
+  [`.cursor/rules/go-main-server.mdc`](./go-main-server.mdc)
+- Repo-wide map:
+  [`.cursor/rules/mantrixflow-repo.mdc`](./mantrixflow-repo.mdc)

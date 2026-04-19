@@ -1,0 +1,80 @@
+---
+description: MantrixFlow strict ELT invariants — enforced on all ELT/dispatcher/frontend changes
+globs: apps/server/elt-server/**,apps/server/main-server/**,apps/app/**
+alwaysApply: true
+---
+
+# Strict ELT invariants (MantrixFlow)
+
+These 12 invariants are the non-negotiable rules for MANTrixFlow ELT. The
+human-readable guide lives in
+[`md-docs/strict-elt-pipeline-guide.md`](../../md-docs/strict-elt-pipeline-guide.md).
+**If a change violates any of these, stop and fix before continuing.**
+
+Pipeline boundaries:
+
+- Go API (`apps/server/main-server`) orchestrates, encrypts/decrypts credentials,
+  enqueues pgmq jobs, handles callbacks.
+- Python ELT (`apps/server/elt-server`) runs the 5-phase DuckDB-staged pipeline.
+- Frontend (`apps/app`) is the pipeline builder / operator console.
+
+## The 12 invariants
+
+1. **DuckDB file always deleted.** The staged `.duckdb` file MUST be removed in
+   a `finally` block in every runner path. Run must never leak disk.
+2. **Cursor state always extracted before DuckDB deletion.**
+   `runner.handlers.state_handler.extract(...)` runs BEFORE `os.remove(...)`,
+   and the resulting checkpoint is included in the callback payload.
+3. **Destination table never created by the runner.** Phase 0 pre-flight must
+   check `information_schema.tables` on the destination and fail hard with a
+   named error if the table is missing. No `CREATE TABLE` on delivery.
+4. **Column mismatch fails with named column.** Phase 0 pre-flight must compare
+   model output columns against destination columns and raise
+   `"model column X not present in destination schema.table"`.
+5. **No `_dlt_*` tables in client destination.** Delivery must only write the
+   final model output. Staging artifacts stay in DuckDB.
+6. **Credentials never in API responses or error messages.** `sanitizeELTError`
+   and all log lines strip passwords/tokens.
+7. **Cross-tenant RLS is real.** Supabase RLS policies on `pipelines`,
+   `pipeline_runs`, `data_sources`, `etl_sync_states` are verified with
+   actual JWT tests — not trusted by convention.
+8. **Source tables are `schema.table`; internal staging tables are
+   `schema__table`.** The Go helper `duckdbTableName(streamKey)` and the
+   TypeScript helper `duckdbTableNameForStream(streamKey)` are the only
+   sanctioned converters. Never cast-in-place.
+9. **Delivery is merge/append only.** If the destination table has primary
+   keys, write disposition is `merge`. If it has no primary keys, fall back
+   to `append` AND emit a `no_pk_warnings` entry in the callback payload.
+10. **Disk space pre-check runs at the dispatcher AND at Phase 0.** The Go
+    dispatcher MUST call `ELT.DiskStatus()` before `POST /sync` and require
+    `available_gb >= plan_limit * 2`. On failure, mark the run `waiting`
+    (not `failed`) and re-queue the pgmq message with a 30s delay.
+    Phase 0 re-checks inside the ELT server via `disk_guard.ensure_disk_budget`.
+11. **Callback payload MUST include** `delivery_outputs`, `staging_size_bytes`,
+    `dbt_models_run`, and `no_pk_warnings` (nullable). The Go callback handler
+    must persist these into `pipeline_runs.run_metadata`.
+12. **No legacy ETL paths.** The following MUST NOT exist or be reintroduced:
+    - `apps/server/elt-server/runner/paths/cdc_direct.py`
+    - `apps/server/elt-server/routes/cleanup.py`
+    - `transform_script` anywhere
+    - `LOG_BASED` replication branches
+    - `apps/app/**/TransformDrawer*.tsx`, `TransformNode*.tsx`,
+      `TransformMiniCard*.tsx`
+    - Frontend "ETL" labels on user-facing strings (rename to "ELT pipeline" /
+      "Pipeline run"). DB column names are NOT renamed.
+
+## Review checklist for any ELT diff
+
+- [ ] Does Phase 0 validate disk, source tables exist, dest tables exist, and
+      column match?
+- [ ] Is `selected_streams` sent as a list of `SourceStreamConfig` objects
+      (`stream_key`, `replication_method`, `replication_key`,
+      `duckdb_table_name`), not a raw `string[]`?
+- [ ] Is `dbt_config.sql_models[].dest_table` populated as `schema.table`?
+- [ ] Does every new runner helper live under `runner/handlers/` (not inline
+      in `paths/duckdb_staged.py`)?
+- [ ] Does the callback handler accept the 4 audit fields and persist them?
+- [ ] Did you avoid adding `transform_script`, `LOG_BASED`, `cdc_direct`,
+      or a `TransformDrawer`?
+
+If any answer is "no", stop and fix.

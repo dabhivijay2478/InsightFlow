@@ -1,0 +1,410 @@
+---
+description: Next.js app structure, TypeScript/React conventions, and MantrixFlow frontend patterns (apps/app)
+alwaysApply: true
+---
+## TypeScript/React (Next.js 16 + React 19)
+
+### Structure
+```
+apps/app/
+├── app/
+│   ├── layout.tsx            # Root layout
+│   ├── page.tsx              # Home page
+│   ├── auth/
+│   │   └── [...]/page.tsx
+│   └── workspace/
+│       └── data-pipelines/
+│           └── [id]/
+│               └── builder/
+│                   ├── page.tsx
+│                   ├── layout.tsx
+│                   ├── panels/
+│                   │   ├── SourcePanel.tsx
+│                   │   ├── DestinationPanel.tsx
+│                   │   └── ...
+│                   ├── nodes/
+│                   │   ├── SourceNode.tsx
+│                   │   ├── DestinationNode.tsx
+│                   │   └── ...
+│                   ├── store/
+│                   │   └── pipelineStore.ts
+│                   └── canvas-view/
+│                       ├── PipelineCanvas.tsx
+│                       └── ...
+├── components/
+│   ├── ui/                   # Shadcn/ui base components
+│   ├── data-pipelines/       # Feature-specific
+│   │   ├── RunStatusDrawer.tsx
+│   │   ├── SavePipelineButton.tsx
+│   │   └── ...
+│   └── shared/
+│       ├── Toast.tsx
+│       └── ...
+├── hooks/
+│   ├── use-pipelines.ts      # React Query hooks
+│   ├── use-data-sources.ts
+│   ├── use-connections.ts
+│   ├── use-destination-schemas.ts
+│   ├── use-source-schemas.ts
+│   └── ...
+├── lib/
+│   ├── api/
+│   │   ├── services/
+│   │   │   ├── pipeline.service.ts
+│   │   │   ├── connection.service.ts
+│   │   │   └── ...
+│   │   ├── hooks/
+│   │   │   └── use-*.ts
+│   │   └── types/
+│   │       ├── pipelines.ts
+│   │       ├── connections.ts
+│   │       └── ...
+│   ├── stores/
+│   │   ├── workspace-store.ts    # Zustand
+│   │   └── pipeline-store.ts
+│   ├── utils/
+│   │   ├── toast.ts
+│   │   ├── validators.ts
+│   │   └── ...
+│   ├── types/
+│   │   ├── common.ts
+│   │   ├── api.ts
+│   │   └── ...
+│   └── constants/
+│       ├── api.ts
+│       ├── validation.ts
+│       └── ...
+├── tests/
+│   ├── unit/
+│   ├── integration/
+│   └── e2e/
+├── public/
+├── styles/
+└── env.local.example
+```
+
+### Naming Conventions
+- Components: `PascalCase` — `SourcePanel.tsx`, `RunStatusDrawer.tsx`
+- Hooks: `use*` — `useSourceSchemas.ts`, `useDiscoverTable.ts`
+- Types/Interfaces: `PascalCase` — `SourceStreamConfig`, `RunResult`
+- Constants: `UPPER_SNAKE_CASE` or `camelCase` — `MAX_ROWS = 1000`, `defaultTimeout`
+- Variables: `camelCase` — `selectedStreams`, `isLoading`
+- CSS classes: `kebab-case` — `pipeline-canvas`, `source-panel`
+- Event handlers: `handle*` — `handleClick`, `handleInputChange`
+- Boolean variables: `is*` / `has*` — `isLoading`, `hasErrors`
+
+### Type Safety Pattern
+```typescript
+// ✓ CORRECT: Define strict interfaces
+interface SourceStreamConfig {
+  stream_key: string;  // "schema.table"
+  replication_method: "FULL_TABLE" | "INCREMENTAL";
+  replication_key?: string;
+  duckdb_table_name: string;  // "schema__table"
+}
+
+interface DiscoverTableResponse {
+  exists: boolean;
+  schema: string;
+  table: string;
+  columns: {
+    name: string;
+    type: string;
+    nullable: boolean;
+    primary_key: boolean;
+  }[];
+  primary_keys: string[];
+}
+
+// ✓ Use types strictly
+const config: SourceStreamConfig = {
+  stream_key: "public.users",
+  replication_method: "INCREMENTAL",
+  replication_key: "updated_at",
+  duckdb_table_name: "public__users",
+};
+
+// ✗ WRONG: Using any
+const config: any = { stream_key: "public.users" };  // No type checking
+
+// ✗ WRONG: Implicit any
+const config = { stream_key: "public.users" };  // TypeScript infers any
+```
+
+### React Hook Pattern
+```typescript
+// ✓ CORRECT: Use React Query with proper error handling
+import { useMutation, useQuery } from "@tanstack/react-query";
+import { toast } from "@/lib/utils/toast";
+
+export function SourcePanel() {
+  const { data: tables, isLoading, error } = useQuery({
+    queryKey: ["source-tables", dataSourceId],
+    queryFn: async () => {
+      const response = await fetch(`/api/v1/sources/${dataSourceId}/discover`);
+      if (!response.ok) {
+        throw new Error(await response.text());
+      }
+      return response.json();
+    },
+    staleTime: 5 * 60 * 1000,  // 5 minutes
+    retry: 2,
+  });
+
+  const discoverMutation = useMutation({
+    mutationFn: async (table: string) => {
+      const response = await fetch(`/api/v1/discover-table`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ table }),
+      });
+      if (!response.ok) throw new Error(await response.text());
+      return response.json();
+    },
+    onSuccess: (data) => {
+      toast.success("Discovered table", `Found ${data.columns.length} columns`);
+    },
+    onError: (error) => {
+      toast.error("Discovery failed", error instanceof Error ? error.message : "Unknown error");
+    },
+  });
+
+  if (error) return <div>Error: {error.message}</div>;
+  if (isLoading) return <div>Loading...</div>;
+
+  return (
+    <div>
+      {/* UI here */}
+    </div>
+  );
+}
+
+// ✗ WRONG: Using fetch directly without error handling
+export function BadComponent() {
+  const [data, setData] = useState(null);
+  useEffect(() => {
+    fetch(`/api/sources/${id}`).then(r => r.json()).then(setData);
+  }, []);  // ← No cleanup, no error handling
+  return <div>{data?.name}</div>;
+}
+```
+
+### Component Best Practices
+```typescript
+// ✓ CORRECT: Memoized callback, proper dependencies
+interface MyComponentProps {
+  onSelect: (id: string) => void;
+  data: string[];
+}
+
+export function MyComponent({ onSelect, data }: MyComponentProps) {
+  const [selected, setSelected] = useState<string | null>(null);
+  
+  const handleSelect = useCallback((id: string) => {
+    setSelected(id);
+    onSelect(id);
+  }, [onSelect]);  // ← Dependency array includes onSelect
+  
+  return (
+    <ul>
+      {data.map((item) => (
+        <li key={item} onClick={() => handleSelect(item)}>
+          {item}
+        </li>
+      ))}
+    </ul>
+  );
+}
+
+// ✗ WRONG: Inline handler, missing dependency
+export function BadComponent({ onSelect, data }) {
+  return (
+    <ul>
+      {data.map((item) => (
+        <li onClick={() => onSelect(item)}>{item}</li>  // ← No memoization, no deps
+      ))}
+    </ul>
+  );
+}
+```
+
+### API Response Handling
+```typescript
+// ✓ CORRECT: Type your API responses
+interface ApiResponse<T> {
+  status: "success" | "error";
+  data: T | null;
+  message: string;
+  error_code?: string;
+}
+
+// ✓ Create service class
+export class PipelineService {
+  async getPipeline(id: string): Promise<PipelineConfig> {
+    const response = await fetch(`/api/v1/pipelines/${id}`, {
+      headers: { "Authorization": `Bearer ${getToken()}` },
+    });
+    
+    if (!response.ok) {
+      const error = await response.json();
+      throw new Error(error.message || "Failed to fetch pipeline");
+    }
+    
+    const result: ApiResponse<PipelineConfig> = await response.json();
+    if (result.status !== "success") {
+      throw new Error(result.message);
+    }
+    
+    return result.data!;
+  }
+}
+
+// ✓ Use in hook
+export function usePipeline(id: string) {
+  return useQuery({
+    queryKey: ["pipeline", id],
+    queryFn: () => PipelineService.getPipeline(id),
+  });
+}
+
+// ✗ WRONG: No type checking
+const [data, setData] = useState(null);
+useEffect(() => {
+  fetch(`/api/pipelines/${id}`)
+    .then(r => r.json())
+    .then(setData);  // ← data could be any shape, no error handling
+}, [id]);
+```
+
+---
+
+## Shared Rules (All Languages)
+
+### API Endpoints Consistency
+```
+All endpoints follow this structure:
+
+Success (200):
+{
+  "status": "success",
+  "data": { /* the actual data */ },
+  "message": "Human-readable message"
+}
+
+Error (4xx/5xx):
+{
+  "status": "error",
+  "data": null,
+  "message": "User-friendly error message",
+  "error_code": "E123_SOMETHING"
+}
+
+Never include credentials, stack traces, or internal details in error messages.
+```
+
+### Secret Management
+- Environment variables: `DATABASE_URL`, `JWT_SECRET`, `ENCRYPTION_MASTER_KEY`
+- Prefix secret vars with `_` if possible: `_DATABASE_PASSWORD` (helps grep)
+- Use `.env.local` for development (never commit)
+- Use GitHub Secrets for CI/CD
+- Rotate secrets on production access compromises
+- Never hardcode secrets in code
+- Use constant-time comparison for token validation: `hmac.Equal()` in Go, `secrets.compare_digest()` in Python
+
+### Database Access
+- Always parameterized queries (prevent SQL injection)
+- Always indexes on frequently queried columns
+- Always soft delete: `deleted_at IS NULL` in WHERE clauses
+- Test row-level security with actual tokens/JWT
+- No N+1 queries — eager load or batch queries
+
+### Logging
+- Use structured logging: `logger.info("event", extra={...})` in Python, `s.Logger.Info("event", zap.Field(...))` in Go
+- Include: timestamp, level, service, request_id, user_id
+- Never log credentials, PII, or passwords
+- Use appropriate log levels:
+  - ERROR: something failed (bad user input, DB error, etc)
+  - WARN: degraded functionality (no PK found, partial success)
+  - INFO: normal operations (pipeline started, run completed)
+  - DEBUG: detailed flow (phase transitions, SQL statements)
+
+### Performance
+- Add indexes before deploying new queries
+- Profile before optimizing — measure, don't guess
+- Use pagination: limit 1000 rows max per query
+- Set timeouts on all external API calls
+- Cache: static data → memory, dynamic data → Redis (if needed)
+
+### Testing
+- Write tests for new functionality
+- Mock all external services (DB, APIs, file system)
+- Test error paths, not just happy paths
+- Test security (RLS, credential scrubbing)
+- Use fixtures for test data setup/teardown
+- Aim for 80%+ code coverage on critical paths
+
+### Security
+- Validate all user input on backend (never trust frontend)
+- Use Supabase RLS for row-level access control
+- Sanitize error messages — no internal details to users
+- Use HTTPS in production
+- Regularly audit dependencies for vulnerabilities
+- Never run `npm install` as root
+
+### Code Review Checklist
+Before approving any PR:
+- [ ] No hardcoded secrets or credentials
+- [ ] Error handling for all external calls
+- [ ] Tests written and passing
+- [ ] No N+1 queries or obvious performance issues
+- [ ] Database indexes added if needed
+- [ ] RLS verified (if data access changed)
+- [ ] Rate limiting considered
+- [ ] Timeouts set on external calls
+- [ ] Backward compatibility maintained (if API change)
+- [ ] Documentation updated
+
+---
+
+## Quick Reference
+
+### Golden Question
+*Before committing code, ask:*
+1. Could this code leak a credential? If yes → FIX
+2. Could this code create an N+1 query? If yes → FIX
+3. Is there error handling for all external calls? If no → FIX
+4. Are there tests for this code? If no → ADD
+5. Does this change require a migration? If yes → INCLUDE
+
+### File Structure Summary
+```
+Backend (Go API):        Backend (Python ELT):     Frontend (React):
+├── internal/           ├── api/                   ├── app/
+│   ├── models/         │   ├── routes/            │   ├── layout.tsx
+│   ├── server/         │   └── models.py          │   ├── workspace/
+│   ├── services/       ├── core/                  │       └── [...]/builder/
+│   └── queue/          ├── runner/                ├── components/
+├── pkg/response/       │   ├── handlers/          ├── hooks/
+└── cmd/server/main.go  │   └── models/            ├── lib/
+                        ├── tests/                 │   ├── api/
+                        └── requirements.txt       │   ├── stores/
+                                                   │   ├── types/
+                                                   │   └── utils/
+                                                   └── tests/
+```
+
+### Deployment Checklist
+- [ ] All tests passing locally
+- [ ] All GitHub Actions passing
+- [ ] Code reviewed and approved
+- [ ] Migrations tested against prod data snapshot
+- [ ] Feature flags in place (if partial rollout needed)
+- [ ] Monitoring alerts set up
+- [ ] Runbook written (how to roll back)
+- [ ] Deployed to staging, tested 1 hour
+- [ ] Deployed to production
+- [ ] Monitored metrics for 1 hour post-deploy
+
+---
+
+This file is read by Cursor AI. Update when coding standards change.

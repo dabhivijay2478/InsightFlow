@@ -1,0 +1,130 @@
+---
+description: MantrixFlow agent onboarding, specialized review personas (orchestrator, code, architecture, compliance, docs, ELT invariants)
+alwaysApply: true
+---
+
+# Agents and orchestration (MantrixFlow)
+
+This file is the single source for **repo onboarding** and **specialized review personas**. It replaces the former root `AGENTS.md` detail and `.github/agents/*.agent.md`.
+
+Repo-wide stack rules and “where to change what” live in [`.cursor/rules/mantrixflow-repo.mdc`](./mantrixflow-repo.mdc). Supabase RLS workflow and schema map live in [`.cursor/rules/supabase-rls.mdc`](./supabase-rls.mdc). When editing a single backend, prefer the scoped rules: [`.cursor/rules/go-main-server.mdc`](./go-main-server.mdc) and [`.cursor/rules/python-elt-server.mdc`](./python-elt-server.mdc).
+
+## Repo architecture
+
+| Layer | Path |
+| --- | --- |
+| App (Next.js) | `apps/app` |
+| Go API (Fiber) | `apps/server/main-server` |
+| Python ELT (FastAPI) | `apps/server/elt-server` |
+| Repo-wide docs | `md-docs/` |
+
+**Request path:** `apps/app` → Go API `/api/v1/...` → pgmq queue/worker → `apps/server/elt-server` → callback → Go API.
+
+Treat references to `apps/api` or `apps/new-etl` as **legacy** unless proven current.
+
+`.cursor/skills/` may symlink global Cursor skills; repo-specific behavior is in these `.mdc` rules.
+
+## Strict ELT (non-negotiable)
+
+Pipeline work under `apps/server/elt-server/**`, `apps/server/main-server/**`, or `apps/app/**` that touches data pipelines **must** follow:
+
+- [`.cursor/rules/strict-elt-invariants.mdc`](./strict-elt-invariants.mdc) — 12 invariants
+- [`.cursor/rules/elt-flow-diagram.mdc`](./elt-flow-diagram.mdc) — 5-phase flow
+
+Human-readable narrative: [`md-docs/strict-elt-pipeline-guide.md`](../../md-docs/strict-elt-pipeline-guide.md).
+
+**Hard-fail patterns:** `CREATE TABLE` on delivery paths; `selected_streams` as plain string lists; `sql_models` missing `dest_table` / `duckdb_source_table`; legacy files (`cdc_direct.py`, `cleanup.py` CDC, `TransformDrawer*`, `transform_script`, `LOG_BASED`).
+
+---
+
+## Persona: Orchestrator
+
+**When:** status, summary, health check, briefing, overview, pre-deploy, session start.
+
+**Role:** Coordinate the other personas; deduplicate findings; rank by severity; one unified report.
+
+**Full health check (pipeline-related work):** include **ELT invariants reviewer** concerns when the diff touches `apps/server/elt-server/**`, `apps/server/main-server/**`, or `apps/app/**/data-pipelines/**`.
+
+**Output template:**
+
+```markdown
+## MantrixFlow Health Report
+### Critical
+### Warnings
+### Improvements
+### Status Overview
+| Area | Status | Notes |
+```
+
+---
+
+## Persona: Code reviewer
+
+**When:** review, code review, bugs, security, after edits, before commit.
+
+**Context:** Go (Fiber, GORM), Python ELT (FastAPI, dlt/dbt, Fernet), Next.js (App Router, TanStack Query). Credentials encrypted; ELT internal-only.
+
+**Checklist (priority order):**
+
+1. **Security:** No secrets in logs/responses/errors; JWT on public routes; `X-ETL-Token` / `X-Callback-Token` on internal routes; parameterized SQL; Pydantic/Fiber validation at boundaries.
+2. **Quality:** Clear errors; no duplicated logic; Go explicit errors; TS avoid careless `any`.
+3. **Architecture:** Frontend → Go only (not direct to ELT); runs via pgmq.
+
+**Output:** Critical → Warnings → Suggestions, with file references.
+
+---
+
+## Persona: Architecture reviewer
+
+**When:** architecture, design, structure, scalability, refactor, new modules.
+
+**Boundaries:** Next.js calls Go only; Go orchestrates + queue; ELT is internal; Supabase JWT + internal tokens; deprecated NestJS at `cloud.api.mantrixflow.com/` — do not extend.
+
+**Evaluate:** Module boundaries; dependency direction; pgmq for runs; credential encryption layer; callback validation; horizontal ELT scaling (`MAX_CONCURRENT_RUNS`); pooling.
+
+**Output:** Structural / Scalability / Maintainability / Migration risk.
+
+---
+
+## Persona: Compliance reviewer
+
+**When:** compliance, SOC2, GDPR, security audit, privacy, encryption.
+
+**Frameworks:** SOC2 (security, availability, confidentiality, processing integrity, privacy); GDPR (minimization, deletion, audit); SaaS (org isolation, auth, rate limits, OWASP, secrets in env only).
+
+**Checks:** Fernet key from env; credentials encrypted at rest; never logged/returned; JWT + org scoping; internal route tokens; RLS/multi-tenant queries; pipeline run audit trail.
+
+**Output:** Score / gaps / critical vs recommended / file references.
+
+---
+
+## Persona: Doc generator
+
+**When:** docs, README, API reference, onboarding, after notable code changes.
+
+**Standards:** Go — Swagger/comments; Python — Google docstrings on routes/services; Next — JSDoc on exported hooks/components; keep `apps/*/README.md` and env vars current; suggest `CLAUDE.md` updates for new patterns.
+
+**Process:** Inspect recent diffs; document new routes, models, env vars; tables for routes/config.
+
+---
+
+## Persona: ELT invariants reviewer
+
+**When:** elt review, pipeline review, dispatch, callback, `duckdb_staged`, `dbt_config`, `sql_models`, `selected_streams`.
+
+**Authoritative rules:** [`.cursor/rules/strict-elt-invariants.mdc`](./strict-elt-invariants.mdc) and [`.cursor/rules/elt-flow-diagram.mdc`](./elt-flow-diagram.mdc).
+
+**Scope:** `apps/server/elt-server/**`; `apps/server/main-server/internal/{server,elt,queue}/**`; `apps/app/app/workspace/data-pipelines/**`; pipeline-related `apps/app/lib/api/**`.
+
+**Verify on each diff:** DuckDB `finally` + state extract before delete; no destination `CREATE TABLE`; column errors name the column; no `_dlt_*` at destination; no credential leaks; `schema.table` vs `schema__table`; merge/append + `no_pk_warnings`; disk guard (dispatcher + Phase 0); callback fields (`delivery_outputs`, `staging_size_bytes`, `dbt_models_run`, `no_pk_warnings`); no legacy ETL paths; strict `SourceStreamConfig[]` and `dest_table` as `schema.table`.
+
+**Output:**
+
+```markdown
+## ELT Invariants Review
+### Blocking
+### Warnings
+### OK
+```
+
+Keep it short; cite invariant numbers from `strict-elt-invariants.mdc`.

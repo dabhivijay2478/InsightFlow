@@ -1,0 +1,71 @@
+---
+description: Supabase row-level security — tenancy model, workflow for supabase_rls.sql, and schema map
+globs: apps/server/main-server/internal/models/**,apps/server/main-server/sql/**,apps/server/main-server/docs/**
+alwaysApply: false
+---
+
+# Supabase RLS (MantrixFlow)
+
+Use when a table in `apps/server/main-server/internal/models/` changes or a new table needs client-safe Supabase access.
+
+## Workflow
+
+1. Read the relevant model file under `apps/server/main-server/internal/models/`.
+2. Classify the table:
+   - `org_owned_crud` or `org_owned_select` for direct `organization_id` ownership
+   - `self_user` or `self_user_crud` for `auth.uid()` ownership
+   - `custom` when org access comes from joins or nullable ownership columns
+   - `no_client_access` for secret-bearing tables such as `data_source_connections`
+3. Update `apps/server/main-server/sql/supabase_rls.sql` directly.
+4. Read `apps/server/main-server/docs/RLS_GUIDE.md` and keep the new table aligned with its checklist.
+5. For local application, use `APPLY_SUPABASE_RLS_ONCE=true` when starting the Go API. The server applies the SQL through GORM and records the checksum as a comment on `public.app_user_org_id()`.
+6. If a new ownership pattern was introduced, update the **Schema map** section below so later work does not rediscover it.
+
+## Project rules
+
+- Tenancy is based on `users.current_organization_id`, not `users.org_id`.
+- `public.app_user_org_id()` must only return an org the user actively belongs to.
+- The Go API writes through a direct database connection without `auth.uid()`, so org/user enforcement triggers must no-op when `auth.uid()` is null.
+- Do not add `FORCE ROW LEVEL SECURITY`; the backend must keep bypassing RLS on its owner/service connection.
+- Do not expose `data_source_connections.config` through a base-table select policy. Keep the base table closed unless a real client-safe view is needed.
+
+## References
+
+- `apps/server/main-server/docs/RLS_GUIDE.md` — maintenance checklist and local apply flow.
+- The file applied to Supabase is `apps/server/main-server/sql/supabase_rls.sql`.
+
+## Schema map (current public tables)
+
+Current public tables created by GORM live in `apps/server/main-server/internal/models/`.
+
+### Org-scoped tables
+
+- `organizations` — current-org read only; active org is `users.current_organization_id`.
+- `organization_members` — current-org read only; verifies active membership.
+- `data_sources` — direct `organization_id`; org-scoped CRUD.
+- `data_source_schema_metadata` — direct `organization_id`; client read only.
+- `pipelines` — direct `organization_id`; org-scoped CRUD.
+- `pipeline_runs` — direct `organization_id`; client read only for dashboards and Realtime.
+- `activity_logs` — direct `organization_id`; client read only.
+
+### Derived org-scoped tables
+
+- `pipeline_source_schemas` — org from `organization_id` when present, else `data_source_id → data_sources.organization_id`.
+- `pipeline_destination_schemas` — same pattern as `pipeline_source_schemas`.
+
+### User-scoped tables
+
+- `users` — self read/update; `current_organization_id` may only point to an org the user belongs to.
+- `email_preferences` — self CRUD by `user_id = auth.uid()`.
+
+### Secret-bearing tables
+
+- `data_source_connections` — encrypted `config`; keep base table closed to client selects unless a dedicated safe view is required.
+
+### Trigger rule
+
+`public.enforce_authenticated_org_id()` and `public.enforce_authenticated_user_id()` only rewrite ownership columns when `auth.uid()` is present (Go API uses a direct connection without JWT in SQL).
+
+### Local apply flow
+
+Committed bundle: `apps/server/main-server/sql/supabase_rls.sql`. Apply on startup with `APPLY_SUPABASE_RLS_ONCE=true`; checksum marker on `public.app_user_org_id()`.
