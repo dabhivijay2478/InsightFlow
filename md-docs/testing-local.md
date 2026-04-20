@@ -889,3 +889,81 @@ curl -X POST \
 - ✓ Shows which output columns match destination table
 - ✓ Shows which destination columns are missing from output
 
+## Workspace Analytics Manual Verification
+
+Use this checklist when the workspace Analytics page is implemented at
+`/workspace/analytics`.
+
+### Analytics smoke test
+
+1. Open `/workspace/analytics` for an organization with pipeline history.
+2. Verify the page shows:
+   - KPI cards
+   - rows-over-time chart
+   - run-status donut
+   - pipeline frequency chart
+   - run-duration trend
+   - top pipelines table
+   - recent failed runs table
+   - usage progress bars
+3. Confirm each section shows a matching-dimension skeleton before data loads.
+
+### Period switching
+
+1. Switch between `7d`, `30d`, and `90d`.
+2. Verify all period-bound sections refetch together:
+   - KPI cards
+   - rows-over-time chart
+   - run-status donut
+   - pipeline stats
+   - failed runs
+3. Verify the usage section does not reset unnecessarily when only the period
+   changes.
+
+### Export CSV
+
+1. Click `Export CSV`.
+2. Verify the downloaded file contains the selected period in the filename.
+3. Verify the CSV columns are:
+   - `runId`
+   - `pipelineName`
+   - `status`
+   - `rowsDelivered`
+   - `durationSeconds`
+   - `createdAt`
+4. Verify the export includes all runs in the selected period, not just the
+   visible failed-run rows or chart subsets.
+
+### Failed run handling
+
+1. Confirm long error messages are truncated in the table and fully visible in
+   the tooltip.
+2. Confirm phase badges render with the expected colors:
+   - Phase 1 -> blue
+   - Phase 2 -> purple
+   - Phase 3 -> orange
+3. Click `Retry` on a failed run and verify:
+   - the pipeline run starts via the normal run endpoint
+   - the analytics page refetches after success
+   - the related pipeline run history also refreshes
+
+### Usage and limits
+
+1. Verify the progress bars use these thresholds:
+   - below `70%` -> blue
+   - `70%` to `90%` -> amber
+   - above `90%` -> red
+2. Verify an `Upgrade ->` CTA appears when a bar exceeds `90%`.
+3. Confirm the CTA points to `/workspace/settings?tab=billing`.
+
+### Org isolation
+
+1. Switch to another organization with different pipeline history.
+2. Verify all analytics values change with the organization.
+3. Confirm no rows, failed runs, or pipeline names leak across organizations.
+
+### Source and destination labels
+
+1. Verify the top pipelines table shows the expected source connector type.
+2. Verify source and destination names match the same connections used by the
+   pipeline list and builder.

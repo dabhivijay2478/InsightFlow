@@ -11,6 +11,9 @@ one job; read them in order when onboarding.
 2. [`source-to-destination-elt-flow.md`](./source-to-destination-elt-flow.md)
    — deeper reference for the saved graph contract, normalisation rules,
    and cross-service payload shapes.
+3. [`analytics-page-implementation.md`](./analytics-page-implementation.md) —
+   repo-aligned implementation spec for the workspace Analytics page and its
+   org-scoped analytics APIs.
 
 The 12 non-negotiable invariants are enforced directly in
 [`.cursor/rules/strict-elt-invariants.mdc`](../.cursor/rules/strict-elt-invariants.mdc),
