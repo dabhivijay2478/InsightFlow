@@ -5,6 +5,7 @@
     "**/.git": false
   },
   "chat.tools.terminal.autoApprove": {
-    "go": true
+    "go": true,
+    "bun": true
   }
 }

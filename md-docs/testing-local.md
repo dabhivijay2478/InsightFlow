@@ -647,7 +647,7 @@ FROM {{ source('raw', 'public__users') }}
 
 1. Click "Validate SQL"
   - ✓ Should show error: "Column 'first_name' in your SQL does not exist in analytics.hd. 
-                      Remove it or rename it to match an existing column."
+                Remove it or rename it to match an existing column."
   - ✓ unmatched_in_dest should show: [first_name]
 
 ### Test 4: Destination table must exist (pre-flight)
@@ -661,7 +661,7 @@ FROM {{ source('raw', 'public__users') }}
   - ✓ Run should fail with error:
     - Status: "failed"
     - Error message: "Destination table analytics.missing does not exist. 
-                Create the table in your destination database before running this pipeline."
+          Create the table in your destination database before running this pipeline."
   - ✓ No partial success (all-or-nothing for each model)
 
 ### Test 5: Successful delivery to existing table
@@ -898,61 +898,61 @@ Use this checklist when the workspace Analytics page is implemented at
 
 1. Open `/workspace/analytics` for an organization with pipeline history.
 2. Verify the page shows:
-   - KPI cards
-   - rows-over-time chart
-   - run-status donut
-   - pipeline frequency chart
-   - run-duration trend
-   - top pipelines table
-   - recent failed runs table
-   - usage progress bars
+  - KPI cards
+  - rows-over-time chart
+  - run-status donut
+  - pipeline frequency chart
+  - run-duration trend
+  - top pipelines table
+  - recent failed runs table
+  - usage progress bars
 3. Confirm each section shows a matching-dimension skeleton before data loads.
 
 ### Period switching
 
 1. Switch between `7d`, `30d`, and `90d`.
 2. Verify all period-bound sections refetch together:
-   - KPI cards
-   - rows-over-time chart
-   - run-status donut
-   - pipeline stats
-   - failed runs
+  - KPI cards
+  - rows-over-time chart
+  - run-status donut
+  - pipeline stats
+  - failed runs
 3. Verify the usage section does not reset unnecessarily when only the period
-   changes.
+  changes.
 
 ### Export CSV
 
 1. Click `Export CSV`.
 2. Verify the downloaded file contains the selected period in the filename.
 3. Verify the CSV columns are:
-   - `runId`
-   - `pipelineName`
-   - `status`
-   - `rowsDelivered`
-   - `durationSeconds`
-   - `createdAt`
+  - `runId`
+  - `pipelineName`
+  - `status`
+  - `rowsDelivered`
+  - `durationSeconds`
+  - `createdAt`
 4. Verify the export includes all runs in the selected period, not just the
-   visible failed-run rows or chart subsets.
+  visible failed-run rows or chart subsets.
 
 ### Failed run handling
 
 1. Confirm long error messages are truncated in the table and fully visible in
-   the tooltip.
+  the tooltip.
 2. Confirm phase badges render with the expected colors:
-   - Phase 1 -> blue
-   - Phase 2 -> purple
-   - Phase 3 -> orange
+  - Phase 1 -> blue
+  - Phase 2 -> purple
+  - Phase 3 -> orange
 3. Click `Retry` on a failed run and verify:
-   - the pipeline run starts via the normal run endpoint
-   - the analytics page refetches after success
-   - the related pipeline run history also refreshes
+  - the pipeline run starts via the normal run endpoint
+  - the analytics page refetches after success
+  - the related pipeline run history also refreshes
 
 ### Usage and limits
 
 1. Verify the progress bars use these thresholds:
-   - below `70%` -> blue
-   - `70%` to `90%` -> amber
-   - above `90%` -> red
+  - below `70%` -> blue
+  - `70%` to `90%` -> amber
+  - above `90%` -> red
 2. Verify an `Upgrade ->` CTA appears when a bar exceeds `90%`.
 3. Confirm the CTA points to `/workspace/settings?tab=billing`.
 
@@ -966,4 +966,14 @@ Use this checklist when the workspace Analytics page is implemented at
 
 1. Verify the top pipelines table shows the expected source connector type.
 2. Verify source and destination names match the same connections used by the
-   pipeline list and builder.
+  pipeline list and builder.
+
+  
+  
+  
+  
+  
+  
+cons : If someone put **their own** objects inside `{dest_schema}_staging`, `CASCADE` would remove them too. That name is reserved for dlt merge staging in this stack; clients should not use it for app data.
+
+A short comment was added in `duckdb_staged.py` noting that cleanup covers `{dest_schema}_staging` as well.
