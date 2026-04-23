@@ -11,6 +11,8 @@ manual-testing/
 ├── README.md                  ← this file (index + universal checklist)
 ├── dbt-layer.md               ← all dbt SQL scenarios & verification
 ├── normalisation.md           ← rename / cast / exclude rule testing
+├── column-mapping.md          ← JSON→TEXT, type coercion, col name mismatch, subset/derived columns
+├── pipeline-step-by-step.md  ← every pipeline × stream, all 4 mapping patterns, numbered steps
 ├── sources/
 │   ├── stripe.md              ← 19 streams
 │   ├── shopify.md             ← 14 streams
@@ -186,7 +188,25 @@ CREATE TABLE IF NOT EXISTS analytics.stripe_customers_hd (
 |----------|-------------|
 | Full-table sync, all SaaS streams | `sources/{source}.md` |
 | Incremental sync with cursor | `sources/{source}.md` |
-| JSON column key filtering | `dbt-layer.md` |
+| JSON column → flat TEXT/VARCHAR (key filtering) | `column-mapping.md` CM-1 – CM-6 |
+| Nested JSON (2 levels) → TEXT | `column-mapping.md` CM-4 |
+| JSON array first element → TEXT | `column-mapping.md` CM-6 |
+| Source col names ≠ dest col names | `column-mapping.md` CM-7 – CM-10 |
+| Integer cents → decimal dollars | `column-mapping.md` CM-11 |
+| TEXT → INTEGER safe cast | `column-mapping.md` CM-12 |
+| BOOLEAN/TINYINT → INTEGER 0/1 | `column-mapping.md` CM-13 |
+| Unix timestamp → TIMESTAMPTZ | `column-mapping.md` CM-16 |
+| SQLite TEXT date → TIMESTAMPTZ | `column-mapping.md` CM-17 |
+| TIMESTAMPTZ → DATE truncation | `column-mapping.md` CM-15 |
+| Source 15 cols → dest 4 cols (subset) | `column-mapping.md` CM-20 |
+| Source 6 cols → dest 8 cols (add derived) | `column-mapping.md` CM-21 |
+| Two source cols merged → one dest col | `column-mapping.md` CM-24 |
+| One source col split → two dest cols | `column-mapping.md` CM-23 |
+| Sensitive column excluded from dest | `column-mapping.md` CM-25 |
+| NULL JSON key → NULL dest column | `column-mapping.md` CM-26 |
+| Empty string JSON value → NULL | `column-mapping.md` CM-27 |
+| Type mismatch → Phase 0 failure | `column-mapping.md` CM-28 |
+| Extra required dest col not in dbt SQL | `column-mapping.md` CM-29 |
 | Column rename in destination | `normalisation.md` |
 | Type cast (text → integer) | `normalisation.md` |
 | Column exclusion | `normalisation.md` |
