@@ -46,3 +46,6 @@ apps/app/playwright-auth.json
 coverage/
 .nyc_output/
 .pytest_cache/
+
+
+md-docs/credentials
