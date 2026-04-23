@@ -1,0 +1,8 @@
+./local_render.go
+./mailer.go
+./managed_templates.go
+./template_ids.go
+./template_merge.go
+./templates.go
+./unosend_client.go
+./vars.go

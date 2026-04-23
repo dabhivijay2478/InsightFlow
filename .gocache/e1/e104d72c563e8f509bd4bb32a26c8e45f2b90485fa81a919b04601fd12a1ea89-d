@@ -1,0 +1,11 @@
+./activity_log.go
+./datasource.go
+./doc.go
+./email_delivery.go
+./email_preference.go
+./organization.go
+./organization_billing.go
+./pipeline.go
+./schema_metadata.go
+./usage.go
+./user.go
