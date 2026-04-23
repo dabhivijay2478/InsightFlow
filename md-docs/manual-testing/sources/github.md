@@ -138,18 +138,18 @@ CREATE TABLE analytics.github_events_flat (
 
 ## Scenario S-GH-4 — Commits with Author Extraction
 
-`commits.commit` is a JSON object. Extract author name and message:
+dlt **flattens** the API `commit` object into columns (`commit__message`, `commit__author__name`, …); there is no `commit` column in `github__commits`.
 
 **dbt SQL:**
 ```sql
 SELECT
     sha,
-    commit->>'message'             AS message,
-    commit->'author'->>'name'      AS author_name,
-    commit->'author'->>'email'     AS author_email,
-    commit->'author'->>'date'      AS committed_at
+    commit__message                AS message,
+    commit__author__name           AS author_name,
+    commit__author__email         AS author_email,
+    CAST(commit__author__date AS TIMESTAMPTZ) AS committed_at
 FROM {{ source('raw', 'github__commits') }}
-WHERE commit->'author'->>'name' IS NOT NULL
+WHERE commit__author__name IS NOT NULL
 ```
 
 **Destination DDL:**

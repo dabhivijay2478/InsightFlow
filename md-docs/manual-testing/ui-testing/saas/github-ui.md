@@ -75,10 +75,8 @@ Multiple repos: add additional `owner/repo` pairs in the repos list panel.
 ### `github.commits`
 | Rule | Column | Target |
 |------|--------|--------|
-| Exclude | `commit` | — (JSON keys extracted in dbt) |
-| Exclude | `author` | — |
-| Exclude | `committer` | — |
-| Exclude | `parents` | — |
+| — | *(dlt loads `commit__message`, `commit__author__name`, …)* | Use these in dbt (no JSON `commit` column) |
+| Exclude | `parents` | — (nested table `github__commits__parents` if needed) |
 
 ### `github.events`
 | Rule | Column | Target |
@@ -126,17 +124,19 @@ FROM {{ source('raw', 'github__pull_requests') }}
 ---
 
 ### Stream 3 — `github.commits`
+dlt stores **flattened** columns (e.g. `commit__message`), not a single JSON `commit` column—use these in dbt over `github__commits`.
+
 ```sql
 SELECT
     sha,
-    commit->>'message'                                  AS message,
-    commit->'author'->>'name'                           AS author_name,
-    commit->'author'->>'email'                          AS author_email,
-    CAST(commit->'author'->>'date' AS TIMESTAMPTZ)      AS committed_at
+    commit__message                         AS message,
+    commit__author__name                    AS author_name,
+    commit__author__email                   AS author_email,
+    CAST(commit__author__date AS TIMESTAMPTZ) AS committed_at
 FROM {{ source('raw', 'github__commits') }}
-WHERE commit->'author'->>'name' IS NOT NULL
+WHERE commit__author__name IS NOT NULL
 ```
-**Preview check**: `message` plain string; `commit` column absent; `committed_at` TIMESTAMPTZ
+**Preview check**: `/preview` flattens nested JSON like dlt (`commit__author__name`, …), matching **sync/DuckDB** dbt SQL.
 
 ---
 
@@ -243,11 +243,12 @@ FROM {{ source('raw', 'github__projects') }}
 ---
 
 ### Stream 12 — `github.branches`
+dlt flattens `commit.sha` → `commit__sha`.
 ```sql
 SELECT
-    name      AS branch_name,
-    commit->>'sha' AS commit_sha,
-    protected AS is_protected
+    name            AS branch_name,
+    commit__sha     AS commit_sha,
+    protected       AS is_protected
 FROM {{ source('raw', 'github__branches') }}
 ```
 
@@ -259,7 +260,7 @@ FROM {{ source('raw', 'github__branches') }}
 |--------|--------|---------|
 | issues | `author_login` | Plain string e.g. `"octocat"` |
 | issues | `label_name` | First label string or NULL |
-| commits | `author_name` | Plain string; `commit` column absent |
+| commits | `commit__author__name` in DuckDB; preview may differ | Plain string in dbt SELECT |
 | events | `actor_id` | Integer |
 | labels | `hex_color` | String starting with `#` |
 | branches | `commit_sha` | 40-char SHA string |
@@ -272,7 +273,7 @@ FROM {{ source('raw', 'github__branches') }}
 |---------|---------|
 | `labels` empty array | `labels->0->>'name'` = NULL — ✅ |
 | `merged_at` NULL (open PR) | `merged_on` = NULL; `is_merged` = false — ✅ |
-| `commit->'author'->>'date'` malformed | CAST → NULL — ✅ |
+| `commit__author__date` NULL or bad | CAST → NULL — ✅ |
 | Token with no `repo` scope | Phase 1 ❌ `403` |
 | 5000 req/hr rate limit hit | Phase 1 ❌ rate limit error |
 

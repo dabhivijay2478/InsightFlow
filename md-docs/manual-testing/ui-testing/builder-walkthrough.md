@@ -149,8 +149,8 @@ Replace default template with stream-specific SQL (see per-source UI files).
 -- JSON key extraction
 payload->>'action'                    AS action_type
 
--- Nested JSON
-commit->'author'->>'name'             AS author_name
+-- dlt-flattened nested objects (SaaS): use `parent__child` columns, not `commit->'author'->>`
+commit__author__name                  AS author_name
 
 -- Type cast
 CAST(amount AS NUMERIC) / 100         AS amount_dollars

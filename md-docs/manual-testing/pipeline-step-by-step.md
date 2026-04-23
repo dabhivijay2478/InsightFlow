@@ -758,17 +758,16 @@ WHERE type IN (
 
 ### Stream: `github.commits` → `analytics.commit_log`
 
-> `commit` is a JSON object: `{message, author:{name,email,date}, committer:{...}, tree:{...}}`.
+> Staging: dlt flattens `commit` into `commit__message`, `commit__author__name`, `commit__author__date`, etc.
 
 **Step 1 — Pre-create destination table**
 ```sql
 CREATE TABLE analytics.commit_log (
     sha           TEXT        PRIMARY KEY,
-    message       TEXT,                      -- from JSON: commit->>'message'
-    author_name   TEXT,                      -- from JSON: commit->'author'->>'name'
-    author_email  TEXT,                      -- from JSON: commit->'author'->>'email'
-    committed_at  TIMESTAMPTZ                -- from JSON: commit->'author'->>'date' → TIMESTAMPTZ
-    -- full commit JSON blob excluded; committer, tree, url excluded
+    message       TEXT,                      -- from: commit__message
+    author_name   TEXT,                      -- from: commit__author__name
+    author_email  TEXT,                      -- from: commit__author__email
+    committed_at  TIMESTAMPTZ                -- from: commit__author__date
 );
 ```
 
@@ -776,14 +775,14 @@ CREATE TABLE analytics.commit_log (
 ```sql
 SELECT
     sha,
-    commit->>'message'                                   AS message,
-    commit->'author'->>'name'                            AS author_name,
-    commit->'author'->>'email'                           AS author_email,
-    CAST(commit->'author'->>'date' AS TIMESTAMPTZ)       AS committed_at
+    commit__message                        AS message,
+    commit__author__name                   AS author_name,
+    commit__author__email                  AS author_email,
+    CAST(commit__author__date AS TIMESTAMPTZ) AS committed_at
 FROM {{ source('raw', 'github__commits') }}
-WHERE commit->'author'->>'name' IS NOT NULL
+WHERE commit__author__name IS NOT NULL
 ```
-> 2-level nested JSON extraction. TEXT date string → TIMESTAMPTZ. Full `commit` blob excluded.
+> dlt flattened columns. CAST if needed for TIMESTAMPTZ.
 
 ---
 

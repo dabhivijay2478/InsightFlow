@@ -83,27 +83,28 @@ FROM {{ source('raw', 'github__pull_requests') }}
 ```sql
 CREATE TABLE analytics.gh_commits (
     sha          TEXT PRIMARY KEY,
-    message      TEXT,                        -- from JSON: commit->>'message'
-    author_name  TEXT,                        -- from JSON: commit->'author'->>'name'
-    author_email TEXT,                        -- from JSON: commit->'author'->>'email'
-    committed_at TIMESTAMPTZ                  -- from JSON: commit->'author'->>'date' → TIMESTAMPTZ
+    message      TEXT,                        -- from: commit__message
+    author_name  TEXT,                        -- from: commit__author__name
+    author_email TEXT,                        -- from: commit__author__email
+    committed_at TIMESTAMPTZ                  -- from: commit__author__date
 );
 ```
 ### Step 5 — dbt SQL
+dlt flattens nested `commit` JSON; use `commit__*` columns, not `commit->'author'->>…`.
 ```sql
 SELECT
     sha,
-    commit->>'message'                                  AS message,
-    commit->'author'->>'name'                           AS author_name,
-    commit->'author'->>'email'                          AS author_email,
-    CAST(commit->'author'->>'date' AS TIMESTAMPTZ)      AS committed_at
+    commit__message                         AS message,
+    commit__author__name                    AS author_name,
+    commit__author__email                   AS author_email,
+    CAST(commit__author__date AS TIMESTAMPTZ) AS committed_at
 FROM {{ source('raw', 'github__commits') }}
-WHERE commit->'author'->>'name' IS NOT NULL
+WHERE commit__author__name IS NOT NULL
 ```
 ### Step 8 — Verify
 ```sql
 SELECT sha, author_name, committed_at FROM analytics.gh_commits LIMIT 5;
--- committed_at: TIMESTAMPTZ; commit column must NOT exist
+-- committed_at: TIMESTAMPTZ; no top-level `commit` JSON column in `github__commits`
 ```
 
 ---
@@ -314,16 +315,16 @@ FROM {{ source('raw', 'github__projects') }}
 ```sql
 CREATE TABLE analytics.gh_branches (
     branch_name    TEXT PRIMARY KEY,
-    commit_sha     TEXT,                      -- from JSON: commit->>'sha'
+    commit_sha     TEXT,                      -- from: commit__sha
     is_protected   BOOLEAN
 );
 ```
 ### Step 5 — dbt SQL
 ```sql
 SELECT
-    name      AS branch_name,
-    commit->>'sha' AS commit_sha,
-    protected AS is_protected
+    name          AS branch_name,
+    commit__sha   AS commit_sha,
+    protected     AS is_protected
 FROM {{ source('raw', 'github__branches') }}
 ```
 
@@ -335,6 +336,6 @@ FROM {{ source('raw', 'github__branches') }}
 |---------|---------|
 | `labels` empty array `[]` | `labels->0->>'name'` = NULL |
 | `merged_at` NULL (open PR) | `merged_on` = NULL |
-| `commit->'author'->>'date'` bad format | CAST fails → NULL |
+| `commit__author__date` bad format | CAST fails → NULL |
 | `actor->>'id'` is quoted number `"123"` | `CAST(... AS INTEGER)` = 123 |
 | `payload->>'action'` NULL for PushEvent | `action` = NULL — OK |
