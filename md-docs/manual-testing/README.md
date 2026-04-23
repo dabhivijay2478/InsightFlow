@@ -13,6 +13,10 @@ manual-testing/
 ├── normalisation.md           ← rename / cast / exclude rule testing
 ├── column-mapping.md          ← JSON→TEXT, type coercion, col name mismatch, subset/derived columns
 ├── pipeline-step-by-step.md  ← every pipeline × stream, all 4 mapping patterns, numbered steps
+├── pipelines/                ← 50 individual pipeline files (source × destination)
+│   ├── README.md             ← full index of all 50 files
+│   ├── saas/                 ← 01-stripe-to-postgres.md … 25-notion-to-cockroachdb.md
+│   └── db/                   ← 26-postgres-to-postgres.md … 50-cockroachdb-to-cockroachdb.md
 ├── sources/
 │   ├── stripe.md              ← 19 streams
 │   ├── shopify.md             ← 14 streams
