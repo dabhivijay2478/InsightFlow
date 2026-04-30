@@ -1,0 +1,20 @@
+{
+  "name": "mantrixflow-local",
+  "interface": {
+    "displayName": "MantrixFlow Local Plugins"
+  },
+  "plugins": [
+    {
+      "name": "dodo-payments",
+      "source": {
+        "source": "local",
+        "path": "./plugins/dodo-payments"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Developer Tools"
+    }
+  ]
+}

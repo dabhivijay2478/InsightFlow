@@ -1,0 +1,46 @@
+{
+  "name": "dodo-payments",
+  "version": "0.1.0",
+  "description": "Dodo Payments implementation guidance for subscriptions, usage billing, seat billing, credit billing, checkout, webhooks, BillingSDK, and license keys.",
+  "author": {
+    "name": "MantrixFlow",
+    "url": "https://dodopayments.com/"
+  },
+  "homepage": "https://docs.dodopayments.com/",
+  "repository": "https://dodopayments.com/",
+  "license": "MIT",
+  "keywords": [
+    "dodo-payments",
+    "billing",
+    "subscriptions",
+    "usage-based-billing",
+    "seat-based-billing",
+    "credit-based-billing",
+    "webhooks",
+    "checkout"
+  ],
+  "skills": "./skills/",
+  "mcpServers": "./.mcp.json",
+  "interface": {
+    "displayName": "Dodo Payments",
+    "shortDescription": "Build SaaS billing flows with Dodo Payments",
+    "longDescription": "Guidance for implementing Dodo Payments checkout, subscriptions, usage-based billing, seat-based billing, credit-based billing, webhooks, BillingSDK UI, license key workflows, and official Dodo MCP access. Always verify API details against the latest Dodo Payments documentation before shipping.",
+    "developerName": "MantrixFlow",
+    "category": "Developer Tools",
+    "capabilities": [
+      "Interactive",
+      "Read",
+      "Write"
+    ],
+    "websiteURL": "https://dodopayments.com/",
+    "privacyPolicyURL": "https://dodopayments.com/privacy-policy",
+    "termsOfServiceURL": "https://dodopayments.com/legal/terms-of-use",
+    "defaultPrompt": [
+      "Add Dodo subscription billing",
+      "Design Dodo usage and credit billing",
+      "Wire Dodo checkout and webhooks"
+    ],
+    "brandColor": "#0F766E",
+    "screenshots": []
+  }
+}
