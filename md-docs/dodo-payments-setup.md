@@ -1,6 +1,6 @@
 # Dodo Payments — MantrixFlow Setup Guide
 
-This guide walks you through connecting MantrixFlow to Dodo Payments end-to-end: creating products, configuring environment variables, registering webhooks, and verifying the integration.
+This is the **single** repo guide for Dodo: products, checkout, **in-app change-plan** (`DODO_PLAN_CHANGE_*`), optional **product collection** fallback, customer portal, environment variables, webhooks, and verification. Align dashboard settings with [Dodo Product Collections](https://docs.dodopayments.com/features/product-collections) when using a collection.
 
 ---
 
@@ -8,11 +8,13 @@ This guide walks you through connecting MantrixFlow to Dodo Payments end-to-end:
 
 **Starter is the default for every new organization.** It is free, has no checkout flow, and does **not** use Dodo product IDs or webhooks.
 
-| What you need | Starter |
-|---|---|
-| Dodo account | No |
-| `DODO_*` env vars | Only required if you sell Growth/Pro |
-| User flow | Sign up in the app → workspace is on `plan=starter` until checkout upgrades it |
+
+| What you need     | Starter                                                                        |
+| ----------------- | ------------------------------------------------------------------------------ |
+| Dodo account      | No                                                                             |
+| `DODO_*` env vars | Only required if you sell Growth/Pro                                           |
+| User flow         | Sign up in the app → workspace is on `plan=starter` until checkout upgrades it |
+
 
 Paid checkout (`/workspace/billing/checkout`) and usage metering apply **after** the customer subscribes to Growth or Pro.
 
@@ -34,14 +36,16 @@ Enterprise self-serve checkout is **not enabled** on the marketing site until la
 
 ## ENVIRONMENT and Dodo test vs live
 
-The Go API reads **`ENVIRONMENT`** (see `internal/config/config.go`; default is `development` if unset).
+The Go API reads `**ENVIRONMENT`** (see `internal/config/config.go`; default is `development` if unset).
 
 That value controls which **Dodo API profile** the SDK uses (`internal/services/billing/dodo_client.go`):
 
-| `ENVIRONMENT` | Dodo SDK mode | Typical `DODO_PAYMENTS_API_KEY` prefix | Product IDs & webhook |
-|---|---|---|---|
-| **`production`** (any casing, e.g. `Production`) | **Live** (`WithEnvironmentLiveMode`) | `sk_live_…` | From the Dodo dashboard **Live** environment |
-| **Anything else** (`development`, `dev`, `local`, `test`, `staging`, or empty default) | **Test** (`WithEnvironmentTestMode`) | `sk_test_…` | From the Dodo dashboard **Test** environment |
+
+| `ENVIRONMENT`                                                                          | Dodo SDK mode                        | Typical `DODO_PAYMENTS_API_KEY` prefix | Product IDs & webhook                        |
+| -------------------------------------------------------------------------------------- | ------------------------------------ | -------------------------------------- | -------------------------------------------- |
+| `**production`** (any casing, e.g. `Production`)                                       | **Live** (`WithEnvironmentLiveMode`) | `sk_live_…`                            | From the Dodo dashboard **Live** environment |
+| **Anything else** (`development`, `dev`, `local`, `test`, `staging`, or empty default) | **Test** (`WithEnvironmentTestMode`) | `sk_test_…`                            | From the Dodo dashboard **Test** environment |
+
 
 ### Testing billing locally or on staging
 
@@ -49,9 +53,9 @@ That value controls which **Dodo API profile** the SDK uses (`internal/services/
 2. Create **test** products and copy **test** product IDs into `DODO_PRODUCT_*`.
 3. Create a **test** webhook endpoint → copy its **test** signing secret into `DODO_WEBHOOK_SECRET`.
 4. Set `DODO_PAYMENTS_API_KEY` to your **test** key (`sk_test_…`).
-5. Keep **`ENVIRONMENT` unset** or set it to `development` / `staging` — **not** `production`.
+5. Keep `**ENVIRONMENT` unset** or set it to `development` / `staging` — **not** `production`.
 
-Real charges and live bank traffic only happen when **`ENVIRONMENT=production`** **and** you use **`sk_live_…`** and live product IDs.
+Real charges and live bank traffic only happen when `**ENVIRONMENT=production`** **and** you use `**sk_live_…`** and live product IDs.
 
 > **Important:** Test and live each have their own API keys, product IDs, and webhook secrets. Mixing (e.g. test key + live product ID) will fail.
 
@@ -61,19 +65,64 @@ Real charges and live bank traffic only happen when **`ENVIRONMENT=production`**
 
 You need one product per plan × billing period combination. Log in to the [Dodo Dashboard](https://dashboard.dodopayments.com) → **Products** → **Create product**.
 
-| Product name | Type | Price | Billing interval |
-|---|---|---|---|
-| MantrixFlow Growth (Monthly) | Subscription | $49 / month | Monthly |
-| MantrixFlow Growth (Annual) | Subscription | $37 / month | Annual (billed $444/year) |
-| MantrixFlow Pro (Monthly) | Subscription | $199 / month | Monthly |
-| MantrixFlow Pro (Annual) | Subscription | $149 / month | Annual (billed $1,788/year) |
-| MantrixFlow Enterprise *(optional until launch)* | Subscription | As you price it | Monthly |
+
+| Product name                                     | Type         | Price           | Billing interval            |
+| ------------------------------------------------ | ------------ | --------------- | --------------------------- |
+| MantrixFlow Growth (Monthly)                     | Subscription | $49 / month     | Monthly                     |
+| MantrixFlow Growth (Annual)                      | Subscription | $37 / month     | Annual (billed $444/year)   |
+| MantrixFlow Pro (Monthly)                        | Subscription | $199 / month    | Monthly                     |
+| MantrixFlow Pro (Annual)                         | Subscription | $149 / month    | Annual (billed $1,788/year) |
+| MantrixFlow Enterprise *(optional until launch)* | Subscription | As you price it | Monthly                     |
+
 
 Enterprise: create the product **when you open sales**; until then you can skip `DODO_PRODUCT_ENTERPRISE` if you never call checkout with `plan=enterprise`.
 
 After saving each product, copy the **Product ID** (format: `prd_xxxxxxxxxxxx`).
 
 > **Usage-based overage** (rows delivered): If you want to charge per-row overages automatically, attach a Meter to each paid product in the dashboard. The event name must be `rows_delivered` (this is the name sent by `IngestRowUsage`).
+
+---
+
+## Step 1b — Product collection & customer portal (optional)
+
+Set `DODO_PRODUCT_COLLECTION_ID` only as a **fallback** when `DODO_PRODUCT_*` cannot be resolved for a given `plan` + `period` (see `internal/services/billing/billing_service.go`). **Normal behavior** is **single-product checkout** (`product_cart` with one line item) so the customer gets the exact SKU for the tier and billing interval they chose in the app.
+
+**Important:** A **new checkout session** creates a **new** Dodo subscription. Customers who **already** have an active subscription must **not** run checkout again — you can get **duplicate subscriptions**. **Existing subscribers** change tier or monthly/annual in the app via `**POST …/billing/change-plan`** (Dodo subscription **change-plan** API), which bills proration per your `**DODO_PLAN_CHANGE_*`** settings. **Manage billing / portal** remains available for **payment method**, invoices, wallet, and **cancels**.
+
+**Downgrades** from Settings also use **change-plan** when the org has an active subscription; portal-only flows still work if you enable **Allow Subscription Updates** for customers who open Manage billing directly.
+
+### Create a collection
+
+Dashboard → **Products** → **Collections** → **Create collection**. Add **every** subscription SKU that should be interchangeable (Growth/Pro × monthly/annual, plus Enterprise if applicable). Order matters: Dodo **pre-selects the first product** in collection checkout.
+
+**Rule:** Each product can belong to **only one** collection.
+
+### Descriptions & images (customer-facing)
+
+- **Description:** One line of outcome, then key limits (pipelines, rows/month, API) — match your pricing page. Avoid internal jargon.
+- **Image:** PNG/JPG; consistent aspect ratio across tiers; don’t rely on color alone (put the tier name in the product title).
+
+### Enable portal plan changes
+
+Dashboard → **Settings** → **Subscriptions**:
+
+
+| Setting                        | Purpose                                                                                                          |
+| ------------------------------ | ---------------------------------------------------------------------------------------------------------------- |
+| **Allow Subscription Updates** | Customers can change plans in the **Customer Portal** (upgrade/downgrade among products in the same collection). |
+
+
+> This toggle is **not** inside the collection editor; it is a business-level setting.
+
+### MantrixFlow behavior
+
+
+| Flow                                                                   | Implementation                                                                                                                                                                                                                                                                                                                               |
+| ---------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **First paid plan (e.g. Starter → Growth)**                            | `POST …/billing/checkout` with body `plan` + `period` → Dodo **hosted checkout** (one `product_cart` line when `DODO_PRODUCT_*` are set; **collection** only if those env vars are missing and `**DODO_PRODUCT_COLLECTION_ID`** is set). Webhooks (and live subscription reconciliation) set `organizations.plan`.                           |
+| **Upgrade / downgrade / switch monthly ↔ annual (already subscribed)** | `**POST …/billing/change-plan`** (JWT + OWNER) → Dodo **same subscription**, **change-plan** with `**proration_billing_mode`** from `**DODO_PLAN_CHANGE_PRORATION_MODE**` (default `difference_immediately`). `**Manage billing**` (`POST …/billing/portal`) is still used when the user needs the portal (payment method, history, wallet). |
+| **Cleaning up duplicate subs**                                         | Cancel the unwanted subscription in the Dodo dashboard (or ask the customer to remove it in Manage billing); keep the subscription id you want and align `organizations.dodo_subscription_id` via webhook or support.                                                                                                                        |
+
 
 ---
 
@@ -101,20 +150,33 @@ DODO_PRODUCT_PRO_MONTHLY=prd_xxxxxxxxxxxxxxxx
 DODO_PRODUCT_PRO_ANNUAL=prd_xxxxxxxxxxxxxxxx
 # Optional until Enterprise checkout is enabled:
 DODO_PRODUCT_ENTERPRISE=
+
+# Optional fallback: collection checkout when plan+period cannot be mapped to DODO_PRODUCT_* alone
+DODO_PRODUCT_COLLECTION_ID=
+
+# ─── Subscription change-plan (in-app upgrade/downgrade for existing subscribers) ───
+# proration_billing_mode sent to Dodo POST /subscriptions/{id}/change-plan
+# difference_immediately | prorated_immediately | full_immediately | do_not_bill
+DODO_PLAN_CHANGE_PRORATION_MODE=difference_immediately
+# prevent_change (default) = keep old plan if immediate payment fails; apply_change = Dodo default risk
+DODO_PLAN_CHANGE_ON_PAYMENT_FAILURE=prevent_change
 ```
 
-> Dodo **test vs live** follows `ENVIRONMENT`: see **ENVIRONMENT and Dodo test vs live** above.
+> `**DODO_PLAN_CHANGE_PRORATION_MODE**` sets Dodo `**proration_billing_mode**` on in-app plan changes (default `**difference_immediately**` — net proration in one immediate payment step on the saved card, per Dodo). Allowed: `difference_immediately`, `prorated_immediately`, `full_immediately`, `do_not_bill`. See [Dodo change-plan](https://docs.dodopayments.com/api-reference/subscriptions/change-plan). Wallet vs refund-to-card is still defined by Dodo; tune here and in the dashboard.  
+> `**DODO_PLAN_CHANGE_ON_PAYMENT_FAILURE**`: `prevent_change` (default — keep previous plan if the plan-change payment fails) or `apply_change`.
 
----
+> Dodo **test vs live** follows `ENVIRONMENT`: see **ENVIRONMENT and Dodo test vs live** above.
 
 ## Step 3 — Register the Webhook Endpoint
 
 In the Dodo Dashboard → **Webhooks** → **Add endpoint**.
 
-| Field | Value |
-|---|---|
-| URL | `https://your-api-domain.com/api/v1/billing/webhook` |
+
+| Field               | Value                                                                                                                                                                                                              |
+| ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| URL                 | `https://your-api-domain.com/api/v1/billing/webhook`                                                                                                                                                               |
 | Events to subscribe | `subscription.active`, `subscription.plan_changed`, `subscription.renewed`, `subscription.cancelled`, `subscription.on_hold`, `subscription.expired`, `subscription.failed`, `payment.succeeded`, `payment.failed` |
+
 
 After saving, copy the **Signing secret** and set it as `DODO_WEBHOOK_SECRET` in `.env`.
 
@@ -140,10 +202,12 @@ Use the **HTTPS** forwarding URL from ngrok, not `http://localhost:5000`.
 
 GORM AutoMigrate runs on server startup and adds the new columns automatically:
 
-| Table | New columns |
-|---|---|
-| `organizations` | `dodo_customer_id`, `dodo_subscription_id`, `plan_period`, `plan_status`, `plan_started_at`, `plan_expires_at` |
-| `elt_usage_events` | `count_source` |
+
+| Table              | New columns                                                                                                    |
+| ------------------ | -------------------------------------------------------------------------------------------------------------- |
+| `organizations`    | `dodo_customer_id`, `dodo_subscription_id`, `plan_period`, `plan_status`, `plan_started_at`, `plan_expires_at` |
+| `elt_usage_events` | `count_source`                                                                                                 |
+
 
 No manual SQL is required. You can verify after first startup:
 
@@ -158,13 +222,17 @@ WHERE table_name = 'organizations'
 
 ## Step 5 — API Routes Summary
 
-| Method | Path | Auth | Description |
-|---|---|---|---|
-| `POST` | `/api/v1/billing/webhook` | None (signature verified) | Dodo event receiver |
-| `GET` | `/api/v1/organizations/:orgId/billing/subscription` | JWT | Current plan status |
-| `POST` | `/api/v1/organizations/:orgId/billing/checkout` | JWT + OWNER | Create hosted checkout |
-| `POST` | `/api/v1/organizations/:orgId/billing/portal` | JWT | Customer portal link |
-| `POST` | `/api/v1/organizations/:orgId/billing/cancel` | JWT + OWNER | Cancel at period end |
+
+| Method   | Path                                                    | Auth                      | Description                                                                                                                                                   |
+| -------- | ------------------------------------------------------- | ------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `POST`   | `/api/v1/billing/webhook`                               | None (signature verified) | Dodo event receiver                                                                                                                                           |
+| `GET`    | `/api/v1/organizations/:orgId/billing/subscription`     | JWT                       | Current plan status                                                                                                                                           |
+| `POST`   | `/api/v1/organizations/:orgId/billing/checkout`         | JWT + OWNER               | Hosted checkout (`product_cart` SKU from `plan`+`period`, or collection **fallback** if `DODO_PRODUCT_COLLECTION_ID` is set and product env vars are missing) |
+| `POST`   | `/api/v1/organizations/:orgId/billing/change-plan`      | JWT + OWNER               | In-place upgrade/downgrade / interval switch (Dodo **change-plan**; proration from `**DODO_PLAN_CHANGE_*`**)                                                  |
+| `POST`   | `/api/v1/organizations/:orgId/billing/portal`           | JWT                       | Customer portal (payment method, invoices, wallet; optional manual plan changes if Dodo allows)                                                               |
+| `DELETE` | `/api/v1/organizations/:orgId/billing/scheduled-change` | JWT + OWNER               | Cancel a pending scheduled plan change in Dodo                                                                                                                |
+| `POST`   | `/api/v1/organizations/:orgId/billing/cancel`           | JWT + OWNER               | Cancel at period end                                                                                                                                          |
+
 
 ### Checkout request body
 
@@ -175,7 +243,13 @@ WHERE table_name = 'organizations'
 Valid `plan` values: `growth`, `pro`, `enterprise`  
 Valid `period` values: `monthly`, `annual`
 
-### Subscription response
+### Change-plan request body
+
+```json
+{ "plan": "growth", "period": "annual" }
+```
+
+Same `plan` / `period` rules as checkout. Requires an existing `dodo_subscription_id` on the organization.
 
 ```json
 {
@@ -237,7 +311,7 @@ A global dismissible banner is rendered in `WorkspaceLayout` whenever `plan_stat
 
 1. Go to **Webhooks** → select your endpoint → **Deliveries**.
 2. Find the `subscription.active` event and click **Replay**.
-3. The Go API log should show a successful plan update.
+3. The Go API log should show a successful plan update.opt
 
 ### Check the database
 
@@ -269,38 +343,50 @@ To verify ingestion, check the Dodo Dashboard → **Usage** → filter by `rows_
 
 ## Step 9 — Upgrade / Downgrade Flows
 
+
 | User action | How it works |
-|---|---|
-| **Upgrade** | User clicks "Upgrade plan" → POST `/billing/checkout` → Dodo checkout → `subscription.active` or `subscription.plan_changed` webhook → DB updated |
-| **Downgrade** | User opens Customer Portal → selects lower plan → Dodo fires `subscription.plan_changed` → DB updated at period end |
-| **Cancel** | User clicks "Cancel plan" → POST `/billing/cancel` → sets `cancel_at_next_billing_date=true` → Dodo fires `subscription.cancelled` → `plan_status=cancelled`, access until `plan_expires_at` |
-| **Payment failure** | Dodo fires `subscription.on_hold` or `payment.failed` → `plan_status=past_due` → Global past-due banner shown |
-| **Plan expires** | Dodo fires `subscription.expired` → plan reset to `starter`, `dodo_subscription_id` cleared |
+| --- | --- |
+| **New subscription (no active paid sub yet)** | `POST …/billing/checkout` — typically **single-product** cart from `DODO_PRODUCT_*`; **collection** only if SKUs cannot be resolved and **`DODO_PRODUCT_COLLECTION_ID`** is set. **`organizations.plan`** follows **webhooks** and GET subscription reconciliation. |
+| **Upgrade / downgrade / monthly ↔ annual (already subscribed)** | **`POST …/billing/change-plan`** — Dodo **change-plan** on the **same** subscription. Proration: **`DODO_PLAN_CHANGE_PRORATION_MODE`** (default `difference_immediately`). Do **not** run checkout again (duplicate subs). |
+| **Portal-only plan change** | **`POST …/billing/portal`** if the customer uses Manage billing and Dodo **Allow Subscription Updates** is on. |
+| **Cancel** | **Cancel plan** → `POST …/billing/cancel` → cancel at next billing date → webhooks |
+| **Payment failure** | `payment.failed` / `subscription.on_hold` → `past_due` UX |
+| **Plan expires** | `subscription.expired` → reset starter, clear subscription id |
+
 
 ---
 
 ## Environment Variable Reference
 
-| Variable | Required | Description |
-|---|---|---|
-| `DODO_PAYMENTS_API_KEY` | Yes | Bearer token for Dodo API calls |
-| `DODO_WEBHOOK_SECRET` | Yes | Webhook signing secret (`whsec_…`) |
-| `DODO_PRODUCT_GROWTH_MONTHLY` | Yes | Product ID for Growth monthly |
-| `DODO_PRODUCT_GROWTH_ANNUAL` | Yes | Product ID for Growth annual |
-| `DODO_PRODUCT_PRO_MONTHLY` | Yes | Product ID for Pro monthly |
-| `DODO_PRODUCT_PRO_ANNUAL` | Yes | Product ID for Pro annual |
-| `DODO_PRODUCT_ENTERPRISE` | No* | Product ID for Enterprise (*only if you enable enterprise checkout) |
-| `ENVIRONMENT` | No | Set to `production` for live Dodo + `sk_live_…`. Use `development` (default) or `staging` for `sk_test_…`. |
+
+| Variable                      | Required | Description                                                                                                                                                    |
+| ----------------------------- | -------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `DODO_PAYMENTS_API_KEY`       | Yes      | Bearer token for Dodo API calls                                                                                                                                |
+| `DODO_WEBHOOK_SECRET`         | Yes      | Webhook signing secret (`whsec_…`)                                                                                                                             |
+| `DODO_PRODUCT_GROWTH_MONTHLY` | Yes      | Product ID for Growth monthly                                                                                                                                  |
+| `DODO_PRODUCT_GROWTH_ANNUAL`  | Yes      | Product ID for Growth annual                                                                                                                                   |
+| `DODO_PRODUCT_PRO_MONTHLY`    | Yes      | Product ID for Pro monthly                                                                                                                                     |
+| `DODO_PRODUCT_PRO_ANNUAL`     | Yes      | Product ID for Pro annual                                                                                                                                      |
+| `DODO_PRODUCT_ENTERPRISE`     | No*      | Product ID for Enterprise (*only if you enable enterprise checkout)                                                                                            |
+| `DODO_PRODUCT_COLLECTION_ID`  | No       | **Fallback** collection when `plan`+`period` cannot be mapped to `DODO_PRODUCT_*` alone                                                                          |
+| `DODO_PLAN_CHANGE_PRORATION_MODE` | No    | Dodo change-plan **`proration_billing_mode`**: `difference_immediately` (default), `prorated_immediately`, `full_immediately`, `do_not_bill`                    |
+| `DODO_PLAN_CHANGE_ON_PAYMENT_FAILURE` | No | `prevent_change` (default) or `apply_change` — Dodo **`on_payment_failure`** for change-plan                                                                    |
+| `ENVIRONMENT`                 | No       | Set to `production` for live Dodo + `sk_live_…`. Use `development` (default) or `staging` for `sk_test_…`.                                                     |
+
 
 ---
 
 ## Troubleshooting
 
-| Symptom | Likely cause | Fix |
-|---|---|---|
-| Checkout button shows "Billing not configured" | `DODO_PAYMENTS_API_KEY` is empty | Set the env var and restart the Go server |
-| Webhook returns 401 | `DODO_WEBHOOK_SECRET` mismatch | Copy the exact secret from the Dodo Dashboard; no extra spaces |
-| Plan not updating after payment | Webhook not reaching the server | Check ngrok / firewall; replay from Dodo Dashboard |
-| Checkout URL is empty string | Product ID env var not set | Set `DODO_PRODUCT_*` for the plan/period combination |
-| Rows not billed to Dodo | `dodo_customer_id` is null | Customer was not created yet; trigger a checkout first |
-| Dodo API errors (invalid product, auth) | Test/live mismatch | Use `sk_test_` + test product IDs + test webhook when `ENVIRONMENT` is not `production`; use live only when `ENVIRONMENT=production` |
+
+| Symptom                                        | Likely cause                                               | Fix                                                                                                                                  |
+| ---------------------------------------------- | ---------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
+| Checkout button shows "Billing not configured" | `DODO_PAYMENTS_API_KEY` is empty                           | Set the env var and restart the Go server                                                                                            |
+| Webhook returns 401                            | `DODO_WEBHOOK_SECRET` mismatch                             | Copy the exact secret from the Dodo Dashboard; no extra spaces                                                                       |
+| Plan not updating after payment                | Webhook not reaching the server                            | Check ngrok / firewall; replay from Dodo Dashboard                                                                                   |
+| Checkout URL is empty string                   | Product ID env var not set **or** collection misconfigured | Set `DODO_PRODUCT_`* for the requested plan when **not** using a collection; set `DODO_PRODUCT_COLLECTION_ID` for collection mode    |
+| Rows not billed to Dodo                        | `dodo_customer_id` is null                                 | Customer was not created yet; trigger a checkout first                                                                               |
+| Dodo API errors (invalid product, auth)        | Test/live mismatch                                         | Use `sk_test_` + test product IDs + test webhook when `ENVIRONMENT` is not `production`; use live only when `ENVIRONMENT=production` |
+| Change-plan returns 4xx from Dodo              | Subscription not active, same product already, or payment  | Ensure **`DODO_PRODUCT_*`** match the target `plan`+`period`; customer must have **`dodo_subscription_id`**; check Dodo dashboard for payment / mandate limits |
+
+

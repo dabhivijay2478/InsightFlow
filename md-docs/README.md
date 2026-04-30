@@ -22,10 +22,7 @@ and the ASCII flow diagram lives in
 
 ## Billing
 
-- [`dodo-payments-setup.md`](./dodo-payments-setup.md) — end-to-end guide for
-  setting up Dodo Payments: creating products, environment variables, webhook
-  registration, checkout/portal flows, usage-based overage billing, and
-  troubleshooting.
+- [`dodo-payments-setup.md`](./dodo-payments-setup.md) — **Single** Dodo guide: products, checkout, **`POST …/billing/change-plan`** (`DODO_PLAN_CHANGE_*`), collection **fallback** (`DODO_PRODUCT_COLLECTION_ID`), portal, env vars, webhooks, troubleshooting ([Dodo Product Collections](https://docs.dodopayments.com/features/product-collections)).
 
 ## Testing
 
