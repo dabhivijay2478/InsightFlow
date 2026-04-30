@@ -22,7 +22,8 @@ and the ASCII flow diagram lives in
 
 ## Billing
 
-- [`dodo-payments-setup.md`](./dodo-payments-setup.md) — **Single** Dodo guide: products, checkout, **`POST …/billing/change-plan`** (`DODO_PLAN_CHANGE_*`), collection **fallback** (`DODO_PRODUCT_COLLECTION_ID`), portal, env vars, webhooks, troubleshooting ([Dodo Product Collections](https://docs.dodopayments.com/features/product-collections)).
+- [`dodo-payments-setup.md`](./dodo-payments-setup.md) — **Single** Dodo guide: products, first-time **checkout**, portal-only plan changes (**change-plan API not used**), collection **fallback** (`DODO_PRODUCT_COLLECTION_ID`), webhooks, troubleshooting ([Dodo Product Collections](https://docs.dodopayments.com/features/product-collections)).
+- [`dodo-payments-flowchart.md`](./dodo-payments-flowchart.md) — **Mermaid flow charts:** app → Go API → Dodo (checkout vs portal) and webhook reconciliation.
 
 ## Testing
 
