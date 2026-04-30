@@ -20,6 +20,13 @@ The 12 non-negotiable invariants are enforced directly in
 and the ASCII flow diagram lives in
 [`.cursor/rules/elt-flow-diagram.mdc`](../.cursor/rules/elt-flow-diagram.mdc).
 
+## Billing
+
+- [`dodo-payments-setup.md`](./dodo-payments-setup.md) — end-to-end guide for
+  setting up Dodo Payments: creating products, environment variables, webhook
+  registration, checkout/portal flows, usage-based overage billing, and
+  troubleshooting.
+
 ## Testing
 
 - [`testing-local.md`](./testing-local.md) — manual UI testing guide,
