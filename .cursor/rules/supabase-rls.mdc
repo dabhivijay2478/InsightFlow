@@ -45,6 +45,7 @@ Current public tables created by GORM live in `apps/server/main-server/internal/
 - `data_sources` — direct `organization_id`; org-scoped CRUD.
 - `data_source_schema_metadata` — direct `organization_id`; client read only.
 - `pipelines` — direct `organization_id`; org-scoped CRUD.
+- `pipeline_agents` — direct `org_id`; org-scoped CRUD.
 - `pipeline_runs` — direct `organization_id`; client read only for dashboards and Realtime.
 - `activity_logs` — direct `organization_id`; client read only.
 
@@ -61,6 +62,7 @@ Current public tables created by GORM live in `apps/server/main-server/internal/
 ### Secret-bearing tables
 
 - `data_source_connections` — encrypted `config`; keep base table closed to client selects unless a dedicated safe view is required.
+- `pipeline_agent_conversations` — public embed session history/rate state; keep base table closed to client access.
 
 ### Trigger rule
 
