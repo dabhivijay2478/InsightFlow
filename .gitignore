@@ -35,6 +35,7 @@ apps/app/playwright-auth.json
 .env
 .env.*
 !.env.example
+!.env.production.example
 *.env.e2e
 !*.env.e2e.example
 

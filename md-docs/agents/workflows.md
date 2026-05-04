@@ -1,26 +1,30 @@
 # Agent Workflows
 
-## 1. Agent Builder Configuration
+## 1. Standalone Agent Platform Configuration
 
 Purpose: create or update the agent for one existing pipeline.
 
 Main files:
 
-- `apps/app/app/workspace/data-pipelines/[id]/agent/page.tsx`
+- `apps/app/app/workspace/agents/page.tsx`
+- `apps/app/app/workspace/agents/AgentsPlatformClient.tsx`
+- `apps/app/components/agents/*`
 - `apps/app/lib/api/services/pipeline-agents.service.ts`
 - `apps/server/main-server/internal/server/agent_http.go`
 - `apps/server/main-server/internal/models/agent.go`
 
 Route path:
 
-- UI: `/workspace/data-pipelines/:id/agent`
+- UI: `/workspace/agents`
+- Deep link: `/workspace/agents?pipelineId=:id`
+- Compatibility redirect: `/workspace/data-pipelines/:id/agent`
 - Go: `/api/v1/organizations/:organizationId/pipelines/:id/agent`
 
 What happens:
 
 1. The page loads pipeline details.
-2. It discovers destination tables from the pipeline destination connection.
-3. The user chooses allowed tables and allowed domains.
+2. It discovers source and destination tables for the selected pipeline.
+3. The user chooses source/destination allowlists, run permissions, public source-query behavior, and allowed domains.
 4. The Go API stores the config in `pipeline_agents`.
 5. Go generates a public `agent_key` like `agent_abc123def456`.
 
@@ -30,7 +34,8 @@ Purpose: let workspace users test the agent before embedding it.
 
 Main files:
 
-- `apps/app/app/workspace/data-pipelines/[id]/agent/page.tsx`
+- `apps/app/app/workspace/agents/AgentsPlatformClient.tsx`
+- `apps/app/components/agents/AgentChatShell.tsx`
 - `apps/app/app/api/pipelines/[id]/agent/chat/route.ts`
 - `apps/server/main-server/internal/server/agent_http.go`
 
@@ -41,12 +46,13 @@ Route path:
 
 What happens:
 
-1. The test panel sends AI SDK messages to Next.js.
+1. The platform chat sends AI SDK messages to Next.js.
 2. Next.js loads the agent config using the user's JWT.
-3. Claude receives a prompt with the agent config and an `execute_query` tool.
-4. Tool calls go to Go, not directly to the database.
-5. Go validates SQL and table allowlist before calling ELT.
-6. The response streams back to the test panel.
+3. The selected model receives a prompt with pipeline context, latest run status, table allowlists, and tools.
+4. Authenticated tools are `execute_query`, `run_pipeline`, and `get_run_status`.
+5. Query tool calls go to Go, not directly to the database.
+6. Go validates SQL, scope, and table allowlists before calling ELT.
+7. The response streams back to the central chat surface.
 
 ## 3. Public Embedded Chat
 
@@ -77,12 +83,14 @@ What happens:
 4. Next calls Go internal routes using `X-Internal-Token`.
 5. Go checks that the agent exists, is active, and allows the request origin.
 6. Go enforces the session rate limit.
-7. Claude can only query through the guarded Go query endpoint.
-8. Next saves the updated conversation through the internal route.
+7. The selected model can only query through the guarded Go query endpoint.
+8. The public model route never receives `run_pipeline` or `get_run_status`.
+9. Source queries are denied unless `allow_public_source_queries=true`.
+10. Next saves the updated conversation through the internal route.
 
 ## 4. Read-Only Query Execution
 
-Purpose: let Claude answer questions without giving it broad database access.
+Purpose: let the selected model answer questions without giving it broad database access.
 
 Main files:
 
@@ -96,17 +104,43 @@ Guard order:
 3. Reject multiple top-level statements.
 4. Extract referenced tables from `FROM` and `JOIN`.
 5. Normalize table names to `schema.table`.
-6. Reject any table outside `pipeline_agents.allowed_tables`.
+6. Reject any table outside the requested scope's allowlist:
+   - destination scope uses `pipeline_agents.allowed_tables`.
+   - source scope uses `pipeline_agents.allowed_source_tables`.
 7. Append or clamp `LIMIT 10000`.
 8. Execute through ELT with `timeout_ms: 30000`.
 
-## 5. Chart Response Rendering
+Public source-scope execution has one extra check: `allow_public_source_queries` must be true. Authenticated workspace chat can query source tables if the table is explicitly allowlisted.
 
-Purpose: show simple business charts when Claude includes chart data.
+## 5. Pipeline Worker Tools
+
+Purpose: let an authenticated workspace user operate the pipeline from the agent chat.
 
 Main files:
 
-- `apps/app/app/workspace/data-pipelines/[id]/agent/page.tsx`
+- `apps/app/app/api/pipelines/[id]/agent/chat/route.ts`
+- existing org-scoped pipeline run APIs
+
+Available only in authenticated chat:
+
+- `run_pipeline`
+- `get_run_status`
+- `execute_query`
+
+Not available in public embeds:
+
+- `run_pipeline`
+- `get_run_status`
+
+## 6. Chart And Run Status Rendering
+
+Purpose: show simple business charts and pipeline run cards when the selected model includes structured markers.
+
+Main files:
+
+- `apps/app/components/agents/AgentChart.tsx`
+- `apps/app/components/agents/AgentRunStatusCard.tsx`
+- `apps/app/components/agents/AgentMessageList.tsx`
 - `packages/agent-sdk/src/index.tsx`
 - `apps/app/public/agent.js`
 
@@ -130,3 +164,8 @@ The model wraps the JSON in:
 
 The frontend strips the marker from visible text and renders the chart only when valid `chart_data` exists.
 
+Run status cards use the same marker pattern:
+
+```text
+<run_status>{"status":"completed","runId":"...","startedAt":"...","completedAt":"..."}</run_status>
+```

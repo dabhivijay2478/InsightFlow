@@ -14,6 +14,7 @@ export interface MantrixAgentProps {
 	agentId: string;
 	apiBaseUrl?: string;
 	title?: string;
+	description?: string;
 }
 
 interface Message {
@@ -177,7 +178,8 @@ export function useMantrixAgent(agentId: string, apiBaseUrl = "") {
 export function MantrixAgent({
 	agentId,
 	apiBaseUrl = "",
-	title = "Ask data",
+	title = "Pipeline Agent",
+	description = "Ask about published pipeline data",
 }: MantrixAgentProps) {
 	const [open, setOpen] = useState(false);
 	const [input, setInput] = useState("");
@@ -188,7 +190,7 @@ export function MantrixAgent({
 	const endRef = useRef<HTMLDivElement | null>(null);
 	useEffect(() => {
 		endRef.current?.scrollIntoView({ behavior: "smooth" });
-	}, []);
+	}, [messages]);
 
 	return (
 		<div
@@ -203,12 +205,12 @@ export function MantrixAgent({
 			{open && (
 				<div
 					style={{
-						width: 360,
-						height: 520,
+						width: 380,
+						height: 560,
 						background: "#fff",
-						border: "1px solid #ddd",
-						borderRadius: 10,
-						boxShadow: "0 16px 60px rgba(0,0,0,.18)",
+						border: "1px solid #d4d4d8",
+						borderRadius: 8,
+						boxShadow: "0 18px 70px rgba(15,23,42,.22)",
 						display: "flex",
 						flexDirection: "column",
 						overflow: "hidden",
@@ -219,10 +221,13 @@ export function MantrixAgent({
 						style={{
 							padding: 14,
 							borderBottom: "1px solid #eee",
-							fontWeight: 700,
+							background: "#fafafa",
 						}}
 					>
-						{title}
+						<div style={{ fontWeight: 700, color: "#111827" }}>{title}</div>
+						<div style={{ marginTop: 2, fontSize: 12, color: "#6b7280" }}>
+							{description}
+						</div>
 					</div>
 					<div style={{ flex: 1, overflowY: "auto", padding: 12 }}>
 						{messages.map((message, index) => {
@@ -239,10 +244,10 @@ export function MantrixAgent({
 										style={{
 											display: "inline-block",
 											maxWidth: "85%",
-											borderRadius: 10,
+											borderRadius: 8,
 											padding: "8px 10px",
 											background:
-												message.role === "user" ? "#111827" : "#f3f4f6",
+												message.role === "user" ? "#111827" : "#f4f4f5",
 											color: message.role === "user" ? "#fff" : "#111827",
 											fontSize: 13,
 											lineHeight: 1.45,
@@ -276,7 +281,7 @@ export function MantrixAgent({
 							style={{
 								flex: 1,
 								border: "1px solid #ddd",
-								borderRadius: 8,
+								borderRadius: 6,
 								padding: "9px 10px",
 							}}
 						/>
@@ -285,7 +290,7 @@ export function MantrixAgent({
 							disabled={isLoading || !input.trim()}
 							style={{
 								border: 0,
-								borderRadius: 8,
+								borderRadius: 6,
 								background: "#0f766e",
 								color: "#fff",
 								padding: "0 12px",

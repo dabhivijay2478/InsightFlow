@@ -4,6 +4,7 @@ import { MantrixAgent } from "./index";
 type InitOptions = {
 	apiBaseUrl?: string;
 	title?: string;
+	description?: string;
 };
 
 type MantrixCommand = {
@@ -55,6 +56,7 @@ function mount(agentId: string, options: InitOptions = {}) {
 			agentId={agentId}
 			apiBaseUrl={options.apiBaseUrl ?? currentScriptOrigin()}
 			title={options.title}
+			description={options.description}
 		/>,
 	);
 }
