@@ -22,11 +22,13 @@ Route path:
 
 What happens:
 
-1. The page loads pipeline details.
-2. It discovers source and destination tables for the selected pipeline.
-3. The user chooses source/destination allowlists, run permissions, public source-query behavior, and allowed domains.
-4. The Go API stores the config in `pipeline_agents`.
-5. Go generates a public `agent_key` like `agent_abc123def456`.
+1. `/workspace/agents` lists persisted agents from `pipeline_agents`; it does not invent draft agents for every pipeline.
+2. `/workspace/agents/new` lets the user select one real existing pipeline for a new worker.
+3. The platform loads pipeline details.
+4. It discovers source and destination tables for the selected pipeline.
+5. The user chooses source/destination allowlists, run permissions, public source-query behavior, and allowed domains.
+6. The Go API stores the config in `pipeline_agents`.
+7. Go generates a public `agent_key` like `agent_abc123def456`.
 
 ## 2. Authenticated Test Chat
 
