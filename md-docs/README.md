@@ -25,6 +25,19 @@ and the ASCII flow diagram lives in
 - [`dodo-payments-setup.md`](./dodo-payments-setup.md) — **Single** Dodo guide: products, first-time **checkout**, portal-only plan changes (**change-plan API not used**), collection **fallback** (`DODO_PRODUCT_COLLECTION_ID`), webhooks, troubleshooting ([Dodo Product Collections](https://docs.dodopayments.com/features/product-collections)).
 - [`dodo-payments-flowchart.md`](./dodo-payments-flowchart.md) — **Mermaid flow charts:** app → Go API → Dodo (checkout vs portal) and webhook reconciliation.
 
+## Integrations
+
+- [`slack-oauth-setup.md`](./slack-oauth-setup.md) — Slack OAuth app setup:
+  scopes, callback/proxy URLs, local tunnel setup, env vars, install flow, and
+  troubleshooting.
+- [`slack-marketplace-setup.md`](./slack-marketplace-setup.md) — Slack
+  Marketplace direct install, required vs optional scopes, self-link mapping,
+  and production Dashboard URLs.
+- [`slack-marketplace-review-checklist.md`](./slack-marketplace-review-checklist.md)
+  — review checklist for security, OAuth, listing assets, and final verification.
+- [`slack-app-manifest.yaml`](./slack-app-manifest.yaml) — placeholder Slack
+  app manifest for production/staging Dashboard setup.
+
 ## Agents
 
 - [`agents/README.md`](./agents/README.md) - Custom Agent Builder docs: flow charts, different workflows, setup guide, and how the embedded data Q&A agent works.

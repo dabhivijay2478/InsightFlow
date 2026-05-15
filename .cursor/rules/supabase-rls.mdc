@@ -62,8 +62,12 @@ Current public tables created by GORM live in `apps/server/main-server/internal/
 ### Secret-bearing tables
 
 - `data_source_connections` — encrypted `config`; keep base table closed to client selects unless a dedicated safe view is required.
-- `slack_integrations` — encrypted webhook URL and Slack config; keep base table closed, use Go owner-only endpoints.
+- `slack_integrations` — encrypted webhook URL, bot token, and Slack config; keep base table closed, use Go owner-only endpoints.
 - `slack_connections` — Slack user-to-user mappings; keep base table closed, use Go owner-only endpoints.
+- `slack_oauth_states` — short-lived OAuth CSRF state; keep base table closed, use Go OAuth endpoints.
+- `slack_marketplace_oauth_states` — short-lived public Marketplace OAuth CSRF state; keep base table closed, use Go OAuth endpoints.
+- `slack_pending_installs` — encrypted Marketplace install data awaiting owner binding; keep base table closed, use Go owner-only claim endpoints.
+- `slack_link_tokens` — short-lived slash-command user mapping tokens; keep base table closed, use Go link claim endpoint.
 - `pipeline_agent_conversations` — public embed session history/rate state; keep base table closed to client access.
 
 ### Trigger rule
