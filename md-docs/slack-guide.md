@@ -212,17 +212,44 @@ Supported commands:
 /pipeline status <name-or-id>
 /pipeline run <name-or-id>
 /pipeline pause <name-or-id>
+/pipeline resume <name-or-id>
+/pipeline cancel <name-or-id>
+/pipeline runs <name-or-id>
+/pipeline validate <name-or-id>
+/pipeline delete <name-or-id>
+/pipeline create
 /connection list
 /connection test <name-or-id>
+/connection delete <name-or-id>
+/connection create
 /mantrixflow link
 /mantrixflow help
 ```
+
+| Command | Role Required | Description |
+|---------|--------------|-------------|
+| `/pipeline list` | VIEWER | List all pipelines |
+| `/pipeline status <name>` | VIEWER | Show pipeline status |
+| `/pipeline run <name>` | EDITOR | Run a pipeline (with confirmation) |
+| `/pipeline pause <name>` | EDITOR | Pause a running pipeline |
+| `/pipeline resume <name>` | EDITOR | Resume a paused pipeline |
+| `/pipeline cancel <name>` | EDITOR | Cancel an active run |
+| `/pipeline runs <name>` | VIEWER | List recent pipeline runs |
+| `/pipeline validate <name>` | EDITOR | Validate pipeline configuration |
+| `/pipeline delete <name>` | OWNER | Delete a pipeline |
+| `/pipeline create` | EDITOR | Open pipeline builder modal |
+| `/connection list` | VIEWER | List all connections |
+| `/connection test <name>` | EDITOR | Test a connection |
+| `/connection delete <name>` | OWNER | Delete a connection |
+| `/connection create` | EDITOR | Open connection setup modal |
+| `/mantrixflow link` | ANY | Link your Slack user |
+| `/mantrixflow help` | ANY | Show help |
 
 Commands work from the OAuth-selected Slack channel without manual user mapping.
 Personal App Home and DM workflows can still use `/mantrixflow link` as an
 optional identity link. Run, pause, test, and create actions re-check the
 connected organization and use the MantrixFlow owner who installed Slack as the
-channel actor.
+channel actor. Delete actions require OWNER role.
 
 ## 8. Interactivity
 
@@ -285,13 +312,13 @@ features:
     always_online: false
   slash_commands:
     - command: /pipeline
-      description: List, check, run, or pause MantrixFlow pipelines.
-      usage_hint: list | status <name-or-id> | run <name-or-id> | pause <name-or-id>
+      description: List, check, run, pause, or create MantrixFlow pipelines.
+      usage_hint: list | status <name-or-id> | run <name-or-id> | pause <name-or-id> | create
       should_escape: false
       url: https://b7c9-2409-40c1-5011-3ea3-2836-61f9-1495-f47c.ngrok-free.app/api/slack/commands
     - command: /connection
-      description: List or test MantrixFlow connections.
-      usage_hint: list | test <name-or-id>
+      description: List, test, or create MantrixFlow connections.
+      usage_hint: list | test <name-or-id> | create
       should_escape: false
       url: https://b7c9-2409-40c1-5011-3ea3-2836-61f9-1495-f47c.ngrok-free.app/api/slack/commands
     - command: /mantrixflow
@@ -618,12 +645,74 @@ Dashboard URLs to the ngrok HTTPS host.
 Run commands from the channel chosen during Slack OAuth. If you want a different
 channel, reconnect Slack and choose the new channel on the Slack approval screen.
 
+### /connection test shows channel access error
+
+If `/connection test` returns "Use MantrixFlow from #channel-name" or asks you to
+run `/mantrixflow link`, you need either:
+
+1. Run `/mantrixflow link` to create a personal Slack user connection (allows
+   personal App Home and DM workflows)
+2. Use the command from the connected Slack channel (everyone in that channel
+   can use MantrixFlow commands without linking)
+
 ### Personal App Home or DM asks for linking
 
 Run `/mantrixflow link` only if you want personal App Home or DM workflows.
 Channel slash commands do not require it.
 
-## 19. Final Verification
+## 19. Workspace-Only Private App Setup
+
+If MantrixFlow is not published to the Slack App Directory (private/workspace-only),
+you can still install it for your organization:
+
+### Option 1: Direct Install from Slack Dashboard
+
+1. Go to `https://api.slack.com/apps` and select your MantrixFlow app
+2. Click "Install to Workspace" on the left sidebar
+3. Authorize the app for your workspace
+4. After install, go to MantrixFlow web app -> Settings -> Integrations
+5. Connect the Slack workspace to your MantrixFlow organization
+
+### Option 2: OAuth Install from MantrixFlow
+
+1. In MantrixFlow, go to Settings -> Integrations
+2. Click "Connect Slack"
+3. You will be redirected to Slack for authorization
+4. After authorization, Slack is connected
+
+### For Workspace-Only Apps: The Connected Channel
+
+When using a private/workspace-only app, commands work from the channel selected
+during OAuth install. Everyone in that channel can use MantrixFlow commands
+without running `/mantrixflow link`.
+
+If you need to use commands from outside the connected channel:
+1. Run `/mantrixflow link` to create a personal user connection
+2. Then you can use commands from any channel or DM
+
+### Connection Not Found Error
+
+If `/connection test` returns "Connection not found":
+
+1. First run `/connection list` to see available connections
+2. Use the exact connection name or ID from the list
+3. Example: `/connection test my-postgres-db`
+4. Or use the full UUID: `/connection test 0a387af5-89e8-457a-a8a3-9a8dfb8e1b4b`
+
+If no connections exist, create one:
+1. Run `/connection create` to open the connection setup modal
+2. Or go to MantrixFlow web app -> Connections -> New Connection
+
+### First Time Setup Checklist
+
+- [ ] Install MantrixFlow app from `https://api.slack.com/apps`
+- [ ] Connect Slack from MantrixFlow Settings -> Integrations
+- [ ] Create a connection in MantrixFlow (web app or `/connection create`)
+- [ ] Run `/connection list` to verify connections exist
+- [ ] Run `/connection test <name>` to test the connection
+- [ ] Run `/pipeline list` to see available pipelines
+
+## 20. Final Verification
 
 Backend:
 
