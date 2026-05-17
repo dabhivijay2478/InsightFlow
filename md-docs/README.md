@@ -27,16 +27,10 @@ and the ASCII flow diagram lives in
 
 ## Integrations
 
-- [`slack-oauth-setup.md`](./slack-oauth-setup.md) — Slack OAuth app setup:
-  scopes, callback/proxy URLs, local tunnel setup, env vars, install flow, and
-  troubleshooting.
-- [`slack-marketplace-setup.md`](./slack-marketplace-setup.md) — Slack
-  Marketplace direct install, required vs optional scopes, self-link mapping,
-  and production Dashboard URLs.
-- [`slack-marketplace-review-checklist.md`](./slack-marketplace-review-checklist.md)
-  — review checklist for security, OAuth, listing assets, and final verification.
-- [`slack-app-manifest.yaml`](./slack-app-manifest.yaml) — placeholder Slack
-  app manifest for production/staging Dashboard setup.
+- [`slack-guide.md`](./slack-guide.md) — **Single** Slack guide: local ngrok
+  setup, Slack Dashboard URLs, OAuth and Marketplace install, App Home,
+  commands, events, copyable manifest, native builder behavior, review
+  checklist, and troubleshooting.
 
 ## Agents
 
