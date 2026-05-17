@@ -312,17 +312,17 @@ features:
     always_online: false
   slash_commands:
     - command: /pipeline
-      description: List, check, run, pause, or create MantrixFlow pipelines.
-      usage_hint: list | status <name-or-id> | run <name-or-id> | pause <name-or-id> | create
+      description: List, check, run, pause, resume, cancel, validate, delete, or create MantrixFlow pipelines.
+      usage_hint: list | status <name> | run <name> | pause <name> | resume <name> | cancel <name> | runs <name> | validate <name> | delete <name> | create
       should_escape: false
       url: https://b7c9-2409-40c1-5011-3ea3-2836-61f9-1495-f47c.ngrok-free.app/api/slack/commands
     - command: /connection
-      description: List, test, or create MantrixFlow connections.
-      usage_hint: list | test <name-or-id> | create
+      description: List, test, delete, or create MantrixFlow connections.
+      usage_hint: list | test <name> | delete <name> | create
       should_escape: false
       url: https://b7c9-2409-40c1-5011-3ea3-2836-61f9-1495-f47c.ngrok-free.app/api/slack/commands
     - command: /mantrixflow
-      description: Link your Slack user to MantrixFlow.
+      description: Link your Slack user to MantrixFlow for personal access.
       usage_hint: link | help
       should_escape: false
       url: https://b7c9-2409-40c1-5011-3ea3-2836-61f9-1495-f47c.ngrok-free.app/api/slack/commands
@@ -660,35 +660,76 @@ run `/mantrixflow link`, you need either:
 Run `/mantrixflow link` only if you want personal App Home or DM workflows.
 Channel slash commands do not require it.
 
-## 19. Workspace-Only Private App Setup
+## 19. Slack App Directory Publishing (Public App)
 
-If MantrixFlow is not published to the Slack App Directory (private/workspace-only),
-you can still install it for your organization:
+If you want MantrixFlow to be available in the Slack App Directory for anyone
+to install, follow these steps:
 
-### Option 1: Direct Install from Slack Dashboard
+### Prepare for App Directory
 
-1. Go to `https://api.slack.com/apps` and select your MantrixFlow app
-2. Click "Install to Workspace" on the left sidebar
-3. Authorize the app for your workspace
-4. After install, go to MantrixFlow web app -> Settings -> Integrations
-5. Connect the Slack workspace to your MantrixFlow organization
+1. **App Metadata Setup**
+   - Go to `https://api.slack.com/apps` → Your app → Settings → Basic Information
+   - Fill in: App Name, Short Description, Long Description, Category
+   - Add screenshots and videos showing the app in action
 
-### Option 2: OAuth Install from MantrixFlow
+2. **Configure OAuth Scopes**
+   - Bot Token Scopes:
+     ```
+     app_mentions:read
+     chat:write
+     commands
+     im:history
+     im:read
+     im:write
+     incoming-webhook
+     ```
+   - If you want email sync (optional):
+     ```
+     users:read
+     users:read.email
+     ```
 
-1. In MantrixFlow, go to Settings -> Integrations
-2. Click "Connect Slack"
-3. You will be redirected to Slack for authorization
-4. After authorization, Slack is connected
+3. **Manage Distribution**
+   - Open Manage Distribution
+   - Fill in: Privacy Policy URL, Support URL, Terms of Service URL
+   - Enable "Make available to everyone" after review
 
-### For Workspace-Only Apps: The Connected Channel
+### Authentication Flow for Public Apps
 
-When using a private/workspace-only app, commands work from the channel selected
-during OAuth install. Everyone in that channel can use MantrixFlow commands
-without running `/mantrixflow link`.
+When MantrixFlow is published to the Slack App Directory:
 
-If you need to use commands from outside the connected channel:
-1. Run `/mantrixflow link` to create a personal user connection
-2. Then you can use commands from any channel or DM
+1. **User installs from App Directory**
+   - User finds MantrixFlow in Slack App Directory
+   - Clicks "Add to Slack"
+   - Authorizes the app for their workspace
+
+2. **Organization Admin claims the workspace**
+   - User goes to MantrixFlow Settings → Integrations
+   - Sees pending Slack installation
+   - Claims it to connect to their organization
+
+3. **All users authenticate via `/mantrixflow link`**
+   - Each user runs `/mantrixflow link`
+   - They are prompted to select their MantrixFlow organization (if multiple)
+   - After linking, they can use all Slack commands with their own role
+
+### Multi-Organization Support
+
+If the same Slack workspace is connected to multiple MantrixFlow organizations
+(same workspace claimed by different orgs):
+
+1. User runs `/mantrixflow link` from Slack
+2. They see a selection dialog showing all orgs they're a member of
+3. They select the organization to link to
+4. Commands use their role from that organization
+
+### For Workspace-Only Apps: Channel-Based Access
+
+For private/workspace-only apps, you can use channel-based access:
+
+1. During OAuth install, select a default channel
+2. Everyone in that channel can use MantrixFlow commands without linking
+3. They use the installing user's MantrixFlow role
 
 ### Connection Not Found Error
 
@@ -705,6 +746,17 @@ If no connections exist, create one:
 
 ### First Time Setup Checklist
 
+**For App Directory (Public) Apps:**
+- [ ] Complete app metadata in Slack Dashboard
+- [ ] Configure OAuth scopes
+- [ ] Add privacy policy and terms of service URLs
+- [ ] Submit for Slack review (if required)
+- [ ] After approval, install from App Directory
+- [ ] Admin claims workspace in MantrixFlow
+- [ ] Users run `/mantrixflow link` to authenticate
+- [ ] Test commands: `/pipeline list`, `/connection list`
+
+**For Private (Workspace-Only) Apps:**
 - [ ] Install MantrixFlow app from `https://api.slack.com/apps`
 - [ ] Connect Slack from MantrixFlow Settings -> Integrations
 - [ ] Create a connection in MantrixFlow (web app or `/connection create`)
