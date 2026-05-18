@@ -51,6 +51,7 @@ Direct install URL: https://b7c9-2409-40c1-5011-3ea3-2836-61f9-1495-f47c.ngrok-f
 OAuth callback:     https://b7c9-2409-40c1-5011-3ea3-2836-61f9-1495-f47c.ngrok-free.app/api/slack/oauth/callback
 Slash commands:     https://b7c9-2409-40c1-5011-3ea3-2836-61f9-1495-f47c.ngrok-free.app/api/slack/commands
 Interactivity:      https://b7c9-2409-40c1-5011-3ea3-2836-61f9-1495-f47c.ngrok-free.app/api/slack/actions
+Options Load URL:   https://b7c9-2409-40c1-5011-3ea3-2836-61f9-1495-f47c.ngrok-free.app/api/slack/options
 Events:             https://b7c9-2409-40c1-5011-3ea3-2836-61f9-1495-f47c.ngrok-free.app/api/slack/events
 ```
 
@@ -61,6 +62,7 @@ Direct install URL: https://YOUR_APP_HOST/api/slack/install
 OAuth callback:     https://YOUR_APP_HOST/api/slack/oauth/callback
 Slash commands:     https://YOUR_APP_HOST/api/slack/commands
 Interactivity:      https://YOUR_APP_HOST/api/slack/actions
+Options Load URL:   https://YOUR_APP_HOST/api/slack/options
 Events:             https://YOUR_APP_HOST/api/slack/events
 ```
 
@@ -258,11 +260,19 @@ Open Interactivity & Shortcuts.
 Enable interactivity and set:
 
 ```text
+Request URL:
 https://b7c9-2409-40c1-5011-3ea3-2836-61f9-1495-f47c.ngrok-free.app/api/slack/actions
+
+Options Load URL:
+https://b7c9-2409-40c1-5011-3ea3-2836-61f9-1495-f47c.ngrok-free.app/api/slack/options
 ```
 
 This is required for confirm/cancel buttons, App Home buttons, modal opens,
-modal updates, and pipeline builder submissions.
+modal updates, and pipeline builder submissions. The Options Load URL is
+required for the Source connection and Destination connection dropdowns in the
+Slack pipeline builder. If the dropdown shows "No result" and the Go logs do
+not show `SlackActions: received request`, this URL is missing or points to the
+wrong host.
 
 ## 9. Event Subscriptions
 
@@ -340,6 +350,7 @@ settings:
   interactivity:
     is_enabled: true
     request_url: https://b7c9-2409-40c1-5011-3ea3-2836-61f9-1495-f47c.ngrok-free.app/api/slack/actions
+    options_load_url: https://b7c9-2409-40c1-5011-3ea3-2836-61f9-1495-f47c.ngrok-free.app/api/slack/options
   event_subscriptions:
     request_url: https://b7c9-2409-40c1-5011-3ea3-2836-61f9-1495-f47c.ngrok-free.app/api/slack/events
     bot_events:
