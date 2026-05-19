@@ -41,6 +41,9 @@ and the ASCII flow diagram lives in
 - [`testing-local.md`](./testing-local.md) — manual UI testing guide,
   connector-by-connector checklists, and final-target verification for the
   local ELT stack.
+- [`manual-testing/slack-pipeline-e2e.md`](./manual-testing/slack-pipeline-e2e.md)
+  — Slack-native pipeline creation test using Neon source and RDS Postgres
+  destination, including strict destination table setup.
 
 ## Connectors
 

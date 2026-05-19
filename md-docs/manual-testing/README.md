@@ -13,6 +13,7 @@ manual-testing/
 ├── normalisation.md           ← rename / cast / exclude rule testing
 ├── column-mapping.md          ← JSON→TEXT, type coercion, col name mismatch, subset/derived columns
 ├── pipeline-step-by-step.md  ← every pipeline × stream, all 4 mapping patterns, numbered steps
+├── slack-pipeline-e2e.md      ← Slack-native Neon → RDS pipeline creation and run test
 ├── pipelines/                ← 50 individual pipeline files (source × destination)
 │   ├── README.md             ← full index of all 50 files
 │   ├── saas/                 ← 01-stripe-to-postgres.md … 25-notion-to-cockroachdb.md
