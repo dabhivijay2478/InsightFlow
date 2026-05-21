@@ -10,6 +10,7 @@ Runtime execution still reads `public.pipelines.pipeline_graph`. GitHub stores t
 - [yaml-contract.md](yaml-contract.md) - graph-aligned YAML shape and import/export invariants.
 - [frontend-plan.md](frontend-plan.md) - Settings, pipeline builder, history drawer, list status.
 - [test-plan.md](test-plan.md) - unit, route, frontend, and manual verification.
+- [setup/github-app-setup.md](setup/github-app-setup.md) - GitHub App setup, env vars, install flow, webhook verification.
 
 ## Implemented Surface
 
