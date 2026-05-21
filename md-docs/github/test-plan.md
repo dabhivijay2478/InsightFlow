@@ -28,9 +28,9 @@
 - Enable/disable pipeline GitHub config.
 - Export returns valid YAML.
 - Pull rejects invalid YAML and marks `sync_failed`.
-- Push creates direct commit in manual/github-to-db mode.
-- Push creates branch and PR in bidirectional mode.
-- Rollback applies YAML and writes a normal Git update.
+- Push always creates a new `mantrixflow/pipelines/...` branch and pull request.
+- No push path commits directly to the configured/base branch.
+- Rollback applies YAML and creates a review pull request.
 - `pull_request.closed` merged clears PR URL.
 - `pull_request.closed` unmerged marks `conflict`.
 
@@ -60,4 +60,4 @@
 4. Edit YAML in GitHub, merge to configured branch, and verify `pipeline_graph` updates.
 5. Save a builder change in bidirectional mode and verify a PR is created.
 6. Close the PR without merging and verify conflict banner/status.
-7. Use history rollback and verify a new commit or PR is created.
+7. Use history rollback and verify a new pull request is created.

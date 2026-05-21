@@ -13,10 +13,10 @@ The hooks expose integration state, repository listing, pipeline Git config, exp
 
 Settings now treats GitHub as a live integration:
 - Owner/Admin can start the GitHub App install flow.
-- Connected state shows account, repository count, installation ID, and install time.
+- Connected state shows the installed account and repository count.
 - Drawer lists repositories available to the installation.
 - Manage GitHub App opens the GitHub installation page.
-- Disconnect marks the integration disconnected and removes cached token data server-side.
+- Disconnect uninstalls the GitHub App installation from GitHub, then removes cached token data server-side.
 
 ## Pipeline Settings Drawer
 
@@ -29,9 +29,9 @@ GitHub tab:
 - sync mode selector
 - save config
 - export YAML
-- push to GitHub
+- create GitHub PR
 - pull latest from GitHub
-- PR link/status if bidirectional mode creates a PR
+- PR link/status for the generated review branch
 
 ## Builder Action Bar
 

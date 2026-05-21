@@ -19,7 +19,7 @@ Runtime execution still reads `public.pipelines.pipeline_graph`. GitHub stores t
 - `github_install_states`: signed, short-lived install state for callback validation.
 - Raw GitHub REST client with App JWT, installation token refresh, contents, refs, PRs, commits, and repo listing.
 - YAML export/import preserving strict ELT graph contracts.
-- Webhook signature verification for `push` and `pull_request.closed`.
+- Webhook signature verification for `installation`, `installation_repositories`, `push`, and `pull_request.closed`.
 - Settings integration drawer, pipeline GitHub settings tab, Git history drawer, and pipeline list Git status.
 
 ## Invariants
@@ -28,4 +28,5 @@ Runtime execution still reads `public.pipelines.pipeline_graph`. GitHub stores t
 - Imported YAML resolves connection names inside the organization; duplicate names fail clearly.
 - SQL models remain destination-node-owned under `dbt_config.sql_models[]`.
 - Source stream keys use `schema.table`; DuckDB staging uses `schema__table`.
-- Rollback writes a normal commit or bidirectional PR. It never force-pushes.
+- MantrixFlow-originated GitHub writes always use a new branch and pull request. They never push directly to the base branch.
+- Default pipeline YAML path is `mantrixflow/pipelines/{pipeline-slug}.yaml`.

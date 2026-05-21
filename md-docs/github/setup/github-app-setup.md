@@ -111,14 +111,14 @@ For each pipeline:
 1. Open Pipeline Builder.
 2. Open Settings -> GitHub.
 3. Select repository.
-4. Set file path, usually `pipelines/{pipeline-name}.yaml`.
+4. Set file path, usually `mantrixflow/pipelines/{pipeline-name}.yaml`.
 5. Set branch, usually `main`.
 6. Choose sync mode:
    - Manual export
    - Auto-sync from GitHub
    - Bidirectional PR workflow
 7. Save GitHub config.
-8. Push or export the first YAML version.
+8. Create a GitHub PR or export the first YAML version.
 
 ## 7. Webhook Verification
 

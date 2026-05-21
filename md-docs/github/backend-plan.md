@@ -86,8 +86,11 @@ Implemented operations:
 
 ## Rollback
 
-Rollback fetches YAML at the requested commit SHA, validates it, applies it to DB, then writes a normal Git update:
-- manual/github-to-db mode: commit directly to configured branch.
-- bidirectional mode: create branch and PR.
+Rollback fetches YAML at the requested commit SHA, validates it, applies it to DB, then writes a reviewed Git update:
+- all MantrixFlow-originated GitHub writes create a new branch and pull request.
+- never commit directly to the configured/base branch.
+- branch names use `mantrixflow/pipelines/{pipeline-slug}-{pipeline-id-prefix}-{timestamp}`.
+- generated YAML should live under `mantrixflow/pipelines/{pipeline-slug}.yaml` by default to avoid colliding with a user's existing `pipelines/` folder.
+- user-entered file paths are normalized into `mantrixflow/pipelines/{file}.yaml` unless already under that namespace.
 
 No force-pushes are allowed.
