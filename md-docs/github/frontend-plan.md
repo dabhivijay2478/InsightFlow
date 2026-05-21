@@ -32,6 +32,8 @@ GitHub tab:
 - create GitHub PR
 - pull latest from GitHub
 - PR link/status for the generated review branch
+- Review PR, Squash & merge, and cancel controls for the open PR
+- lightweight polling while a PR is open so GitHub-side merges clear the banner
 
 ## Builder Action Bar
 

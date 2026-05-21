@@ -65,6 +65,8 @@ Implemented operations:
 - create/update file
 - get/create refs
 - create pull requests
+- squash merge pull requests
+- close/cancel pull requests
 - list commits for file path
 - list repository contents
 - compare refs
@@ -83,6 +85,8 @@ Implemented operations:
 `pull_request.closed`:
 - merged PR clears `github_pr_url` and returns status to `idle`.
 - declined PR marks `conflict` and keeps DB runtime state.
+
+The pipeline GitHub tab also exposes explicit app actions to squash-merge or cancel the currently stored PR URL.
 
 ## Rollback
 

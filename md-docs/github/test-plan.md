@@ -31,6 +31,8 @@
 - Push always creates a new `mantrixflow/pipelines/...` branch and pull request.
 - No push path commits directly to the configured/base branch.
 - Rollback applies YAML and creates a review pull request.
+- Open PR can be squash-merged from MantrixFlow.
+- Open PR can be cancelled from MantrixFlow.
 - `pull_request.closed` merged clears PR URL.
 - `pull_request.closed` unmerged marks `conflict`.
 

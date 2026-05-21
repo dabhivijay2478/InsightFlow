@@ -60,7 +60,7 @@ destinations:
 - Duplicate matching names fail with an ambiguous connection error. The importer never guesses.
 - Every SQL model must reference a stream in `source.selected_streams[]`.
 - Every SQL model must include `source_stream_key`, `output_table`, and `sql`.
-- SQL is validated through the existing ELT `/validate-sql` path before applying.
+- SQL is validated through the existing ELT `/validate-sql` path when source column hints are available. If an organization has not cached source column metadata yet, import still enforces the YAML/connection/model contract and resumes ELT SQL validation once hints exist.
 - Valid imports rebuild `pipeline_graph` and update the primary source/destination schema mirrors.
 
 ## Runtime Rule

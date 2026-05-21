@@ -21,6 +21,7 @@ Runtime execution still reads `public.pipelines.pipeline_graph`. GitHub stores t
 - YAML export/import preserving strict ELT graph contracts.
 - Webhook signature verification for `installation`, `installation_repositories`, `push`, and `pull_request.closed`.
 - Settings integration drawer, pipeline GitHub settings tab, Git history drawer, and pipeline list Git status.
+- Open pipeline PRs can be reviewed, squash-merged, or cancelled from the pipeline GitHub tab.
 
 ## Invariants
 
