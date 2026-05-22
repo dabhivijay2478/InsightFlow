@@ -85,9 +85,11 @@ Record these values for infra repo secrets:
 - `CLOUDFLARE_API_TOKEN`
 - `CLOUDFLARE_ZONE_ID`
 
-## 6. Create Supabase Production Project
+## 6. Create Separate Live Supabase And Unosend
 
-Create the production Supabase project and collect:
+Create a separate live Supabase project. Do not reuse the local/dev Supabase project or copied local database credentials.
+
+Collect:
 
 - `DATABASE_URL`
 - `DATABASE_DIRECT_URL`
@@ -97,6 +99,17 @@ Create the production Supabase project and collect:
 - `SUPABASE_JWT_SECRET`
 
 Enable Realtime for production tables as needed by the app.
+
+Create a separate live Unosend setup for production email. Do not reuse local/dev Unosend keys or template IDs unless that workspace is intentionally production.
+
+Collect:
+
+- `UNOSEND_API_KEY`
+- `UNOSEND_FROM`
+- `UNOSEND_LOGO_URL`
+- production template IDs for invite, pipeline lifecycle, trial, payment, digest, and onboarding emails
+
+Use the corrected template variable names from [production env mapping](production-env-mapping.md).
 
 ## 7. Create GitHub OIDC Provider In AWS
 
@@ -139,11 +152,13 @@ Add these production secrets to the infra repo environment:
 
 - `CLOUDFLARE_API_TOKEN`
 - `CLOUDFLARE_ZONE_ID`
-- Supabase secrets
+- live Supabase secrets
 - `ENCRYPTION_KEY`
 - `ELT_INTERNAL_TOKEN`
 - `CALLBACK_TOKEN`
-- Optional Dodo, Unosend, Slack, and GitHub app secrets
+- `INTERNAL_TOKEN` optional; omit it to reuse `CALLBACK_TOKEN`
+- live Unosend secrets
+- Optional Dodo, Slack, and GitHub app secrets
 
 ## 10. Configure API Repo GitHub Environment
 
