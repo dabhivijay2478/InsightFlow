@@ -27,6 +27,9 @@ and the ASCII flow diagram lives in
 
 ## Integrations
 
+- [`aws-ses-setup.md`](./aws-ses-setup.md) — AWS SES setup for Go API
+  product emails and Supabase Auth SMTP, including DNS, DKIM, MAIL FROM,
+  production access, and smoke tests.
 - [`slack-guide.md`](./slack-guide.md) — **Single** Slack guide: local ngrok
   setup, Slack Dashboard URLs, OAuth and Marketplace install, App Home,
   commands, events, copyable manifest, native builder behavior, review
