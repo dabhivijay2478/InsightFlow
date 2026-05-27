@@ -182,10 +182,49 @@ mantrixflow-transactional
 ```
 
 4. Keep sending enabled.
-5. Leave event destinations empty for the first setup unless monitoring is already ready.
-6. Create the set.
+5. Create the set.
 
 The Go API sends this configuration set name in SES API calls.
+
+### Add The SES Event Destination
+
+Create an SNS topic first:
+
+1. Open **Amazon SNS** in `ap-south-1`.
+2. Choose **Topics**.
+3. Click **Create topic**.
+4. Type: **Standard**.
+5. Name:
+
+```text
+mantrixflow-ses-events
+```
+
+6. Create the topic.
+7. Create a subscription:
+   - Protocol: **HTTPS**
+   - Endpoint: `https://<api-domain>/api/v1/webhooks/ses`
+
+Then return to SES:
+
+1. Open **SES > Configuration > Configuration sets**.
+2. Open `mantrixflow-transactional`.
+3. Open **Event destinations**.
+4. Click **Add destination**.
+5. Destination type: **Amazon SNS**.
+6. SNS topic: `mantrixflow-ses-events`.
+7. Select these event types:
+   - Sends
+   - Deliveries
+   - Bounces
+   - Complaints
+   - Rejects
+   - Delivery delays
+8. Save the destination.
+
+The Go API verifies AWS SNS signatures, handles the subscription confirmation,
+stores provider events, updates `email_jobs.delivery_status`, and suppresses
+future sends after permanent bounces or complaints.
 
 ## 7. Request Production Access
 
@@ -219,8 +258,9 @@ out of scope.
 ```text
 The Go API records delivery jobs in email_jobs, stores SES message IDs, retries
 transient failures, and skips invalid/disposable recipients. Supabase Auth uses
-SES SMTP for auth links. Bounce/complaint monitoring can be added through the
-mantrixflow-transactional configuration set.
+SES SMTP for auth links. SES events from the mantrixflow-transactional
+configuration set are delivered to the Go API through SNS, where bounces and
+complaints create recipient suppressions.
 ```
 
 8. Submit the request.
@@ -245,6 +285,7 @@ EMAIL_FROM="MantrixFlow <support@mantrixflow.com>"
 EMAIL_LOGO_URL=https://cloud.mantrixflow.com/m.png
 AWS_SES_REGION=ap-south-1
 AWS_SES_CONFIGURATION_SET=mantrixflow-transactional
+AWS_SES_EVENT_SNS_TOPIC_ARN=arn:aws:sns:ap-south-1:<account-id>:mantrixflow-ses-events
 ```
 
 Local dry run:
