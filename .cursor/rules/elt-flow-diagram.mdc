@@ -42,7 +42,7 @@ Python ELT  (apps/server/elt-server)
     • dlt reads from source
     • resources renamed so staged table is `raw.public__users` (gap 2)
     • incremental cursor restored from `last_state` if present (gap 5)
-    • write_disposition: replace (FULL_TABLE) / merge (INCREMENTAL)
+    • staged extraction follows the selected replication method
 
   PHASE 2 — DBT TRANSFORM  (runner/handlers/dbt_handler.py)
     • generates dbt project from dbt_config.sql_models (gap 6)
@@ -55,7 +55,7 @@ Python ELT  (apps/server/elt-server)
         - re-verify destination table exists  (gap 3)
         - re-verify columns match              (gap 4)
         - discover primary_keys
-        - dlt write: merge (has PK) or append + warning (no PK, gap 12)
+        - dlt write: Upsert against the existing destination table
     • never CREATE TABLE
 
   PHASE 4 — CLEANUP
@@ -76,7 +76,7 @@ Go Callback Handler  (apps/server/main-server/internal/server/callback.go)
   • PublishStatus → Supabase Realtime
   ▼
 USER sees live update in Run Status Drawer
-  • 3-phase display (Extract+Stage / Transform / Deliver)
+  • 3-phase display (Extract+Stage / dbt Layer / Deliver)
   • delivered table pills (`analytics.hd`, …)
   • no-PK warning banner if `no_pk_warnings[]` is non-empty
 ```

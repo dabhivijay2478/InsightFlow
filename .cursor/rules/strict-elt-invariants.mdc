@@ -42,9 +42,9 @@ Pipeline boundaries:
    `schema__table`.** The Go helper `duckdbTableName(streamKey)` and the
    TypeScript helper `duckdbTableNameForStream(streamKey)` are the only
    sanctioned converters. Never cast-in-place.
-9. **Delivery is merge/append only.** If the destination table has primary
-   keys, write disposition is `merge`. If it has no primary keys, fall back
-   to `append` AND emit a `no_pk_warnings` entry in the callback payload.
+9. **Public delivery is Upsert-only.** The UI/API must not expose separate
+   user-selectable write modes. Delivery targets must already exist and be
+   addressed as `schema.table`.
 10. **Disk space pre-check runs at the dispatcher AND at Phase 0.** The Go
     dispatcher MUST call `ELT.DiskStatus()` before `POST /sync` and require
     `available_gb >= plan_limit * 2`. On failure, mark the run `waiting`
@@ -57,9 +57,8 @@ Pipeline boundaries:
     - `apps/server/elt-server/runner/paths/cdc_direct.py`
     - `apps/server/elt-server/routes/cleanup.py`
     - `transform_script` anywhere
-    - `LOG_BASED` replication branches
-    - `apps/app/**/TransformDrawer*.tsx`, `TransformNode*.tsx`,
-      `TransformMiniCard*.tsx`
+    - old replication branches
+    - old processing drawers or canvas nodes
     - Frontend "ETL" labels on user-facing strings (rename to "ELT pipeline" /
       "Pipeline run"). DB column names are NOT renamed.
 
@@ -74,7 +73,7 @@ Pipeline boundaries:
 - [ ] Does every new runner helper live under `runner/handlers/` (not inline
       in `paths/duckdb_staged.py`)?
 - [ ] Does the callback handler accept the 4 audit fields and persist them?
-- [ ] Did you avoid adding `transform_script`, `LOG_BASED`, `cdc_direct`,
-      or a `TransformDrawer`?
+- [ ] Did you avoid adding `transform_script`, old replication branches, or
+      old processing drawers?
 
 If any answer is "no", stop and fix.

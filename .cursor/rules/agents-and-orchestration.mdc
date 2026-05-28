@@ -33,7 +33,7 @@ Pipeline work under `apps/server/elt-server/**`, `apps/server/main-server/**`, o
 
 Human-readable narrative: [`md-docs/strict-elt-pipeline-guide.md`](../../md-docs/strict-elt-pipeline-guide.md).
 
-**Hard-fail patterns:** `CREATE TABLE` on delivery paths; `selected_streams` as plain string lists; `sql_models` missing `dest_table` / `duckdb_source_table`; legacy files (`cdc_direct.py`, `cleanup.py` CDC, `TransformDrawer*`, `transform_script`, `LOG_BASED`).
+**Hard-fail patterns:** `CREATE TABLE` on delivery paths; `selected_streams` as plain string lists; `sql_models` missing `dest_table` / `duckdb_source_table`; legacy replication or processing paths (`cleanup.py`, `transform_script`, old replication branches, old processing drawers).
 
 ---
 
@@ -116,7 +116,7 @@ Human-readable narrative: [`md-docs/strict-elt-pipeline-guide.md`](../../md-docs
 
 **Scope:** `apps/server/elt-server/**`; `apps/server/main-server/internal/{server,elt,queue}/**`; `apps/app/app/workspace/data-pipelines/**`; pipeline-related `apps/app/lib/api/**`.
 
-**Verify on each diff:** DuckDB `finally` + state extract before delete; no destination `CREATE TABLE`; column errors name the column; no `_dlt_*` at destination; no credential leaks; `schema.table` vs `schema__table`; merge/append + `no_pk_warnings`; disk guard (dispatcher + Phase 0); callback fields (`delivery_outputs`, `staging_size_bytes`, `dbt_models_run`, `no_pk_warnings`); no legacy ETL paths; strict `SourceStreamConfig[]` and `dest_table` as `schema.table`.
+**Verify on each diff:** DuckDB `finally` + state extract before delete; no destination `CREATE TABLE`; column errors name the column; no `_dlt_*` at destination; no credential leaks; `schema.table` vs `schema__table`; Upsert delivery; disk guard (dispatcher + Phase 0); callback fields (`delivery_outputs`, `staging_size_bytes`, `dbt_models_run`); no legacy ETL paths; strict `SourceStreamConfig[]` and `dest_table` as `schema.table`.
 
 **Output:**
 
