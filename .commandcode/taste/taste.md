@@ -16,6 +16,7 @@
 - Internal project docs live in `md-docs/` folder; public-facing docs site lives in `mantrixflow-docs/` folder. Confidence: 0.70
 - Prefer consolidated single guide files over multiple separate markdown files for the same topic. Do not create separate files for AWS OIDC, product setup, etc. — one deployment file under infra. Confidence: 0.80
 - Use only `support@mantrixflow.com` for website terms/privacy pages and docs site contact email. Never use `security@mantrixflow.com`. Confidence: 0.85
+- Do not mention internal implementation details (DuckDB, Go API, Python ELT, dbt) in public-facing docs site or website. Use generic terms: "staging"/"temporary storage" instead of DuckDB, "SQL" instead of "dbt SQL", omit internal service layers entirely. Confidence: 0.80
 
 # infra
 - Production infrastructure lives in `apps/mantrixflow-infra` as its own standalone Git repository (CDK + Terraform). Not inside `apps/app`. Confidence: 0.85
