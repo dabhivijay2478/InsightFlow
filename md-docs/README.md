@@ -25,18 +25,26 @@ and the ASCII flow diagram lives in
 - [`dodo-payments-setup.md`](./dodo-payments-setup.md) — **Single** Dodo guide: products, first-time **checkout**, portal-only plan changes (**change-plan API not used**), collection **fallback** (`DODO_PRODUCT_COLLECTION_ID`), webhooks, troubleshooting ([Dodo Product Collections](https://docs.dodopayments.com/features/product-collections)).
 - [`dodo-payments-flowchart.md`](./dodo-payments-flowchart.md) — **Mermaid flow charts:** app → Go API → Dodo (checkout vs portal) and webhook reconciliation.
 
-## Observability
+## Observability (three separate guides)
 
-- [`betterstack-status-page-creation.md`](./betterstack-status-page-creation.md) — **Start here.** Better Stack monitors + status page for **AWS ECS** production (`cloud.mantrixflow.com`, `cloud.api.mantrixflow.com/status`), SSM secrets, Vercel PostHog, custom domain `status.mantrixflow.com`.
-- [`posthog-betterstack-setup.md`](./posthog-betterstack-setup.md) — PostHog + Better Stack code paths, health endpoints, webhooks, widgets, and **AWS SSM + Vercel** deployment.
+Read in this order:
+
+| Order | Doc | What you do there |
+| --- | --- | --- |
+| 1 | [`betterstack-setup.md`](./betterstack-setup.md) | Better Stack UI: monitors, status page, domain, API IDs |
+| 2 | [`posthog-setup.md`](./posthog-setup.md) | PostHog UI: project key, error tracking, optional webhook |
+| 3 | [`observability-deployment.md`](./observability-deployment.md) | AWS SSM + Vercel env + ECS redeploy + smoke tests |
+
+Legacy filenames redirect to the above (`betterstack-status-page-creation.md`, `posthog-betterstack-setup.md`).
 
 ## Deployment (AWS production)
 
-- [`../apps/mantrixflow-infra/DEPLOYMENT.md`](../apps/mantrixflow-infra/DEPLOYMENT.md) — **Start here.** ECS Fargate, ALB, SSM, GitHub Actions, smoke checks.
-- [`deployment-vercel.md`](./deployment-vercel.md) — Next.js frontend on Vercel (`cloud.mantrixflow.com`).
-- [`aws-ses-setup.md`](./aws-ses-setup.md) — AWS SES for Go API product email and Supabase Auth SMTP (DNS, DKIM, production access).
+- [`../apps/mantrixflow-infra/DEPLOYMENT.md`](../apps/mantrixflow-infra/DEPLOYMENT.md) — ECS Fargate, ALB, SSM, GitHub Actions (full platform).
+- [`deployment-vercel.md`](./deployment-vercel.md) — Vercel frontend.
+- [`aws-ses-setup.md`](./aws-ses-setup.md) — AWS SES email.
 
 ## Integrations
+
 - [`slack-guide.md`](./slack-guide.md) — **Single** Slack guide: local ngrok
   setup, Slack Dashboard URLs, OAuth and Marketplace install, App Home,
   commands, events, copyable manifest, native builder behavior, review
@@ -59,4 +67,3 @@ and the ASCII flow diagram lives in
 
 - [`saas-sources-group2.md`](./saas-sources-group2.md) — detailed SaaS
   source implementation guide (dlt verified sources: HubSpot, Stripe, …).
-

@@ -9,7 +9,10 @@ Production runs on **AWS ECS Fargate** (`ap-south-1`), not a VPS. Use the infra 
 | [`apps/mantrixflow-infra/DEPLOYMENT.md`](../mantrixflow-infra/DEPLOYMENT.md) | ECS, ALB, SSM secrets, GitHub Actions, smoke checks |
 | [`md-docs/aws-ses-setup.md`](../../md-docs/aws-ses-setup.md) | Transactional email (Go API `EMAIL_PROVIDER=ses`) |
 | [`md-docs/deployment-vercel.md`](../../md-docs/deployment-vercel.md) | Frontend on Vercel |
-| [`md-docs/betterstack-status-page-creation.md`](../../md-docs/betterstack-status-page-creation.md) | Status page + monitors |
+| Observability | `betterstack-setup.md` → `posthog-setup.md` → `observability-deployment.md` |
+| [`md-docs/betterstack-setup.md`](../../md-docs/betterstack-setup.md) | Better Stack UI |
+| [`md-docs/posthog-setup.md`](../../md-docs/posthog-setup.md) | PostHog UI |
+| [`md-docs/observability-deployment.md`](../../md-docs/observability-deployment.md) | SSM + Vercel deploy |
 
 **Production URLs**
 
