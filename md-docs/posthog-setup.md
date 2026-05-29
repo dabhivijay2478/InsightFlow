@@ -131,40 +131,209 @@ No extra PostHog UI toggle is required for identify — it is event-driven.
 
 ---
 
-## Step 6 — Optional: Error tracking alert → webhook
+## Step 6 — Optional: Error tracking alerts → Slack
 
-**Only step that touches MantrixFlow API.** Skip if you only want analytics + issues inside PostHog.
+Skip if you only want the PostHog UI for analytics and issues.  
+This uses PostHog’s **3-step wizard**: **Destination** → **Trigger** → **Configure** ([docs](https://posthog.com/docs/error-tracking/alerts)).
 
-Use PostHog’s **Error tracking → Alerting** UI ([docs](https://posthog.com/docs/error-tracking/alerts)) — not legacy **Actions**, not **Trend → Alerts** (email only).
+Slack alerts notify your team in-channel. They do **not** update [status.mantrixflow.com](https://status.mantrixflow.com) — that stays on Better Stack ([betterstack-setup.md](./betterstack-setup.md)).
 
-### 6.1 Create notification
+### Start the wizard
 
-1. **Error tracking** → **Configuration** → section **Alerting**.
-2. **New notification**.
-3. Choose **Webhook**.
+1. **Error tracking** → **Configuration** → **Alerting**.
+2. **New notification** (or **+ New alert**).
 
-### 6.2 Webhook URL
+---
 
-PostHog’s alerting screen has a **URL** field only (no custom headers). Use:
+### Step 6.1 — Destination (you chose Slack)
 
-```text
-https://cloud.api.mantrixflow.com/api/v1/internal/incident-webhook?internal_token=YOUR_INTERNAL_TOKEN
+Wizard step **1 — Destination**:
+
+PostHog’s **new** error-tracking alert wizard often shows only:
+
+- **Slack**
+- **Discord**
+- **Microsoft Teams**
+
+**HTTP Webhook is usually not on this screen.** That is normal — you are not missing a step. For MantrixFlow, **Slack is enough** for team notifications.
+
+1. Select **Slack**.
+2. If prompted to connect Slack the first time:
+   - **Install PostHog to Slack** / **Connect workspace** → approve in Slack.
+   - Pick the workspace MantrixFlow uses (e.g. engineering).
+3. Click **Continue** (step 1 shows a green check when done).
+
+---
+
+### Step 6.2 — Trigger
+
+Wizard step **2 — Trigger** — screen title: **“What should trigger the alert?”**
+
+Pick what you want notified about. For MantrixFlow production, use **one notification per trigger** (simplest), or combine if the UI allows multiple:
+
+| Trigger card | When to use | MantrixFlow recommendation |
+| --- | --- | --- |
+| **Issue created** | New error issue first seen | **Enable** — new bugs after deploy |
+| **Issue reopened** | Resolved issue came back | **Enable** — regressions |
+| **Issue spiking** | Existing issue volume jumps | **Optional** — good after bad deploys ([spike docs](https://posthog.com/docs/error-tracking/spikes)) |
+
+**Suggested minimum:** create **two** alerts (same Slack destination):
+
+1. Notification A: **Issue created** → channel e.g. `#mantrixflow-alerts`
+2. Notification B: **Issue reopened** → same channel
+
+Add a third for **Issue spiking** if you want deploy/regression volume warnings without waiting for a brand-new issue fingerprint.
+
+Click **Continue** after selecting the trigger for this notification.
+
+---
+
+### Step 6.3 — Configure
+
+Wizard step **3 — Configure**:
+
+| Field | What to set |
+| --- | --- |
+| **Slack channel** | e.g. `#engineering`, `#mantrixflow-alerts`, or `#incidents` |
+| **Name** | e.g. `MantrixFlow — issue created` / `MantrixFlow — issue reopened` |
+| **Filters** (if shown) | Optional: property `service` = `main-server` (API only) or leave empty for all services |
+
+Use filters when you want separate channels per service:
+
+| Filter | Example channel |
+| --- | --- |
+| `service` = `main-server` | `#api-alerts` |
+| `service` = `elt-server` | `#elt-alerts` |
+| `service` = `app-server` | `#frontend-alerts` |
+
+Finish:
+
+1. **Test function** (or **Send test**) — confirm a message appears in Slack.
+2. **Create & enable**.
+
+Repeat **New notification** for each trigger (created / reopened / spiking) if you did not combine them in one rule.
+
+---
+
+### Slack vs public status page
+
+| Channel | What it does |
+| --- | --- |
+| **Slack (this step)** | Team notifications for PostHog **Issues** |
+| **Better Stack** | Public uptime + `status.mantrixflow.com` |
+
+No change to MantrixFlow code is required for Slack alerts.
+
+---
+
+## Step 7 — Optional: **HTTP Webhook** destination (real PostHog UI)
+
+Use this **only** if you want `$exception` events sent to the MantrixFlow Go API (e.g. to drive Better Stack status reports).  
+**Skip entirely** if Slack alerts (Step 6) are enough.
+
+The **Error tracking → Alerting** wizard (Slack / Discord / Teams) does **not** show HTTP Webhook. Webhook lives under **Data pipeline** as destination type **HTTP Webhook**.
+
+#### Open the destination
+
+1. Left sidebar → **Data pipeline** (may appear under **Tools** in the sidebar).
+2. **+ New** → **Destination**.
+3. Search and open **HTTP Webhook** (you land on the configuration page titled **HTTP Webhook**).
+
+---
+
+#### Fill the form (matches current PostHog UI)
+
+##### Status
+
+| UI section | What to do |
+| --- | --- |
+| **Enable destination** | Turn **on** (destination must be enabled to send) |
+
+##### Filters
+
+| UI field | What to do |
+| --- | --- |
+| **Filter out internal and test users** | Optional — turn **on** if you use PostHog’s internal/test user filters |
+| **Match events and actions** | **Add a match** so only errors fire the webhook: event name **equals** `$exception` |
+| **Trigger options** | Leave default unless PostHog shows a specific trigger mode you need |
+| **Matching events** | Shows e.g. *“would have triggered 0 times in the last 7 days”* — **normal until** `$exception` events exist in this project. After app/API send errors (Step 4), refresh; count should rise. If still 0, check project key and **Match events** filter |
+
+To alert only the Go API (optional second destination):
+
+- Add property filter: `service` **equals** `main-server`  
+  Repeat with `elt-server` / `app-server` if you want separate destinations per service.
+
+##### Webhook URL
+
+| UI field | Value |
+| --- | --- |
+| **Webhook URL** | `https://cloud.api.mantrixflow.com/api/v1/internal/incident-webhook` |
+
+##### Method
+
+| UI field | Value |
+| --- | --- |
+| **Method** (optional) | `POST` |
+
+##### JSON Body
+
+| UI field | Value |
+| --- | --- |
+| **JSON Body** (optional) | Paste (Hog replaces `{...}` at send time): |
+
+```json
+{
+  "hook": "PostHog HTTP Webhook",
+  "event": "alert.triggered",
+  "data": {
+    "name": "{event.properties.$exception_message}",
+    "tags": ["service:{event.properties.service}"]
+  }
+}
 ```
 
-Replace `YOUR_INTERNAL_TOKEN` with the same secret the Go API uses for internal routes (from your secrets store — not stored in this doc).
+If `$exception_message` is empty in tests, PostHog still sends the event; the Go API accepts other shapes too.
 
-The API accepts `?internal_token=` on this path.
+##### Headers
 
-### 6.3 Filters (optional)
+| UI field | Value |
+| --- | --- |
+| **Content-Type** | `application/json` |
+| **Headers** (optional) | Add a row: name `X-Internal-Token`, value = your `INTERNAL_TOKEN` (from secrets / [observability-deployment.md](./observability-deployment.md) — do not paste in git) |
 
-On the same screen, filter issues by properties if needed (e.g. only `service: main-server`).
+Without `X-Internal-Token`, the Go API returns **401**.
 
-### 6.4 Test and enable
+##### Log responses
 
-1. Click **Test function** — expect HTTP **200** from `cloud.api.mantrixflow.com`.
-2. Click **Create & enable**.
+| UI field | What to do |
+| --- | --- |
+| **Log responses** (optional) | Turn **on** while testing (see HTTP status in PostHog logs); turn off later if noisy |
 
-Alerts fire when an **issue is created or reopened**. Uptime on [status.mantrixflow.com](https://status.mantrixflow.com) still comes from Better Stack monitors ([betterstack-setup.md](./betterstack-setup.md)).
+##### Edit source
+
+| UI field | What to do |
+| --- | --- |
+| **Edit source** | Leave default unless you need custom Hog code — not required for MantrixFlow |
+
+##### Testing
+
+| UI field | What to do |
+| --- | --- |
+| **Testing** | Click **test your function with an example event** → confirm **200** from `cloud.api.mantrixflow.com` when API is deployed and token is correct |
+
+Then **Save** / enable the destination (wording may be **Create & enable** depending on create vs edit flow).
+
+---
+
+#### After save
+
+| Check | Expected |
+| --- | --- |
+| Real `$exception` from production | Webhook runs when errors hit PostHog with matching filters |
+| **Matching events** still 0 | No `$exception` in last 7 days — deploy app with `phc_...` key first |
+| Better Stack status page | Needs `BETTERSTACK_*` in SSM + [betterstack-setup.md](./betterstack-setup.md) — webhook alone is not enough |
+
+**Slack (Step 6)** and **HTTP Webhook (Step 7)** are independent — use Slack for team chat, Webhook only if you need the Go API bridge.
 
 ---
 
@@ -196,7 +365,11 @@ npx -y @posthog/wizard@latest --region us
 | No events in Activity | Wrong project (Step 1 key); ad blocker on `us.i.posthog.com`; app not using `phc_oosh6d4...` |
 | No issues | **Error tracking** → **Configuration** → exception autocapture off |
 | Toolbar does not load | Site URL wrong; WAF blocking PostHog IPs |
-| Webhook test fails | API not deployed; wrong `internal_token`; URL must be `cloud.api.mantrixflow.com` |
+| Slack test message missing | Slack app not installed; wrong channel; workspace not connected |
+| No Webhook on Error tracking wizard | Expected — use **Data pipeline** → **HTTP Webhook** (Step 7) |
+| Matching events “0 in 7 days” | No `$exception` yet — use app/API with project key; fix **Match events** filter |
+| Webhook test fails | API not deployed; missing/wrong `X-Internal-Token` header; wrong URL |
+| Webhook 200 but status page unchanged | Configure Better Stack SSM — webhook only hits Go API |
 | Events without `service` | Filter only backend issues; browser events may omit `service` until you add it in custom captures |
 
 ---
