@@ -1,6 +1,6 @@
 # ============================================================================
-# MantrixFlow — Production Docker Compose (Separate Repos)
-# Deploy on Contabo VPS (4 vCPU / 8GB RAM) with Dokploy
+# MantrixFlow — Docker Compose (local / staging only)
+# Production: AWS ECS — see apps/mantrixflow-infra/DEPLOYMENT.md
 # ============================================================================
 #
 # Directory layout on server:
