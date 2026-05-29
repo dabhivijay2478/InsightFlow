@@ -299,9 +299,30 @@ If `$exception_message` is empty in tests, PostHog still sends the event; the Go
 | UI field | Value |
 | --- | --- |
 | **Content-Type** | `application/json` |
-| **Headers** (optional) | Add a row: name `X-Internal-Token`, value = your `INTERNAL_TOKEN` (from secrets / [observability-deployment.md](./observability-deployment.md) — do not paste in git) |
+| **Headers** (optional) | Add a row: name `X-Internal-Token`, value = production **`CALLBACK_TOKEN`** from SSM (see below — do not paste in git) |
 
-Without `X-Internal-Token`, the Go API returns **401**.
+Without a valid internal token, the Go API returns **401** with message `Invalid callback token`.
+
+#### Token fix (401 in webhook logs)
+
+The Go API [`InternalToken()`](/apps/server/main-server/internal/server/middleware.go) accepts credentials in this order:
+
+1. Header `X-Callback-Token`
+2. Header `X-Internal-Token`
+3. Query `?internal_token=`
+4. Query `?callback_token=`
+
+It compares the value to **`CALLBACK_TOKEN`** from ECS/SSM. If `CALLBACK_TOKEN` is empty, it falls back to **`INTERNAL_TOKEN`**.
+
+| Symptom | Fix |
+| --- | --- |
+| PostHog log shows **401** / `Invalid callback token` | Header value does not match production `CALLBACK_TOKEN` (or `INTERNAL_TOKEN` fallback) |
+| You only have `INTERNAL_TOKEN` in SSM | Use that exact value in `X-Internal-Token`, or set `CALLBACK_TOKEN` to the same value in SSM |
+| PostHog UI cannot set headers reliably | Append to URL: `https://cloud.api.mantrixflow.com/api/v1/internal/incident-webhook?callback_token=<token>` |
+
+**Verify:** In PostHog → destination → **Testing** → run test → expect **200** (not 401). Check Go API logs for `auth_failure: invalid internal/callback token` if it still fails.
+
+**Do not** use the PostHog project API key (`phc_...`) as the webhook token — that is for ingestion only.
 
 ##### Log responses
 
@@ -368,7 +389,8 @@ npx -y @posthog/wizard@latest --region us
 | Slack test message missing | Slack app not installed; wrong channel; workspace not connected |
 | No Webhook on Error tracking wizard | Expected — use **Data pipeline** → **HTTP Webhook** (Step 7) |
 | Matching events “0 in 7 days” | No `$exception` yet — use app/API with project key; fix **Match events** filter |
-| Webhook test fails | API not deployed; missing/wrong `X-Internal-Token` header; wrong URL |
+| Webhook test fails (401) | Token mismatch: `X-Internal-Token` must equal production `CALLBACK_TOKEN` (or `INTERNAL_TOKEN`); see Step 7 token fix |
+| Webhook test fails (other) | API not deployed; wrong URL; Better Stack vars missing (webhook still returns 200 with `skipped`) |
 | Webhook 200 but status page unchanged | Configure Better Stack SSM — webhook only hits Go API |
 | Events without `service` | Filter only backend issues; browser events may omit `service` until you add it in custom captures |
 

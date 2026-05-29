@@ -33,7 +33,8 @@ Read in this order:
 | --- | --- | --- |
 | 1 | [`betterstack-setup.md`](./betterstack-setup.md) | Better Stack UI: monitors, status page, domain, API IDs |
 | 2 | [`posthog-setup.md`](./posthog-setup.md) | PostHog UI: project key, error tracking, optional webhook |
-| 3 | [`observability-deployment.md`](./observability-deployment.md) | AWS SSM + Vercel env + ECS redeploy + smoke tests |
+| 3 | [`posthog-full-integration.md`](./posthog-full-integration.md) | Architecture, events catalog, quotas, flags, surveys, troubleshooting |
+| 4 | [`observability-deployment.md`](./observability-deployment.md) | AWS SSM + Vercel env + ECS redeploy + smoke tests |
 
 Legacy filenames redirect to the above (`betterstack-status-page-creation.md`, `posthog-betterstack-setup.md`).
 
