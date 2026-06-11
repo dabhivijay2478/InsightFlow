@@ -38,8 +38,11 @@ Read in this order:
 
 Legacy filenames redirect to the above (`betterstack-status-page-creation.md`, `posthog-betterstack-setup.md`).
 
-## Deployment (AWS production)
+## Deployment
 
+- [`deployment-contabo-dokploy.md`](./deployment-contabo-dokploy.md) — Complete
+  Contabo VPS + Dokploy Cloud GitHub Actions setup, deployment, verification,
+  rollback, and operations guide.
 - [`../apps/mantrixflow-infra/DEPLOYMENT.md`](../apps/mantrixflow-infra/DEPLOYMENT.md) — ECS Fargate, ALB, SSM, GitHub Actions (full platform).
 - [`deployment-vercel.md`](./deployment-vercel.md) — Vercel frontend.
 - [`aws-ses-setup.md`](./aws-ses-setup.md) — AWS SES email.
