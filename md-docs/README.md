@@ -40,10 +40,9 @@ Legacy filenames redirect to the above (`betterstack-status-page-creation.md`, `
 
 ## Deployment
 
-- [`deployment-contabo-dokploy.md`](./deployment-contabo-dokploy.md) — Complete
-  Contabo VPS + Dokploy Cloud GitHub Actions setup, deployment, verification,
-  rollback, and operations guide.
-- [`../apps/mantrixflow-infra/DEPLOYMENT.md`](../apps/mantrixflow-infra/DEPLOYMENT.md) — ECS Fargate, ALB, SSM, GitHub Actions (full platform).
+- [`deployment-oracle-cloud.md`](./deployment-oracle-cloud.md) — Complete
+  Oracle Cloud two-VM Terraform, GitHub Actions, OCI Run Command, deployment,
+  verification, rollback, and recovery guide.
 - [`deployment-vercel.md`](./deployment-vercel.md) — Vercel frontend.
 - [`aws-ses-setup.md`](./aws-ses-setup.md) — AWS SES email.
 
