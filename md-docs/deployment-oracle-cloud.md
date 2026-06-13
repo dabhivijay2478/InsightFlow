@@ -1,6 +1,6 @@
 # Oracle Cloud Production Deployment
 
-This guide deploys MantrixFlow to two Oracle Cloud ARM VMs using a strict
+This guide deploys MantrixFlow to one Oracle Cloud ARM VM using a strict
 zero-cost infrastructure profile. Terraform owns the
 infrastructure; the API and ELT repositories independently publish immutable
 GHCR images and deploy them through OCI Run Command.
@@ -16,7 +16,7 @@ This setup uses only the following Oracle Always Free allocations:
 
 | Resource | Configured usage | Always Free boundary |
 | --- | ---: | ---: |
-| Ampere A1 compute | 2 OCPUs / 12 GB total | 2 OCPUs / 12 GB total |
+| Ampere A1 compute | 1 combined API/ELT VM using 2 OCPUs / 12 GB | 2 OCPUs / 12 GB total |
 | Block storage | 190 GB total | 200 GB total |
 | Network Load Balancer | 1 | 1 |
 | VCN | 1 | Up to 2 for Free Tier tenancies |
@@ -27,6 +27,11 @@ This setup uses only the following Oracle Always Free allocations:
 Cloudflare DNS-only records and Caddy/Let's Encrypt are free. No NAT Gateway,
 paid database, paid load balancer, Kubernetes cluster, paid logging sink,
 private Vault, or paid support product is provisioned.
+
+The Always Free E2 Micro instances are deliberately left unused. Their 1 GB RAM
+is too restrictive for the production API, and every instance consumes another
+minimum 50 GB boot volume. The single A1 VM gives both services enough memory
+while preserving the full CPU allocation for pipeline work.
 
 Important limitations:
 
@@ -60,19 +65,135 @@ Development continues on `mantrixflow-contabo`. Open a pull request into
 `mantrixflow-oracle`; only a merge or direct push to `mantrixflow-oracle`
 deploys production.
 
+Changing an existing two-VM Terraform state to this profile replaces both old
+instances with `mantrixflow-app`. Keep DNS cutover disabled, review the saved
+plan carefully, and deploy ELT followed by API before enabling DNS. Do not run
+this migration against live traffic without accepting the replacement window.
+
 ## Architecture
 
-- API VM: Oracle Linux 9 ARM, 1 OCPU, 4 GB RAM, 50 GB boot volume.
-- ELT VM: Oracle Linux 9 ARM, 1 OCPU, 8 GB RAM, 50 GB boot plus 90 GB staging volume.
-- OCI Network Load Balancer: public TCP 80/443 to Caddy on the API VM.
-- API private port: `8080`, allowed only from the ELT NSG.
-- ELT private port: `8000`, allowed only from the API NSG.
+- Application VM: Oracle Linux 9 ARM `VM.Standard.A1.Flex`, 2 OCPUs, 12 GB
+  RAM, 50 GB boot plus 140 GB staging volume.
+- OCI Network Load Balancer: public TCP 80/443 to Caddy on the application VM.
+- API and ELT remain independently deployed containers.
+- API internal ports and ELT port `8000` bind only to `127.0.0.1`.
+- API reaches ELT at `http://127.0.0.1:8000`; ELT callbacks use
+  `http://127.0.0.1:8080`.
 - No public SSH, Dokploy, port 3000, API internal port, or ELT port.
 - Cloudflare record `cloud.api.mantrixflow.com` is DNS-only. Caddy obtains TLS.
 
 The database-backed deployment lease serializes deployments across the two
 service repositories. New runs queue during a deployment, active runs drain,
 and expired leases automatically stop blocking dispatch.
+
+## Capacity Plan For 50 Paid Users
+
+Fifty paid users does not mean fifty ELT pipelines should execute
+simultaneously. The API container can serve many concurrent browser/API requests, while
+pipeline execution is the CPU-, memory-, disk-, and network-heavy workload.
+
+Combining the services avoids the E2 Micro's 1 GB memory constraint and gives
+the API and ELT a shared 12 GB pool. For the `2 OCPU / 12 GB` application VM,
+the production starting profile is:
+
+```text
+Concurrent API users:        50+
+Active ELT pipelines:        2 maximum
+Queued pipeline runs:        Durable; limited by the external Postgres/Supabase database
+Concurrent runs per org:     1
+Concurrent runs per source:  1
+Uvicorn workers:             1
+```
+
+Two active pipelines use the two available OCPUs while the remaining runs stay
+in the durable PGMQ queue. This is the maximum recommended concurrency for this
+free VM. DuckDB and dbt can consume several GB per run, so reduce concurrency
+to one immediately if the ELT container approaches its 8 GB limit, restarts,
+or pipeline duration increases substantially.
+
+Expected pipeline throughput depends on average run duration:
+
+| Average pipeline duration | Expected throughput with 2 active runs |
+| ---: | ---: |
+| 5 minutes | About 24 runs/hour |
+| 10 minutes | About 12 runs/hour |
+| 30 minutes | About 4 runs/hour |
+| 60 minutes | About 2 runs/hour |
+
+Practical MVP target:
+
+```text
+50 signed-in/active users using dashboards and API features
+Up to 50 pipeline submissions in a burst
+2 pipelines executing
+48 pipeline runs durably queued
+No capacity-based rejection
+```
+
+This is a queue-backed service, not a promise that all 50 pipelines finish
+simultaneously. Completion time for a 50-run burst is approximately:
+
+```text
+ceil(50 / 2) × average pipeline duration
+```
+
+For example, fifty ten-minute pipelines require roughly 4 hours 10 minutes
+with two active slots.
+
+Keep two active pipelines only when all of these remain true during
+representative large runs:
+
+```text
+ELT memory below 8 GB
+No container OOM/restarts
+Load average remains acceptable
+Staging free space remains above 20 GB
+Pipeline duration does not increase by more than 50%
+No source or destination connection saturation
+```
+
+The deployment script limits each API blue/green container to 1.25 GB and the
+ELT container to 8 GB, leaving memory for Oracle Linux, Docker, Caddy, OCI
+Agent, and the brief overlap while an API release switches versions.
+Container logs rotate automatically so they cannot fill the boot volumes.
+
+### No-Loss Controls
+
+- Pipeline requests are persisted in Postgres before execution.
+- PGMQ provides durable dispatch queues and delayed retries.
+- Capacity pressure queues work instead of rejecting it.
+- Queued runs do not expire automatically in production.
+- Per-source concurrency remains one to avoid overwhelming customer databases.
+- Staging disk is checked before dispatch and again inside ELT.
+- DuckDB staging files are deleted in `finally`.
+- Incremental checkpoints advance only after successful completion.
+- Interrupted running jobs are requeued up to three times.
+- Delivery remains upsert-based, making replay idempotent.
+- Deployment leases drain active work before replacing containers.
+
+These controls substantially reduce loss risk, but no single free VM can offer
+an absolute zero-data-loss guarantee. Keep source data available for replay,
+monitor failed/dead-letter runs, and back up the external application database.
+
+### Free Monitoring Thresholds
+
+Use OCI Always Free Monitoring and HTTPS Notifications without adding paid log
+storage. Configure alerts for:
+
+```text
+API health unavailable for 5 minutes
+ELT health unavailable for 5 minutes
+ELT CPU above 85% for 15 minutes
+ELT memory above 85%
+ELT staging disk above 75%
+Queued runs above 25
+Oldest queued run above 2 hours
+Any dead-lettered or recovery-exhausted run
+```
+
+Do not enable high-volume VCN flow logs or application log ingestion unless you
+have confirmed the free Logging allowance and retention settings. Docker logs
+already rotate locally.
 
 ## One-Time OCI Bootstrap
 
@@ -161,12 +282,14 @@ Required API production values include:
 ```dotenv
 PORT=8080
 ENVIRONMENT=production
-ELT_PYTHON_SERVICE_URL=http://<ELT_PRIVATE_IP>:8000
+ELT_PYTHON_SERVICE_URL=http://127.0.0.1:8000
 API_PUBLIC_URL=https://cloud.api.mantrixflow.com
 PIPELINE_MAX_CONCURRENT=2
 PGMQ_PARALLEL_WORKERS=2
 PIPELINE_MAX_PER_ORG_CONCURRENT=1
 PIPELINE_MAX_PER_SOURCE_CONCURRENT=1
+PIPELINE_QUEUED_RUN_MAX_AGE_SEC=0
+PIPELINE_ORPHANED_RUN_MAX_AGE_SEC=3600
 PIPELINE_MAX_PER_HOUR=120
 PIPELINE_MAX_PER_DAY=2000
 ```
@@ -180,30 +303,29 @@ Required ELT values:
 PORT=8000
 ENVIRONMENT=production
 LOG_LEVEL=INFO
-CALLBACK_URL=http://<API_PRIVATE_IP>:8080/api/v1/internal/elt-callback
+CALLBACK_URL=http://127.0.0.1:8080/api/v1/internal/elt-callback
 MAX_CONCURRENT_RUNS=2
+MAX_TAPS_PER_SOURCE=1
 STAGING_ROOT=/var/mantrixflow/staging
-STAGING_DISK_LIMIT_GB=70
+STAGING_DISK_LIMIT_GB=120
 ```
 
 Also include matching `ENCRYPTION_KEY`, `ELT_INTERNAL_TOKEN`, and
 `CALLBACK_TOKEN`.
 
-After the first infrastructure apply, obtain private IPs from Terraform output,
-update the two environment bundles, and rerun the infrastructure workflow.
+Because both services share one host, no private-IP substitution is required.
 
 ## First Deployment
 
 1. Merge the infrastructure repository into `mantrixflow-oracle` while
    `ORACLE_ENABLE_DNS_CUTOVER=false`.
-2. Confirm Terraform creates the compartment, VCN, VMs, Vault, NLB, NSGs,
+2. Confirm Terraform creates the compartment, VCN, application VM, Vault, NLB, NSGs,
    staging volume, and DNS record.
-3. Update the Vault environment bundles with Terraform's private IP outputs.
-4. Merge ELT into `mantrixflow-oracle` and wait for its image deployment.
-5. Merge API into `mantrixflow-oracle`.
-6. Set `ORACLE_ENABLE_DNS_CUTOVER=true` and rerun the infrastructure workflow.
+3. Merge ELT into `mantrixflow-oracle` and wait for its image deployment.
+4. Merge API into `mantrixflow-oracle`.
+5. Set `ORACLE_ENABLE_DNS_CUTOVER=true` and rerun the infrastructure workflow.
    Terraform now switches only `cloud.api.mantrixflow.com` to the Oracle NLB.
-7. Confirm:
+6. Confirm:
 
 ```bash
 curl -fsS https://cloud.api.mantrixflow.com/health
@@ -226,8 +348,9 @@ Never retag or overwrite a commit SHA image.
 - Confirm `scripts/check-zero-cost-profile.sh` passes in infrastructure CI.
 - Before every apply, review the Terraform plan and reject any resource not
   listed in the Zero-Cost Boundary table.
-- Recheck OCI **Limits, Quotas and Usage** after apply. Total A1 usage must be
-  2 OCPUs/12 GB and total boot/block storage must be no more than 190 GB.
+- Recheck OCI **Limits, Quotas and Usage** after apply. Usage must be one
+  A1 VM using 2 OCPUs/12 GB and no more than 190 GB total
+  boot/block storage.
 - Confirm the key uses `SOFTWARE` protection and the vault type is `DEFAULT`,
   never `VIRTUAL_PRIVATE`.
 - Confirm only one Network Load Balancer exists in the tenancy.
@@ -237,6 +360,13 @@ Never retag or overwrite a commit SHA image.
   fail.
 - Submit 50 test runs and verify no more than two are `running`; the rest
   must remain queued.
+- Run a 15-minute API load test with 50 virtual users. Require less than 1%
+  request errors and verify the API container does not restart.
+- Verify a queued run remains queued for more than six hours and is not
+  automatically failed.
+- Test two representative maximum-size pipelines and confirm ELT memory remains
+  below 8 GB and the container does not restart. Reduce concurrency to one if
+  this fails.
 - Deploy while long-running pipelines are active and verify replacement waits.
 - Kill the ELT container during a controlled run and verify the API requeues it,
   preserves the old checkpoint, and stops after three unsuccessful recoveries.
@@ -263,8 +393,8 @@ If OCI shows any forecasted or actual charge:
 2. Set `ORACLE_ENABLE_DNS_CUTOVER=false`.
 3. Inspect **Billing & Cost Management → Cost Analysis** by service.
 4. Compare tenancy usage against the Zero-Cost Boundary table.
-5. Delete only the unexpected paid resource. Do not destroy the two healthy A1
-   VMs while investigating.
+5. Delete only the unexpected paid resource. Do not destroy the healthy A1 VM
+   while investigating.
 6. Keep the account as Free Tier and do not accept an upgrade prompt.
 
 ## Official Free-Tier References
