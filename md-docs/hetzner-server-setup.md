@@ -185,65 +185,170 @@ Each repository should have only one environment:
 production-hetzner
 ```
 
-### Infra Repo Secrets
+Restrict the environment to the deployment branch:
+
+| Repository | Environment branch rule |
+| --- | --- |
+| `mantrixflow-infra` | `main` |
+| `cloud.api.mantrixflow.com` | `mantrixflow` |
+| `cloud.api.etl.server.mantrixflow.com` | `mantrixflow` |
+
+### Infra Repository Secrets
 
 Repository: `mantrixflow-infra`
 
-```text
-HETZNER_API_TOKEN
-HETZNER_SSH_PUBLIC_KEY
-HETZNER_SSH_PRIVATE_KEY
-CLOUDFLARE_API_TOKEN
-CLOUDFLARE_ZONE_ID
-TIGRIS_ACCESS_KEY_ID
-TIGRIS_SECRET_ACCESS_KEY
-TIGRIS_ENDPOINT
-TIGRIS_BUCKET
-```
+Required secrets:
+
+| Secret | Value |
+| --- | --- |
+| `HETZNER_API_TOKEN` | Hetzner Cloud project API token with read/write access |
+| `HETZNER_SSH_PUBLIC_KEY` | Full contents of `~/.ssh/mantrixflow_hetzner.pub` |
+| `HETZNER_SSH_PRIVATE_KEY` | Full contents of `~/.ssh/mantrixflow_hetzner` |
+| `CLOUDFLARE_API_TOKEN` | Cloudflare token with Zone DNS Edit and Zone Settings Edit |
+| `CLOUDFLARE_ZONE_ID` | Cloudflare zone ID for `mantrixflow.com` |
+| `TIGRIS_ACCESS_KEY_ID` | Tigris S3 access key |
+| `TIGRIS_SECRET_ACCESS_KEY` | Tigris S3 secret key |
+| `TIGRIS_ENDPOINT` | Usually `https://fly.storage.tigris.dev` |
+| `TIGRIS_BUCKET` | Tigris bucket name, for example `mantrixflow-production` |
 
 Optional infra repo secrets:
 
-```text
-HETZNER_SERVER_NAME
-HETZNER_SERVER_TYPE
-HETZNER_LOCATION
-```
+| Secret | Default | Use |
+| --- | --- | --- |
+| `HETZNER_SERVER_NAME` | `mantrixflow-production` | Server name API/ELT resolve dynamically |
+| `HETZNER_SERVER_TYPE` | `cx33` | Use `cx43` later for more capacity |
+| `HETZNER_LOCATION` | `hel1` | Helsinki region |
 
-### API Repo Secrets
+### API Repository Secrets
 
 Repository: `cloud.api.mantrixflow.com`
 
-```text
-HETZNER_API_TOKEN
-HETZNER_SSH_PRIVATE_KEY
-GHCR_READ_TOKEN
-INTERNAL_TOKEN
-HETZNER_API_ENV
-```
+Required secrets:
+
+| Secret | Value |
+| --- | --- |
+| `HETZNER_API_TOKEN` | Same Hetzner API token |
+| `HETZNER_SSH_PRIVATE_KEY` | Same private SSH key used by infra |
+| `GHCR_READ_TOKEN` | GitHub classic PAT with `read:packages` |
+| `INTERNAL_TOKEN` | Shared internal token, same value in API and ELT |
+| `HETZNER_API_ENV` | Complete multiline production env file for the Go API |
 
 Optional API repo secret:
 
-```text
-HETZNER_SERVER_NAME
+| Secret | Default | Use |
+| --- | --- | --- |
+| `HETZNER_SERVER_NAME` | `mantrixflow-production` | Must match infra if overridden |
+
+Use this shape for `HETZNER_API_ENV`:
+
+```env
+PORT=8080
+ENVIRONMENT=production
+LOG_LEVEL=info
+
+API_PUBLIC_URL=https://cloud.api.mantrixflow.com
+APP_WEB_URL=https://cloud.mantrixflow.com
+PUBLIC_APP_URL=https://cloud.mantrixflow.com
+CORS_ALLOWED_ORIGINS=https://cloud.mantrixflow.com
+
+DATABASE_URL=...
+DATABASE_DIRECT_URL=...
+DIRECT_URL=...
+
+SUPABASE_URL=...
+SUPABASE_ANON_KEY=...
+SUPABASE_SERVICE_ROLE_KEY=...
+
+ENCRYPTION_MASTER_KEY=...
+INTERNAL_TOKEN=...
+CALLBACK_TOKEN=...
+
+ELT_PYTHON_SERVICE_URL=http://mantrixflow-elt:8000
+
+PIPELINE_MAX_CONCURRENT=1
+PGMQ_PARALLEL_WORKERS=1
+PIPELINE_MAX_PER_ORG_CONCURRENT=1
+PIPELINE_MAX_PER_SOURCE_CONCURRENT=1
+PIPELINE_MAX_PER_HOUR=...
+PIPELINE_MAX_PER_DAY=...
+PIPELINE_ORPHANED_RUN_MAX_AGE_SEC=...
+PIPELINE_QUEUED_RUN_MAX_AGE_SEC=...
+
+# Add enabled product integrations:
+DODO_PAYMENTS_API_KEY=...
+DODO_WEBHOOK_SECRET=...
+DODO_PRODUCT_GROWTH_MONTHLY=...
+DODO_PRODUCT_GROWTH_ANNUAL=...
+DODO_PRODUCT_PRO_MONTHLY=...
+DODO_PRODUCT_PRO_ANNUAL=...
+SLACK_OAUTH_REDIRECT_BASE_URL=https://cloud.api.mantrixflow.com
+POSTHOG_API_KEY=...
+GITHUB_APP_ID=...
+GITHUB_APP_PRIVATE_KEY=...
+EMAIL_FROM=...
 ```
 
-### ELT Repo Secrets
+Keep `INTERNAL_TOKEN` inside `HETZNER_API_ENV` equal to the GitHub secret
+`INTERNAL_TOKEN`.
+
+### ELT Repository Secrets
 
 Repository: `cloud.api.etl.server.mantrixflow.com`
 
-```text
-HETZNER_API_TOKEN
-HETZNER_SSH_PRIVATE_KEY
-GHCR_READ_TOKEN
-INTERNAL_TOKEN
-HETZNER_ELT_ENV
-```
+Required secrets:
+
+| Secret | Value |
+| --- | --- |
+| `HETZNER_API_TOKEN` | Same Hetzner API token |
+| `HETZNER_SSH_PRIVATE_KEY` | Same private SSH key used by infra |
+| `GHCR_READ_TOKEN` | GitHub classic PAT with `read:packages` |
+| `INTERNAL_TOKEN` | Shared internal token, same value in API and ELT |
+| `HETZNER_ELT_ENV` | Complete multiline production env file for the Python ELT server |
 
 Optional ELT repo secret:
 
-```text
-HETZNER_SERVER_NAME
+| Secret | Default | Use |
+| --- | --- | --- |
+| `HETZNER_SERVER_NAME` | `mantrixflow-production` | Must match infra if overridden |
+
+Use this shape for `HETZNER_ELT_ENV`:
+
+```env
+PORT=8000
+ENVIRONMENT=production
+LOG_LEVEL=INFO
+
+ENCRYPTION_KEY=...
+INTERNAL_TOKEN=...
+CALLBACK_TOKEN=...
+CALLBACK_URL=http://mantrixflow-api:8080/api/v1/internal/elt-callback
+
+MAX_CONCURRENT_RUNS=1
+MAX_TAPS_PER_SOURCE=1
+DEFAULT_SYNC_TIMEOUT_SECONDS=...
+
+STAGING_ROOT=/var/mantrixflow/staging
+STAGING_DISK_LIMIT_GB=50
+
+SUPABASE_URL=...
+SUPABASE_SERVICE_ROLE_KEY=...
 ```
+
+Keep `INTERNAL_TOKEN` inside `HETZNER_ELT_ENV` equal to the GitHub secret
+`INTERNAL_TOKEN`, and keep `CALLBACK_TOKEN` equal to the API callback token.
+
+### Secret Reuse Summary
+
+Use the same values across repos for these:
+
+| Secret/value | Repos |
+| --- | --- |
+| `HETZNER_API_TOKEN` | Infra, API, ELT |
+| `HETZNER_SSH_PRIVATE_KEY` | Infra, API, ELT |
+| `GHCR_READ_TOKEN` | API, ELT |
+| `INTERNAL_TOKEN` | API, ELT, and inside both multiline env files |
+| `CALLBACK_TOKEN` | Inside `HETZNER_API_ENV` and `HETZNER_ELT_ENV` |
+| `HETZNER_SERVER_NAME` | All repos, only if overriding default |
 
 ## 7. Deploy Order
 
