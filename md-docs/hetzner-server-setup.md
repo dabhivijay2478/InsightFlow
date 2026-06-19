@@ -1,11 +1,10 @@
 # Hetzner Server Setup Guide
 
-This guide explains how to create the MantrixFlow production server in Hetzner
-Cloud and connect it to the existing GitHub Actions CI/CD deployment.
+This guide explains how to create the MantrixFlow production server through
+GitHub Actions CI/CD using Terraform and Hetzner Cloud.
 
-Use this when creating the server from the Hetzner Cloud UI. The app deployment
-still happens through GitHub Actions. Do not manually copy application code to
-the server.
+Do not manually copy application code to the server. The infra workflow creates
+and bootstraps the server; the API and ELT workflows deploy containers.
 
 ## Recommended Server
 
@@ -32,20 +31,22 @@ keep concurrency conservative.
 
 ## Important First-Time Flow
 
-Hetzner is different from AWS for this setup:
+Use CI/CD for the server:
 
-1. First you buy/create the Hetzner server in Hetzner Cloud.
-2. Then you copy the server ID and IPv4 into GitHub environment secrets.
-3. Then GitHub Actions bootstraps and deploys onto that existing server.
+1. Create Hetzner, Tigris, Cloudflare, and GHCR secrets in GitHub.
+2. Push or manually run the infra workflow on `main`.
+3. Terraform creates the Hetzner CX33 in Helsinki.
+4. GitHub Actions bootstraps Docker, Caddy, firewall, and Tigris backup.
+5. ELT and API workflows deploy onto the current server resolved from Hetzner.
 
-Terraform does **not** create or buy the server now. It only manages DNS/state
-and validates the existing server. Keep the exact server name:
+The default server name is:
 
 ```text
 mantrixflow-production
 ```
 
-The API and ELT deploy workflows find the server by this name.
+API and ELT deploy workflows find the server by this name each run. If you
+change it, set `HETZNER_SERVER_NAME` in all three repos.
 
 ## 1. Create Project
 
@@ -93,209 +94,37 @@ HETZNER_SSH_PUBLIC_KEY   = contents of ~/.ssh/mantrixflow_hetzner.pub
 HETZNER_SSH_PRIVATE_KEY  = contents of ~/.ssh/mantrixflow_hetzner
 ```
 
-## 3. Create Server In Hetzner UI
+## 3. Server Created By Terraform
 
-Go to **Servers > Create Server**.
-
-### Type
-
-Choose:
+Do not create the server manually in Hetzner UI. Terraform creates:
 
 ```text
-Shared Resources
+Name:        mantrixflow-production
+Type:        cx33
+Location:    hel1 (Helsinki)
+Image:       ubuntu-24.04
+Public IP:   IPv4 + IPv6
+Firewall:    22, 80, 443
+Labels:      application=mantrixflow, environment=production
 ```
 
-Do not choose dedicated resources for MVP cost control.
-
-### Location
-
-Choose:
+Optional infra repo secrets can override the default:
 
 ```text
-Helsinki
+HETZNER_SERVER_NAME
+HETZNER_SERVER_TYPE
+HETZNER_LOCATION
 ```
 
-Keep future volumes, firewalls, and networks in the same location or network
-zone.
-
-### Image
-
-Choose:
+For the current target, leave those unset or set:
 
 ```text
-OS Images > Ubuntu > Ubuntu 24.04 LTS
+HETZNER_SERVER_NAME=mantrixflow-production
+HETZNER_SERVER_TYPE=cx33
+HETZNER_LOCATION=hel1
 ```
 
-Do not choose prebuilt Docker apps. The repo bootstrap scripts install Docker
-and Caddy consistently.
-
-### Server Type
-
-Choose:
-
-```text
-CX33
-```
-
-This gives:
-
-```text
-4 vCPU
-8 GB RAM
-80 GB SSD
-20 TB traffic
-Intel/AMD x86_64
-```
-
-For better production headroom choose CX43 instead.
-
-### Networking
-
-Keep public networking enabled:
-
-```text
-IPv4: enabled
-IPv6: enabled
-Private network: not required for single-server setup
-```
-
-Hetzner charges for IPv4. That is expected because Cloudflare DNS needs a public
-origin IP unless you use a more complex IPv6-only setup.
-
-### SSH Keys
-
-Select:
-
-```text
-mantrixflow-hetzner
-```
-
-Do not use password login for production.
-
-### Volumes
-
-Do not create a separate volume for the MVP.
-
-The CX33 internal 80 GB disk is enough to start. ELT staging is stored at:
-
-```text
-/var/mantrixflow/staging
-```
-
-Tigris is used for durable staging backups, not active DuckDB storage.
-
-### Firewalls
-
-Create or select a firewall with only these inbound rules:
-
-| Port | Source | Purpose |
-| ---: | --- | --- |
-| 22 | your IP or GitHub deploy access | SSH |
-| 80 | 0.0.0.0/0, ::/0 | HTTP for Caddy certificate flow |
-| 443 | 0.0.0.0/0, ::/0 | HTTPS API |
-
-Do not expose:
-
-```text
-8080
-8000
-3000
-```
-
-API and ELT communicate over Docker private networking.
-
-### Backups
-
-Disable Hetzner backups for MVP cost control:
-
-```text
-Backups: off
-```
-
-Backups add 20% to the server price. Use Tigris for staging backup and keep
-database backups at the database provider.
-
-### Placement Groups
-
-Skip placement groups for a single-server MVP.
-
-### Labels
-
-Add labels:
-
-```text
-app=mantrixflow
-environment=production
-managed-by=github-actions
-```
-
-### Cloud Config
-
-Leave cloud config empty if Terraform/GitHub Actions will bootstrap the server.
-
-If you are creating manually and want a minimal first boot setup, paste:
-
-```yaml
-#cloud-config
-package_update: true
-package_upgrade: true
-packages:
-  - curl
-  - git
-  - ufw
-  - fail2ban
-  - ca-certificates
-  - gnupg
-runcmd:
-  - ufw allow 22/tcp
-  - ufw allow 80/tcp
-  - ufw allow 443/tcp
-  - ufw --force enable
-  - systemctl enable --now fail2ban
-  - install -d -o root -g root -m 0755 /var/mantrixflow
-  - install -d -o 1001 -g 1001 -m 0750 /var/mantrixflow/staging
-```
-
-The full repo bootstrap still runs later from GitHub Actions.
-
-### Name
-
-Set the server name exactly:
-
-```text
-mantrixflow-production
-```
-
-## 4. After Server Creation
-
-Open the server details page and copy:
-
-```text
-HETZNER_SERVER_ID      numeric Hetzner server ID
-HETZNER_SERVER_IPV4    public IPv4 address
-```
-
-You will add both values to GitHub environment secrets.
-
-Test SSH:
-
-```bash
-ssh -i ~/.ssh/mantrixflow_hetzner root@SERVER_IPV4
-```
-
-Then check:
-
-```bash
-ls -ld /var/mantrixflow/staging
-```
-
-Expected ownership:
-
-```text
-1001 1001
-```
-
-## 5. Tigris Setup
+## 4. Tigris Setup
 
 Create Tigris before running the first infra workflow.
 
@@ -330,14 +159,15 @@ Tigris is used for:
 Tigris is **not** used as active DuckDB storage. DuckDB staging stays on the
 server SSD.
 
-## 6. Cloudflare DNS
+## 5. Cloudflare DNS
 
-Create or update:
+Do not create the DNS record manually unless you need a temporary test. The
+infra workflow creates/updates:
 
 ```text
 Type: A
 Name: cloud.api
-Value: SERVER_IPV4
+Value: Terraform-created Hetzner server IPv4
 Proxy: DNS only for first validation
 TTL: Auto
 ```
@@ -347,7 +177,7 @@ if desired.
 
 Do not point `cloud.mantrixflow.com` here. The frontend remains separate.
 
-## 7. GitHub Environments
+## 6. GitHub Environments
 
 Each repository should have only one environment:
 
@@ -361,8 +191,6 @@ Repository: `mantrixflow-infra`
 
 ```text
 HETZNER_API_TOKEN
-HETZNER_SERVER_ID
-HETZNER_SERVER_IPV4
 HETZNER_SSH_PUBLIC_KEY
 HETZNER_SSH_PRIVATE_KEY
 CLOUDFLARE_API_TOKEN
@@ -373,18 +201,30 @@ TIGRIS_ENDPOINT
 TIGRIS_BUCKET
 ```
 
+Optional infra repo secrets:
+
+```text
+HETZNER_SERVER_NAME
+HETZNER_SERVER_TYPE
+HETZNER_LOCATION
+```
+
 ### API Repo Secrets
 
 Repository: `cloud.api.mantrixflow.com`
 
 ```text
 HETZNER_API_TOKEN
-HETZNER_SERVER_ID
-HETZNER_SERVER_IPV4
 HETZNER_SSH_PRIVATE_KEY
 GHCR_READ_TOKEN
 INTERNAL_TOKEN
 HETZNER_API_ENV
+```
+
+Optional API repo secret:
+
+```text
+HETZNER_SERVER_NAME
 ```
 
 ### ELT Repo Secrets
@@ -393,15 +233,19 @@ Repository: `cloud.api.etl.server.mantrixflow.com`
 
 ```text
 HETZNER_API_TOKEN
-HETZNER_SERVER_ID
-HETZNER_SERVER_IPV4
 HETZNER_SSH_PRIVATE_KEY
 GHCR_READ_TOKEN
 INTERNAL_TOKEN
 HETZNER_ELT_ENV
 ```
 
-## 8. Deploy Order
+Optional ELT repo secret:
+
+```text
+HETZNER_SERVER_NAME
+```
+
+## 7. Deploy Order
 
 Deploy in this order:
 
@@ -412,7 +256,7 @@ Deploy in this order:
 Pull requests run validation only. Deployment happens on push to the deployment
 branches.
 
-## 9. Capacity Settings For CX33
+## 8. Capacity Settings For CX33
 
 For CX33, keep settings conservative:
 
@@ -440,7 +284,7 @@ STAGING_DISK_LIMIT_GB=100
 
 Increase concurrency only after load testing.
 
-## 10. Verify Deployment
+## 9. Verify Deployment
 
 ```bash
 curl -fsS https://cloud.api.mantrixflow.com/health
@@ -450,6 +294,7 @@ curl -fsS https://cloud.api.mantrixflow.com/api/v1/health
 On the server:
 
 ```bash
+ssh -i ~/.ssh/mantrixflow_hetzner root@SERVER_IPV4
 docker ps
 docker network inspect mantrixflow
 systemctl status caddy
@@ -465,15 +310,14 @@ curl -i http://SERVER_IPV4:8000/health
 
 Only ports 80 and 443 should be public.
 
-## 11. Upgrade From CX33 To CX43
+## 10. Upgrade From CX33 To CX43
 
 When you need more concurrency:
 
-1. In Hetzner, power off the server.
-2. Resize from CX33 to CX43.
-3. Power on the server.
-4. Increase env concurrency from 1 to 2.
-5. Redeploy ELT and API through GitHub Actions.
+1. Set infra secret `HETZNER_SERVER_TYPE=cx43`.
+2. Run the infra workflow on `main`.
+3. Increase env concurrency from 1 to 2.
+4. Redeploy ELT and API through GitHub Actions.
 
 Do not jump to high concurrency immediately. Watch memory, disk, and failed
 pipeline recovery first.
