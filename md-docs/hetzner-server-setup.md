@@ -126,7 +126,8 @@ HETZNER_LOCATION=hel1
 
 ## 4. Tigris Setup
 
-Create Tigris before running the first infra workflow.
+Create Tigris before running the first infra workflow. The full setup is in
+[`tigris-storage-setup.md`](./tigris-storage-setup.md).
 
 1. Sign in to Tigris.
 2. Create bucket:
@@ -232,6 +233,7 @@ Required secrets:
 | `GHCR_READ_TOKEN` | GitHub classic PAT with `read:packages` |
 | `INTERNAL_TOKEN` | Shared internal token, same value in API and ELT |
 | `HETZNER_API_ENV` | Complete multiline production env file for the Go API |
+| `GH_APP_PRIVATE_KEY_PEM` | Raw multiline GitHub App private key PEM, stored separately from `HETZNER_API_ENV` |
 
 Optional API repo secret:
 
@@ -284,12 +286,19 @@ DODO_PRODUCT_PRO_ANNUAL=...
 SLACK_OAUTH_REDIRECT_BASE_URL=https://cloud.api.mantrixflow.com
 POSTHOG_API_KEY=...
 GITHUB_APP_ID=...
-GITHUB_APP_PRIVATE_KEY=...
+GITHUB_APP_SLUG=...
+GITHUB_WEBHOOK_SECRET=...
+GITHUB_API_BASE_URL=https://api.github.com
 EMAIL_FROM=...
 ```
 
 Keep `INTERNAL_TOKEN` inside `HETZNER_API_ENV` equal to the GitHub secret
 `INTERNAL_TOKEN`.
+
+Do not put `GITHUB_APP_PRIVATE_KEY` inside `HETZNER_API_ENV`. Store the raw
+multiline PEM as the separate API repo secret `GH_APP_PRIVATE_KEY_PEM`; the API
+workflow converts it into Docker env-file format as `GITHUB_APP_PRIVATE_KEY`
+during deployment.
 
 ### ELT Repository Secrets
 

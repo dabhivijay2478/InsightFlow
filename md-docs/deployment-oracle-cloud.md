@@ -209,10 +209,15 @@ already rotate locally.
    Object Storage:        enough capacity below the 20 GB free total
    ```
 
-3. Create an OCI API user/group with permissions to manage resources in the
-   tenancy, invoke instance-agent commands, and update Vault secret versions.
-4. Create an API signing key and record the user OCID, tenancy OCID,
-   fingerprint, and private key.
+3. Use the existing active administrator user in the Default identity domain
+   for the initial deployment. A separate service user is optional and can be
+   introduced later. Confirm the existing user belongs to the tenancy
+   `Administrators` group because Terraform must initially create compartments,
+   networking, IAM policies, Vault resources, compute, and Run Commands.
+4. From the existing user's profile, create an API signing key and record the
+   user OCID, tenancy OCID, fingerprint, and private key. The user OCID starts
+   with `ocid1.user`; do not use the Default domain OCID, which starts with
+   `ocid1.domain`.
 5. Create one OCI Object Storage bucket with versioning enabled. Use it only for
    Terraform state. Configure a lifecycle rule to delete non-current state
    versions after 30 days, and keep the bucket below 1 GB.
@@ -284,6 +289,9 @@ PORT=8080
 ENVIRONMENT=production
 ELT_PYTHON_SERVICE_URL=http://127.0.0.1:8000
 API_PUBLIC_URL=https://cloud.api.mantrixflow.com
+APP_WEB_URL=https://cloud.mantrixflow.com
+CORS_ALLOWED_ORIGINS=https://cloud.mantrixflow.com
+INTERNAL_TOKEN=<one-shared-production-internal-token>
 PIPELINE_MAX_CONCURRENT=2
 PGMQ_PARALLEL_WORKERS=2
 PIPELINE_MAX_PER_ORG_CONCURRENT=1
@@ -304,14 +312,17 @@ PORT=8000
 ENVIRONMENT=production
 LOG_LEVEL=INFO
 CALLBACK_URL=http://127.0.0.1:8080/api/v1/internal/elt-callback
+INTERNAL_TOKEN=<same-shared-production-internal-token>
 MAX_CONCURRENT_RUNS=2
 MAX_TAPS_PER_SOURCE=1
 STAGING_ROOT=/var/mantrixflow/staging
 STAGING_DISK_LIMIT_GB=120
 ```
 
-Also include matching `ENCRYPTION_KEY`, `ELT_INTERNAL_TOKEN`, and
-`CALLBACK_TOKEN`.
+Also include `ENCRYPTION_KEY` matching the API encryption key and the same
+`INTERNAL_TOKEN` used by the API and service-repository deployment workflows.
+Do not configure the removed legacy names `ELT_INTERNAL_TOKEN`,
+`ETL_INTERNAL_TOKEN`, or `CALLBACK_TOKEN`.
 
 Because both services share one host, no private-IP substitution is required.
 

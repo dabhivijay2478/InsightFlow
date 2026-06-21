@@ -42,6 +42,8 @@ Legacy filenames redirect to the above (`betterstack-status-page-creation.md`, `
 
 - [`hetzner-server-setup.md`](./hetzner-server-setup.md) — Hetzner Cloud
   server creation guide for the CX33/CX43 single-server backend deployment.
+- [`tigris-storage-setup.md`](./tigris-storage-setup.md) — Tigris setup for
+  Terraform/OpenTofu state and Hetzner staging backups.
 - [`deployment-oracle-cloud.md`](./deployment-oracle-cloud.md) — Complete
   Oracle Cloud two-VM Terraform, GitHub Actions, OCI Run Command, deployment,
   verification, rollback, and recovery guide.
