@@ -53,7 +53,7 @@ CREATE TABLE IF NOT EXISTS public.sessions (
 CREATE TABLE IF NOT EXISTS public.accounts (
     id          UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     email       STRING NOT NULL UNIQUE,
-    plan        STRING DEFAULT 'free' CHECK (plan IN ('free','starter','pro','enterprise')),
+    plan        STRING DEFAULT 'free' CHECK (plan IN ('free','starter','growth','pro','enterprise')),
     balance     DECIMAL(12, 2) DEFAULT 0.00,
     created_at  TIMESTAMPTZ DEFAULT NOW(),
     updated_at  TIMESTAMPTZ DEFAULT NOW()
