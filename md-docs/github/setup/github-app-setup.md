@@ -52,23 +52,21 @@ https://api.yourdomain.com/api/v1/github/webhook
 
 Webhook secret:
 - Generate a random secret with `openssl rand -hex 32`.
-- Store the same value in `GITHUB_WEBHOOK_SECRET`.
+- Store the same value in `GH_WEBHOOK_SECRET`.
 
 ## 3. Generate Private Key
 
 From the GitHub App settings page, generate a private key.
 
-Store it as `GITHUB_APP_PRIVATE_KEY`. The Go API accepts either:
-- PEM with literal `\n` line breaks
-- base64-encoded PEM
+Store it as `GH_APP_PRIVATE_KEY`.
 
 Example `.env` shape:
 
 ```dotenv
-GITHUB_APP_ID=123456
-GITHUB_APP_SLUG=mantrixflow-dev
-GITHUB_APP_PRIVATE_KEY=-----BEGIN RSA PRIVATE KEY-----\n...\n-----END RSA PRIVATE KEY-----
-GITHUB_WEBHOOK_SECRET=generated-webhook-secret
+GH_APP_ID=123456
+GH_APP_SLUG=mantrixflow-dev
+GH_APP_PRIVATE_KEY=-----BEGIN RSA PRIVATE KEY-----\n...\n-----END RSA PRIVATE KEY-----
+GH_WEBHOOK_SECRET=generated-webhook-secret
 GITHUB_API_BASE_URL=https://api.github.com
 ```
 
@@ -134,10 +132,10 @@ If a webhook fails validation, the API returns `401` and does not parse the payl
 ## 8. Troubleshooting
 
 Common checks:
-- `GITHUB_APP_ID` matches the app ID, not the installation ID.
-- `GITHUB_APP_SLUG` matches the URL slug under `https://github.com/apps/{slug}`.
-- `GITHUB_APP_PRIVATE_KEY` has valid PEM content.
-- `GITHUB_WEBHOOK_SECRET` matches GitHub App webhook settings exactly.
+- `GH_APP_ID` matches the app ID, not the installation ID.
+- `GH_APP_SLUG` matches the URL slug under `https://github.com/apps/{slug}`.
+- `GH_APP_PRIVATE_KEY` has valid PEM content.
+- `GH_WEBHOOK_SECRET` matches GitHub App webhook settings exactly.
 - GitHub App **Setup URL** is set to `{API_PUBLIC_URL}/api/v1/github/callback`.
 - GitHub App **Redirect on update** is checked, especially when reinstalling or changing repositories in local dev.
 - GitHub App **Webhook URL** is set to `{API_PUBLIC_URL}/api/v1/github/webhook`.

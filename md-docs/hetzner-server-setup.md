@@ -233,7 +233,10 @@ Required secrets:
 | `GHCR_READ_TOKEN` | GitHub classic PAT with `read:packages` |
 | `INTERNAL_TOKEN` | Shared internal token, same value in API and ELT |
 | `HETZNER_API_ENV` | Complete multiline production env file for the Go API |
-| `GH_APP_PRIVATE_KEY_PEM` | Raw multiline GitHub App private key PEM, stored separately from `HETZNER_API_ENV` |
+| `GH_APP_ID` | GitHub App ID. Use `GH_*` because GitHub Actions reserves `GITHUB_*` secret names |
+| `GH_APP_SLUG` | GitHub App slug from `https://github.com/apps/{slug}` |
+| `GH_APP_PRIVATE_KEY` | Raw multiline GitHub App private key PEM, stored separately from `HETZNER_API_ENV` |
+| `GH_WEBHOOK_SECRET` | GitHub App webhook secret |
 
 Optional API repo secret:
 
@@ -285,9 +288,6 @@ DODO_PRODUCT_PRO_MONTHLY=...
 DODO_PRODUCT_PRO_ANNUAL=...
 SLACK_OAUTH_REDIRECT_BASE_URL=https://cloud.api.mantrixflow.com
 POSTHOG_API_KEY=...
-GITHUB_APP_ID=...
-GITHUB_APP_SLUG=...
-GITHUB_WEBHOOK_SECRET=...
 GITHUB_API_BASE_URL=https://api.github.com
 EMAIL_FROM=...
 ```
@@ -295,10 +295,19 @@ EMAIL_FROM=...
 Keep `INTERNAL_TOKEN` inside `HETZNER_API_ENV` equal to the GitHub secret
 `INTERNAL_TOKEN`.
 
-Do not put `GITHUB_APP_PRIVATE_KEY` inside `HETZNER_API_ENV`. Store the raw
-multiline PEM as the separate API repo secret `GH_APP_PRIVATE_KEY_PEM`; the API
-workflow converts it into Docker env-file format as `GITHUB_APP_PRIVATE_KEY`
-during deployment.
+Do not put GitHub App secrets inside `HETZNER_API_ENV`. Store them as separate
+API repo environment secrets:
+
+```text
+GH_APP_ID
+GH_APP_SLUG
+GH_APP_PRIVATE_KEY
+GH_WEBHOOK_SECRET
+```
+
+The API workflow removes stale `GITHUB_*` / `GH_*` GitHub App lines from
+`HETZNER_API_ENV`, then appends these separate `GH_*` secrets to the final
+Docker env file during deployment.
 
 ### ELT Repository Secrets
 

@@ -69,6 +69,9 @@ Legacy filenames redirect to the above (`betterstack-status-page-creation.md`, `
 - [`manual-testing/slack-pipeline-e2e.md`](./manual-testing/slack-pipeline-e2e.md)
   — Slack-native pipeline creation test using Neon source and RDS Postgres
   destination, including strict destination table setup.
+- [`manual-testing/postgres-to-postgres-data-types-ui.md`](./manual-testing/postgres-to-postgres-data-types-ui.md)
+  — live PostgreSQL source to PostgreSQL destination UI test covering schema
+  setup, wide data types, dbt SQL, full-table sync, and incremental upsert.
 
 ## Connectors
 

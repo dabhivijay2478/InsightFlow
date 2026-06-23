@@ -12,6 +12,7 @@ manual-testing/
 ├── dbt-layer.md               ← all dbt SQL scenarios & verification
 ├── normalisation.md           ← rename / cast / exclude rule testing
 ├── column-mapping.md          ← JSON→TEXT, type coercion, col name mismatch, subset/derived columns
+├── postgres-to-postgres-data-types-ui.md ← live PostgreSQL→PostgreSQL UI data-type test
 ├── pipeline-step-by-step.md  ← every pipeline × stream, all 4 mapping patterns, numbered steps
 ├── slack-pipeline-e2e.md      ← Slack-native Neon → RDS pipeline creation and run test
 ├── pipelines/                ← 50 individual pipeline files (source × destination)
@@ -222,3 +223,9 @@ CREATE TABLE IF NOT EXISTS analytics.stripe_customers_hd (
 | Multi-stream single pipeline | each source guide |
 | Concurrent run rejection | each source guide |
 | Cron schedule | each source guide |
+
+## Live UI Smoke Guides
+
+| Guide | Purpose |
+|-------|---------|
+| [`postgres-to-postgres-data-types-ui.md`](./postgres-to-postgres-data-types-ui.md) | Live PostgreSQL source to PostgreSQL destination test with UUID, numeric, boolean, date/time, JSONB, array, bytea-derived, full-table, and incremental upsert coverage. |
