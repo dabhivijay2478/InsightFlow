@@ -254,23 +254,24 @@ https://cloud.mantrixflow.com/workspace/pipelines
 In the SQL/dbt editor for this stream, use:
 
 This SQL runs in DuckDB during the dbt phase, so use DuckDB functions such as
-`json_extract_string`, `TRY_CAST`, and `hex` instead of PostgreSQL-only
-functions.
+`json_extract_string`, `TRY_CAST`, `json_array_length`, and `hex` instead of
+PostgreSQL-only functions. PostgreSQL `text[]` columns are staged as DuckDB
+`JSON`, so use `json_array_length(tags)` rather than `array_length(tags)`.
 
 ```sql
 SELECT
     id,
     order_no,
-    amount::DECIMAL(12,2) AS amount,
+    CAST(amount AS DECIMAL(12,2)) AS amount,
     is_paid,
     order_date,
     created_at,
     updated_at,
-    customer_email::TEXT AS customer_email,
+    CAST(customer_email AS TEXT) AS customer_email,
     json_extract_string(metadata, '$.city') AS city,
     json_extract_string(metadata, '$.channel') AS channel,
     COALESCE(TRY_CAST(json_extract_string(metadata, '$.priority') AS BOOLEAN), false) AS priority,
-    COALESCE(array_length(tags), 0)::INTEGER AS tag_count,
+    COALESCE(json_array_length(tags), 0)::INTEGER AS tag_count,
     CASE WHEN raw_bytes IS NULL THEN NULL ELSE hex(raw_bytes) END AS raw_bytes_hex,
     metadata
 FROM {{ source('raw', 'mxf_live_p2p_src_types__orders_type_matrix') }}
