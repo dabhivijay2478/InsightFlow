@@ -307,8 +307,9 @@ GH_API_BASE_URL
 ```
 
 The API workflow removes stale `GITHUB_*` / `GH_*` GitHub App lines from
-`HETZNER_API_ENV`, then appends these separate `GH_*` secrets to the final
-Docker env file during deployment.
+`HETZNER_API_ENV`, writes these separate `GH_*` secrets to
+`/var/mantrixflow/env/api.secrets.env`, and Docker loads that file directly in
+addition to `/var/mantrixflow/env/api.env`.
 
 ### ELT Repository Secrets
 
