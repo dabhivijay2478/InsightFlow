@@ -22,8 +22,9 @@ and the ASCII flow diagram lives in
 
 ## Billing
 
-- [`dodo-payments-setup.md`](./dodo-payments-setup.md) — **Single** Dodo guide: products, first-time **checkout**, portal-only plan changes (**change-plan API not used**), collection **fallback** (`DODO_PRODUCT_COLLECTION_ID`), webhooks, troubleshooting ([Dodo Product Collections](https://docs.dodopayments.com/features/product-collections)).
-- [`dodo-payments-flowchart.md`](./dodo-payments-flowchart.md) — **Mermaid flow charts:** app → Go API → Dodo (checkout vs portal) and webhook reconciliation.
+- [`billing-dodo-billingsdk.md`](./billing-dodo-billingsdk.md) — current billing architecture: first paid checkout, API-owned plan changes, Dodo portal for payment/receipts, local manual overage invoicing, and BillingSDK-style settings UI.
+- [`dodo-payments-setup.md`](./dodo-payments-setup.md) — Dodo product IDs, checkout, webhooks, environment variables, and troubleshooting.
+- [`dodo-payments-flowchart.md`](./dodo-payments-flowchart.md) — **Mermaid flow charts:** app → Go API → Dodo, API plan changes, portal, and webhook reconciliation.
 
 ## Observability (three separate guides)
 

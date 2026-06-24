@@ -1,8 +1,8 @@
 # Dodo Payments — MantrixFlow Setup Guide
 
-> **Portal-only plan changes.** For organizations that already have a Dodo subscription (`dodo_subscription_id`), upgrades, downgrades, and monthly/annual switches happen in the **Dodo customer portal** (`POST …/billing/portal`). This app does **not** call Dodo’s subscription **change-plan** API and does **not** expose `POST …/billing/change-plan`. Org `plan` / `plan_period` update from **webhooks** (and GET subscription reconciliation) after the user confirms in Dodo. **Checkout** is for **first paid purchase** only (no existing subscription).
+> **Current architecture.** Checkout is for the **first paid purchase** only. For organizations that already have a Dodo subscription (`dodo_subscription_id`), upgrades, downgrades, and monthly/annual switches use `POST …/billing/change-plan`, which calls Dodo server-side. The Dodo portal remains available through `POST …/billing/portal` for payment methods, receipts, and hosted invoice access. See [`billing-dodo-billingsdk.md`](./billing-dodo-billingsdk.md) for the current API and UI contract.
 
-This is the **single** repo guide for Dodo: products, **first-time checkout**, optional **product collection** fallback, **customer portal**, usage meters, environment variables, webhooks, and verification. Align dashboard settings with [Dodo Product Collections](https://docs.dodopayments.com/features/product-collections) when using a collection. **Architecture diagrams:** `[dodo-payments-flowchart.md](./dodo-payments-flowchart.md)`.
+This is the repo guide for Dodo setup: products, **first-time checkout**, optional **product collection** fallback, customer portal, environment variables, webhooks, and verification. Align dashboard settings with [Dodo Product Collections](https://docs.dodopayments.com/features/product-collections) when using a collection. **Architecture diagrams:** [`dodo-payments-flowchart.md`](./dodo-payments-flowchart.md).
 
 ---
 
@@ -81,7 +81,7 @@ Enterprise: create the product **when you open sales**; until then you can skip 
 
 After saving each product, copy the **Product ID** (format: `prd_xxxxxxxxxxxx`).
 
-> **Usage-based overage** is configured in **Step 8**. At minimum, create the delivered-rows meter before selling automatic row overages.
+> **Overage note:** current production overage is MantrixFlow-owned local accounting plus a manual cycle-end invoice ledger, not automatic Dodo usage-meter invoicing. Keep Dodo usage meters disabled unless you intentionally re-enable that legacy path.
 
 ---
 
@@ -91,7 +91,7 @@ Set `DODO_PRODUCT_COLLECTION_ID` only as a **fallback** when `DODO_PRODUCT_`* ca
 
 **Important:** A **new checkout session** creates a **new** Dodo subscription. Customers who **already** have a subscription must **not** run checkout again — you can get **duplicate subscriptions**. **Existing subscribers** change tier or billing interval in **Manage billing** (`POST …/billing/portal`), with confirmation in Dodo’s UI; MantrixFlow waits for **webhooks** to refresh `organizations.plan`. Enable **Allow Subscription Updates** in Dodo so the portal can offer plan changes among products in your collection.
 
-Downgrades and upgrades from the app UI are **not** triggered via a server-side change-plan call — owners use **Manage billing** (portal).
+Downgrades and upgrades from the app UI now use `POST …/billing/change-plan`. Owners use **Manage billing** (portal) only for payment methods, receipts, and hosted invoice access.
 
 ### Create a collection
 
@@ -122,7 +122,7 @@ Dashboard → **Settings** → **Subscriptions**:
 | Flow                                                                   | Implementation                                                                                                                                                                                                                                                                                                     |
 | ---------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | **First paid plan (e.g. Starter → Growth)**                            | `POST …/billing/checkout` with body `plan` + `period` → Dodo **hosted checkout** (one `product_cart` line when `DODO_PRODUCT_`* are set; **collection** only if those env vars are missing and `**DODO_PRODUCT_COLLECTION_ID`** is set). Webhooks (and live subscription reconciliation) set `organizations.plan`. |
-| **Upgrade / downgrade / switch monthly ↔ annual (already subscribed)** | `**POST …/billing/portal`** → Dodo **customer portal** (user confirms plan change). **Change-plan API is not used.** Webhooks update the org afterward.                                                                                                                                                            |
+| **Upgrade / downgrade / switch monthly ↔ annual (already subscribed)** | `POST …/billing/change-plan` → MantrixFlow API calls Dodo subscription change-plan. Upgrades apply immediately; downgrades schedule for the next billing date. Webhooks reconcile the org afterward.                                                                                                      |
 | **Cleaning up duplicate subs**                                         | Cancel the unwanted subscription in the Dodo dashboard (or ask the customer to remove it in Manage billing); keep the subscription id you want and align `organizations.dodo_subscription_id` via webhook or support.                                                                                              |
 
 
@@ -318,7 +318,12 @@ LIMIT 5;
 
 ---
 
-## Step 8 — Usage-Based Overage Billing
+## Step 8 — Legacy Dodo Usage-Based Overage Billing
+
+> **Current production path:** overage is MantrixFlow-owned local usage
+> accounting plus a manual cycle-end invoice ledger. Do not enable the Dodo
+> usage-meter flow below unless you intentionally want to revive legacy
+> automatic metered billing and have verified it will not double-charge.
 
 Dodo usage-based billing works in three parts: the app sends usage events, a Dodo meter aggregates those events, and the product's usage pricing bills the overage at the subscription cycle invoice. Official Dodo docs: [Usage Based Billing](https://docs.dodopayments.com/features/usage-based-billing/introduction), [Meters](https://docs.dodopayments.com/features/usage-based-billing/meters), and [Hybrid Billing](https://docs.dodopayments.com/features/hybrid-billing).
 
@@ -472,9 +477,9 @@ DODO_API_CALLS_METER_ID=mtr_xxxxxxxxxxxxxxxx
 
 | User action                                                     | How it works                                                                                                                                                                                                                                                        |
 | --------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **New subscription (no active paid sub yet)**                   | `POST …/billing/checkout` — typically **single-product** cart from `DODO_PRODUCT_*`; **collection** only if SKUs cannot be resolved and `**DODO_PRODUCT_COLLECTION_ID`** is set. `**organizations.plan**` follows **webhooks** and GET subscription reconciliation. |
-| **Upgrade / downgrade / monthly ↔ annual (already subscribed)** | `**POST …/billing/portal`** — user confirms in Dodo’s portal; **no** in-app change-plan API. Do **not** run checkout again (duplicate subs).                                                                                                                        |
-| **Portal**                                                      | Same as above; ensure **Allow Subscription Updates** is enabled in Dodo for self-serve plan switches.                                                                                                                                                               |
+| **New subscription (no active paid sub yet)**                   | `POST …/billing/checkout` — typically **single-product** cart from `DODO_PRODUCT_*`; **collection** only if SKUs cannot be resolved and `DODO_PRODUCT_COLLECTION_ID` is set. `organizations.plan` follows webhooks and GET subscription reconciliation. |
+| **Upgrade / downgrade / monthly ↔ annual (already subscribed)** | `POST …/billing/change-plan` — MantrixFlow API calls Dodo change-plan server-side. Do **not** run checkout again (duplicate subscriptions).                                                                                                             |
+| **Portal**                                                      | `POST …/billing/portal` — payment method, receipts, and hosted invoice access.                                                                                                                                                                          |
 | **Cancel**                                                      | **Cancel plan** → `POST …/billing/cancel` → cancel at next billing date → webhooks                                                                                                                                                                                  |
 | **Payment failure**                                             | `payment.failed` / `subscription.on_hold` → `past_due` UX                                                                                                                                                                                                           |
 | **Plan expires**                                                | `subscription.expired` → reset starter, clear subscription id                                                                                                                                                                                                       |
@@ -519,5 +524,3 @@ DODO_API_CALLS_METER_ID=mtr_xxxxxxxxxxxxxxxx
 | API calls not appearing in Dodo usage                 | API-call metering is disabled or event name mismatch                                                   | Set `DODO_API_CALLS_USAGE_BILLING_ENABLED=true`, create an `api_call` Count meter, attach it to paid products, then restart the Go server                                            |
 | Dodo API errors (invalid product, auth)               | Test/live mismatch                                                                                     | Use `sk_test_` + test product IDs + test webhook when `ENVIRONMENT` is not `production`; use live only when `ENVIRONMENT=production`                                                 |
 | Plan change in portal not reflected in app            | Webhook delivery or signing secret                                                                     | Replay `**subscription.plan_changed`** from Dodo; confirm `**DODO_WEBHOOK_SECRET**` matches the dashboard                                                                            |
-
-
