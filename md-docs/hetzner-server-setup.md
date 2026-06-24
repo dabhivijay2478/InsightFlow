@@ -288,7 +288,7 @@ DODO_PRODUCT_PRO_MONTHLY=...
 DODO_PRODUCT_PRO_ANNUAL=...
 SLACK_OAUTH_REDIRECT_BASE_URL=https://cloud.api.mantrixflow.com
 POSTHOG_API_KEY=...
-GITHUB_API_BASE_URL=https://api.github.com
+GH_API_BASE_URL=https://api.github.com
 EMAIL_FROM=...
 ```
 
@@ -303,6 +303,7 @@ GH_APP_ID
 GH_APP_SLUG
 GH_APP_PRIVATE_KEY
 GH_WEBHOOK_SECRET
+GH_API_BASE_URL
 ```
 
 The API workflow removes stale `GITHUB_*` / `GH_*` GitHub App lines from

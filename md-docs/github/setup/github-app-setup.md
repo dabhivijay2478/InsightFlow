@@ -67,7 +67,7 @@ GH_APP_ID=123456
 GH_APP_SLUG=mantrixflow-dev
 GH_APP_PRIVATE_KEY=-----BEGIN RSA PRIVATE KEY-----\n...\n-----END RSA PRIVATE KEY-----
 GH_WEBHOOK_SECRET=generated-webhook-secret
-GITHUB_API_BASE_URL=https://api.github.com
+GH_API_BASE_URL=https://api.github.com
 ```
 
 ## 4. Configure API And App URLs
