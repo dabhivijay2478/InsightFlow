@@ -235,7 +235,7 @@ Required secrets:
 | `HETZNER_API_ENV` | Complete multiline production env file for the Go API |
 | `GH_APP_ID` | GitHub App ID. Use `GH_*` because GitHub Actions reserves `GITHUB_*` secret names |
 | `GH_APP_SLUG` | GitHub App slug from `https://github.com/apps/{slug}` |
-| `GH_APP_PRIVATE_KEY` | Raw multiline GitHub App private key PEM, stored separately from `HETZNER_API_ENV` |
+| `GH_APP_PRIVATE_KEY` | Raw multiline GitHub App private key PEM. The workflow base64-encodes it into `GH_APP_PRIVATE_KEY_B64` for Docker |
 | `GH_WEBHOOK_SECRET` | GitHub App webhook secret |
 
 Optional API repo secret:
@@ -309,7 +309,8 @@ GH_API_BASE_URL
 The API workflow removes stale `GITHUB_*` / `GH_*` GitHub App lines from
 `HETZNER_API_ENV`, writes these separate `GH_*` secrets to
 `/var/mantrixflow/env/api.secrets.env`, and Docker loads that file directly in
-addition to `/var/mantrixflow/env/api.env`.
+addition to `/var/mantrixflow/env/api.env`. The PEM key is stored on the host as
+`GH_APP_PRIVATE_KEY_B64` to avoid multiline env-file corruption.
 
 ### ELT Repository Secrets
 

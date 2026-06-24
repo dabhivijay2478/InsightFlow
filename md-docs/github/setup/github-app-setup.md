@@ -59,6 +59,9 @@ Webhook secret:
 From the GitHub App settings page, generate a private key.
 
 Store it as `GH_APP_PRIVATE_KEY`.
+The API deploy workflow base64-encodes this value into `GH_APP_PRIVATE_KEY_B64`
+before writing the Docker env file, so paste the raw downloaded PEM exactly as
+GitHub provides it.
 
 Example `.env` shape:
 
