@@ -22,9 +22,9 @@ and the ASCII flow diagram lives in
 
 ## Billing
 
-- [`billing-dodo-billingsdk.md`](./billing-dodo-billingsdk.md) — current billing architecture: first paid checkout, API-owned plan changes, Dodo portal for payment/receipts, local manual overage invoicing, and BillingSDK-style settings UI.
+- [`billing-dodo-billingsdk.md`](./billing-dodo-billingsdk.md) — current billing architecture: Dodo hosted checkout for paid purchases/upgrades, scheduled downgrades, Dodo portal for payment/receipts, and BillingSDK-style settings UI.
 - [`dodo-payments-setup.md`](./dodo-payments-setup.md) — Dodo product IDs, checkout, webhooks, environment variables, and troubleshooting.
-- [`dodo-payments-flowchart.md`](./dodo-payments-flowchart.md) — **Mermaid flow charts:** app → Go API → Dodo, API plan changes, portal, and webhook reconciliation.
+- [`dodo-payments-flowchart.md`](./dodo-payments-flowchart.md) — **Mermaid flow charts:** app → Go API → Dodo hosted checkout, portal, invoices, and webhook reconciliation.
 
 ## Observability (three separate guides)
 

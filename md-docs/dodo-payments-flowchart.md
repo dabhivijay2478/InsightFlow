@@ -1,100 +1,78 @@
-# Dodo Payments × MantrixFlow — flow charts
+# Dodo Payments and MantrixFlow Flow Charts
 
-Visual map of how **Dodo Payments** connects to the MantrixFlow stack. The current architecture is documented in [`billing-dodo-billingsdk.md`](./billing-dodo-billingsdk.md).
+Visual map of how Dodo Payments connects to the MantrixFlow stack. The current architecture is documented in [`billing-dodo-billingsdk.md`](./billing-dodo-billingsdk.md).
 
-**Facts this diagram reflects**
+## Facts This Diagram Reflects
 
-- The **Next.js app** (`apps/app`) talks only to the **Go API** for billing—never to Dodo directly for authenticated flows.
-- **First paid purchase:** `POST …/billing/checkout` → Dodo **hosted checkout**.
-- **Existing subscription:** plan / interval changes happen through `POST …/billing/change-plan`, which calls Dodo server-side.
-- **Portal:** `POST …/billing/portal` is for payment methods, receipts, and hosted invoice access.
-- **Source of truth** for `organizations.plan` (and related fields) after Dodo events: **webhooks** (`POST /api/v1/billing/webhook`) plus optional reconciliation when the app calls `GET …/billing/subscription`.
+- The Next.js app talks only to the Go API for billing.
+- Starter to paid uses Dodo hosted checkout.
+- Paid upgrades use Dodo hosted checkout for a replacement subscription, then webhook reconciliation supersedes the old subscription.
+- Downgrades are scheduled for the next billing cycle.
+- The Dodo portal is used for payment methods and hosted receipts.
+- Webhooks reconcile the database and are the billing source of truth.
 
----
-
-## End-to-end (system view)
+## End-to-End System View
 
 ```mermaid
 flowchart TB
-  subgraph App["Next.js app (apps/app)"]
-    UI[Settings / Billing / Analytics]
+  subgraph App["Next.js app"]
+    UI["Settings / Billing"]
   end
 
-  subgraph Go["Go API (apps/server/main-server)"]
-    JWT[JWT + org role]
-    CO[POST .../billing/checkout]
-    CH[POST .../billing/change-plan]
-    PO[POST .../billing/portal]
-    SUB[GET .../billing/subscription]
-    WH[POST /api/v1/billing/webhook]
-    DB[(Postgres: organizations.plan, dodo_* ids)]
+  subgraph API["Go API"]
+    CO["POST .../billing/checkout"]
+    PO["POST .../billing/portal"]
+    SUB["GET .../billing/subscription"]
+    INV["GET .../billing/invoices"]
+    WH["POST /api/v1/billing/webhook"]
+    DB[("Postgres billing state")]
   end
 
   subgraph Dodo["Dodo Payments"]
-    HC[Hosted checkout]
-    CP[Customer portal]
-    EV[Events: subscription.*, payment.*]
+    HC["Hosted checkout"]
+    UP["Supersede old subscription"]
+    CP["Customer portal"]
+    EV["subscription/payment events"]
   end
 
-  UI --> JWT
-  JWT --> CO
-  JWT --> CH
-  JWT --> PO
-  JWT --> SUB
+  UI --> CO
+  UI --> PO
+  UI --> SUB
+  UI --> INV
 
-  CO -->|first purchase only| HC
-  HC -->|redirect + pay| Dodo
-  CH -->|server-side subscription change| Dodo
-  PO -->|session URL| CP
-  CP -->|payment method / receipts| Dodo
+  CO -->|"Starter to paid"| HC
+  CO -->|"Paid upgrade"| HC
+  CO -->|"Downgrade"| DB
+  PO --> CP
 
-  EV -->|HMAC verified| WH
+  HC --> EV
+  WH -->|"Upgrade cleanup"| UP
+  EV -->|"HMAC verified"| WH
   WH --> DB
-  SUB --> DB
-  SUB -.->|optional live enrich| Dodo
-
-  DB --> UI
+  DB --> SUB
+  DB --> INV
 ```
 
----
-
-## Checkout vs change-plan vs portal
+## Checkout Decision
 
 ```mermaid
 flowchart LR
-  A[Org needs paid plan change] --> B{dodo_subscription_id set?}
-  B -->|No| C[POST /billing/checkout]
-  B -->|Yes| D[POST /billing/change-plan]
-  C --> E[Dodo hosted checkout]
-  D --> F[Dodo change-plan API]
-  E --> G[Webhooks update org]
-  F --> G
-  H[Payment method or receipts] --> I[POST /billing/portal]
-  I --> J[Dodo customer portal]
+  A["User selects a plan"] --> B{"Current plan"}
+  B -->|"Starter"| C["Create hosted checkout"]
+  B -->|"Growth, selects Pro"| D["Create hosted checkout for replacement subscription"]
+  B -->|"Pro, selects Growth"| E["Schedule downgrade for period end"]
+  B -->|"Enterprise"| F["Disabled: coming soon"]
+  C --> G["Dodo webhook activates plan"]
+  D --> G
+  G --> I["Supersede old paid subscription"]
+  E --> H["Current plan stays active until period end"]
 ```
 
----
+## Quick Reference
 
-## Webhook reconciliation (sequence)
-
-```mermaid
-sequenceDiagram
-  participant Dodo
-  participant API as Go API /billing/webhook
-  participant DB as Postgres
-
-  Dodo->>API: subscription.active / plan_changed / payment.* / cancelled …
-  API->>API: Verify Standard Webhooks signature
-  API->>DB: Update plan, plan_period, plan_status, dodo ids, dates
-  Note over API, App: Client refetches GET /billing/subscription and usage
-```
-
----
-
-## Quick reference
-
-| Path | Mechanism | When plan row updates in DB |
-|------|-----------|------------------------------|
-| First subscription | Checkout session → pay on Dodo | After webhooks (and GET subscription may enrich) |
-| Upgrade / downgrade / monthly ↔ annual | MantrixFlow API → Dodo change-plan | Immediately for upgrades; scheduled locally for downgrades; webhooks reconcile |
-| Payment method, invoices | Portal | Profile in Dodo; org plan unchanged unless an event fires |
+| Scenario | Mechanism | When organization plan changes |
+| --- | --- | --- |
+| Starter to Growth/Pro | Hosted checkout | After Dodo success webhook |
+| Growth to Pro | Hosted checkout replacement subscription | After Dodo success webhook; old subscription is superseded |
+| Pro to Growth | Local scheduled downgrade | At next billing cycle |
+| Payment method or invoice view | Dodo customer portal | No plan change unless Dodo emits a lifecycle event |
