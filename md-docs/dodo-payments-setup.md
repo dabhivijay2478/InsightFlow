@@ -4,9 +4,9 @@ This guide covers the current MVP billing setup.
 
 ## Current Billing Model
 
-- Plans: Starter, Growth, Pro, Enterprise
-- Starter: free fallback plan
-- Growth and Pro: self-serve paid subscriptions
+- Plans: Free, Plus, Pro, Enterprise
+- Free: fallback plan
+- Plus and Pro: self-serve paid subscriptions
 - Enterprise: coming soon, not self-serve
 - Checkout: Dodo hosted checkout for first paid purchases and paid upgrades
 - Paid upgrades: hosted checkout creates a replacement subscription; webhook activation supersedes the old subscription
@@ -14,7 +14,7 @@ This guide covers the current MVP billing setup.
 - Portal: Dodo customer portal for payment methods and hosted receipts
 - Invoices: listed in MantrixFlow from Dodo-backed invoice/payment rows
 
-Do not configure or use product collection checkout for the MVP flow. Do not expose a manual cancel button in the app. API-call billing is postponed until developer/API features exist.
+Do not configure or use product collection checkout for the MVP flow. Do not expose a manual cancel button in the app. Plan limits are fixed for the MVP.
 
 ## Dodo Dashboard Setup
 
@@ -22,8 +22,8 @@ Create these subscription products in Dodo:
 
 | Product | Interval | Env var |
 | --- | --- | --- |
-| MantrixFlow Growth Monthly | Monthly | `DODO_PRODUCT_GROWTH_MONTHLY` |
-| MantrixFlow Growth Annual | Annual | `DODO_PRODUCT_GROWTH_ANNUAL` |
+| MantrixFlow Plus Monthly | Monthly | `DODO_PRODUCT_GROWTH_MONTHLY` |
+| MantrixFlow Plus Annual | Annual | `DODO_PRODUCT_GROWTH_ANNUAL` |
 | MantrixFlow Pro Monthly | Monthly | `DODO_PRODUCT_PRO_MONTHLY` |
 | MantrixFlow Pro Annual | Annual | `DODO_PRODUCT_PRO_ANNUAL` |
 
@@ -46,7 +46,7 @@ APP_WEB_URL=https://cloud.mantrixflow.com
 
 Do not set `DODO_PRODUCT_COLLECTION_ID` for the current flow.
 
-Legacy metering variables such as `DODO_API_CALLS_USAGE_BILLING_ENABLED`, `DODO_API_CALLS_EVENT_NAME`, and `DODO_API_CALLS_METER_ID` should remain unset or disabled.
+The `DODO_PRODUCT_GROWTH_*` names are retained for compatibility and power the app-facing Plus plan.
 
 ## Webhooks
 
@@ -60,22 +60,22 @@ The webhook handler verifies Standard Webhooks signatures and reconciles subscri
 
 Expected lifecycle handling:
 
-- Successful first checkout activates Growth or Pro.
+- Successful first checkout activates Plus or Pro.
 - Successful paid upgrade activates the replacement subscription and supersedes the old subscription.
-- Failed renewal or expired subscription keeps paid access until the current period ends, then falls back to Starter.
+- Failed renewal or expired subscription keeps paid access until the current period ends, then falls back to Free.
 - Duplicate webhook delivery is idempotent.
 
 ## App Billing Flow
 
-### Starter To Growth Or Pro
+### Free To Plus Or Pro
 
-1. User clicks Growth or Pro in Settings -> Billing.
+1. User clicks Plus or Pro in Settings -> Billing.
 2. App calls `POST /api/v1/organizations/:orgId/billing/checkout`.
 3. API creates a checkout intent and Dodo hosted checkout session.
 4. User completes checkout in Dodo.
 5. Dodo webhook activates the paid plan.
 
-### Growth To Pro
+### Plus To Pro
 
 Dodo can reject a second subscription for the same customer with:
 
@@ -91,21 +91,21 @@ MantrixFlow still uses hosted checkout for paid upgrades. The API creates an upg
 4. API creates a Dodo hosted checkout session for Pro.
 5. User completes payment in Dodo.
 6. Dodo webhook activates Pro in MantrixFlow.
-7. MantrixFlow supersedes the old Growth subscription to prevent duplicate renewal.
+7. MantrixFlow supersedes the old Plus subscription to prevent duplicate renewal.
 
-### Pro To Growth
+### Pro To Plus
 
 Downgrades are scheduled and do not reduce access immediately.
 
-1. User clicks Growth.
+1. User clicks Plus.
 2. API creates a `downgrade_renewal` checkout intent.
 3. Current Pro access remains active until `plan_expires_at`.
-4. Billing UI shows Growth starts at the next billing cycle.
-5. If renewal is not completed, the organization falls back to Starter.
+4. Billing UI shows Plus starts at the next billing cycle.
+5. If renewal is not completed, the organization falls back to Free.
 
-### Starter Fallback
+### Free Fallback
 
-Users do not manually downgrade to Starter. Starter is automatic when payment cannot be collected or a paid renewal expires after the current paid period.
+Users do not manually downgrade to Free. Free is automatic when payment cannot be collected or a paid renewal expires after the current paid period.
 
 ## API Reference
 
@@ -115,18 +115,17 @@ Users do not manually downgrade to Starter. Starter is automatic when payment ca
 | `POST` | `/api/v1/organizations/:orgId/billing/checkout` | Hosted checkout for first paid purchase, paid upgrade, or scheduled downgrade |
 | `POST` | `/api/v1/organizations/:orgId/billing/portal` | Dodo customer portal |
 | `GET` | `/api/v1/organizations/:orgId/billing/invoices` | Dodo-backed invoice/payment list |
-| `GET` | `/api/v1/organizations/:orgId/billing/upcoming-charges` | Base subscription estimate |
 | `DELETE` | `/api/v1/organizations/:orgId/billing/scheduled-change` | Cancel pending scheduled downgrade |
 | `POST` | `/api/v1/billing/webhook` | Public Dodo webhook endpoint |
 
 ## Verification Checklist
 
-1. Starter to Growth opens hosted checkout.
-2. Dodo webhook activates Growth.
-3. Growth to Pro opens hosted checkout and webhook activation supersedes the old subscription.
-4. Pro to Growth schedules the downgrade and keeps Pro active until period end.
+1. Free to Plus opens hosted checkout.
+2. Dodo webhook activates Plus.
+3. Plus to Pro opens hosted checkout and webhook activation supersedes the old subscription.
+4. Pro to Plus schedules the downgrade and keeps Pro active until period end.
 5. Enterprise shows Coming soon and cannot be selected.
-6. Starter selection is disabled for paid users and described as automatic fallback.
+6. Free selection is disabled for paid users and described as automatic fallback.
 7. Manage billing opens the Dodo portal.
 8. Invoice history lists Dodo-backed rows and hosted invoice links.
-9. Failed/expired renewal falls back to Starter only after the current period ends.
+9. Failed/expired renewal falls back to Free only after the current period ends.
