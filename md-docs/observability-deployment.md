@@ -69,10 +69,9 @@ needs GitHub environment secrets named `BETTERSTACK_API_TOKEN`,
 maintenance report before deployment and update the same report after the
 health check. CI/CD API calls must use
 `https://uptime.betterstack.com/api/v2/`, never `https://betterstack.com`.
-For maintenance reports, Better Stack only accepts `maintenance` resource
-statuses on status updates; the workflow ends maintenance by PATCHing
-`ends_at` to the current time. Failed deploys then open a separate manual
-incident with the API resource marked `downtime`.
+The workflow ends maintenance by PATCHing the report's `ends_at` to the current
+time. Failed deploys then open a separate manual incident with the API resource
+marked `downtime`.
 
 ### Webhook auth (already required for ELT)
 
