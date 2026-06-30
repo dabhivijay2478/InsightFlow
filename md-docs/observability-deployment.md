@@ -63,6 +63,13 @@ ECS injects secrets listed in `apps/mantrixflow-infra/cdk/lib/config.ts`.
 | `BETTERSTACK_RESOURCE_API` | Step 6 curl (API resource `id`) |
 | `BETTERSTACK_RESOURCE_ELT` | Optional — blank if unused |
 
+These SSM values are for runtime API behavior. The API deploy workflow also
+needs GitHub environment secrets named `BETTERSTACK_API_TOKEN`,
+`BETTERSTACK_STATUS_PAGE_ID`, and `BETTERSTACK_RESOURCE_API` so CI can create a
+maintenance report before deployment and update the same report after the
+health check. CI/CD API calls must use
+`https://uptime.betterstack.com/api/v2/`, never `https://betterstack.com`.
+
 ### Webhook auth (already required for ELT)
 
 | SSM name | Used by |
