@@ -30,10 +30,10 @@ Generated from `apps/server/main-server/internal/email/templates/*.html` after d
 | `incremental_initial_complete` | `MantrixFlow / incremental_initial_complete` | `A-dadb53596fd59af0d9b6` | `AUTOSEND_TEMPLATE_INCREMENTAL_INITIAL_COMPLETE` | transactional |
 | `usage_warning_80` | `MantrixFlow / usage_warning_80` | `A-9d98e50ad517101c1403` | `AUTOSEND_TEMPLATE_USAGE_WARNING_80` | transactional |
 | `usage_limit_reached` | `MantrixFlow / usage_limit_reached` | `A-a0159d272ea193527d5e` | `AUTOSEND_TEMPLATE_USAGE_LIMIT_REACHED` | transactional |
-| `weekly_digest` | `MantrixFlow / weekly_digest` | `A-828f9c40d0b5df1ff40c` | `AUTOSEND_TEMPLATE_WEEKLY_DIGEST` | marketing |
-| `reengagement_14_days` | `MantrixFlow / reengagement_14_days` | `A-08eaa38f8e2989c3be4b` | `AUTOSEND_TEMPLATE_REENGAGEMENT_14_DAYS` | marketing |
-| `onboarding_day3_nudge` | `MantrixFlow / onboarding_day3_nudge` | `A-29dfa1c5633e88a43d72` | `AUTOSEND_TEMPLATE_ONBOARDING_DAY3_NUDGE` | marketing |
-| `onboarding_day7_nudge` | `MantrixFlow / onboarding_day7_nudge` | `A-3d107ea5bb257bd254b5` | `AUTOSEND_TEMPLATE_ONBOARDING_DAY7_NUDGE` | marketing |
+| `weekly_digest` | `MantrixFlow / weekly_digest` | `A-828f9c40d0b5df1ff40c` | `AUTOSEND_TEMPLATE_WEEKLY_DIGEST` | transactional |
+| `reengagement_14_days` | `MantrixFlow / reengagement_14_days` | `A-08eaa38f8e2989c3be4b` | `AUTOSEND_TEMPLATE_REENGAGEMENT_14_DAYS` | transactional |
+| `onboarding_day3_nudge` | `MantrixFlow / onboarding_day3_nudge` | `A-29dfa1c5633e88a43d72` | `AUTOSEND_TEMPLATE_ONBOARDING_DAY3_NUDGE` | transactional |
+| `onboarding_day7_nudge` | `MantrixFlow / onboarding_day7_nudge` | `A-3d107ea5bb257bd254b5` | `AUTOSEND_TEMPLATE_ONBOARDING_DAY7_NUDGE` | transactional |
 | `connection_created` | `MantrixFlow / connection_created` | `A-ac28cb59277d6534a744` | `AUTOSEND_TEMPLATE_CONNECTION_CREATED` | transactional |
 | `connection_error` | `MantrixFlow / connection_error` | `A-158ad0b25cc108964cdf` | `AUTOSEND_TEMPLATE_CONNECTION_ERROR` | transactional |
 | `pipeline_deleted` | `MantrixFlow / pipeline_deleted` | `A-eabb1c6d3c8602baef39` | `AUTOSEND_TEMPLATE_PIPELINE_DELETED` | transactional |
