@@ -34,6 +34,7 @@ and the ASCII flow diagram lives in
 - [`autosend-template-design-guide.md`](./autosend-template-design-guide.md) - Responsive MantrixFlow email layout rules and base shell.
 - [`autosend-template-id-map.md`](./autosend-template-id-map.md) - AutoSend-created template IDs and env mapping.
 - [`dodo-autosend-transformations.md`](./dodo-autosend-transformations.md) - Dodo to AutoSend JavaScript transformation examples.
+- [`autosend-dodo-supabase-production-runbook.md`](./autosend-dodo-supabase-production-runbook.md) - Production setup, Dodo integration steps, Supabase SMTP timeout troubleshooting, and rollout checklist.
 
 ## Observability (three separate guides)
 

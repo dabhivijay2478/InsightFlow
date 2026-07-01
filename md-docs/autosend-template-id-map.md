@@ -1,15 +1,8 @@
 # AutoSend Template ID Map
 
-Generated from `apps/server/main-server/internal/email/templates/*.html` after deleting and recreating MantrixFlow-managed templates via the AutoSend API.
+Generated from `apps/server/main-server/internal/email/templates/*.html`.
 
-## Deleted Before Recreate
-
-| AutoSend template name | Old template ID |
-| --- | --- |
-| `MantrixFlow / member_removed` | `A-8faa245feda927e90e1a` |
-| `MantrixFlow / organization_invite` | `A-c54473fc25f390eb9a1c` |
-
-## Current Templates
+## Backend Templates
 
 | Template key | AutoSend template name | Template ID | Env var | Type |
 | --- | --- | --- | --- | --- |
@@ -43,7 +36,25 @@ Generated from `apps/server/main-server/internal/email/templates/*.html` after d
 | `trial_expired` | `MantrixFlow / trial_expired` | `A-6c7ccf48715ad79280f5` | `AUTOSEND_TEMPLATE_TRIAL_EXPIRED` | transactional |
 | `payment_failed` | `MantrixFlow / payment_failed` | `A-26b35ffc124523857bf4` | `AUTOSEND_TEMPLATE_PAYMENT_FAILED` | transactional |
 
-## Env Block
+## Dodo Payments Templates
+
+These are owned by the Dodo Payments AutoSend integration, not the backend email queue.
+
+| Template key | AutoSend template name | Template ID | Transformation constant | Type |
+| --- | --- | --- | --- | --- |
+| `dodo_payment_succeeded` | `MantrixFlow Dodo / payment_succeeded` | `A-c3684aac9fd1839d7392` | `DODO_AUTOSEND_TEMPLATE_PAYMENT_SUCCEEDED` | transactional |
+| `dodo_payment_failed` | `MantrixFlow Dodo / payment_failed` | `A-59e0d279cdb764c41e95` | `DODO_AUTOSEND_TEMPLATE_PAYMENT_FAILED` | transactional |
+| `dodo_subscription_active` | `MantrixFlow Dodo / subscription_active` | `A-394fbb29881d9a416302` | `DODO_AUTOSEND_TEMPLATE_SUBSCRIPTION_ACTIVE` | transactional |
+| `dodo_subscription_renewed` | `MantrixFlow Dodo / subscription_renewed` | `A-5f1b6453e6d6ed0fe2e7` | `DODO_AUTOSEND_TEMPLATE_SUBSCRIPTION_RENEWED` | transactional |
+| `dodo_subscription_plan_changed` | `MantrixFlow Dodo / subscription_plan_changed` | `A-29e8495496ae69515bbe` | `DODO_AUTOSEND_TEMPLATE_SUBSCRIPTION_PLAN_CHANGED` | transactional |
+| `dodo_subscription_cancelled` | `MantrixFlow Dodo / subscription_cancelled` | `A-4b18e2e41ce0adaa5b9b` | `DODO_AUTOSEND_TEMPLATE_SUBSCRIPTION_CANCELLED` | transactional |
+| `dodo_subscription_on_hold` | `MantrixFlow Dodo / subscription_on_hold` | `A-7f203558a2c98cff9b5b` | `DODO_AUTOSEND_TEMPLATE_SUBSCRIPTION_ON_HOLD` | transactional |
+| `dodo_subscription_expired` | `MantrixFlow Dodo / subscription_expired` | `A-6f2ab20a0e24a1bc0696` | `DODO_AUTOSEND_TEMPLATE_SUBSCRIPTION_EXPIRED` | transactional |
+| `dodo_refund_succeeded` | `MantrixFlow Dodo / refund_succeeded` | `A-2d0a43d72d7a51fe9005` | `DODO_AUTOSEND_TEMPLATE_REFUND_SUCCEEDED` | transactional |
+| `dodo_dispute_opened` | `MantrixFlow Dodo / dispute_opened` | `A-886448badef5328a784f` | `DODO_AUTOSEND_TEMPLATE_DISPUTE_OPENED` | transactional |
+| `dodo_invoice_available` | `MantrixFlow Dodo / invoice_available` | `A-567959b2859c430bcf68` | `DODO_AUTOSEND_TEMPLATE_INVOICE_AVAILABLE` | transactional |
+
+## Backend Env Block
 
 ```bash
 AUTOSEND_TEMPLATE_ORG_INVITE=A-13f385ebe4e515c5fdba
@@ -75,4 +86,20 @@ AUTOSEND_TEMPLATE_TRIAL_ENDS_7_DAYS=A-48833eea5afa2659fb3d
 AUTOSEND_TEMPLATE_TRIAL_ENDS_1_DAY=A-6e65de00867a30b038b7
 AUTOSEND_TEMPLATE_TRIAL_EXPIRED=A-6c7ccf48715ad79280f5
 AUTOSEND_TEMPLATE_PAYMENT_FAILED=A-26b35ffc124523857bf4
+```
+
+## Dodo Transformation Constants
+
+```js
+const DODO_AUTOSEND_TEMPLATE_PAYMENT_SUCCEEDED = "A-c3684aac9fd1839d7392";
+const DODO_AUTOSEND_TEMPLATE_PAYMENT_FAILED = "A-59e0d279cdb764c41e95";
+const DODO_AUTOSEND_TEMPLATE_SUBSCRIPTION_ACTIVE = "A-394fbb29881d9a416302";
+const DODO_AUTOSEND_TEMPLATE_SUBSCRIPTION_RENEWED = "A-5f1b6453e6d6ed0fe2e7";
+const DODO_AUTOSEND_TEMPLATE_SUBSCRIPTION_PLAN_CHANGED = "A-29e8495496ae69515bbe";
+const DODO_AUTOSEND_TEMPLATE_SUBSCRIPTION_CANCELLED = "A-4b18e2e41ce0adaa5b9b";
+const DODO_AUTOSEND_TEMPLATE_SUBSCRIPTION_ON_HOLD = "A-7f203558a2c98cff9b5b";
+const DODO_AUTOSEND_TEMPLATE_SUBSCRIPTION_EXPIRED = "A-6f2ab20a0e24a1bc0696";
+const DODO_AUTOSEND_TEMPLATE_REFUND_SUCCEEDED = "A-2d0a43d72d7a51fe9005";
+const DODO_AUTOSEND_TEMPLATE_DISPUTE_OPENED = "A-886448badef5328a784f";
+const DODO_AUTOSEND_TEMPLATE_INVOICE_AVAILABLE = "A-567959b2859c430bcf68";
 ```

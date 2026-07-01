@@ -62,7 +62,7 @@ webhook.payload = {
 };
 ```
 
-See `dodo-autosend-transformations.md` for transformation examples.
+See [`dodo-autosend-transformations.md`](./dodo-autosend-transformations.md) for transformation examples and [`autosend-template-id-map.md`](./autosend-template-id-map.md) for the 11 Dodo-owned template IDs.
 
 ## Duplicate Prevention
 
@@ -82,6 +82,8 @@ See `dodo-autosend-transformations.md` for transformation examples.
 5. Configure Dodo AutoSend integration and test key Dodo transformations in test mode.
 6. Run backend email smoke tests with `TEST_EMAIL=you@example.com go run ./cmd/emailtest -dry-run`.
 7. Send a small live test for auth, backend, and Dodo email before production rollout.
+
+Use [`autosend-dodo-supabase-production-runbook.md`](./autosend-dodo-supabase-production-runbook.md) for the full production checklist, Supabase signup timeout troubleshooting, and Dodo dashboard setup steps.
 
 ## Sources
 

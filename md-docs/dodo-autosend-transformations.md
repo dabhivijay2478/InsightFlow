@@ -2,6 +2,21 @@
 
 These examples are for the Dodo Payments AutoSend integration. Dodo owns customer-facing payment, subscription, refund, dispute, and invoice emails. The backend should only reconcile billing state from Dodo webhooks.
 
+## Dodo Handler Shape
+
+Dodo transformations run inside a JavaScript handler. Paste the shared helpers, then branch by `webhook.eventType`, and always return `webhook`.
+
+```js
+function handler(webhook) {
+  // Paste shared helpers above this handler, then paste the event blocks here.
+  if (webhook.eventType === "payment.succeeded") {
+    // payment.succeeded block
+  }
+
+  return webhook;
+}
+```
+
 ## Shared Helpers
 
 Paste helpers at the top of each Dodo transformation if the integration editor does not support shared code.
@@ -12,17 +27,17 @@ const REPLY_TO = { email: "support@mantrixflow.com", name: "MantrixFlow Support"
 const BILLING_URL = "https://cloud.mantrixflow.com/workspace/settings";
 
 const templates = {
-  payment_succeeded: "tpl_payment_succeeded",
-  payment_failed: "tpl_payment_failed",
-  subscription_active: "tpl_subscription_active",
-  subscription_renewed: "tpl_subscription_renewed",
-  subscription_plan_changed: "tpl_subscription_plan_changed",
-  subscription_cancelled: "tpl_subscription_cancelled",
-  subscription_on_hold: "tpl_subscription_on_hold",
-  subscription_expired: "tpl_subscription_expired",
-  refund_succeeded: "tpl_refund_succeeded",
-  dispute_opened: "tpl_dispute_opened",
-  invoice_available: "tpl_invoice_available"
+  payment_succeeded: "A-c3684aac9fd1839d7392",
+  payment_failed: "A-59e0d279cdb764c41e95",
+  subscription_active: "A-394fbb29881d9a416302",
+  subscription_renewed: "A-5f1b6453e6d6ed0fe2e7",
+  subscription_plan_changed: "A-29e8495496ae69515bbe",
+  subscription_cancelled: "A-4b18e2e41ce0adaa5b9b",
+  subscription_on_hold: "A-7f203558a2c98cff9b5b",
+  subscription_expired: "A-6f2ab20a0e24a1bc0696",
+  refund_succeeded: "A-2d0a43d72d7a51fe9005",
+  dispute_opened: "A-886448badef5328a784f",
+  invoice_available: "A-567959b2859c430bcf68"
 };
 
 function valueAt(obj, paths, fallback = "") {
@@ -34,19 +49,19 @@ function valueAt(obj, paths, fallback = "") {
 }
 
 function customer(event) {
-  const email = valueAt(event, ["data.customer.email", "data.customer_email", "customer.email", "customer_email"]);
-  const name = valueAt(event, ["data.customer.name", "data.customer_name", "customer.name", "customer_name"], "there");
+  const email = valueAt(event, ["payload.data.customer.email", "payload.data.customer_email", "data.customer.email", "data.customer_email", "customer.email", "customer_email"]);
+  const name = valueAt(event, ["payload.data.customer.name", "payload.data.customer_name", "data.customer.name", "data.customer_name", "customer.name", "customer_name"], "there");
   return { email, name };
 }
 
 function money(event) {
-  const amountRaw = Number(valueAt(event, ["data.amount", "data.total", "amount"], 0));
-  const currency = String(valueAt(event, ["data.currency", "currency"], "USD")).toUpperCase();
+  const amountRaw = Number(valueAt(event, ["payload.data.amount", "payload.data.total", "data.amount", "data.total", "amount"], 0));
+  const currency = String(valueAt(event, ["payload.data.currency", "data.currency", "currency"], "USD")).toUpperCase();
   const amount = amountRaw > 1000 ? (amountRaw / 100).toFixed(2) : amountRaw.toFixed(2);
   return { amount, currency };
 }
 
-function send(templateKey, subject, dynamicData, toOverride) {
+function send(webhook, templateKey, subject, dynamicData, toOverride) {
   webhook.url = "https://api.autosend.com/v1/mails/send";
   webhook.payload = {
     to: toOverride || customer(webhook),
@@ -66,12 +81,12 @@ function send(templateKey, subject, dynamicData, toOverride) {
 ```js
 const c = customer(webhook);
 const m = money(webhook);
-send("payment_succeeded", "Payment received for MantrixFlow", {
+send(webhook, "payment_succeeded", "Payment received for MantrixFlow", {
   customer_name: c.name,
   amount: m.amount,
   currency: m.currency,
-  payment_id: valueAt(webhook, ["data.payment_id", "data.id", "id"]),
-  receipt_url: valueAt(webhook, ["data.receipt_url", "data.invoice_url"], BILLING_URL),
+  payment_id: valueAt(webhook, ["payload.data.payment_id", "payload.data.id", "data.payment_id", "data.id", "id"]),
+  receipt_url: valueAt(webhook, ["payload.data.receipt_url", "payload.data.invoice_url", "data.receipt_url", "data.invoice_url"], BILLING_URL),
   date: new Date().toISOString()
 }, c);
 ```
@@ -81,12 +96,12 @@ send("payment_succeeded", "Payment received for MantrixFlow", {
 ```js
 const c = customer(webhook);
 const m = money(webhook);
-send("payment_failed", "Payment failed for MantrixFlow", {
+send(webhook, "payment_failed", "Payment failed for MantrixFlow", {
   customer_name: c.name,
   amount: m.amount,
   currency: m.currency,
-  payment_id: valueAt(webhook, ["data.payment_id", "data.id", "id"]),
-  failure_reason: valueAt(webhook, ["data.failure_reason", "data.error_message", "data.status"], "The payment could not be completed."),
+  payment_id: valueAt(webhook, ["payload.data.payment_id", "payload.data.id", "data.payment_id", "data.id", "id"]),
+  failure_reason: valueAt(webhook, ["payload.data.failure_reason", "payload.data.error_message", "payload.data.status", "data.failure_reason", "data.error_message", "data.status"], "The payment could not be completed."),
   billing_url: BILLING_URL
 }, c);
 ```
@@ -95,10 +110,10 @@ send("payment_failed", "Payment failed for MantrixFlow", {
 
 ```js
 const c = customer(webhook);
-send("subscription_active", "Your MantrixFlow subscription is active", {
+send(webhook, "subscription_active", "Your MantrixFlow subscription is active", {
   customer_name: c.name,
-  plan_name: valueAt(webhook, ["data.product.name", "data.plan.name", "data.product_name"], "MantrixFlow plan"),
-  billing_period: valueAt(webhook, ["data.billing_period", "data.interval"], "current billing period"),
+  plan_name: valueAt(webhook, ["payload.data.product.name", "payload.data.plan.name", "payload.data.product_name", "data.product.name", "data.plan.name", "data.product_name"], "MantrixFlow plan"),
+  billing_period: valueAt(webhook, ["payload.data.billing_period", "payload.data.interval", "data.billing_period", "data.interval"], "current billing period"),
   billing_url: BILLING_URL
 }, c);
 ```
@@ -109,22 +124,22 @@ Use the event names provided by your Dodo webhook configuration for renewal and 
 
 ```js
 const c = customer(webhook);
-send("subscription_renewed", "MantrixFlow subscription renewed", {
+send(webhook, "subscription_renewed", "MantrixFlow subscription renewed", {
   customer_name: c.name,
-  plan_name: valueAt(webhook, ["data.product.name", "data.plan.name"], "MantrixFlow plan"),
-  renewed_at: valueAt(webhook, ["data.renewed_at", "created_at"], new Date().toISOString()),
-  next_billing_date: valueAt(webhook, ["data.next_billing_date", "data.current_period_end"], "your next renewal date"),
+  plan_name: valueAt(webhook, ["payload.data.product.name", "payload.data.plan.name", "data.product.name", "data.plan.name"], "MantrixFlow plan"),
+  renewed_at: valueAt(webhook, ["payload.data.renewed_at", "payload.created_at", "data.renewed_at", "created_at"], new Date().toISOString()),
+  next_billing_date: valueAt(webhook, ["payload.data.next_billing_date", "payload.data.current_period_end", "data.next_billing_date", "data.current_period_end"], "your next renewal date"),
   billing_url: BILLING_URL
 }, c);
 ```
 
 ```js
 const c = customer(webhook);
-send("subscription_plan_changed", "MantrixFlow plan changed", {
+send(webhook, "subscription_plan_changed", "MantrixFlow plan changed", {
   customer_name: c.name,
-  old_plan_name: valueAt(webhook, ["data.previous_product.name", "data.old_plan.name"], "previous plan"),
-  new_plan_name: valueAt(webhook, ["data.product.name", "data.new_plan.name"], "new plan"),
-  effective_date: valueAt(webhook, ["data.effective_date", "created_at"], new Date().toISOString()),
+  old_plan_name: valueAt(webhook, ["payload.data.previous_product.name", "payload.data.old_plan.name", "data.previous_product.name", "data.old_plan.name"], "previous plan"),
+  new_plan_name: valueAt(webhook, ["payload.data.product.name", "payload.data.new_plan.name", "data.product.name", "data.new_plan.name"], "new plan"),
+  effective_date: valueAt(webhook, ["payload.data.effective_date", "payload.created_at", "data.effective_date", "created_at"], new Date().toISOString()),
   billing_url: BILLING_URL
 }, c);
 ```
@@ -133,30 +148,30 @@ send("subscription_plan_changed", "MantrixFlow plan changed", {
 
 ```js
 const c = customer(webhook);
-send("subscription_cancelled", "MantrixFlow subscription cancelled", {
+send(webhook, "subscription_cancelled", "MantrixFlow subscription cancelled", {
   customer_name: c.name,
-  plan_name: valueAt(webhook, ["data.product.name", "data.plan.name"], "MantrixFlow plan"),
-  access_until: valueAt(webhook, ["data.current_period_end", "data.cancel_at"], "the end of the current period"),
+  plan_name: valueAt(webhook, ["payload.data.product.name", "payload.data.plan.name", "data.product.name", "data.plan.name"], "MantrixFlow plan"),
+  access_until: valueAt(webhook, ["payload.data.current_period_end", "payload.data.cancel_at", "data.current_period_end", "data.cancel_at"], "the end of the current period"),
   billing_url: BILLING_URL
 }, c);
 ```
 
 ```js
 const c = customer(webhook);
-send("subscription_on_hold", "MantrixFlow subscription on hold", {
+send(webhook, "subscription_on_hold", "MantrixFlow subscription on hold", {
   customer_name: c.name,
-  plan_name: valueAt(webhook, ["data.product.name", "data.plan.name"], "MantrixFlow plan"),
-  reason: valueAt(webhook, ["data.reason", "data.status"], "Billing needs attention."),
+  plan_name: valueAt(webhook, ["payload.data.product.name", "payload.data.plan.name", "data.product.name", "data.plan.name"], "MantrixFlow plan"),
+  reason: valueAt(webhook, ["payload.data.reason", "payload.data.status", "data.reason", "data.status"], "Billing needs attention."),
   billing_url: BILLING_URL
 }, c);
 ```
 
 ```js
 const c = customer(webhook);
-send("subscription_expired", "MantrixFlow subscription expired", {
+send(webhook, "subscription_expired", "MantrixFlow subscription expired", {
   customer_name: c.name,
-  plan_name: valueAt(webhook, ["data.product.name", "data.plan.name"], "MantrixFlow plan"),
-  expired_at: valueAt(webhook, ["data.expired_at", "data.current_period_end"], new Date().toISOString()),
+  plan_name: valueAt(webhook, ["payload.data.product.name", "payload.data.plan.name", "data.product.name", "data.plan.name"], "MantrixFlow plan"),
+  expired_at: valueAt(webhook, ["payload.data.expired_at", "payload.data.current_period_end", "data.expired_at", "data.current_period_end"], new Date().toISOString()),
   billing_url: BILLING_URL
 }, c);
 ```
@@ -166,35 +181,35 @@ send("subscription_expired", "MantrixFlow subscription expired", {
 ```js
 const c = customer(webhook);
 const m = money(webhook);
-send("refund_succeeded", "Refund completed for MantrixFlow", {
+send(webhook, "refund_succeeded", "Refund completed for MantrixFlow", {
   customer_name: c.name,
   amount: m.amount,
   currency: m.currency,
-  refund_id: valueAt(webhook, ["data.refund_id", "data.id", "id"]),
-  payment_id: valueAt(webhook, ["data.payment_id", "data.payment.id"], "")
+  refund_id: valueAt(webhook, ["payload.data.refund_id", "payload.data.id", "data.refund_id", "data.id", "id"]),
+  payment_id: valueAt(webhook, ["payload.data.payment_id", "payload.data.payment.id", "data.payment_id", "data.payment.id"], "")
 }, c);
 ```
 
 ```js
 const m = money(webhook);
-send("dispute_opened", "Dispute opened for MantrixFlow payment", {
+send(webhook, "dispute_opened", "Dispute opened for MantrixFlow payment", {
   amount: m.amount,
   currency: m.currency,
-  payment_id: valueAt(webhook, ["data.payment_id", "data.payment.id"], ""),
+  payment_id: valueAt(webhook, ["payload.data.payment_id", "payload.data.payment.id", "data.payment_id", "data.payment.id"], ""),
   customer_email: customer(webhook).email,
-  dashboard_url: valueAt(webhook, ["data.dashboard_url"], "https://app.dodopayments.com/")
+  dashboard_url: valueAt(webhook, ["payload.data.dashboard_url", "data.dashboard_url"], "https://app.dodopayments.com/")
 }, { email: "billing-alerts@mantrixflow.com", name: "MantrixFlow Billing" });
 ```
 
 ```js
 const c = customer(webhook);
 const m = money(webhook);
-send("invoice_available", "Your MantrixFlow invoice is available", {
+send(webhook, "invoice_available", "Your MantrixFlow invoice is available", {
   customer_name: c.name,
-  invoice_number: valueAt(webhook, ["data.invoice_number", "data.invoice.id", "data.id"], ""),
+  invoice_number: valueAt(webhook, ["payload.data.invoice_number", "payload.data.invoice.id", "payload.data.id", "data.invoice_number", "data.invoice.id", "data.id"], ""),
   amount: m.amount,
   currency: m.currency,
-  invoice_url: valueAt(webhook, ["data.invoice_url", "data.receipt_url"], BILLING_URL)
+  invoice_url: valueAt(webhook, ["payload.data.invoice_url", "payload.data.receipt_url", "data.invoice_url", "data.receipt_url"], BILLING_URL)
 }, c);
 ```
 

@@ -4,7 +4,8 @@ Use one shared MantrixFlow visual system for AutoSend templates. The style shoul
 
 ## Layout Rules
 
-- Outer wrapper: `width: 100%; background: #f7f7f7; padding: 48px 16px;`.
+- Outer wrapper table: `width: 100%; background: #f7f7f7;`.
+- Centering shell cell: `padding: 48px 16px;`. Keep top/bottom spacing on the `<td>`, not only the outer table, because Gmail can collapse or ignore table padding in previews.
 - Email body: `max-width: 640px; width: 100%; margin: 0 auto;`.
 - Use web-safe fonts: `Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif`.
 - Avoid absolute positioning, background images, scripts, forms, and external CSS.
@@ -31,7 +32,7 @@ Use one shared MantrixFlow visual system for AutoSend templates. The style shoul
 ```html
 <style>
   @media only screen and (max-width: 640px) {
-    .mf-wrap { padding: 18px 10px !important; }
+    .mf-shell { padding: 18px 10px !important; }
     .mf-card { border-radius: 16px !important; }
     .mf-px { padding-left: 24px !important; padding-right: 24px !important; }
     .mf-button { display: block !important; width: 100% !important; box-sizing: border-box !important; }
@@ -43,8 +44,10 @@ Use one shared MantrixFlow visual system for AutoSend templates. The style shoul
 ## Base Shell
 
 ```html
-<div class="mf-wrap" style="width:100%;background:#f7f7f7;padding:48px 16px;">
-  <div class="mf-card" style="max-width:640px;width:100%;margin:0 auto;background:#ffffff;border:1px solid #e5e2df;border-radius:18px;overflow:hidden;font-family:Inter,-apple-system,BlinkMacSystemFont,'Segoe UI',Arial,sans-serif;color:#111111;">
+<table role="presentation" width="100%" class="mf-wrap" style="width:100%;background:#f7f7f7;">
+  <tr>
+    <td align="center" class="mf-shell" style="padding:48px 16px;">
+      <div class="mf-card" style="max-width:640px;width:100%;margin:0 auto;background:#ffffff;border:1px solid #e5e2df;border-radius:18px;overflow:hidden;font-family:Inter,-apple-system,BlinkMacSystemFont,'Segoe UI',Arial,sans-serif;color:#111111;">
     <div class="mf-px" style="padding:54px 48px 42px;">
       <div style="margin:0 auto 46px;text-align:center;">
         <img src="https://d1v739xuxrzdgy.cloudfront.net/orgs/6a158503d8ca8942a075ce15/projects/6a158503d8ca8942a075ce18/media/1ce9920218c57a04ed.png" width="32" alt="" style="display:inline-block;width:32px;height:auto;vertical-align:middle;margin:0 10px 0 0;">
@@ -68,8 +71,10 @@ Use one shared MantrixFlow visual system for AutoSend templates. The style shoul
       <p style="font-size:15px;line-height:1.5;color:#77716d;margin:0 0 10px;">You received this because {{why_received}}.</p>
       <p style="font-size:15px;line-height:1.5;color:#77716d;margin:0;">Questions? Reach us at <a href="mailto:support@mantrixflow.com" style="color:#4f46e5;">support@mantrixflow.com</a></p>
     </div>
-  </div>
-</div>
+      </div>
+    </td>
+  </tr>
+</table>
 ```
 
 ## Template Checklist
