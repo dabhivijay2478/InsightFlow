@@ -19,7 +19,7 @@ Use `AUTOSEND_*` names for all new configuration. Legacy `UNOSEND_*` names are s
 ```bash
 AUTOSEND_API_KEY=...
 AUTOSEND_API_BASE_URL=https://api.autosend.com/v1
-AUTOSEND_FROM="MantrixFlow <support@mantrixflow.com>"
+AUTOSEND_FROM="MantrixFlow <no-reply@mantrixflow.com>"
 AUTOSEND_REPLY_TO=support@mantrixflow.com
 AUTOSEND_LOGO_URL=https://d1v739xuxrzdgy.cloudfront.net/orgs/6a158503d8ca8942a075ce15/projects/6a158503d8ca8942a075ce18/media/1ce9920218c57a04ed.png
 
@@ -42,7 +42,7 @@ In Supabase Dashboard, configure Auth SMTP with AutoSend:
 | Port | `587` or `465` |
 | Username | `autosend` |
 | Password | AutoSend SMTP key, not the API key |
-| Sender email | Verified domain sender, for example `support@mantrixflow.com` |
+| Sender email | Verified domain sender, for example `no-reply@mantrixflow.com` |
 | Sender name | `MantrixFlow` |
 
 Supabase Auth templates should stay plain and deliverability-focused. Use the AutoSend design guide only lightly for auth: logo/name, one CTA, fallback link, and security footer.
@@ -55,7 +55,7 @@ Use Dodo's official AutoSend integration from the Dodo dashboard. Configure the 
 webhook.url = "https://api.autosend.com/v1/mails/send";
 webhook.payload = {
   to: { email: customerEmail, name: customerName },
-  from: { email: "support@mantrixflow.com", name: "MantrixFlow" },
+  from: { email: "no-reply@mantrixflow.com", name: "MantrixFlow" },
   subject: "Payment received",
   templateId: "tpl_payment_succeeded",
   dynamicData: {}

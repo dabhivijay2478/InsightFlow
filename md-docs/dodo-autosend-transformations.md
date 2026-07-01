@@ -45,7 +45,7 @@ function handler(webhook) {
         name: customer.name || "there",
       },
       from: {
-        email: "support@mantrixflow.com",
+        email: "no-reply@mantrixflow.com",
         name: "MantrixFlow",
       },
       subject: "Payment received for MantrixFlow",
@@ -71,14 +71,14 @@ function handler(webhook) {
 }
 ```
 
-Change only the sender email if the verified AutoSend sender is different. The `dynamicData` keys must stay snake_case because they match the current AutoSend template placeholders.
+Change only the sender email if the verified AutoSend sender is different. Keep replies pointed at support. The `dynamicData` keys must stay snake_case because they match the current AutoSend template placeholders.
 
 ## Shared Helpers
 
 Paste helpers at the top of each Dodo transformation if the integration editor does not support shared code.
 
 ```js
-const FROM = { email: "support@mantrixflow.com", name: "MantrixFlow" };
+const FROM = { email: "no-reply@mantrixflow.com", name: "MantrixFlow" };
 const REPLY_TO = { email: "support@mantrixflow.com", name: "MantrixFlow Support" };
 const BILLING_URL = "https://cloud.mantrixflow.com/workspace/settings";
 

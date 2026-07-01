@@ -54,7 +54,7 @@ Configure Supabase Auth with AutoSend SMTP:
 | Port | `587` with STARTTLS, or `465` with implicit TLS |
 | Username | `autosend` |
 | Password | AutoSend SMTP key, not the REST API key |
-| Sender email | A verified sender, for example `support@mantrixflow.com` |
+| Sender email | A verified sender, for example `no-reply@mantrixflow.com` |
 | Sender name | `MantrixFlow` |
 
 Important: AutoSend REST API keys and SMTP keys are different. A REST API key used as the SMTP password can cause auth email failures.
@@ -83,7 +83,7 @@ Backend:
 
 1. Set `AUTOSEND_API_KEY` in the backend secret store.
 2. Set `AUTOSEND_API_BASE_URL=https://api.autosend.com/v1`.
-3. Set `AUTOSEND_FROM="MantrixFlow <support@mantrixflow.com>"`.
+3. Set `AUTOSEND_FROM="MantrixFlow <no-reply@mantrixflow.com>"`.
 4. Set all backend `AUTOSEND_TEMPLATE_*` variables from [`autosend-template-id-map.md`](./autosend-template-id-map.md).
 5. Keep Dodo payment/subscription customer emails out of backend queues.
 
