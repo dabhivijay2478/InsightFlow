@@ -26,6 +26,15 @@ and the ASCII flow diagram lives in
 - [`dodo-payments-setup.md`](./dodo-payments-setup.md) — Dodo product IDs, checkout, webhooks, environment variables, and troubleshooting.
 - [`dodo-payments-flowchart.md`](./dodo-payments-flowchart.md) — **Mermaid flow charts:** app → Go API → Dodo hosted checkout, portal, invoices, and webhook reconciliation.
 
+## Email
+
+- [`autosend-email-system-plan.md`](./autosend-email-system-plan.md) - AutoSend architecture, Supabase SMTP setup, backend API setup, Dodo integration setup, and duplicate-prevention rules.
+- [`autosend-email-catalog.md`](./autosend-email-catalog.md) - Owner-by-owner email catalog for Supabase Auth, Go backend, and Dodo Payments.
+- [`autosend-template-copy.md`](./autosend-template-copy.md) - Subject lines, preview text, CTA labels, and body copy for every AutoSend template.
+- [`autosend-template-design-guide.md`](./autosend-template-design-guide.md) - Responsive MantrixFlow email layout rules and base shell.
+- [`autosend-template-id-map.md`](./autosend-template-id-map.md) - AutoSend-created template IDs and env mapping.
+- [`dodo-autosend-transformations.md`](./dodo-autosend-transformations.md) - Dodo to AutoSend JavaScript transformation examples.
+
 ## Observability (three separate guides)
 
 Read in this order:
