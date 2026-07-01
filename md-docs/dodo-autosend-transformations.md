@@ -17,6 +17,62 @@ function handler(webhook) {
 }
 ```
 
+## Ready-To-Paste `payment.succeeded`
+
+This is the official Dodo handler shape adapted for MantrixFlow and the current AutoSend template.
+
+```js
+/**
+ * @param webhook the webhook object
+ * @param webhook.method destination method. Allowed values: "POST", "PUT"
+ * @param webhook.url current destination address
+ * @param webhook.eventType current webhook Event Type
+ * @param webhook.payload JSON payload
+ * @param webhook.cancel whether to cancel dispatch of the given webhook
+ */
+function handler(webhook) {
+  if (webhook.eventType === "payment.succeeded") {
+    const p = webhook.payload.data || {};
+    const customer = p.customer || {};
+    const amountRaw = Number(p.amount || p.total || 0);
+    const amount = amountRaw > 1000 ? (amountRaw / 100).toFixed(2) : amountRaw.toFixed(2);
+    const currency = String(p.currency || "USD").toUpperCase();
+
+    webhook.url = "https://api.autosend.com/v1/mails/send";
+    webhook.payload = {
+      to: {
+        email: customer.email,
+        name: customer.name || "there",
+      },
+      from: {
+        email: "support@mantrixflow.com",
+        name: "MantrixFlow",
+      },
+      subject: "Payment received for MantrixFlow",
+      templateId: "A-c3684aac9fd1839d7392",
+      dynamicData: {
+        customer_name: customer.name || "there",
+        amount,
+        currency,
+        payment_id: p.payment_id || p.id || "",
+        receipt_url: p.receipt_url || p.invoice_url || "https://cloud.mantrixflow.com/workspace/settings",
+        date: p.created_at ? new Date(p.created_at).toLocaleDateString() : new Date().toLocaleDateString(),
+      },
+      replyTo: {
+        email: "support@mantrixflow.com",
+        name: "MantrixFlow Support",
+      },
+      trackingOpen: true,
+      trackingClick: true,
+    };
+  }
+
+  return webhook;
+}
+```
+
+Change only the sender email if the verified AutoSend sender is different. The `dynamicData` keys must stay snake_case because they match the current AutoSend template placeholders.
+
 ## Shared Helpers
 
 Paste helpers at the top of each Dodo transformation if the integration editor does not support shared code.
