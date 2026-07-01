@@ -51,7 +51,7 @@ Configure Supabase Auth with AutoSend SMTP:
 | Supabase field | Production value |
 | --- | --- |
 | Host | `smtp.autosend.com` |
-| Port | `587` with STARTTLS, or `465` with implicit TLS |
+| Port | `465` with implicit TLS first; use `587` only if STARTTLS is confirmed working |
 | Username | `autosend` |
 | Password | AutoSend SMTP key, not the REST API key |
 | Sender email | A verified sender, for example `no-reply@mantrixflow.com` |
@@ -68,14 +68,20 @@ Check these first:
 1. AutoSend sender domain is verified with SPF and DKIM.
 2. Supabase uses the AutoSend SMTP key, not the AutoSend REST API key.
 3. Supabase host is exactly `smtp.autosend.com`.
-4. Port and TLS mode match:
-   - `587` = STARTTLS
-   - `465` = implicit TLS
+4. Port and TLS mode match. For Supabase/Auth, use `465` first because it starts encrypted immediately. If using `587`, confirm Supabase is using STARTTLS and not implicit TLS.
 5. Sender email belongs to the verified AutoSend domain.
 6. AutoSend Email Activity shows the attempted SMTP message.
 7. Supabase Auth redirect URLs use the correct production URL, not only `localhost`.
 
 To isolate the issue quickly, temporarily switch Supabase back to a known-good SMTP provider or Supabase default email and retry signup. If signup becomes fast again, the failure is definitely in the AutoSend SMTP configuration path.
+
+Fastest repair sequence for repeated 504s:
+
+1. Disable custom SMTP, save, and retry signup with a fresh email. If signup no longer times out, custom SMTP is confirmed as the root cause.
+2. Re-enable custom SMTP with `smtp.autosend.com`, port `465`, username `autosend`, password from AutoSend `Project Settings` -> `SMTP`, sender `no-reply@mantrixflow.com`, sender name `MantrixFlow`.
+3. Save the settings, then trigger password recovery or signup with a fresh email.
+4. Check AutoSend Email Activity. No activity means Supabase did not authenticate/connect to AutoSend SMTP. Rejected activity means sender/domain/key is wrong.
+5. If both `465` and `587` still time out, use Supabase Send Email Auth Hook with AutoSend's REST API instead of SMTP.
 
 ## Production Deploy Checklist
 
