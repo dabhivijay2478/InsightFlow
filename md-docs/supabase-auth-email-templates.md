@@ -4,6 +4,13 @@ Paste these templates into Supabase Dashboard -> Authentication -> Emails. They 
 
 Supabase template variables used here are documented by Supabase: `{{ .ConfirmationURL }}`, `{{ .Token }}`, `{{ .SiteURL }}`, `{{ .RedirectTo }}`, `{{ .Email }}`, and `{{ .NewEmail }}`.
 
+Important: do not paste this whole Markdown file into Supabase. For each Supabase template screen, copy only:
+
+1. The subject text under `Subject`.
+2. The raw HTML inside that template's `HTML` code block, starting at `<!DOCTYPE html>` and ending at `</html>`.
+
+If the Supabase preview shows `# Supabase Auth Email Templates` or triple backticks, Markdown was pasted by mistake.
+
 ## Shared Notes
 
 - Use AutoSend SMTP on port `465`.

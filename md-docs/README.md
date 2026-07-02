@@ -35,6 +35,7 @@ and the ASCII flow diagram lives in
 - [`autosend-template-id-map.md`](./autosend-template-id-map.md) - AutoSend-created template IDs and env mapping.
 - [`dodo-autosend-transformations.md`](./dodo-autosend-transformations.md) - Dodo to AutoSend JavaScript transformation examples.
 - [`autosend-dodo-supabase-production-runbook.md`](./autosend-dodo-supabase-production-runbook.md) - Production setup, Dodo integration steps, Supabase SMTP timeout troubleshooting, and rollout checklist.
+- [`autosend-production-deployment-guide.md`](./autosend-production-deployment-guide.md) - Production deployment checklist and exact env/dashboard values for AutoSend, Supabase, backend, Dodo, and frontend.
 - [`supabase-auth-email-templates.md`](./supabase-auth-email-templates.md) - Paste-ready Supabase Auth HTML templates for confirmation, invite, magic link, email change, password reset, and reauthentication.
 
 ## Observability (three separate guides)

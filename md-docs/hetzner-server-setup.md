@@ -243,6 +243,7 @@ Optional API repo secret:
 | Secret | Default | Use |
 | --- | --- | --- |
 | `HETZNER_SERVER_NAME` | `mantrixflow-production` | Must match infra if overridden |
+| `HETZNER_API_ENV_AUTOSEND` | unset | Optional AutoSend-only env overlay. The deploy workflow can append this to `HETZNER_API_ENV` so AutoSend rollout does not require editing the existing production env secret. |
 
 Use this shape for `HETZNER_API_ENV`:
 
@@ -294,6 +295,13 @@ EMAIL_FROM=...
 
 Keep `INTERNAL_TOKEN` inside `HETZNER_API_ENV` equal to the GitHub secret
 `INTERNAL_TOKEN`.
+
+For AutoSend rollout, keep the existing `HETZNER_API_ENV` unchanged and add
+`HETZNER_API_ENV_AUTOSEND` with only the `AUTOSEND_*` lines from
+[`autosend-production-deployment-guide.md`](./autosend-production-deployment-guide.md).
+The deploy workflow must append the overlay after the base env so the container
+still receives normal runtime keys such as `AUTOSEND_API_KEY`,
+`AUTOSEND_FROM`, and `AUTOSEND_TEMPLATE_*`.
 
 Do not put GitHub App secrets inside `HETZNER_API_ENV`. Store them as separate
 API repo environment secrets:
