@@ -57,6 +57,7 @@ Current public tables created by GORM live in `apps/server/main-server/internal/
 ### User-scoped tables
 
 - `users` — self read/update; `current_organization_id` may only point to an org the user belongs to.
+- `user_billing_states` — self read only; account-level billing entitlement.
 - `email_preferences` — self CRUD by `user_id = auth.uid()`.
 
 ### Secret-bearing tables
