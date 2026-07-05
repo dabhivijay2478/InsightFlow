@@ -90,3 +90,8 @@ Legacy filenames redirect to the above (`betterstack-status-page-creation.md`, `
 
 - [`saas-sources-group2.md`](./saas-sources-group2.md) — detailed SaaS
   source implementation guide (dlt verified sources: HubSpot, Stripe, …).
+- [`salesforce-postgres-setup.md`](./salesforce-postgres-setup.md) —
+  Salesforce source to PostgreSQL destination setup guide, including OAuth,
+  dynamic discovery, Bulk API, CDC streamer, and destination table contract.
+- [`salesforce-postgres-testing-guide.md`](./salesforce-postgres-testing-guide.md)
+  — Salesforce to PostgreSQL automated and manual testing guide.
