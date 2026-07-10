@@ -1,8 +1,14 @@
 # Stripe Source — Manual Testing Guide
 
-**Streams:** 19  
-**Credential:** API key (`sk_test_...` or `sk_live_...`)  
+**Streams:** 63 registered streams across stable and feature-gated families
+
+**Credential:** Secret or restricted key (`sk_test_...`, `sk_live_...`, `rk_test_...`, or `rk_live_...`)
+
 **DuckDB prefix:** `stripe__`
+
+The authoritative catalog and strategy matrix are documented in
+`apps/server/elt-server/saas_sources/stripe_analytics/README.md`. The table
+below is the original core regression set, not the complete discovery catalog.
 
 ---
 
@@ -18,7 +24,7 @@ Test connection must return ✅ before building any pipeline.
 
 ---
 
-## All 19 Streams
+## Core Regression Streams
 
 | Stream | DuckDB staging name | Key columns | Supports INCREMENTAL |
 |--------|-------------------|-------------|---------------------|
