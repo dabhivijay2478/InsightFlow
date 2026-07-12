@@ -1,232 +1,62 @@
 # HubSpot Source — Manual Testing Guide
 
-**Streams:** 14  
-**Credential:** Private app access token  
-**DuckDB prefix:** `hubspot__`
+Status: beta until the live acceptance matrix passes
 
----
+Runtime: dlt only
 
-## Credential Setup
+Supported destination for this connector release: PostgreSQL only
 
-```json
-{ "access_token": "pat-na1-..." }
-```
+## Connection
 
----
+Create a read-only HubSpot private app and save its access token in the
+`credential` field. Grant only the scopes required by the selected streams.
+Never paste the token into pipeline JSON, SQL, logs, or AI chat. Rotate it on
+your organization's security schedule.
 
-## All 14 Streams
+The connection test is permission-aware: a valid token with missing optional
+scopes remains connected with limited permissions. Discovery marks each stream
+as available, missing scope, unavailable, or unknown and never returns CRM rows.
 
-| Stream | DuckDB staging name | Key columns | INCREMENTAL key |
-|--------|-------------------|-------------|----------------|
-| `hubspot.contacts` | `hubspot__contacts` | `id`, `email`, `firstname`, `lastname`, `phone`, `hs_lead_status`, `createdate`, `lastmodifieddate` | `lastmodifieddate` |
-| `hubspot.companies` | `hubspot__companies` | `id`, `name`, `domain`, `industry`, `city`, `country`, `createdate`, `hs_lastmodifieddate` | `hs_lastmodifieddate` |
-| `hubspot.deals` | `hubspot__deals` | `id`, `dealname`, `amount`, `dealstage`, `pipeline`, `closedate`, `createdate` | `hs_lastmodifieddate` |
-| `hubspot.tickets` | `hubspot__tickets` | `id`, `subject`, `hs_pipeline_stage`, `hs_pipeline`, `createdate`, `hs_lastmodifieddate` | `hs_lastmodifieddate` |
-| `hubspot.products` | `hubspot__products` | `id`, `name`, `price`, `description`, `createdate`, `hs_lastmodifieddate` | `hs_lastmodifieddate` |
-| `hubspot.line_items` | `hubspot__line_items` | `id`, `name`, `quantity`, `amount`, `price`, `hs_product_id`, `createdate` | `hs_lastmodifieddate` |
-| `hubspot.quotes` | `hubspot__quotes` | `id`, `hs_title`, `hs_status`, `hs_expiration_date`, `hs_amount_billed_to_company`, `createdate` | `hs_lastmodifieddate` |
-| `hubspot.calls` | `hubspot__calls` | `id`, `hs_call_title`, `hs_call_status`, `hs_call_duration`, `hs_timestamp`, `createdate` | `hs_lastmodifieddate` |
-| `hubspot.emails` | `hubspot__emails` | `id`, `hs_email_subject`, `hs_email_status`, `hs_email_direction`, `hs_timestamp`, `createdate` | `hs_lastmodifieddate` |
-| `hubspot.meetings` | `hubspot__meetings` | `id`, `hs_meeting_title`, `hs_meeting_outcome`, `hs_timestamp`, `hs_meeting_start_time`, `createdate` | `hs_lastmodifieddate` |
-| `hubspot.notes` | `hubspot__notes` | `id`, `hs_note_body`, `hs_timestamp`, `createdate` | `hs_lastmodifieddate` |
-| `hubspot.tasks` | `hubspot__tasks` | `id`, `hs_task_subject`, `hs_task_status`, `hs_task_priority`, `hs_timestamp`, `createdate` | `hs_lastmodifieddate` |
-| `hubspot.feedback_submissions` | `hubspot__feedback_submissions` | `id`, `hs_survey_type`, `hs_response`, `hs_submission_timestamp`, `createdate` | `hs_lastmodifieddate` |
-| `hubspot.owners` | `hubspot__owners` | `id`, `email`, `firstName`, `lastName`, `userId`, `createdAt`, `updatedAt` | `updatedAt` |
+## Stable catalog
 
----
+| Stream | dlt resource | DuckDB relation | PK | Mode |
+| --- | --- | --- | --- | --- |
+| `hubspot.contacts` | `contacts` | `raw.hubspot__contacts` | `id` | Incremental |
+| `hubspot.companies` | `companies` | `raw.hubspot__companies` | `id` | Incremental |
+| `hubspot.deals` | `deals` | `raw.hubspot__deals` | `id` | Incremental |
+| `hubspot.tickets` | `tickets` | `raw.hubspot__tickets` | `id` | Incremental |
+| `hubspot.owners` | `owners` | `raw.hubspot__owners` | `id` | Full snapshot |
+| `hubspot.deal_pipelines` | `pipelines_deals` | `raw.hubspot__deal_pipelines` | `pipeline_id, stage_id` | Full snapshot |
+| `hubspot.ticket_pipelines` | `pipelines_tickets` | `raw.hubspot__ticket_pipelines` | `pipeline_id, stage_id` | Full snapshot |
+| `hubspot.products` | `products` | `raw.hubspot__products` | `id` | Incremental |
+| `hubspot.line_items` | `line_items` | `raw.hubspot__line_items` | `id` | Incremental |
+| `hubspot.quotes` | `quotes` | `raw.hubspot__quotes` | `id` | Incremental |
 
-## Scenario S-HS-1 — Full Table Sync: `contacts`
+No other HubSpot streams are stable in this release. Property history,
+archived/deleted capture, activities, forms, custom objects, OAuth, webhooks,
+and write-back are not supported.
 
-**Destination DDL:**
-```sql
-CREATE TABLE analytics.hubspot_contacts_hd (
-    id             TEXT PRIMARY KEY,
-    email          TEXT,
-    firstname      TEXT,
-    lastname       TEXT,
-    hs_lead_status TEXT,
-    createdate     TIMESTAMPTZ
-);
-```
+## Required checks
 
-**dbt SQL:**
-```sql
-SELECT
-    id,
-    email,
-    firstname,
-    lastname,
-    hs_lead_status,
-    createdate
-FROM {{ source('raw', 'hubspot__contacts') }}
-WHERE email IS NOT NULL
-```
+1. Test the connection and run live discovery.
+2. Confirm at least one available stream is selected. Empty selection must fail.
+3. Set a UTC start date for the first incremental run; optionally set an end
+   date and a lookback from 0 through 604800 seconds (default 3600).
+4. Keep custom properties enabled only when needed. Sensitive properties are
+   excluded; visible fallback warnings mean the run used standard properties.
+5. Confirm preview masks email local parts, phone numbers, and free-text
+   note/content/body fields.
+6. Map every source to an explicit UI SQL/dbt model.
+7. Point every model at a pre-existing PostgreSQL table with a primary or stable
+   merge key. Upsert is the only accepted delivery mode.
+8. Run twice. The second incremental run must use the overlapped change window,
+   deduplicate by ID/update time, and commit only successfully delivered streams.
+9. Verify callback metadata includes selected streams, phase status,
+   `phase3_rows_delivered`, cleanup status, and committed/blocked checkpoint
+   streams without credentials or CRM values.
+10. Test `DELETE .../sync-state/hubspot.contacts` as an editor and verify other
+    stream checkpoints remain unchanged.
 
-**Verify:** `SELECT COUNT(*) FROM analytics.hubspot_contacts_hd;` → matches HubSpot contact count.
-
----
-
-## Scenario S-HS-2 — Incremental Sync: `deals`
-
-**Sync mode:** `INCREMENTAL`, replication key `hs_lastmodifieddate`
-
-**dbt SQL:**
-```sql
-SELECT
-    id,
-    dealname,
-    CAST(amount AS NUMERIC)  AS deal_amount,
-    dealstage,
-    pipeline,
-    closedate,
-    createdate
-FROM {{ source('raw', 'hubspot__deals') }}
-WHERE amount IS NOT NULL
-```
-
-**Run 1:** All deals.  
-**Run 2:** Only deals modified since last run.
-
----
-
-## Scenario S-HS-3 — Deal Pipeline Stage Aggregate
-
-**dbt SQL:**
-```sql
-SELECT
-    pipeline,
-    dealstage,
-    COUNT(*)               AS deal_count,
-    SUM(CAST(amount AS NUMERIC)) AS total_value
-FROM {{ source('raw', 'hubspot__deals') }}
-WHERE amount IS NOT NULL
-GROUP BY pipeline, dealstage
-ORDER BY total_value DESC
-```
-
-**Destination DDL (no PK — append):**
-```sql
-CREATE TABLE analytics.deal_pipeline_summary (
-    pipeline    TEXT,
-    dealstage   TEXT,
-    deal_count  BIGINT,
-    total_value NUMERIC
-);
-```
-
-**Expected:** `no_pk_warnings` in callback.
-
----
-
-## Scenario S-HS-4 — Activity Streams (calls + emails + meetings)
-
-Three streams in one pipeline:
-
-**Model 1 — calls:**
-```sql
-SELECT
-    id,
-    hs_call_title     AS title,
-    hs_call_status    AS status,
-    hs_call_duration  AS duration_ms,
-    hs_timestamp      AS activity_at
-FROM {{ source('raw', 'hubspot__calls') }}
-```
-
-**Model 2 — emails:**
-```sql
-SELECT
-    id,
-    hs_email_subject    AS subject,
-    hs_email_status     AS status,
-    hs_email_direction  AS direction,
-    hs_timestamp        AS activity_at
-FROM {{ source('raw', 'hubspot__emails') }}
-```
-
-**Model 3 — meetings:**
-```sql
-SELECT
-    id,
-    hs_meeting_title        AS title,
-    hs_meeting_outcome      AS outcome,
-    hs_meeting_start_time   AS started_at
-FROM {{ source('raw', 'hubspot__meetings') }}
-```
-
----
-
-## Scenario S-HS-5 — Normalisation: Rename HubSpot prefixed columns
-
-HubSpot prefixes many columns with `hs_`. Strip the prefix for a cleaner destination schema.
-
-**Rules:**
-```json
-[
-  { "rule_type": "rename", "table": "hubspot.tickets", "column": "hs_pipeline_stage", "destination_name": "pipeline_stage" },
-  { "rule_type": "rename", "table": "hubspot.tickets", "column": "hs_pipeline",       "destination_name": "pipeline" },
-  { "rule_type": "rename", "table": "hubspot.tickets", "column": "hs_lastmodifieddate","destination_name": "updated_at" }
-]
-```
-
-**dbt SQL:**
-```sql
-SELECT id, subject, pipeline_stage, pipeline, updated_at
-FROM {{ source('raw', 'hubspot__tickets') }}
-```
-
----
-
-## Scenario S-HS-6 — Feedback Submissions JSON Response
-
-`feedback_submissions.hs_response` is a JSON string. Extract rating:
-
-**dbt SQL:**
-```sql
-SELECT
-    id,
-    hs_survey_type                       AS survey_type,
-    hs_response->>'rating'               AS rating,
-    hs_response->>'comment'              AS comment,
-    hs_submission_timestamp              AS submitted_at
-FROM {{ source('raw', 'hubspot__feedback_submissions') }}
-WHERE hs_response IS NOT NULL
-```
-
----
-
-## Scenario S-HS-7 — Owners Master Table
-
-**dbt SQL:**
-```sql
-SELECT
-    id,
-    email,
-    "firstName"  AS first_name,
-    "lastName"   AS last_name,
-    "userId"     AS user_id,
-    "createdAt"  AS created_at,
-    "updatedAt"  AS updated_at
-FROM {{ source('raw', 'hubspot__owners') }}
-```
-
----
-
-## All 14 Streams — Quick Smoke Test Checklist
-
-| Stream | DuckDB ref | Expected rows |
-|--------|-----------|---------------|
-| contacts | `hubspot__contacts` | ≥ 1 |
-| companies | `hubspot__companies` | ≥ 1 |
-| deals | `hubspot__deals` | ≥ 0 |
-| tickets | `hubspot__tickets` | ≥ 0 |
-| products | `hubspot__products` | ≥ 0 |
-| line_items | `hubspot__line_items` | ≥ 0 |
-| quotes | `hubspot__quotes` | ≥ 0 |
-| calls | `hubspot__calls` | ≥ 0 |
-| emails | `hubspot__emails` | ≥ 0 |
-| meetings | `hubspot__meetings` | ≥ 0 |
-| notes | `hubspot__notes` | ≥ 0 |
-| tasks | `hubspot__tasks` | ≥ 0 |
-| feedback_submissions | `hubspot__feedback_submissions` | ≥ 0 |
-| owners | `hubspot__owners` | ≥ 1 |
+HubSpot calculated-property-only changes may not advance the object update
+timestamp. Scheduled calculated-property reconciliation is a future phase and
+is not an MVP guarantee.

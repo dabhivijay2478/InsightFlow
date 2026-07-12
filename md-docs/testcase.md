@@ -16,8 +16,8 @@ DuckDB names → `stripe__customers`, `stripe__charges`, `stripe__invoices`, …
 
 DuckDB names → `shopify__products`, `shopify__orders`, `shopify__customers`, …
 
-### HubSpot (14 streams)
-`contacts`, `companies`, `deals`, `tickets`, `products`, `line_items`, `quotes`, `calls`, `emails`, `meetings`, `notes`, `tasks`, `feedback_submissions`, `owners`
+### HubSpot (10 beta streams; PostgreSQL destination only)
+`contacts`, `companies`, `deals`, `tickets`, `owners`, `deal_pipelines`, `ticket_pipelines`, `products`, `line_items`, `quotes`
 
 DuckDB names → `hubspot__contacts`, `hubspot__companies`, `hubspot__deals`, …
 
@@ -58,11 +58,11 @@ DuckDB names → `public__users`, `mydb__products`, `app__events`, `main__tasks`
 | 8 | Shopify | all 14 streams | → CockroachDB |
 | 9 | Shopify | all 14 streams | → MariaDB |
 | 10 | Shopify | all 14 streams | → SQLite |
-| 11 | HubSpot | all 14 streams | → PostgreSQL |
-| 12 | HubSpot | all 14 streams | → MySQL |
-| 13 | HubSpot | all 14 streams | → CockroachDB |
-| 14 | HubSpot | all 14 streams | → MariaDB |
-| 15 | HubSpot | all 14 streams | → SQLite |
+| 11 | HubSpot | all 10 beta streams | → PostgreSQL |
+| 12 | HubSpot | retired for beta | → MySQL (unsupported) |
+| 13 | HubSpot | retired for beta | → CockroachDB (unsupported) |
+| 14 | HubSpot | retired for beta | → MariaDB (unsupported) |
+| 15 | HubSpot | retired for beta | → SQLite (unsupported) |
 | 16 | GitHub | all 12 streams | → PostgreSQL |
 | 17 | GitHub | all 12 streams | → MySQL |
 | 18 | GitHub | all 12 streams | → CockroachDB |
@@ -140,7 +140,7 @@ DuckDB names → `public__users`, `mydb__products`, `app__events`, `main__tasks`
   SAAS_STREAMS = {
     stripe: ['customers','charges','invoices','subscriptions','products','prices','events','balance_transactions','coupons','payment_intents','payment_methods','refunds','disputes','payouts','plans','tax_rates','credit_notes','promotion_codes','setup_intents'],
     shopify: ['products','orders','customers','draft_orders','custom_collections','smart_collections','pages','blogs','articles','locations','price_rules','themes','countries','collects'],
-    hubspot: ['contacts','companies','deals','tickets','products','line_items','quotes','calls','emails','meetings','notes','tasks','feedback_submissions','owners'],
+    hubspot: ['contacts','companies','deals','tickets','owners','deal_pipelines','ticket_pipelines','products','line_items','quotes'],
     github: ['issues','pull_requests','stargazers','events','commits','branches','releases','tags','contributors','milestones','labels','forks'],
     notion: ['databases','pages','users'],
   }

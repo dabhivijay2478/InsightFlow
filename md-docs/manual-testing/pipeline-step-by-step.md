@@ -449,6 +449,12 @@ WHERE email IS NOT NULL
 
 ## Pipeline 3 — HubSpot → PostgreSQL
 
+> The authoritative beta guide is
+> [`pipelines/saas/11-hubspot-to-postgres.md`](pipelines/saas/11-hubspot-to-postgres.md).
+> Only its ten-stream dlt catalog is supported. Any calls, emails, meetings, or
+> feedback-submission examples remaining in this legacy walkthrough are
+> historical and must not be used for acceptance.
+
 ---
 
 ### Stream: `hubspot.contacts` → `analytics.crm_contacts`

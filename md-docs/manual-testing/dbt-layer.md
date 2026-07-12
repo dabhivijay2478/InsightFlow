@@ -75,7 +75,6 @@ Always use the double-underscore staging name inside `{{ source('raw', '...') }}
 | `hubspot.meetings` | `{{ source('raw', 'hubspot__meetings') }}` |
 | `hubspot.notes` | `{{ source('raw', 'hubspot__notes') }}` |
 | `hubspot.tasks` | `{{ source('raw', 'hubspot__tasks') }}` |
-| `hubspot.feedback_submissions` | `{{ source('raw', 'hubspot__feedback_submissions') }}` |
 | `hubspot.owners` | `{{ source('raw', 'hubspot__owners') }}` |
 | `github.issues` | `{{ source('raw', 'github__issues') }}` |
 | `github.pull_requests` | `{{ source('raw', 'github__pull_requests') }}` |

@@ -1,5 +1,9 @@
 # Pipeline 15 — HubSpot → CockroachDB
 
+> Retired for the HubSpot beta. The supported connector path is dlt-based
+> HubSpot → existing PostgreSQL only. This file is retained as historical
+> reference and must not be used as an acceptance test.
+
 **Streams:** 14 | **Destination:** CockroachDB
 
 > dbt SQL identical to `11-hubspot-to-postgres.md`.
