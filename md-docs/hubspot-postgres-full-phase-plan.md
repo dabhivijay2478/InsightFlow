@@ -1,21 +1,21 @@
 # HubSpot to PostgreSQL Full-Phase Connector Plan
 
-Status: implemented beta; live E2E, canary, and release gates remain  
-Scope: HubSpot source only, PostgreSQL destination only  
-Target release: stable MVP after every acceptance gate in section 18 passes  
+Status: implemented production connector
+Scope: HubSpot source only, PostgreSQL destination only
+Release: production, with section 18 retained as the regression checklist
 Last repository audit: 2026-07-11
 
-Implementation note (2026-07-11): the beta code now includes the versioned
+Implementation note (2026-07-11): the production code includes the versioned
 ten-stream registry and aliases, live permission/property discovery, bounded
 dlt incremental resources, isolated DuckDB staging, selected-stream enforcement,
 per-stream candidate/commit checkpoints and audited reset, mandatory SQL/dbt,
 existing-table Postgres preflight, repository-wide public upsert enforcement,
 Phase 3 usage/callback metadata, finalized cleanup status, credential scrubbing,
 masked HubSpot previews, and AI token rejection. Estuary remains reference-only
-and no Estuary runtime or dependency was added. The catalog deliberately remains
-`beta`; live HubSpot E2E, cross-tenant security validation, canary telemetry, and
-the complete CI matrix are release operations that require configured external
-accounts and are not claimed complete by this implementation.
+and no Estuary runtime or dependency was added. The catalog is production.
+HubSpot E2E, cross-tenant security validation, telemetry, and the complete CI
+matrix remain recurring release operations that require configured external
+accounts.
 
 This plan is subordinate to the repository's strict ELT invariants. Where the
 requested feature set and the current product contract differ, the stricter
@@ -139,9 +139,8 @@ catalog entries should be derived from or contract-tested against it:
 }
 ```
 
-`mvp_status` must remain `beta` or `in_progress` in production until section 18
-passes. It becomes `stable` only as the release action, not merely when metadata
-is merged.
+`mvp_status` is `stable`; section 18 is retained as a recurring release
+regression rather than a catalog availability gate.
 
 ### 3.2 Registry design
 

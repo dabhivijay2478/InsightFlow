@@ -22,11 +22,11 @@ Each file = one pipeline. Every file covers:
 | 08 | [08-shopify-to-mariadb.md](saas/08-shopify-to-mariadb.md) | 14 Shopify streams | MariaDB |
 | 09 | [09-shopify-to-sqlite.md](saas/09-shopify-to-sqlite.md) | 14 Shopify streams | SQLite |
 | 10 | [10-shopify-to-cockroachdb.md](saas/10-shopify-to-cockroachdb.md) | 14 Shopify streams | CockroachDB |
-| 11 | [11-hubspot-to-postgres.md](saas/11-hubspot-to-postgres.md) | 10 beta HubSpot streams | PostgreSQL |
-| 12 | [12-hubspot-to-mysql.md](saas/12-hubspot-to-mysql.md) | Retired beta reference | Unsupported |
-| 13 | [13-hubspot-to-mariadb.md](saas/13-hubspot-to-mariadb.md) | Retired beta reference | Unsupported |
-| 14 | [14-hubspot-to-sqlite.md](saas/14-hubspot-to-sqlite.md) | Retired beta reference | Unsupported |
-| 15 | [15-hubspot-to-cockroachdb.md](saas/15-hubspot-to-cockroachdb.md) | Retired beta reference | Unsupported |
+| 11 | [11-hubspot-to-postgres.md](saas/11-hubspot-to-postgres.md) | 10 production HubSpot streams | PostgreSQL |
+| 12 | [12-hubspot-to-mysql.md](saas/12-hubspot-to-mysql.md) | Unsupported destination reference | Unsupported |
+| 13 | [13-hubspot-to-mariadb.md](saas/13-hubspot-to-mariadb.md) | Unsupported destination reference | Unsupported |
+| 14 | [14-hubspot-to-sqlite.md](saas/14-hubspot-to-sqlite.md) | Unsupported destination reference | Unsupported |
+| 15 | [15-hubspot-to-cockroachdb.md](saas/15-hubspot-to-cockroachdb.md) | Unsupported destination reference | Unsupported |
 | 16 | [16-github-to-postgres.md](saas/16-github-to-postgres.md) | 12 GitHub streams | PostgreSQL |
 | 17 | [17-github-to-mysql.md](saas/17-github-to-mysql.md) | 12 GitHub streams | MySQL |
 | 18 | [18-github-to-mariadb.md](saas/18-github-to-mariadb.md) | 12 GitHub streams | MariaDB |

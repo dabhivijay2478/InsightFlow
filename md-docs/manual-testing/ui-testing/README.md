@@ -16,7 +16,7 @@ Step-by-step manual UI tests for every source, every destination, and every stre
 |------|---------|-------------------|
 | [saas/stripe-ui.md](saas/stripe-ui.md) | 19 Stripe streams | All 5 (PG, MySQL, MariaDB, SQLite, CockroachDB) |
 | [saas/shopify-ui.md](saas/shopify-ui.md) | 14 Shopify streams | All 5 |
-| [saas/hubspot-ui.md](saas/hubspot-ui.md) | 14 HubSpot streams | All 5 |
+| [saas/hubspot-ui.md](saas/hubspot-ui.md) | 10 HubSpot streams | PostgreSQL |
 | [saas/github-ui.md](saas/github-ui.md) | 12 GitHub streams | All 5 |
 | [saas/notion-ui.md](saas/notion-ui.md) | 3 Notion streams | All 5 |
 

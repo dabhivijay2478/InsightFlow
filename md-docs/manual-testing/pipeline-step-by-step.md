@@ -449,11 +449,9 @@ WHERE email IS NOT NULL
 
 ## Pipeline 3 — HubSpot → PostgreSQL
 
-> The authoritative beta guide is
+> The authoritative production guide is
 > [`pipelines/saas/11-hubspot-to-postgres.md`](pipelines/saas/11-hubspot-to-postgres.md).
-> Only its ten-stream dlt catalog is supported. Any calls, emails, meetings, or
-> feedback-submission examples remaining in this legacy walkthrough are
-> historical and must not be used for acceptance.
+> Only its ten-stream dlt catalog is supported.
 
 ---
 
@@ -575,76 +573,6 @@ SELECT
 FROM {{ source('raw', 'hubspot__companies') }}
 WHERE name IS NOT NULL
 ```
-
----
-
-### Activity streams: `hubspot.calls`, `hubspot.emails`, `hubspot.meetings` — Quick-map
-
-**Calls → `analytics.call_log`**
-```sql
-SELECT
-    id                                   AS call_id,
-    hs_call_title                        AS title,
-    hs_call_status                       AS call_status,
-    CAST(hs_call_duration AS INTEGER)    AS duration_ms,
-    CAST(hs_timestamp AS TIMESTAMPTZ)    AS called_at
-FROM {{ source('raw', 'hubspot__calls') }}
-```
-Destination: `call_id TEXT PK, title TEXT, call_status TEXT, duration_ms INTEGER, called_at TIMESTAMPTZ`
-
-**Emails → `analytics.email_log`**
-```sql
-SELECT
-    id                                   AS email_id,
-    hs_email_subject                     AS subject,
-    hs_email_status                      AS send_status,
-    hs_email_direction                   AS direction,
-    CAST(hs_timestamp AS TIMESTAMPTZ)    AS sent_at
-FROM {{ source('raw', 'hubspot__emails') }}
-```
-
-**Meetings → `analytics.meeting_log`**
-```sql
-SELECT
-    id                                             AS meeting_id,
-    hs_meeting_title                               AS title,
-    hs_meeting_outcome                             AS outcome,
-    CAST(hs_meeting_start_time AS TIMESTAMPTZ)     AS started_at,
-    CAST(hs_meeting_end_time AS TIMESTAMPTZ)       AS ended_at
-FROM {{ source('raw', 'hubspot__meetings') }}
-```
-
----
-
-### Stream: `hubspot.feedback_submissions` → `analytics.nps_responses`
-
-> `hs_response` is a JSON string with keys: `rating`, `comment`, `nps_score`.
-
-**Step 1 — Pre-create destination table**
-```sql
-CREATE TABLE analytics.nps_responses (
-    submission_id  TEXT        PRIMARY KEY,
-    survey_type    TEXT,                    -- source: hs_survey_type (renamed + hs_ stripped)
-    rating         TEXT,                    -- from JSON: hs_response->>'rating'
-    nps_score      INTEGER,                 -- from JSON: hs_response->>'nps_score' → INTEGER
-    comment        TEXT,                    -- from JSON: hs_response->>'comment'
-    submitted_at   TIMESTAMPTZ             -- source: hs_submission_timestamp (renamed)
-);
-```
-
-**Step 5 — dbt SQL**
-```sql
-SELECT
-    id                                                        AS submission_id,
-    hs_survey_type                                            AS survey_type,
-    hs_response->>'rating'                                    AS rating,
-    CAST(NULLIF(hs_response->>'nps_score', '') AS INTEGER)    AS nps_score,
-    NULLIF(TRIM(hs_response->>'comment'), '')                 AS comment,
-    CAST(hs_submission_timestamp AS TIMESTAMPTZ)              AS submitted_at
-FROM {{ source('raw', 'hubspot__feedback_submissions') }}
-WHERE hs_response IS NOT NULL
-```
-> JSON extraction: 3 keys from `hs_response`. `nps_score` TEXT → INTEGER. Empty comment → NULL.
 
 ---
 

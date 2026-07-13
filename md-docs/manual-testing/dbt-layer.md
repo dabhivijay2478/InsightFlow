@@ -70,12 +70,9 @@ Always use the double-underscore staging name inside `{{ source('raw', '...') }}
 | `hubspot.products` | `{{ source('raw', 'hubspot__products') }}` |
 | `hubspot.line_items` | `{{ source('raw', 'hubspot__line_items') }}` |
 | `hubspot.quotes` | `{{ source('raw', 'hubspot__quotes') }}` |
-| `hubspot.calls` | `{{ source('raw', 'hubspot__calls') }}` |
-| `hubspot.emails` | `{{ source('raw', 'hubspot__emails') }}` |
-| `hubspot.meetings` | `{{ source('raw', 'hubspot__meetings') }}` |
-| `hubspot.notes` | `{{ source('raw', 'hubspot__notes') }}` |
-| `hubspot.tasks` | `{{ source('raw', 'hubspot__tasks') }}` |
 | `hubspot.owners` | `{{ source('raw', 'hubspot__owners') }}` |
+| `hubspot.deal_pipelines` | `{{ source('raw', 'hubspot__deal_pipelines') }}` |
+| `hubspot.ticket_pipelines` | `{{ source('raw', 'hubspot__ticket_pipelines') }}` |
 | `github.issues` | `{{ source('raw', 'github__issues') }}` |
 | `github.pull_requests` | `{{ source('raw', 'github__pull_requests') }}` |
 | `github.stargazers` | `{{ source('raw', 'github__stargazers') }}` |

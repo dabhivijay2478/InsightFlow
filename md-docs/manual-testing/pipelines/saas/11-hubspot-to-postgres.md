@@ -1,6 +1,6 @@
 # Pipeline 11 — HubSpot → PostgreSQL
 
-Status: beta live-test guide
+Status: production live-test guide
 
 Extraction: dlt → isolated per-run DuckDB
 
@@ -53,6 +53,6 @@ Run once, update a contact in HubSpot, then run again. Verify:
 - a missing table, column, type, or primary key fails without creating or
   altering a target and without falling back to append.
 
-Repeat the controlled scenario for companies, deals, tickets, and owners before
-promoting the connector from beta. The remaining five MVP streams require the
+Repeat the controlled scenario for companies, deals, tickets, and owners as a
+production regression. Cover the remaining five streams with the
 mocked/integration matrix described in the full-phase plan.

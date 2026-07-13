@@ -94,7 +94,7 @@ Legacy filenames redirect to the above (`betterstack-status-page-creation.md`, `
   AI prompt/reference pack for designing or extending the Stripe source
   connector.
 - [`hubspot-postgres-full-phase-plan.md`](./hubspot-postgres-full-phase-plan.md) —
-  implemented beta architecture and remaining release gates for the HubSpot source to existing PostgreSQL
+  implemented production architecture for the HubSpot source to existing PostgreSQL
   destination flow across registration, discovery, preflight, dlt/DuckDB,
   UI SQL/dbt, delivery, checkpoints, AI safety, testing, and release gates.
 - [`salesforce-postgres-setup.md`](./salesforce-postgres-setup.md) —

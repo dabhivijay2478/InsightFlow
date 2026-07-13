@@ -1,4 +1,4 @@
-# HubSpot UI — Beta Acceptance Guide
+# HubSpot UI — Production Acceptance Guide
 
 Use only the dlt-based HubSpot source with an existing PostgreSQL destination.
 The canonical catalog has ten streams: contacts, companies, deals, tickets,
@@ -24,5 +24,5 @@ owners, deal pipelines, ticket pipelines, products, line items, and quotes.
 9. Paste a marker `pat-...` token into AI chat and verify the request is rejected
    locally with `SECRET_DETECTED` before model or usage calls.
 
-The connector remains beta until live contacts, companies, deals, tickets, and
-owners E2E plus the controlled remaining-stream matrix and canary gates pass.
+The production regression covers live contacts, companies, deals, tickets, and
+owners E2E plus the controlled remaining-stream matrix and destination checks.

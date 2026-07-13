@@ -1,6 +1,6 @@
 # Pipeline 14 — HubSpot → SQLite
 
-> Retired for the HubSpot beta. The supported connector path is dlt-based
+> Unsupported for HubSpot. The supported connector path is dlt-based
 > HubSpot → existing PostgreSQL only. This file is retained as historical
 > reference and must not be used as an acceptance test.
 

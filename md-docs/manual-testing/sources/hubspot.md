@@ -1,6 +1,6 @@
 # HubSpot Source — Manual Testing Guide
 
-Status: beta until the live acceptance matrix passes
+Status: production
 
 Runtime: dlt only
 
@@ -32,7 +32,7 @@ as available, missing scope, unavailable, or unknown and never returns CRM rows.
 | `hubspot.line_items` | `line_items` | `raw.hubspot__line_items` | `id` | Incremental |
 | `hubspot.quotes` | `quotes` | `raw.hubspot__quotes` | `id` | Incremental |
 
-No other HubSpot streams are stable in this release. Property history,
+No other HubSpot streams are supported in this release. Property history,
 archived/deleted capture, activities, forms, custom objects, OAuth, webhooks,
 and write-back are not supported.
 

@@ -22,7 +22,7 @@ manual-testing/
 ├── sources/
 │   ├── stripe.md              ← 19 streams
 │   ├── shopify.md             ← 14 streams
-│   ├── hubspot.md             ← 14 streams
+│   ├── hubspot.md             ← 10 streams
 │   ├── github.md              ← 12 streams
 │   ├── notion.md              ← 3 streams
 │   ├── postgres.md            ← 3 source tables
@@ -164,7 +164,7 @@ CREATE TABLE IF NOT EXISTS analytics.stripe_customers_hd (
 
 ---
 
-## Stream Matrix — All 62 Streams + 15 DB Tables
+## Stream Matrix — All 58 Streams + 15 DB Tables
 
 ### SaaS
 
@@ -172,7 +172,7 @@ CREATE TABLE IF NOT EXISTS analytics.stripe_customers_hd (
 |--------|-------|-------------|
 | Stripe | 19 | customers, charges, invoices, subscriptions, products, prices, events, balance_transactions, coupons, payment_intents, payment_methods, refunds, disputes, payouts, plans, tax_rates, credit_notes, promotion_codes, setup_intents |
 | Shopify | 14 | products, orders, customers, draft_orders, custom_collections, smart_collections, pages, blogs, articles, locations, price_rules, themes, countries, collects |
-| HubSpot | 14 | contacts, companies, deals, tickets, products, line_items, quotes, calls, emails, meetings, notes, tasks, feedback_submissions, owners |
+| HubSpot | 10 | contacts, companies, deals, tickets, owners, deal_pipelines, ticket_pipelines, products, line_items, quotes |
 | GitHub | 12 | issues, pull_requests, stargazers, events, commits, branches, releases, tags, contributors, milestones, labels, forks |
 | Notion | 3 | databases, pages, users |
 
