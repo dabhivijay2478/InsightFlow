@@ -742,7 +742,7 @@ Component-specific rules:
   - rows delivered
   - avg duration
   - last run
-- clicking a row routes to `/workspace/data-pipelines/{id}/builder`
+- clicking a row routes to `/workspace/data-pipelines/{id}`
 
 #### `RecentFailedRunsTable.tsx`
 

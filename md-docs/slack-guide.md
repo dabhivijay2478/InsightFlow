@@ -493,7 +493,7 @@ The Slack modal captures:
 - write mode: `append`, `upsert`, `replace`
 - normalisation rules: `rename` and `cast`
 - dbt UI SQL models
-- schedule: `none`, `minutes`, `hourly`, `daily`, `weekly`, `monthly`, `custom_cron`
+- schedule: fixed `hourly` intervals from 1–24 hours or a five-field `custom_cron` expression (`none` is the internal disabled state)
 - optional run now
 
 Slack-created pipelines use the same web-builder `pipelineGraph` contract:

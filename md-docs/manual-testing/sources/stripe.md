@@ -311,10 +311,10 @@ CREATE TABLE analytics.sub_status_per_customer (
 
 ## Scenario S-STR-12 — Cron Schedule
 
-**Config panel:** Set schedule type = `cron`, value = `0 */6 * * *` (every 6 hours).
+**General tab:** Set schedule type = `custom_cron`, value = `0 */6 * * *` (every 6 hours in UTC).
 
 **Verify:**
-- Pipeline saved with `scheduleType = "cron"`, `scheduleValue = "0 */6 * * *"`.
+- Pipeline saved with `scheduleType = "custom_cron"`, `scheduleValue = "0 */6 * * *"`.
 - Next scheduled run appears in the runs list after 6 hours.
 - Manual **Run** button still works immediately.
 

@@ -170,22 +170,21 @@ DuckDB names → `public__users`, `mydb__products`, `app__events`, `main__tasks`
 - `parseQualifiedTable` valid, invalid, edge cases
 - `buildSourceStreamConfig` for DB and SaaS stream keys
 
-### Step 5 — Unit tests: `pipelineGraph.test.ts` — migrate + extend (~20 tests)
+### Step 5 — Structured pipeline API tests
 
-**File**: `app/workspace/data-pipelines/[id]/builder/shared/__tests__/pipelineGraph.test.ts`
+- Source connections can be shared while stream selections remain pipeline-specific.
+- Transformation drafts require validation and preview before publication.
+- Destination assignments reference published transformation revisions without copying SQL.
+- One pipeline can fan out to several tested destinations with independent checkpoints.
+- Legacy graph payloads are migrated once and cannot be written by current APIs.
 
-- Migrate existing 5 tests from `bun:test` → `vitest`
-- Add `it.each` over all 10 source types for `buildDefaultSqlModel`
-- Add `it.each` for `normalizePipelineGraph` with SaaS source nodes
-- Test every SaaS stream name produces correct `duckdb_source_table`
+### Step 6 — Structured pipeline workspace tests
 
-### Step 6 — Unit tests: `destinationPanel.test.ts` (~15 tests)
-
-**File**: `app/workspace/data-pipelines/[id]/builder/panels/__tests__/destinationPanel.test.ts`
-
-- `defaultSqlTemplate()` for SaaS streams
-- `panelModelToApiSqlModel()` SaaS and DB
-- `autoDbtOutputTableName()`, `autoDbtTargetSchema()`, `sanitizeModelName()`
+- Directory rows open the pipeline Overview without action-menu propagation.
+- Source, Transformations, Destinations, Runs, General, and GitHub remain URL-addressable.
+- Transformation and destination editors use full pages at mobile widths.
+- Tables provide server pagination and compact mobile rows.
+- Legacy builder URLs redirect to the corresponding structured page.
 
 ### Step 7 — Unit tests: `credentialForm.test.ts` (~10 tests)
 

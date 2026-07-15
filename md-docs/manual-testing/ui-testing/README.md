@@ -41,7 +41,7 @@ Phase 2  Destination Panel   — credentials → test connection → schema → 
 Phase 3  Normalisation Panel — rename / cast / exclude rules per stream
 Phase 4  dbt SQL Panel       — SQL editor → validate → column preview
 Phase 5  Preview Panel       — column names, types, sample rows correct
-Phase 6  Schedule Panel      — None / Cron expression / interval saved correctly
+Phase 6  General / Schedule  — hourly interval or cron expression saved correctly
 Phase 7  Run & Status Drawer — all 6 pipeline phases green
 Phase 8  Destination Verify  — correct rows, column names, data types in destination DB
 ```
@@ -68,7 +68,7 @@ Phase 8  Destination Verify  — correct rows, column names, data types in desti
 | **SQL editor** | Transform panel | Write SELECT statement |
 | **Validate SQL** button | SQL editor toolbar | Returns column list or error |
 | **Preview tab** | Middle builder panel | Shows sample output rows |
-| **Schedule tab** | Top pipeline bar | None / Cron / Interval |
+| **Schedule section** | Pipeline General tab | Hourly interval / Cron job |
 | **Cron input** | Schedule panel | Enter cron expression |
 | **Save Pipeline** button | Top bar | Persists all config |
 | **Run Now** button | Top bar | Triggers immediate run |
