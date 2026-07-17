@@ -174,7 +174,7 @@ DuckDB names → `public__users`, `mydb__products`, `app__events`, `main__tasks`
 
 - Source connections can be shared while stream selections remain pipeline-specific.
 - Transformation drafts require validation and preview before publication.
-- Destination assignments reference published transformation revisions without copying SQL.
+- Every destination owns its published transformation revisions; SQL is never shared across delivery targets.
 - One pipeline can fan out to several tested destinations with independent checkpoints.
 - Legacy graph payloads are migrated once and cannot be written by current APIs.
 

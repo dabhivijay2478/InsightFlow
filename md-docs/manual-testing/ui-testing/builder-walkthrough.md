@@ -40,7 +40,7 @@ Draft edits do not affect runs until publication.
 4. Configure `schema.table`, upsert keys, and enabled state for each assignment.
 5. Test the connection, review the assignments, and save.
 
-SQL remains owned by the reusable transformation and is never duplicated in a destination.
+SQL remains owned by one destination-specific transformation and is never shared with another destination.
 
 ## 5. Configure scheduling and activation
 
@@ -61,7 +61,7 @@ SQL remains owned by the reusable transformation and is never duplicated in a de
 
 1. Open **GitHub** and connect a repository.
 2. Generate the relationship-based YAML preview.
-3. Confirm source streams, reusable transformations, destinations, and assignments are separate sections.
+3. Confirm source streams, destination-owned transformations, destinations, and target settings are separate sections.
 4. Push and pull the definition and inspect synchronization history.
 5. Verify unknown transformation references, duplicate keys, and conflicting schedules are rejected.
 
