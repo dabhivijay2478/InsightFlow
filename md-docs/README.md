@@ -76,6 +76,11 @@ Legacy filenames redirect to the above (`betterstack-status-page-creation.md`, `
 
 ## Testing
 
+- [`pipeline-all-streams-chrome-e2e-report-2026-07-19.md`](./pipeline-all-streams-chrome-e2e-report-2026-07-19.md)
+  — final live-Chrome all-streams PostgreSQL, HubSpot, and Stripe pipeline report,
+  including Neon cleanup, GitHub/YAML round trip, fixes, and destination evidence.
+- [`pipeline-new-layout-e2e-report-2026-07-18.md`](./pipeline-new-layout-e2e-report-2026-07-18.md)
+  — previous API-focused report with historical Chrome/GitHub blockers.
 - [`testing-local.md`](./testing-local.md) — manual UI testing guide,
   connector-by-connector checklists, and final-target verification for the
   local ELT stack.

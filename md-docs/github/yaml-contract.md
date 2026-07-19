@@ -3,7 +3,7 @@
 Pipeline YAML is graph-aligned and versioned as `kind: mantrixflow.pipeline`.
 
 ```yaml
-version: 1
+version: 2
 kind: mantrixflow.pipeline
 name: Orders Sync
 description: Sync orders into analytics
@@ -31,6 +31,19 @@ destinations:
     write_mode: upsert
     sync_mode: INCREMENTAL
     replication_key: updated_at
+    transformations:
+      - key: orders_clean
+        name: Clean orders
+        input_streams:
+          - public.orders
+        output_table: fct_orders
+        destination_table: analytics.fct_orders
+        write_mode: upsert
+        upsert_keys:
+          - id
+        sql: |
+          SELECT *
+          FROM {{ source('raw', 'public__orders') }}
     dbt_config:
       mode: ui_sql
       target_schema: analytics
@@ -51,15 +64,17 @@ destinations:
 - Never serialize connection IDs, passwords, tokens, SSH values, private keys, credentials, or encrypted blobs.
 - Source stream keys must remain `schema.table`.
 - `duckdb_source_table` and `duckdb_table_name` must match the strict ELT staging contract: `schema__table`.
-- SQL models must live under each destination node's `dbt_config.sql_models[]`.
+- In version 2, transformation definitions live under their owning destination's `transformations[]`.
+- `dbt_config.sql_models[]` remains part of the runtime-compatible destination configuration.
 
 ## Import Rules
 
-- `version` must be `1`.
+- `version: 2` is the current contract. Version 1 remains accepted during the compatibility window.
 - `source.connection` and every `destinations[].connection` resolve by name inside the org.
 - Duplicate matching names fail with an ambiguous connection error. The importer never guesses.
-- Every SQL model must reference a stream in `source.selected_streams[]`.
-- Every SQL model must include `source_stream_key`, `output_table`, and `sql`.
+- Every destination-owned transformation must reference streams in `source.selected_streams[]`.
+- Every version 2 transformation must include `key`, `name`, `input_streams`, `output_table`, `destination_table`, and `sql`.
+- `destination_table` must use `schema.table` form.
 - SQL is validated through the existing ELT `/validate-sql` path when source column hints are available. If an organization has not cached source column metadata yet, import still enforces the YAML/connection/model contract and resumes ELT SQL validation once hints exist.
 - Valid imports rebuild `pipeline_graph` and update the primary source/destination schema mirrors.
 
