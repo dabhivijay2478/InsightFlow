@@ -76,6 +76,9 @@ Legacy filenames redirect to the above (`betterstack-status-page-creation.md`, `
 
 ## Testing
 
+- [`frontend-refactor-audit.md`](./frontend-refactor-audit.md) — complete
+  frontend size/duplication audit, target architecture, safety baseline, and
+  incremental feature-by-feature refactoring plan.
 - [`pipeline-all-streams-chrome-e2e-report-2026-07-19.md`](./pipeline-all-streams-chrome-e2e-report-2026-07-19.md)
   — final live-Chrome all-streams PostgreSQL, HubSpot, and Stripe pipeline report,
   including Neon cleanup, GitHub/YAML round trip, fixes, and destination evidence.

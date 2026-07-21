@@ -1,12 +1,17 @@
 # Observability deployment (AWS + Vercel)
 
+> **Archived:** This AWS/ECS procedure is retained for historical reference and
+> is not the current production deployment path. Use the
+> [Hetzner deployment guide](../apps/mantrixflow-infra/DEPLOYMENT.md) for current
+> infrastructure and inject the observability variables through that workflow.
+
 Put **PostHog** and **Better Stack** secrets into production and redeploy.  
 No PostHog or Better Stack UI steps here — do those first:
 
 1. [betterstack-setup.md](./betterstack-setup.md) — monitors, status page, collect IDs  
 2. [posthog-setup.md](./posthog-setup.md) — PostHog project UI (error tracking, optional webhook)  
 
-Infra bootstrap (ECS, ALB, first deploy): [`apps/mantrixflow-infra/DEPLOYMENT.md`](../apps/mantrixflow-infra/DEPLOYMENT.md).
+Current infrastructure: [`apps/mantrixflow-infra/DEPLOYMENT.md`](../apps/mantrixflow-infra/DEPLOYMENT.md).
 
 ---
 

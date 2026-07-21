@@ -1,0 +1,356 @@
+location,href,status
+apps/website/app/compare/page.tsx,/pricing,OK
+apps/website/app/compare/page.tsx,/connectors,OK
+apps/website/app/privacy/privacy-client.tsx,mailto:support@mantrixflow.com,External contact link — syntax only
+apps/website/app/subprocessors/subprocessors-client.tsx,mailto:support@mantrixflow.com,External contact link — syntax only
+apps/website/app/terms/terms-client.tsx,mailto:support@mantrixflow.com,External contact link — syntax only
+apps/website/components/cta-section.tsx,/pricing,OK
+apps/website/components/cta-section.tsx,/compare,OK
+apps/website/components/cta-section.tsx,mailto:support@mantrixflow.com,External contact link — syntax only
+apps/website/components/footer.tsx,/legal,OK
+apps/website/components/footer.tsx,/privacy,OK
+apps/website/components/footer.tsx,/terms,OK
+apps/website/components/footer.tsx,/subprocessors,OK
+apps/website/components/hero-section.tsx,/pricing,OK
+apps/website/components/marketing/connectors-teaser.tsx,/connectors,OK
+apps/website/components/marketing/integrations-teaser.tsx,/integrations,OK
+apps/website/components/marketing/solutions-menu.tsx,/connectors,OK
+apps/website/components/navbar.tsx,/,OK
+apps/website/components/page-sections.tsx,/connectors,OK
+apps/website/components/page-sections.tsx,/connectors,OK
+apps/website/components/page-sections.tsx,/connectors,OK
+apps/website/components/page-sections.tsx,/connectors,OK
+apps/website/components/page-sections.tsx,/integrations,OK
+apps/website/components/page-sections.tsx,/connectors,OK
+apps/website/components/page-sections.tsx,mailto:support@mantrixflow.com,External contact link — syntax only
+apps/website/components/side-nav.tsx,/pricing,OK
+apps/app/app/auth/auth-code-error/page.tsx,/auth/login,OK
+apps/app/app/auth/auth-code-error/page.tsx,/,OK
+apps/app/app/error.tsx,/workspace,OK
+apps/app/app/organizations/[id]/edit/page.tsx,/organizations,OK
+apps/app/app/organizations/[id]/edit/page.tsx,/organizations,OK
+apps/app/app/organizations/page.tsx,/workspace,OK
+apps/app/app/workspace/analytics/components/PipelineRunFrequencyChart.tsx,/workspace/data-pipelines,OK
+apps/app/app/workspace/analytics/components/PipelineRunFrequencyChart.tsx,/workspace/data-pipelines,OK
+apps/app/app/workspace/analytics/components/UsageProgressBars.tsx,/workspace/billing/checkout,OK
+apps/app/app/workspace/analytics/page.tsx,/workspace/data-pipelines/new,OK
+apps/app/app/workspace/connections/[id]/edit/page.tsx,/workspace/connections,OK
+apps/app/app/workspace/connections/[id]/page.tsx,/workspace/connections,OK
+apps/app/app/workspace/connections/components/ConnectionDrawer.tsx,/workspace/data-pipelines,OK
+apps/app/app/workspace/connections/components/ConnectionList.tsx,/workspace/connections/new,OK
+apps/app/app/workspace/connections/components/ConnectionSetupGuide.tsx,https://docs.mantrixflow.com/connections/private-database-access,External — network check required
+apps/app/app/workspace/connections/new/[type]/page.tsx,/workspace/connections/new,OK
+apps/app/app/workspace/data-pipelines/new/page.tsx,/workspace/connections,OK
+apps/app/app/workspace/data-pipelines/new/page.tsx,/workspace/data-pipelines,OK
+apps/app/app/workspace/data-pipelines/page.tsx,/workspace/data-pipelines/new,OK
+apps/app/app/workspace/page.tsx,/workspace/data-pipelines/new,OK
+apps/app/app/workspace/page.tsx,/workspace/connections,OK
+apps/app/app/workspace/page.tsx,/workspace/data-pipelines,OK
+apps/app/app/workspace/page.tsx,/workspace/activity,OK
+apps/app/app/workspace/page.tsx,/workspace/activity,OK
+apps/app/app/workspace/team/[id]/edit/page.tsx,/workspace/team,OK
+apps/app/app/workspace/team/[id]/edit/page.tsx,/workspace/team,OK
+apps/app/components/auth/accept-invite-form.tsx,/auth/login,OK
+apps/app/components/auth/auth-page-shell.tsx,/,OK
+apps/app/components/auth/forgot-password-form.tsx,/auth/login,OK
+apps/app/components/auth/login-form.tsx,/auth/forgot-password,OK
+apps/app/components/auth/reset-password-form.tsx,/auth/login,OK
+apps/app/components/auth/signup-form.tsx,/auth/login,OK
+apps/app/components/data-sources/add-connector-content.tsx,/workspace/data-sources,OK
+apps/app/components/data-sources/saas-source-preview.tsx,/workspace/data-pipelines/new,OK
+apps/app/components/shared/navigation/back-button.tsx,/workspace,OK
+apps/app/components/workspace/workspace-sidebar.tsx,/organizations,OK
+apps/app/components/workspace/workspace-sidebar.tsx,/workspace,OK
+apps/app/components/workspace/workspace-sidebar.tsx,/workspace/connections,OK
+apps/app/components/workspace/workspace-sidebar.tsx,/workspace/analytics,OK
+apps/app/components/workspace/workspace-sidebar.tsx,/workspace/data-pipelines,OK
+apps/app/components/workspace/workspace-sidebar.tsx,/workspace/activity,OK
+apps/app/components/workspace/workspace-sidebar.tsx,/workspace/team,OK
+apps/app/components/workspace/workspace-sidebar.tsx,/workspace/settings,OK
+apps/app/lib/utils/toast.ts,itemName,External — network check required
+apps/app/lib/utils/toast.ts,"itemName, error",External — network check required
+apps/mantrixflow-docs/README.md,https://mantrixflow.com,External — network check required
+apps/mantrixflow-docs/README.md,https://mintlify.com,External — network check required
+apps/mantrixflow-docs/billing-breakdown.mdx,/pricing,OK
+apps/mantrixflow-docs/billing-breakdown.mdx,mailto:support@mantrixflow.com,External contact link — syntax only
+apps/mantrixflow-docs/connections/destinations/cockroachdb.mdx,/connections/destinations/postgresql,OK
+apps/mantrixflow-docs/connections/destinations/mariadb.mdx,/connections/destinations/postgresql,OK
+apps/mantrixflow-docs/connections/destinations/mysql.mdx,/connections/destinations/postgresql,OK
+apps/mantrixflow-docs/connections/destinations/postgresql.mdx,/getting-started/quick-start,OK
+apps/mantrixflow-docs/connections/destinations/sqlite.mdx,/connections/destinations/postgresql,OK
+apps/mantrixflow-docs/connections/overview.mdx,/connections/sources/crm/hubspot,OK
+apps/mantrixflow-docs/connections/overview.mdx,/connections/sources/finance/stripe,OK
+apps/mantrixflow-docs/connections/overview.mdx,/connections/private-database-access,OK
+apps/mantrixflow-docs/connections/private-database-access.mdx,https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Overview.RDSSecurityGroups.html,External — network check required
+apps/mantrixflow-docs/connections/private-database-access.mdx,https://cloud.google.com/sql/docs/postgres/authorize-networks,External — network check required
+apps/mantrixflow-docs/connections/private-database-access.mdx,https://learn.microsoft.com/en-us/azure/postgresql/security/security-firewall-rules,External — network check required
+apps/mantrixflow-docs/connections/private-database-access.mdx,https://supabase.com/docs/guides/platform/network-restrictions,External — network check required
+apps/mantrixflow-docs/connections/private-database-access.mdx,https://neon.com/docs/reference/cli-ip-allow,External — network check required
+apps/mantrixflow-docs/connections/private-database-access.mdx,https://aiven.io/docs/platform/howto/restrict-access,External — network check required
+apps/mantrixflow-docs/connections/private-database-access.mdx,https://docs.digitalocean.com/products/databases/postgresql/how-to/secure/,External — network check required
+apps/mantrixflow-docs/connections/private-database-access.mdx,https://render.com/docs/databases,External — network check required
+apps/mantrixflow-docs/connections/sources/crm/hubspot.mdx,/connections/destinations/postgresql,OK
+apps/mantrixflow-docs/connections/sources/database/cockroachdb.mdx,/connections/sources/database/postgresql,OK
+apps/mantrixflow-docs/connections/sources/database/mariadb.mdx,/connections/sources/database/postgresql,OK
+apps/mantrixflow-docs/connections/sources/database/mysql.mdx,/connections/sources/database/postgresql,OK
+apps/mantrixflow-docs/connections/sources/database/sqlite.mdx,/connections/sources/database/postgresql,OK
+apps/mantrixflow-docs/connections/sources/developer-tools/github.mdx,/connections/overview,OK
+apps/mantrixflow-docs/connections/sources/ecommerce/shopify.mdx,/connections/overview,OK
+apps/mantrixflow-docs/connections/sources/finance/stripe.mdx,mailto:support@mantrixflow.com,External contact link — syntax only
+apps/mantrixflow-docs/connections/sources/productivity/notion.mdx,/connections/overview,OK
+apps/mantrixflow-docs/example/pipelines/postgres-to-postgres.mdx,/getting-started/quick-start,OK
+apps/mantrixflow-docs/example/pipelines/postgres-to-postgres.mdx,/pipelines/normalisation,OK
+apps/mantrixflow-docs/getting-started/faq.mdx,/connections/overview,OK
+apps/mantrixflow-docs/getting-started/faq.mdx,/troubleshooting,OK
+apps/mantrixflow-docs/getting-started/introduction.mdx,/getting-started/quick-start,OK
+apps/mantrixflow-docs/getting-started/introduction.mdx,/connections/sources/crm/hubspot,OK
+apps/mantrixflow-docs/index.mdx,/getting-started/quick-start,OK
+apps/mantrixflow-docs/index.mdx,/getting-started/core-concepts,OK
+apps/mantrixflow-docs/index.mdx,/connections/overview,OK
+apps/mantrixflow-docs/index.mdx,/pipelines/overview,OK
+apps/mantrixflow-docs/index.mdx,/example/pipelines/postgres-to-postgres,OK
+apps/mantrixflow-docs/pipelines/transformation-rules.mdx,/pipelines/normalisation,OK
+apps/mantrixflow-docs/pipelines/transformation-rules.mdx,/pipelines/dbt-layer,OK
+apps/mantrixflow-docs/pricing.mdx,mailto:support@mantrixflow.com,External contact link — syntax only
+apps/mantrixflow-docs/pricing.mdx,/billing-breakdown,OK
+apps/mantrixflow-docs/sync-reference/cdc-overview.mdx,/sync-reference/full-sync,OK
+apps/mantrixflow-docs/sync-reference/cdc-overview.mdx,/sync-reference/incremental-sync,OK
+apps/mantrixflow-docs/sync-reference/cdc-postgresql.mdx,/sync-reference/incremental-sync,OK
+apps/mantrixflow-docs/troubleshooting/index.mdx,/connections/private-database-access,OK
+apps/mantrixflow-docs/troubleshooting/index.mdx,/pipelines/dbt-layer,OK
+apps/mantrixflow-docs/troubleshooting/index.mdx,/sync-reference/incremental-sync,OK
+apps/mantrixflow-docs/troubleshooting/index.mdx,/sync-reference/sync-state,OK
+apps/mantrixflow-docs/troubleshooting/index.mdx,mailto:support@mantrixflow.com,External contact link — syntax only
+apps/mantrixflow-docs/user-guide/connections.mdx,/connections/sources/crm/hubspot,OK
+apps/mantrixflow-docs/user-guide/index.mdx,/user-guide/connections,OK
+apps/mantrixflow-docs/user-guide/index.mdx,/user-guide/pipelines,OK
+apps/mantrixflow-docs/user-guide/index.mdx,/user-guide/transformations-and-branches,OK
+apps/mantrixflow-docs/user-guide/index.mdx,/user-guide/organizations,OK
+apps/mantrixflow-docs/user-guide/index.mdx,/user-guide/activity-and-edge-cases,OK
+apps/mantrixflow-docs/user-guide/organizations.mdx,/images/user-guide/ug-organization-create-form.png,OK
+apps/mantrixflow-docs/user-guide/organizations.mdx,/images/user-guide/ug-organization-switcher.png,OK
+apps/mantrixflow-docs/user-guide/organizations.mdx,/images/user-guide/ug-settings-organization.png,OK
+apps/mantrixflow-docs/user-guide/transformations-and-branches.mdx,/pipelines/normalisation,OK
+apps/mantrixflow-docs/user-guide/transformations-and-branches.mdx,/pipelines/dbt-layer,OK
+md-docs/README.md,./strict-elt-pipeline-guide.md,OK
+md-docs/README.md,./source-to-destination-elt-flow.md,OK
+md-docs/README.md,./analytics-page-implementation.md,OK
+md-docs/README.md,../.cursor/rules/strict-elt-invariants.mdc,OK
+md-docs/README.md,../.cursor/rules/elt-flow-diagram.mdc,OK
+md-docs/README.md,./billing-dodo-billingsdk.md,OK
+md-docs/README.md,./dodo-payments-setup.md,OK
+md-docs/README.md,./dodo-payments-flowchart.md,OK
+md-docs/README.md,./autosend-email-system-plan.md,OK
+md-docs/README.md,./autosend-email-catalog.md,OK
+md-docs/README.md,./autosend-template-copy.md,OK
+md-docs/README.md,./autosend-template-design-guide.md,OK
+md-docs/README.md,./autosend-template-id-map.md,OK
+md-docs/README.md,./dodo-autosend-transformations.md,OK
+md-docs/README.md,./autosend-dodo-supabase-production-runbook.md,OK
+md-docs/README.md,./autosend-production-deployment-guide.md,OK
+md-docs/README.md,./supabase-auth-email-templates.md,OK
+md-docs/README.md,./betterstack-setup.md,OK
+md-docs/README.md,./posthog-setup.md,OK
+md-docs/README.md,./posthog-full-integration.md,OK
+md-docs/README.md,./observability-deployment.md,OK
+md-docs/README.md,./hetzner-server-setup.md,OK
+md-docs/README.md,./tigris-storage-setup.md,OK
+md-docs/README.md,./deployment-oracle-cloud.md,OK
+md-docs/README.md,./deployment-vercel.md,OK
+md-docs/README.md,./aws-ses-setup.md,OK
+md-docs/README.md,./slack-guide.md,OK
+md-docs/README.md,./agents/README.md,OK
+md-docs/README.md,./frontend-refactor-audit.md,OK
+md-docs/README.md,./pipeline-all-streams-chrome-e2e-report-2026-07-19.md,OK
+md-docs/README.md,./pipeline-new-layout-e2e-report-2026-07-18.md,OK
+md-docs/README.md,./testing-local.md,OK
+md-docs/README.md,./manual-testing/slack-pipeline-e2e.md,OK
+md-docs/README.md,./manual-testing/postgres-to-postgres-data-types-ui.md,OK
+md-docs/README.md,./saas-sources-group2.md,OK
+md-docs/README.md,./stripe-connector-ai-prompts.md,OK
+md-docs/README.md,./hubspot-postgres-full-phase-plan.md,OK
+md-docs/README.md,./salesforce-postgres-setup.md,OK
+md-docs/README.md,./salesforce-postgres-testing-guide.md,OK
+md-docs/agents/README.md,./flow-charts.md,OK
+md-docs/agents/README.md,./workflows.md,OK
+md-docs/agents/README.md,./setup-guide.md,OK
+md-docs/agents/README.md,./model-providers.md,OK
+md-docs/agents/README.md,./how-it-works.md,OK
+md-docs/agents/setup-guide.md,./model-providers.md,OK
+md-docs/autosend-dodo-supabase-production-runbook.md,./dodo-autosend-transformations.md,OK
+md-docs/autosend-dodo-supabase-production-runbook.md,./autosend-template-id-map.md,OK
+md-docs/autosend-dodo-supabase-production-runbook.md,https://docs.dodopayments.com/integrations/autosend,External — network check required
+md-docs/autosend-dodo-supabase-production-runbook.md,https://docs.autosend.com/api-reference/introduction,External — network check required
+md-docs/autosend-dodo-supabase-production-runbook.md,https://docs.autosend.com/quickstart/smtp,External — network check required
+md-docs/autosend-dodo-supabase-production-runbook.md,https://supabase.com/docs/guides/auth/auth-smtp,External — network check required
+md-docs/autosend-email-system-plan.md,./dodo-autosend-transformations.md,OK
+md-docs/autosend-email-system-plan.md,./autosend-template-id-map.md,OK
+md-docs/autosend-email-system-plan.md,./autosend-dodo-supabase-production-runbook.md,OK
+md-docs/autosend-email-system-plan.md,https://docs.dodopayments.com/integrations/autosend,External — network check required
+md-docs/autosend-email-system-plan.md,https://docs.autosend.com/api-reference/mails/send,External — network check required
+md-docs/autosend-email-system-plan.md,https://docs.autosend.com/quickstart/smtp,External — network check required
+md-docs/autosend-email-system-plan.md,https://supabase.com/docs/guides/auth/auth-smtp,External — network check required
+md-docs/autosend-production-deployment-guide.md,./supabase-auth-email-templates.md,OK
+md-docs/autosend-production-deployment-guide.md,https://docs.autosend.com/api-reference/introduction,External — network check required
+md-docs/autosend-production-deployment-guide.md,https://docs.autosend.com/quickstart/smtp,External — network check required
+md-docs/autosend-production-deployment-guide.md,https://docs.dodopayments.com/integrations/autosend,External — network check required
+md-docs/autosend-production-deployment-guide.md,https://supabase.com/docs/guides/auth/auth-email-templates,External — network check required
+md-docs/autosend-template-design-guide.md,mailto:support@mantrixflow.com,External contact link — syntax only
+md-docs/aws-ses-setup.md,https://docs.aws.amazon.com/ses/latest/dg/creating-identities.html,External — network check required
+md-docs/aws-ses-setup.md,https://docs.aws.amazon.com/ses/latest/dg/mail-from.html,External — network check required
+md-docs/aws-ses-setup.md,https://docs.aws.amazon.com/ses/latest/dg/creating-configuration-sets.html,External — network check required
+md-docs/aws-ses-setup.md,https://docs.aws.amazon.com/ses/latest/dg/request-production-access.html,External — network check required
+md-docs/aws-ses-setup.md,https://docs.aws.amazon.com/ses/latest/dg/smtp-credentials.html,External — network check required
+md-docs/aws-ses-setup.md,https://supabase.com/docs/guides/auth/auth-smtp,External — network check required
+md-docs/betterstack-setup.md,./observability-deployment.md,OK
+md-docs/betterstack-setup.md,../apps/mantrixflow-infra/DEPLOYMENT.md,OK
+md-docs/betterstack-setup.md,https://betterstack.com,External — network check required
+md-docs/betterstack-setup.md,./observability-deployment.md,OK
+md-docs/betterstack-setup.md,./observability-deployment.md,OK
+md-docs/betterstack-setup.md,./posthog-setup.md,OK
+md-docs/betterstack-setup.md,./observability-deployment.md,OK
+md-docs/betterstack-status-page-creation.md,./betterstack-setup.md,OK
+md-docs/betterstack-status-page-creation.md,./observability-deployment.md,OK
+md-docs/deployment-oracle-cloud.md,https://docs.oracle.com/en-us/iaas/Content/FreeTier/freetier_topic-Always_Free_Resources.htm,External — network check required
+md-docs/deployment-oracle-cloud.md,https://docs.oracle.com/en-us/iaas/Content/FreeTier/freetier.htm,External — network check required
+md-docs/deployment-oracle-cloud.md,https://www.oracle.com/cloud/free/,External — network check required
+md-docs/deployment-oracle-cloud.md,https://www.cloudflare.com/plans/free/,External — network check required
+md-docs/dodo-payments-flowchart.md,./billing-dodo-billingsdk.md,OK
+md-docs/github/README.md,backend-plan.md,OK
+md-docs/github/README.md,yaml-contract.md,OK
+md-docs/github/README.md,frontend-plan.md,OK
+md-docs/github/README.md,test-plan.md,OK
+md-docs/github/README.md,setup/github-app-setup.md,OK
+md-docs/hetzner-server-setup.md,./tigris-storage-setup.md,OK
+md-docs/hetzner-server-setup.md,./autosend-production-deployment-guide.md,OK
+md-docs/hubspot-postgres-full-phase-plan.md,https://dlthub.com/docs/dlt-ecosystem/verified-sources/hubspot,External — network check required
+md-docs/hubspot-postgres-full-phase-plan.md,https://dlthub.com/docs/general-usage/source,External — network check required
+md-docs/hubspot-postgres-full-phase-plan.md,https://docs.estuary.dev/reference/Connectors/capture-connectors/HubSpot-real-time/,External — network check required
+md-docs/hubspot-postgres-full-phase-plan.md,https://developers.hubspot.com/docs/developer-tooling/platform/usage-guidelines,External — network check required
+md-docs/hubspot-postgres-full-phase-plan.md,https://developers.hubspot.com/docs/api-reference/latest/crm/using-object-apis,External — network check required
+md-docs/hubspot-postgres-full-phase-plan.md,https://developers.hubspot.com/docs/apps/developer-platform/build-apps/authentication/scopes,External — network check required
+md-docs/hubspot-postgres-full-phase-plan.md,https://developers.hubspot.com/docs/api-reference/latest/crm/limits-tracking/guide,External — network check required
+md-docs/manual-testing/README.md,../testing-local.md,OK
+md-docs/manual-testing/README.md,./postgres-to-postgres-data-types-ui.md,OK
+md-docs/manual-testing/pipeline-step-by-step.md,pipelines/saas/11-hubspot-to-postgres.md,OK
+md-docs/manual-testing/pipelines/README.md,saas/01-stripe-to-postgres.md,OK
+md-docs/manual-testing/pipelines/README.md,saas/02-stripe-to-mysql.md,OK
+md-docs/manual-testing/pipelines/README.md,saas/03-stripe-to-mariadb.md,OK
+md-docs/manual-testing/pipelines/README.md,saas/04-stripe-to-sqlite.md,OK
+md-docs/manual-testing/pipelines/README.md,saas/05-stripe-to-cockroachdb.md,OK
+md-docs/manual-testing/pipelines/README.md,saas/06-shopify-to-postgres.md,OK
+md-docs/manual-testing/pipelines/README.md,saas/07-shopify-to-mysql.md,OK
+md-docs/manual-testing/pipelines/README.md,saas/08-shopify-to-mariadb.md,OK
+md-docs/manual-testing/pipelines/README.md,saas/09-shopify-to-sqlite.md,OK
+md-docs/manual-testing/pipelines/README.md,saas/10-shopify-to-cockroachdb.md,OK
+md-docs/manual-testing/pipelines/README.md,saas/11-hubspot-to-postgres.md,OK
+md-docs/manual-testing/pipelines/README.md,saas/12-hubspot-to-mysql.md,OK
+md-docs/manual-testing/pipelines/README.md,saas/13-hubspot-to-mariadb.md,OK
+md-docs/manual-testing/pipelines/README.md,saas/14-hubspot-to-sqlite.md,OK
+md-docs/manual-testing/pipelines/README.md,saas/15-hubspot-to-cockroachdb.md,OK
+md-docs/manual-testing/pipelines/README.md,saas/16-github-to-postgres.md,OK
+md-docs/manual-testing/pipelines/README.md,saas/17-github-to-mysql.md,OK
+md-docs/manual-testing/pipelines/README.md,saas/18-github-to-mariadb.md,OK
+md-docs/manual-testing/pipelines/README.md,saas/19-github-to-sqlite.md,OK
+md-docs/manual-testing/pipelines/README.md,saas/20-github-to-cockroachdb.md,OK
+md-docs/manual-testing/pipelines/README.md,saas/21-notion-to-postgres.md,OK
+md-docs/manual-testing/pipelines/README.md,saas/22-notion-to-mysql.md,OK
+md-docs/manual-testing/pipelines/README.md,saas/23-notion-to-mariadb.md,OK
+md-docs/manual-testing/pipelines/README.md,saas/24-notion-to-sqlite.md,OK
+md-docs/manual-testing/pipelines/README.md,saas/25-notion-to-cockroachdb.md,OK
+md-docs/manual-testing/pipelines/README.md,db/26-postgres-to-postgres.md,OK
+md-docs/manual-testing/pipelines/README.md,db/27-postgres-to-mysql.md,OK
+md-docs/manual-testing/pipelines/README.md,db/28-postgres-to-mariadb.md,OK
+md-docs/manual-testing/pipelines/README.md,db/29-postgres-to-sqlite.md,OK
+md-docs/manual-testing/pipelines/README.md,db/30-postgres-to-cockroachdb.md,OK
+md-docs/manual-testing/pipelines/README.md,db/31-mysql-to-postgres.md,OK
+md-docs/manual-testing/pipelines/README.md,db/32-mysql-to-mysql.md,OK
+md-docs/manual-testing/pipelines/README.md,db/33-mysql-to-mariadb.md,OK
+md-docs/manual-testing/pipelines/README.md,db/34-mysql-to-sqlite.md,OK
+md-docs/manual-testing/pipelines/README.md,db/35-mysql-to-cockroachdb.md,OK
+md-docs/manual-testing/pipelines/README.md,db/36-mariadb-to-postgres.md,OK
+md-docs/manual-testing/pipelines/README.md,db/37-mariadb-to-mysql.md,OK
+md-docs/manual-testing/pipelines/README.md,db/38-mariadb-to-mariadb.md,OK
+md-docs/manual-testing/pipelines/README.md,db/39-mariadb-to-sqlite.md,OK
+md-docs/manual-testing/pipelines/README.md,db/40-mariadb-to-cockroachdb.md,OK
+md-docs/manual-testing/pipelines/README.md,db/41-sqlite-to-postgres.md,OK
+md-docs/manual-testing/pipelines/README.md,db/42-sqlite-to-mysql.md,OK
+md-docs/manual-testing/pipelines/README.md,db/43-sqlite-to-mariadb.md,OK
+md-docs/manual-testing/pipelines/README.md,db/44-sqlite-to-sqlite.md,OK
+md-docs/manual-testing/pipelines/README.md,db/45-sqlite-to-cockroachdb.md,OK
+md-docs/manual-testing/pipelines/README.md,db/46-cockroachdb-to-postgres.md,OK
+md-docs/manual-testing/pipelines/README.md,db/47-cockroachdb-to-mysql.md,OK
+md-docs/manual-testing/pipelines/README.md,db/48-cockroachdb-to-mariadb.md,OK
+md-docs/manual-testing/pipelines/README.md,db/49-cockroachdb-to-sqlite.md,OK
+md-docs/manual-testing/pipelines/README.md,db/50-cockroachdb-to-cockroachdb.md,OK
+md-docs/manual-testing/pipelines/saas/11-hubspot-to-postgres.md,../../sources/hubspot.md,OK
+md-docs/manual-testing/ui-testing/README.md,builder-walkthrough.md,OK
+md-docs/manual-testing/ui-testing/README.md,saas/stripe-ui.md,OK
+md-docs/manual-testing/ui-testing/README.md,saas/shopify-ui.md,OK
+md-docs/manual-testing/ui-testing/README.md,saas/hubspot-ui.md,OK
+md-docs/manual-testing/ui-testing/README.md,saas/github-ui.md,OK
+md-docs/manual-testing/ui-testing/README.md,saas/notion-ui.md,OK
+md-docs/manual-testing/ui-testing/README.md,db/postgres-ui.md,OK
+md-docs/manual-testing/ui-testing/README.md,db/mysql-ui.md,OK
+md-docs/manual-testing/ui-testing/README.md,db/mariadb-ui.md,OK
+md-docs/manual-testing/ui-testing/README.md,db/sqlite-ui.md,OK
+md-docs/manual-testing/ui-testing/README.md,db/cockroachdb-ui.md,OK
+md-docs/observability-deployment.md,./betterstack-setup.md,OK
+md-docs/observability-deployment.md,./posthog-setup.md,OK
+md-docs/observability-deployment.md,../apps/mantrixflow-infra/DEPLOYMENT.md,OK
+md-docs/observability-deployment.md,./posthog-setup.md,OK
+md-docs/observability-deployment.md,./betterstack-setup.md,OK
+md-docs/observability-deployment.md,./posthog-setup.md,OK
+md-docs/observability-deployment.md,./betterstack-setup.md,OK
+md-docs/observability-deployment.md,./posthog-setup.md,OK
+md-docs/observability-deployment.md,./betterstack-setup.md,OK
+md-docs/observability-deployment.md,./posthog-setup.md,OK
+md-docs/observability-deployment.md,./deployment-vercel.md,OK
+md-docs/observability-deployment.md,../apps/mantrixflow-infra/DEPLOYMENT.md,OK
+md-docs/pipeline-all-streams-chrome-e2e-report-2026-07-19.md,https://github.com/dabhivijay2478/mantrixflow-git-testing/pull/3,External — network check required
+md-docs/posthog-betterstack-setup.md,./betterstack-setup.md,OK
+md-docs/posthog-betterstack-setup.md,./posthog-setup.md,OK
+md-docs/posthog-betterstack-setup.md,./observability-deployment.md,OK
+md-docs/posthog-full-integration.md,https://status.mantrixflow.com,External — network check required
+md-docs/posthog-full-integration.md,./posthog-setup.md,OK
+md-docs/posthog-full-integration.md,./betterstack-setup.md,OK
+md-docs/posthog-full-integration.md,./observability-deployment.md,OK
+md-docs/posthog-full-integration.md,../apps/app/lib/posthog/events.ts,OK
+md-docs/posthog-full-integration.md,../apps/app/components/providers/posthog-identify.tsx,OK
+md-docs/posthog-full-integration.md,../apps/server/main-server/internal/observability/,OK
+md-docs/posthog-full-integration.md,../apps/server/main-server/internal/server/incident_webhook.go,OK
+md-docs/posthog-full-integration.md,../apps/app/hooks/use-feature-flag.ts,OK
+md-docs/posthog-full-integration.md,../apps/app/lib/posthog/client.ts,OK
+md-docs/posthog-full-integration.md,./observability-deployment.md,OK
+md-docs/posthog-full-integration.md,../apps/mantrixflow-infra/cdk/lib/config.ts,Missing local target
+md-docs/posthog-full-integration.md,./posthog-setup.md,OK
+md-docs/posthog-setup.md,https://us.posthog.com,External — network check required
+md-docs/posthog-setup.md,./observability-deployment.md,OK
+md-docs/posthog-setup.md,https://us.posthog.com,External — network check required
+md-docs/posthog-setup.md,https://posthog.com/docs/getting-started/install,External — network check required
+md-docs/posthog-setup.md,https://us.posthog.com,External — network check required
+md-docs/posthog-setup.md,https://posthog.com/docs/error-tracking/alerts,External — network check required
+md-docs/posthog-setup.md,https://posthog.com/docs/error-tracking/installation/nextjs,External — network check required
+md-docs/posthog-setup.md,https://posthog.com/docs/getting-started/install,External — network check required
+md-docs/posthog-setup.md,https://cloud.mantrixflow.com,External — network check required
+md-docs/posthog-setup.md,https://posthog.com/docs/getting-started/identify,External — network check required
+md-docs/posthog-setup.md,https://posthog.com/docs/error-tracking/alerts,External — network check required
+md-docs/posthog-setup.md,https://status.mantrixflow.com,External — network check required
+md-docs/posthog-setup.md,./betterstack-setup.md,OK
+md-docs/posthog-setup.md,https://posthog.com/docs/error-tracking/spikes,External — network check required
+md-docs/posthog-setup.md,/apps/server/main-server/internal/server/middleware.go,OK
+md-docs/posthog-setup.md,./betterstack-setup.md,OK
+md-docs/posthog-setup.md,./observability-deployment.md,OK
+md-docs/posthog-setup.md,./betterstack-setup.md,OK
+md-docs/strict-elt-pipeline-guide.md,../.cursor/rules/strict-elt-invariants.mdc,OK
+md-docs/strict-elt-pipeline-guide.md,../.cursor/rules/elt-flow-diagram.mdc,OK
+md-docs/strict-elt-pipeline-guide.md,../.cursor/rules/strict-elt-invariants.mdc,OK
+md-docs/strict-elt-pipeline-guide.md,./testing-local.md,OK
+md-docs/supabase-auth-email-templates.md,mailto:support@mantrixflow.com,External contact link — syntax only
+md-docs/supabase-auth-email-templates.md,mailto:support@mantrixflow.com,External contact link — syntax only
+md-docs/supabase-auth-email-templates.md,mailto:support@mantrixflow.com,External contact link — syntax only
+md-docs/supabase-auth-email-templates.md,mailto:support@mantrixflow.com,External contact link — syntax only
+md-docs/supabase-auth-email-templates.md,mailto:support@mantrixflow.com,External contact link — syntax only
+md-docs/supabase-auth-email-templates.md,mailto:support@mantrixflow.com,External contact link — syntax only
+md-docs/testing-local.md,./source-to-destination-elt-flow.md,OK
+md-docs/tigris-storage-setup.md,https://www.tigrisdata.com/,External — network check required

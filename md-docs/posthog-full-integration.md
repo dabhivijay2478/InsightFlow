@@ -147,10 +147,15 @@ Enable **Web analytics** in PostHog project settings. MantrixFlow already sends 
 
 ## Production deployment checklist
 
+> **Archived infrastructure details:** The SSM, CDK, and ECS steps below describe
+> the previous deployment. Use the current
+> [Hetzner deployment guide](../apps/mantrixflow-infra/DEPLOYMENT.md) to inject the
+> same runtime environment variables.
+
 1. Write SSM parameters (see [`observability-deployment.md`](./observability-deployment.md)):
    - `POSTHOG_API_KEY`, `POSTHOG_HOST`
    - `BETTERSTACK_*` (5 vars on API)
-2. Redeploy CDK/ECS so [`config.ts`](../apps/mantrixflow-infra/cdk/lib/config.ts) injects secrets
+2. Redeploy the API and ELT services using the current infrastructure workflow
 3. Vercel: `NEXT_PUBLIC_POSTHOG_KEY`, `NEXT_PUBLIC_POSTHOG_HOST`
 4. PostHog Data pipeline webhook: token = `CALLBACK_TOKEN` (see [`posthog-setup.md`](./posthog-setup.md) Step 7)
 5. Smoke: Activity shows `$pageview`; test webhook returns **200**
@@ -179,4 +184,4 @@ Enable **Web analytics** in PostHog project settings. MantrixFlow already sends 
 | Go PostHog | `apps/server/main-server/internal/observability/` |
 | Better Stack client | `apps/server/main-server/internal/betterstack/client.go` |
 | Webhook relay | `apps/server/main-server/internal/server/incident_webhook.go` |
-| CDK secrets | `apps/mantrixflow-infra/cdk/lib/config.ts` |
+| Current infrastructure | `apps/mantrixflow-infra/DEPLOYMENT.md` |

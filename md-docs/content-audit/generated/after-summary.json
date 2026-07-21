@@ -1,0 +1,27 @@
+{
+  "generatedAt": "2026-07-21T20:17:23.213Z",
+  "files": 536,
+  "bySurface": {
+    "website": 73,
+    "application": 273,
+    "documentation": 53,
+    "internal_reference": 137
+  },
+  "routes": 57,
+  "layouts": 5,
+  "contentComponents": 217,
+  "dialogs": 18,
+  "tooltips": 5,
+  "articles": 189,
+  "exactDuplicateBlocks": 64,
+  "links": 355,
+  "questionableLinks": 1,
+  "externalLinksRequiringNetworkCheck": 58,
+  "actions": {
+    "ARCHIVE": 12,
+    "KEEP AND IMPROVE": 319,
+    "MOVE TO ADVANCED SECTION": 111,
+    "REQUIRES PRODUCT CONFIRMATION": 81,
+    "SHORTEN": 13
+  }
+}
