@@ -418,7 +418,29 @@ STAGING_DISK_LIMIT_GB=100
 
 Increase concurrency only after load testing.
 
-## 9. Verify Deployment
+## 9. Troubleshooting GHCR `denied: denied`
+
+If API or ELT deploy fails during `docker login ghcr.io` on the Hetzner host
+with:
+
+```text
+Error response from daemon: Get "https://ghcr.io/v2/": denied: denied
+```
+
+the host could not authenticate to GitHub Container Registry with
+`GHCR_READ_TOKEN`.
+
+Checklist:
+
+1. Confirm `GHCR_READ_TOKEN` is set in the repo `production-hetzner`
+   environment for both API and ELT.
+2. Use a GitHub **classic** PAT with the `read:packages` scope.
+3. Re-create the token if it expired or was revoked, then update the secret.
+4. The deploy workflow validates login on the runner before SSH; fix auth there
+   first if that step fails.
+5. For organization-owned packages, authorize the PAT for SSO if prompted.
+
+## 10. Verify Deployment
 
 ```bash
 curl -fsS https://cloud.api.mantrixflow.com/health
@@ -444,7 +466,7 @@ curl -i http://SERVER_IPV4:8000/health
 
 Only ports 80 and 443 should be public.
 
-## 10. Upgrade From CX33 To CX43
+## 11. Upgrade From CX33 To CX43
 
 When you need more concurrency:
 

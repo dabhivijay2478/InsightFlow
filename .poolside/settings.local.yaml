@@ -1,0 +1,16 @@
+tools:
+    shell:
+        allow:
+            - find *
+            - head *
+            - ls *
+            - wc *
+            - uniq *
+            - sort *
+            - grep *
+            - cd *
+            - go build *
+            - docker build *
+            - file *
+            - rm *
+            - echo *
