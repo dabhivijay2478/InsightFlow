@@ -1,7 +1,9 @@
 # MantrixFlow content audit and controlled cleanup plan
 
 Date: 2026-07-22  
-Status: audit complete enough to begin controlled copy changes; product-confirmation items remain frozen
+Status: baseline audit complete; controlled cleanup completed; product-confirmation items remain frozen
+
+Implementation results, final counts, and deferred verification are recorded in [`final-report.md`](./final-report.md). Current product terminology and verified claims are maintained in [`source-of-truth.md`](./source-of-truth.md).
 
 ## Scope and audit trail
 
