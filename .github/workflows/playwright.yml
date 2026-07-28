@@ -1,0 +1,70 @@
+name: Playwright End-to-End Tests
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  test-e2e:
+    timeout-minutes: 30
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+
+      - name: Install dependencies
+        run: |
+          cd apps/app
+          bun install --frozen-lockfile || bun install
+
+      - name: Install Playwright Browsers with Dependencies
+        run: |
+          cd apps/app
+          bunx playwright install --with-deps chromium firefox webkit
+
+      - name: Build application
+        run: |
+          cd apps/app
+          bun run build
+
+      - name: Run Playwright smoke tests
+        run: |
+          cd apps/app
+          bun run test:e2e:smoke
+        env:
+          CI: true
+          TEST_ENV: ci
+          TEST_APP_URL: http://localhost:3000
+
+      - name: Run Playwright mocked regression tests
+        run: |
+          cd apps/app
+          bun run test:e2e:mocked
+        env:
+          CI: true
+          TEST_ENV: ci
+          TEST_APP_URL: http://localhost:3000
+
+      - name: Upload HTML report artifact
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: playwright-report
+          path: apps/app/playwright-report/
+          retention-days: 14
+
+      - name: Upload test results on failure
+        uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: test-results
+          path: apps/app/test-results/
+          retention-days: 14
