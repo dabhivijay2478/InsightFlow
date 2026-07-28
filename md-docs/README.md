@@ -73,6 +73,7 @@ Legacy filenames redirect to the above (`betterstack-status-page-creation.md`, `
 ## Agents
 
 - [`agents/README.md`](./agents/README.md) - Custom Agent Builder docs: flow charts, different workflows, setup guide, and how the embedded data Q&A agent works.
+- [`ai-copilot-phase-1.md`](./ai-copilot-phase-1.md) - Workspace Copilot Release 1 architecture, provider setup, 12-agent/tool registries, redaction, persistence, and testing.
 
 ## Testing
 
