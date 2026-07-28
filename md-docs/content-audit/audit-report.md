@@ -42,7 +42,7 @@ The inventory contains 57 page routes, 5 layouts, 18 dialog/sheet hosts, 5 expli
 | --- | --- | --- |
 | PostgreSQL source and destination | Enabled frontend connector; complete create/test/save path; backend runtime | Present as live |
 | HubSpot source to PostgreSQL | Enabled frontend connector; backend registry/runtime; public connector guide | Present as available; private-app token authentication |
-| Stripe source to PostgreSQL | Enabled frontend connector with `beta` release stage; public guide | Present as Beta only |
+| Stripe source to PostgreSQL | Enabled frontend connector with completed all-stream real-browser verification; public guide | Present as available |
 | Pipeline builder | Current app routes and structured pipeline APIs | Present as available |
 | Schema discovery and source preview | Current app services and builder UI | Present as available |
 | Full Table and Incremental sync | Current app types, UI, backend dispatch, and checkpoint behavior | Present as available with current restrictions |
@@ -84,7 +84,7 @@ The following claims must not be removed from legal agreements or silently conve
 | Route or surface | Purpose | Accuracy | Duplication/detail | Status | Proposed action |
 | --- | --- | --- | --- | --- | --- |
 | `/` | Explain value and start flow | Partly accurate | Agent sections duplicate `/agents`; connector visual implies unavailable connectors are live | KEEP AND IMPROVE | Keep one message and CTA; show only enabled connectors; remove unsupported agent availability from homepage |
-| `/connectors` | Connector availability catalog | Mostly accurate | Intro repeats availability copy | KEEP AND IMPROVE | Keep indexed page; make availability labels the source of truth; ensure Stripe Beta is visible |
+| `/connectors` | Connector availability catalog | Mostly accurate | Intro repeats availability copy | KEEP AND IMPROVE | Keep indexed page; make availability labels the source of truth; ensure Stripe availability is visible |
 | `/integrations` | Slack and GitHub operational integrations | Implemented | 537-line page repeats feature/trust descriptions | SHORTEN | Keep functional claims; reduce repeated cards and decorative explanations |
 | `/agents` | Agent product marketing | Unsupported as presented | Repeats homepage agent sections and internal agent drafts | REQUIRES PRODUCT CONFIRMATION | Preserve URL and SEO metadata; replace current-availability claims with an honest development-status page |
 | `/pricing` | Plans, limits, checkout links | Core prices/limits verified | Feature matrix includes unverified promises | KEEP AND IMPROVE | Keep verified limits and billing terms; label or remove unverified feature promises without changing prices |
@@ -112,8 +112,8 @@ The Mintlify navigation currently splits material among Introduction, Getting st
 | --- | --- | --- | --- |
 | `pricing.mdx` | Uses obsolete Starter/Growth names, $49/$199 prices, 3 pipelines/10K Free limit, API allowances, real-time pipelines, MCP, and agent claims | UPDATE | Replace with backend-verified Free/Plus/Pro/Enterprise prices and limits; remove unverified allowances |
 | `billing-breakdown.mdx` | Repeats obsolete plans and unverified API/row overage formulas | REQUIRES PRODUCT CONFIRMATION | Retain hosted-checkout, upgrade/downgrade, and billing-cycle guidance; remove formulas not proven by current customer flow |
-| `getting-started/faq.mdx` | Says only PostgreSQL is live, conflicting with Connections Overview, HubSpot, and Stripe Beta | UPDATE | Correct live connector list and link to the single canonical connector table |
-| `index.mdx` | Omits Stripe Beta and says broad chat/notifications are not live despite Slack integration being live | UPDATE | Use precise distinctions: connector, integration, and future AI capability |
+| `getting-started/faq.mdx` | Says only PostgreSQL is live, conflicting with Connections Overview, HubSpot, and Stripe availability | UPDATE | Correct available connector list and link to the single canonical connector table |
+| `index.mdx` | Omits Stripe and says broad chat/notifications are not live despite Slack integration being live | UPDATE | Use precise distinctions: connector, integration, and future AI capability |
 | `connections/overview.mdx` | Correct high-level connector status but says “another available source,” which is less precise than the table | KEEP AND IMPROVE | Link connector names directly; use exact availability wording |
 | Hidden MySQL/MariaDB/SQLite/CockroachDB/GitHub/Shopify/Notion pages | Direct-link status notices repeat identical paragraphs | MERGE WITH ANOTHER PAGE | Preserve URLs; shorten each to one status notice and canonical connector link |
 | CDC pages | Direct-link status notices for unavailable change capture | MERGE WITH ANOTHER PAGE | Preserve URLs; keep one canonical status explanation and cross-links |
@@ -220,8 +220,8 @@ Remove from availability copy or relabel as planned:
 | Plans | Public docs use Starter/Growth; app/backend/website use Free/Plus |
 | Prices | Public docs use $49/$199; app/backend/website use $29/$129 |
 | Free limits | Public docs use 3 pipelines/10K rows; backend/website use 5/25K |
-| Connectors | Docs FAQ says only PostgreSQL; docs overview and app enable HubSpot and Stripe Beta |
-| HubSpot stage | App catalog and product docs treat HubSpot as production; two backend dispatch errors still call it beta |
+| Connectors | Docs FAQ says only PostgreSQL; docs overview and app enable HubSpot and Stripe |
+| HubSpot stage | App catalog and product docs treat HubSpot as available; legacy backend wording needs separate cleanup if still reachable |
 | Agents | App billing dialog says coming soon; marketing says active and ready to deploy |
 | Overage | Website FAQ says runs pause at 100%; other marketing and docs mention row-based overage; backend contains both limit and overage infrastructure |
 | Integration vs connector | Homepage and content sometimes display GitHub/Slack/Shopify without distinguishing operational integration, data source, and future connector |

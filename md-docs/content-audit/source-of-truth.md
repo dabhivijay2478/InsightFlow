@@ -1,6 +1,6 @@
 # MantrixFlow content source of truth
 
-Date: 2026-07-22  
+Date: 2026-07-28
 Status: current repository-verified content baseline
 
 Use this document when writing product copy. If the implementation changes, update this document from working application behavior and backend contracts before updating marketing or documentation.
@@ -48,7 +48,7 @@ Button labels should describe the specific action: **Create Connection**, **Test
 | --- | --- | --- | --- |
 | PostgreSQL | Source and destination | Available | Preserve connection, network, permissions, schema, preview, and destination requirements in connector documentation |
 | HubSpot | Source | Available | Uses private-app token authentication; preserve required scopes and stream limitations |
-| Stripe | Source | Beta | Always display the Beta qualification; preserve authentication, supported objects, pagination, and limitation guidance |
+| Stripe | Source | Available | Supports 34 tested streams for PostgreSQL delivery; preserve authentication, supported objects, pagination, empty-stream behavior, and limitation guidance |
 
 The catalog may contain additional connector definitions for future work. Do not describe them as selectable production workflows unless the frontend enablement gate and end-to-end customer path are active.
 
@@ -89,7 +89,6 @@ The current row limit is enforced as a hard limit. Do not promise automatic over
 ## Availability labels
 
 - **Available**: enabled in the current customer workflow.
-- **Beta**: enabled but explicitly subject to beta limitations.
 - **Enterprise-only**: available only when the backend entitlement and customer contract both support it.
 - **In development**: active product work without a supported public workflow.
 - **Planned**: intended future work without a delivery promise.
@@ -147,3 +146,17 @@ Before publishing a new claim:
 5. Link secondary pages to the canonical explanation.
 6. Preserve route, canonical URL, redirects, structured data, and legal context.
 
+## July 2026 connector verification
+
+The current Stripe availability claim is backed by the retained real-browser
+pipeline verification completed on 26 July 2026:
+
+- all 34 discoverable Stripe streams were selected and completed;
+- PostgreSQL delivery completed successfully;
+- valid empty streams completed without false failures;
+- connection, discovery, preview, transformation, validation, delivery, and
+  run-history paths were exercised in the customer UI.
+
+The retained evidence is in
+`apps/app/tests/reports/STRIPE_STREAM_COVERAGE.md` and
+`apps/app/tests/reports/FINAL_TEST_SUMMARY.md`.

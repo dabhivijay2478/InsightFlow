@@ -1,6 +1,6 @@
 # MantrixFlow content audit and controlled cleanup — final report
 
-Date: 2026-07-22  
+Date: 2026-07-28
 Scope: marketing website, public documentation, web application, and repository content used to verify claims
 
 ## Outcome
@@ -109,7 +109,7 @@ Resolved customer-facing conflicts:
 - Plan names: Free, Plus, Pro, Enterprise.
 - Prices: $0, $29, $129, and custom; annual monthly equivalents $0, $22, $97, and custom.
 - Free limits: 5 pipelines and 25,000 rows.
-- Connector availability: PostgreSQL and HubSpot available; Stripe Beta.
+- Connector availability: PostgreSQL, HubSpot, and Stripe available.
 - Slack and GitHub: operational integrations, not data connectors.
 - AI Copilot: in development, not generally available.
 - Row limits: described as enforced limits, without inventing an automatic overage workflow.
@@ -209,19 +209,46 @@ Verification exposed two application reliability issues that were corrected with
 - Pipeline stream drafts are protected from being overwritten by an equivalent background schema refetch.
 - The query editor retains a usable plain-text fallback when Monaco initialization fails.
 
-The related Playwright page object was updated to match current schema-sync endpoints, settings tabs, and terminal status wording. These changes require the deferred E2E rerun in the next session.
+The related Playwright page object was updated to match current schema-sync
+endpoints, settings tabs, and terminal status wording. A later connector-focused
+real-Chrome run completed the PostgreSQL, Stripe, and HubSpot customer paths;
+the broader Playwright suite remains a separate regression concern.
 
 ## Remaining content and technical debt
 
 - Obtain legal/product confirmation for retention, regions, Enterprise commitments, SLA/SSO, overage behavior, public API availability, and future AI capabilities.
 - Review or replace screenshots that show earlier pipeline-builder and connection UI once a current approved screenshot set exists.
 - Decide whether low-value direct-link future connector status pages should remain indexed; preserve URLs and add redirects if that policy changes.
-- Complete the deferred external-link, accessibility, app lint, and Playwright runs in a fresh testing session.
-- Confirm cleanup of any isolated `mxf_e2e_*` resources that may remain from the interrupted final Playwright run.
+- Complete the deferred live external-link, accessibility, and broader
+  Playwright checks in a fresh testing session.
+- Connector verification resources are intentionally retained for inspection;
+  review them explicitly before any future production cleanup.
 - Re-run the repeatable content inventory after future product changes and treat unexpected plan or availability conflicts as release blockers.
 
 ## Completion assessment
 
 The controlled content cleanup is complete. Important technical, billing, security, permission, limitation, troubleshooting, and legal context remains accessible; unsupported and contradictory customer-facing claims were removed or relabeled; routes and product behavior were preserved.
 
-The requested testing completion criterion is explicitly deferred—not silently waived—because the user asked to stop testing. The next session should begin with the short deferred checklist above rather than repeating the completed audit and copy work.
+The connector-specific real-Chrome verification is complete. Remaining deferred
+checks are the broader accessibility, external-link, and cross-product
+regression items listed above; they are not represented as passed.
+
+## 28 July connector documentation follow-up
+
+The retained real-Chrome connector verification resolved the previous Stripe
+availability uncertainty. The canonical record, marketing site, and public docs
+now consistently present PostgreSQL, HubSpot, and Stripe as available without
+an obsolete availability qualifier.
+
+The public documentation now also includes:
+
+- complete Stripe authentication, 34-stream, sync-mode, destination, error, and
+  limitation guidance;
+- expanded PostgreSQL permissions, discovery, type, Full Table, Incremental,
+  security, and troubleshooting guidance;
+- links from the HubSpot reference to a complete ten-stream example;
+- reproducible PostgreSQL 8,000-row initial and 2,000-row incremental sample;
+- Stripe-to-PostgreSQL and HubSpot-to-PostgreSQL pipeline examples.
+
+Mintlify reported no broken internal links. Website lint, TypeScript, and the
+production build completed successfully.
