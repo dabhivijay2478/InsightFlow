@@ -5,10 +5,27 @@ agents. It can inspect, analyze, validate, explain, and recommend. It cannot
 create, update, delete, execute, retry, cancel, publish, save, or schedule
 anything.
 
+## User interface and navigation
+
+Users open Oria from the workspace sidebar at `/agents`. The Oria header has
+two compact actions:
+
+- **plus** — start a new conversation;
+- **clock** — open Chat History;
+
+Oria chooses the appropriate read-only capability from the user's question and
+attached workspace context. Internal routing and capability names are not
+presented as a user-selectable catalog.
+
+See
+[`Use Oria Copilot`](../apps/mantrixflow-docs/user-guide/oria-copilot.mdx) for
+the public user flow, example questions, context guidance, history, safety
+boundaries, and troubleshooting.
+
 ## Request path
 
 ```text
-Workspace drawer
+Oria workspace
   → Next.js /api/copilot/chat
   → environment-selected AI SDK provider
   → one routed Phase 1 agent

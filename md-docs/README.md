@@ -73,6 +73,7 @@ Legacy filenames redirect to the above (`betterstack-status-page-creation.md`, `
 ## Agents
 
 - [`agents/README.md`](./agents/README.md) - Custom Agent Builder docs: flow charts, different workflows, setup guide, and how the embedded data Q&A agent works.
+- [`../apps/mantrixflow-docs/user-guide/oria-copilot.mdx`](../apps/mantrixflow-docs/user-guide/oria-copilot.mdx) - Public Oria Copilot guide covering navigation, context, example questions, history, safety boundaries, and troubleshooting without exposing internal capability names.
 - [`ai-copilot-phase-1.md`](./ai-copilot-phase-1.md) - Workspace Copilot Release 1 architecture, provider setup, 12-agent/tool registries, redaction, persistence, and testing.
 
 ## Testing
