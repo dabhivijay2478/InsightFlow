@@ -24,7 +24,7 @@
 
 **Human-readable pipeline guide:** [`md-docs/strict-elt-pipeline-guide.md`](md-docs/strict-elt-pipeline-guide.md)
 
-**Oria Go ADK runtime setup:** [`md-docs/oria-agent-setup.md`](md-docs/oria-agent-setup.md)
+**Oria AI SDK runtime setup:** [`md-docs/oria-agent-setup.md`](md-docs/oria-agent-setup.md)
 
 **Frontend structure / TS conventions:** [`.cursor/rules/nextjs-typescript-stack.mdc`](.cursor/rules/nextjs-typescript-stack.mdc)
 

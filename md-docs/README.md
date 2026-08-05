@@ -73,7 +73,15 @@ Legacy filenames redirect to the above (`betterstack-status-page-creation.md`, `
 ## Agents
 
 - [`agents/README.md`](./agents/README.md) - Custom Agent Builder docs: flow charts, different workflows, setup guide, and how the embedded data Q&A agent works.
-- [`oria-agent-setup.md`](./oria-agent-setup.md) - Private Go ADK runtime setup, server-only environment variables, startup, verification, and troubleshooting.
+- [`oria-adk-to-ai-sdk-migration.md`](./oria-adk-to-ai-sdk-migration.md) - ADK → Vercel AI SDK migration report (architecture, removed files, test status).
+- [`oria-agent-setup.md`](./oria-agent-setup.md) - Private Oria runtime setup: Next.js OpenRouter + Go tools/persistence, env vars, verification.
+- [`oria-agent-testing-guide.md`](./oria-agent-testing-guide.md) - Master index for six release test corpora (~5,100 prompts, all 73 agents).
+- [`oria-test-prompts-release1-read.md`](./oria-test-prompts-release1-read.md) - Release 1 read specialists + Oria root (850 prompts).
+- [`oria-test-prompts-release2-action.md`](./oria-test-prompts-release2-action.md) - Release 2 action specialists: pipeline build, connections, transforms, runs (881 prompts).
+- [`oria-test-prompts-release3-automation.md`](./oria-test-prompts-release3-automation.md) - Release 3 automation specialists (852 prompts).
+- [`oria-test-prompts-release4-intelligence.md`](./oria-test-prompts-release4-intelligence.md) - Release 4 intelligence specialists (852 prompts).
+- [`oria-test-prompts-release5-enterprise.md`](./oria-test-prompts-release5-enterprise.md) - Release 5 enterprise specialists (861 prompts).
+- [`oria-test-prompts-release6-platform.md`](./oria-test-prompts-release6-platform.md) - Release 6 platform specialists (852 prompts).
 - [`../apps/mantrixflow-docs/user-guide/oria-copilot.mdx`](../apps/mantrixflow-docs/user-guide/oria-copilot.mdx) - Public Oria Copilot guide covering navigation, context, example questions, history, safety boundaries, and troubleshooting without exposing internal capability names.
 - [`ai-copilot-phase-1.md`](./ai-copilot-phase-1.md) - Workspace Copilot Release 1 architecture, provider setup, 12-agent/tool registries, redaction, persistence, and testing.
 

@@ -1,28 +1,37 @@
 # Oria agent runtime setup
 
-This is the private operator setup for the Go ADK runtime. It intentionally
-does not publish internal capability names, prompts, routing rules, or tool
+This is the private operator setup for the Oria agent. It intentionally does not
+publish internal capability names, prompts, routing rules, or tool
 implementations.
 
-## Runtime ownership
+## Runtime ownership (post ADK migration)
 
-- The Go API owns orchestration, OpenRouter access, tools, session history,
-  usage, and audit records.
-- The Next.js app authenticates users, proxies the Go SSE response, and renders
-  Oria.
+- **Next.js** (`apps/app`) orchestrates LLM calls with Vercel AI SDK v7 +
+  OpenRouter via `POST /api/copilot/chat`.
+- **Go API** (`apps/server/main-server`) owns tool execution, run/message
+  persistence, permissions, action preview/confirm, usage, and audit records.
 - The browser must never receive `OPENROUTER_API_KEY`, a Supabase service-role
   key, or `INTERNAL_TOKEN`.
-- Phase 1 tools are read-only. Startup fails if a registered tool is
-  mutation-capable.
+- Phase 1 tools remain read-only in Go. Startup assertions still apply to the
+  registry.
 
-## 1. Required Go server environment
+```text
+Browser → Next.js /api/copilot/chat
+       → Go prepare run + thread history
+       → ToolLoopAgent + OpenRouter (Next.js)
+       → Go internal tool execute
+       → SSE envelopes (unchanged UI contract)
+       → Go finalize run
+```
 
-Add these values once to `apps/server/main-server/.env`:
+Legacy `POST /api/v1/organizations/:orgId/agent/chat` on Go returns **410 Gone**.
+
+## 1. Next.js server environment (OpenRouter + loop limits)
+
+Add these to `apps/app/.env.local` (development) or Vercel server env (production).
+**Never** use `NEXT_PUBLIC_` for these.
 
 ```dotenv
-AGENT_RUNTIME_ENABLED=true
-AGENT_RUNTIME_PROVIDER=openrouter
-
 OPENROUTER_API_KEY=replace-with-a-server-only-key
 OPENROUTER_BASE_URL=https://openrouter.ai/api/v1
 OPENROUTER_APP_NAME=MantrixFlow
@@ -36,135 +45,81 @@ OPENROUTER_MODEL_REASONING=google/gemma-4-31b-it:free
 OPENROUTER_MODEL_REASONING_FALLBACKS=google/gemma-4-26b-a4b-it:free
 OPENROUTER_MODEL_CODE=cohere/north-mini-code:free
 OPENROUTER_MODEL_CODE_FALLBACKS=inclusionai/ling-3.0-flash:free
-AGENT_ALLOW_MODEL_FALLBACK=false
 
 AGENT_MAX_TRANSFERS=2
 AGENT_MAX_TOOL_CALLS=5
-AGENT_MAX_MODEL_TURNS=6
-AGENT_MAX_OUTPUT_TOKENS=1200
-AGENT_CONTEXT_MAX_BYTES=50000
-AGENT_TOOL_RESULT_MAX_BYTES=20000
+AGENT_MAX_MODEL_TURNS=12
 AGENT_REQUEST_TIMEOUT_MS=60000
 AGENT_TOOL_TIMEOUT_MS=20000
+
+# Must match Go API INTERNAL_TOKEN (tool bridge auth)
+INTERNAL_TOKEN=replace-with-internal-token
 ```
 
-Each selected model must support OpenRouter Chat Completions and the features
-needed by its tier. Do not configure an embedding-only model as a chat tier.
+Also set the normal frontend public vars: `NEXT_PUBLIC_API_URL`,
+`NEXT_PUBLIC_SUPABASE_*`.
 
-`AGENT_ALLOW_MODEL_FALLBACK=false` is the production-safe default. It makes the
-server fail at startup if any tier is missing. For local evaluation only, set it
-to `true` and provide at least one model tier; the configured model will fill
-missing tiers.
+## 2. Go server environment (tools + persistence)
 
-The `OPENROUTER_MODEL_*_FALLBACKS` values are separate, explicit provider
-fallback lists. They are sent to OpenRouter in priority order and remain active
-when `AGENT_ALLOW_MODEL_FALLBACK=false`. This protects free-model traffic from
-temporary upstream `429`, provider downtime, and unavailable model capacity
-without silently filling a missing tier at server startup. Use comma-separated
-model IDs to add more than one fallback.
+Go still requires agent tables, release flags, and action guard settings. OpenRouter
+model IDs in Go `.env` are **no longer used** for chat orchestration but may remain
+harmless until cleaned up.
 
-Free model access is still subject to the selected upstream provider's shared
-capacity. An OpenRouter account with sufficient credits can have a higher daily
-request allowance while an individual free model returns an upstream `429`.
-This is why every production tier should have a compatible fallback.
+```dotenv
+AGENT_RUNTIME_ENABLED=true
 
-Do not define the same variable twice. Most dotenv loaders use the last value,
-so a later blank line such as `OPENROUTER_API_KEY=` can override a valid key.
+AGENT_RELEASE2_ENABLED=true
+AGENT_RELEASE3_ENABLED=true
+AGENT_RELEASE4_ENABLED=true
+AGENT_RELEASE5_ENABLED=true
+AGENT_RELEASE6_ENABLED=true
 
-The normal Go service variables are still required, including `DATABASE_URL`,
-Supabase JWT verification settings, `INTERNAL_TOKEN`, encryption settings, and
-the ELT service configuration documented in the Go server README.
+AGENT_CONTEXT_MAX_BYTES=50000
+AGENT_THREAD_MAX_MESSAGES=24
+AGENT_ACTION_TOKEN_EXPIRY_SECONDS=900
+AGENT_MAX_PENDING_ACTIONS_PER_THREAD=3
+AGENT_MAX_PENDING_ACTIONS_PER_RESOURCE=1
 
-## 2. Frontend environment
+INTERNAL_TOKEN=same-value-as-nextjs
+```
 
-The frontend needs its normal Go API and Supabase authentication configuration.
-Do not add OpenRouter keys, model IDs, provider variables, or a public Oria
-feature flag to `apps/app/.env`.
+The normal Go service variables are still required: `DATABASE_URL`, Supabase JWT
+verification, encryption settings, and ELT configuration (see Go server README).
 
 ## 3. Start the services
 
-Start the Go API first:
+```bash
+cd apps/server/main-server && go run ./cmd/server
+cd apps/app && bun run dev
+```
+
+Sign in, then open `http://localhost:3000/agents`.
+
+## 4. Verification
+
+1. Send a workspace question — response should stream with `message.delta` events.
+2. OpenRouter dashboard should show activity for the configured models.
+3. Tool calls appear as `working` / `tool.completed` SSE events.
+4. Release 2 preview prompts emit `action.preview.ready` and
+   `action.confirmation.required`.
+5. Duplicate `requestId` returns HTTP 409 from prepare.
+
+## 5. Registry export (prompts/tools)
+
+To regenerate TypeScript registry JSON from Go source:
 
 ```bash
 cd apps/server/main-server
-go run ./cmd/server
+go run ./cmd/export-oria-registry > ../app/features/ai-copilot/server/agent/registry/oria-registry.json
 ```
 
-On first startup, GORM creates or upgrades the private agent tables. To apply
-the canonical Supabase RLS bundle once during startup:
+## 6. Troubleshooting
 
-```dotenv
-APPLY_SUPABASE_RLS_ONCE=true
-```
+| Symptom | Check |
+| --- | --- |
+| 502 on chat | `OPENROUTER_API_KEY`, `NEXT_PUBLIC_API_URL`, Go API reachable |
+| Tool failures | `INTERNAL_TOKEN` matches on Next.js and Go |
+| 410 on Go `/agent/chat` | Expected — UI must use `/api/copilot/chat` |
+| Step limit errors | Narrow the question; adjust `AGENT_MAX_MODEL_TURNS` |
 
-After the checksum is current, the value can be removed or set to `false`.
-
-Then start the frontend:
-
-```bash
-cd apps/app
-bun run dev
-```
-
-Open `http://localhost:3000/agents` while signed in to a workspace.
-
-## 4. Verify the runtime
-
-Health:
-
-```bash
-curl http://localhost:5000/api/v1/health
-```
-
-Metrics require the server-only internal token:
-
-```bash
-curl -H "X-Internal-Token: $INTERNAL_TOKEN" \
-  http://localhost:5000/api/v1/internal/agent/metrics
-```
-
-Automated verification:
-
-```bash
-cd apps/server/main-server
-GOCACHE=/tmp/mantrixflow-go-build GOTOOLCHAIN=auto go test ./internal/agents/... ./internal/server ./internal/database ./internal/models
-```
-
-Manual multi-turn checks:
-
-1. Attach a pipeline and ask `Give me the schema.`
-2. Follow with `Show the last failed run.`
-3. Refresh the page and repeat a contextual follow-up.
-4. Open the same thread from history and confirm earlier messages load.
-5. Confirm responses expose only Oria, generic working states, and safe
-   citations—not internal routing identities or raw tool payloads.
-
-## 5. Troubleshooting
-
-### `relation "agent_evidence" does not exist`
-
-The original migration allowed GORM to infer `agent_evidences` while indexes
-used the canonical singular table. The current startup migration detects that
-legacy plural table, renames it when safe, creates the canonical table, and only
-then creates indexes. Pull the current code and run the Go server again.
-
-### Runtime disabled
-
-Confirm `AGENT_RUNTIME_ENABLED=true` exists in the Go server environment and
-restart the Go process. Frontend flags do not enable the runtime.
-
-### Startup reports missing models
-
-Configure all four `OPENROUTER_MODEL_*` variables, or explicitly enable local
-fallback. Check for duplicate blank assignments in the environment file.
-
-### Provider authentication fails
-
-Rotate any key that has been pasted into logs, screenshots, tickets, or chat.
-Store the replacement only in the Go deployment environment.
-
-### Responses time out
-
-Keep total runtime within `AGENT_REQUEST_TIMEOUT_MS`. Verify that the selected
-models support chat/tool requests and inspect sanitized run status and provider
-status in the activity view or internal metrics.
+See also [`oria-adk-to-ai-sdk-migration.md`](./oria-adk-to-ai-sdk-migration.md).
