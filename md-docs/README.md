@@ -107,6 +107,12 @@ Legacy filenames redirect to the above (`betterstack-status-page-creation.md`, `
 
 ## Connectors
 
+- [`../apps/mantrixflow-docs/connections/sources/productivity/airtable.mdx`](../apps/mantrixflow-docs/connections/sources/productivity/airtable.mdx) — public Airtable source guide: Personal Access Token scopes, base/table discovery, stable staging names, Full Table behavior, and troubleshooting.
+- [`../apps/mantrixflow-docs/connections/destinations/airtable.mdx`](../apps/mantrixflow-docs/connections/destinations/airtable.mdx) — public Airtable destination guide: existing-table contract, writable field mapping, merge keys, Upsert behavior, verification, and errors.
+- [`../apps/mantrixflow-docs/connections/sources/database/mysql.mdx`](../apps/mantrixflow-docs/connections/sources/database/mysql.mdx) — public MySQL source guide: least-privilege grants, discovery, Full Table and Incremental modes, types, and verification.
+- [`../apps/mantrixflow-docs/connections/destinations/mysql.mdx`](../apps/mantrixflow-docs/connections/destinations/mysql.mdx) — public MySQL destination guide: destination DDL, writer grants, Upsert contract, verification queries, and troubleshooting.
+- [`../apps/mantrixflow-docs/example/pipelines/airtable-and-mysql.mdx`](../apps/mantrixflow-docs/example/pipelines/airtable-and-mysql.mdx) — end-to-end Airtable → MySQL, MySQL → Airtable, and Airtable → Airtable setup and run guide.
+- [`../docs/airtable-source-destination-connector-audit.md`](../docs/airtable-source-destination-connector-audit.md) — implementation and live-Chrome verification audit for the Airtable bidirectional connector and seven-route matrix.
 - [`saas-sources-group2.md`](./saas-sources-group2.md) — detailed SaaS
   source implementation guide (dlt verified sources: HubSpot, Stripe, …).
 - [`stripe-connector-ai-prompts.md`](./stripe-connector-ai-prompts.md) —
