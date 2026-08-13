@@ -107,6 +107,8 @@ Legacy filenames redirect to the above (`betterstack-status-page-creation.md`, `
 
 ## Connectors
 
+- [`../apps/mantrixflow-docs/connections/sources/productivity/asana.mdx`](../apps/mantrixflow-docs/connections/sources/productivity/asana.mdx) — public Asana source guide: PAT setup, workspace/project scope, eight streams, task incremental mode, staging relations, verification, and limitations.
+- [`../apps/mantrixflow-docs/example/pipelines/asana-to-destinations.mdx`](../apps/mantrixflow-docs/example/pipelines/asana-to-destinations.mdx) — all-stream Asana setup for PostgreSQL, MySQL, and Airtable destinations.
 - [`../apps/mantrixflow-docs/connections/sources/productivity/airtable.mdx`](../apps/mantrixflow-docs/connections/sources/productivity/airtable.mdx) — public Airtable source guide: Personal Access Token scopes, base/table discovery, stable staging names, Full Table behavior, and troubleshooting.
 - [`../apps/mantrixflow-docs/connections/destinations/airtable.mdx`](../apps/mantrixflow-docs/connections/destinations/airtable.mdx) — public Airtable destination guide: existing-table contract, writable field mapping, merge keys, Upsert behavior, verification, and errors.
 - [`../apps/mantrixflow-docs/connections/sources/database/mysql.mdx`](../apps/mantrixflow-docs/connections/sources/database/mysql.mdx) — public MySQL source guide: least-privilege grants, discovery, Full Table and Incremental modes, types, and verification.

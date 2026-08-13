@@ -371,7 +371,7 @@ Pick 1–2 honest items, e.g.:
 | Where is SQL validated? | ELT `/validate-sql` via Go proxy; in-memory DuckDB schema, no live source writes. |
 | How are secrets stored? | Encrypted connection JSON in Postgres; Fernet master key in env/SSM. |
 | Can the UI create destination tables? | Builder may help **design** tables via pipeline-destination-schema APIs; **runtime delivery never CREATE TABLE**. |
-| What connectors are production-ready? | SQL sources: Postgres, MySQL, MariaDB, MSSQL, Oracle, SQLite, Cockroach. SaaS: Stripe, Shopify, HubSpot, Notion, GitHub. Destinations: SQL family same list. |
+| What connectors are production-ready? | PostgreSQL, MySQL, and Airtable are available as sources and destinations. Asana, HubSpot, and Stripe are available as sources. MySQL, Airtable, and Asana remain runtime-capability gated. |
 | How does realtime UI update? | Go persists run + metadata; Supabase Realtime publish on status (Run drawer polls/subscribes). |
 
 ---

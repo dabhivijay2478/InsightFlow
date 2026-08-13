@@ -1,6 +1,6 @@
 # MantrixFlow content source of truth
 
-Date: 2026-07-28
+Date: 2026-08-13
 Status: current repository-verified content baseline
 
 Use this document when writing product copy. If the implementation changes, update this document from working application behavior and backend contracts before updating marketing or documentation.
@@ -47,6 +47,9 @@ Button labels should describe the specific action: **Create Connection**, **Test
 | Connector | Role | Stage | Authentication/content notes |
 | --- | --- | --- | --- |
 | PostgreSQL | Source and destination | Available | Preserve connection, network, permissions, schema, preview, and destination requirements in connector documentation |
+| MySQL | Source and destination | Available | Runtime-capability gated; preserve database, grants, schema discovery, Upsert, and explicit table-contract requirements |
+| Airtable | Source and destination | Available | Runtime-capability gated; PAT scopes, base/table IDs, writable field mapping, and existing-table delivery contract apply |
+| Asana | Source | Available | PAT-only; eight streams; pipeline-specific workspace/project scope; tasks support `modified_at` incremental extraction; not CDC |
 | HubSpot | Source | Available | Uses private-app token authentication; preserve required scopes and stream limitations |
 | Stripe | Source | Available | Supports 34 tested streams for PostgreSQL delivery; preserve authentication, supported objects, pagination, empty-stream behavior, and limitation guidance |
 
@@ -109,7 +112,7 @@ Do not present the following as available without new implementation and product
 - A public React agent SDK workflow
 - A supported public external API and plan-level API allowances
 - SSO/SAML, formal SLA commitments, dedicated infrastructure, or custom connector delivery terms
-- MySQL, MariaDB, SQL Server, Oracle, SQLite, CockroachDB, warehouse, Shopify, Salesforce, Notion, or GitHub data-source workflows
+- MariaDB, SQL Server, Oracle, SQLite, CockroachDB, warehouse, Shopify, Salesforce, Notion, or GitHub data-source workflows
 
 AI Copilot marketing must remain labeled **In development** until a supported customer workflow is enabled. Internal routes, meters, experiments, and planning documents are not proof of public availability.
 
@@ -160,3 +163,19 @@ pipeline verification completed on 26 July 2026:
 The retained evidence is in
 `apps/app/tests/reports/STRIPE_STREAM_COVERAGE.md` and
 `apps/app/tests/reports/FINAL_TEST_SUMMARY.md`.
+
+## August 2026 Asana verification
+
+Asana availability is backed by the retained customer-UI verification completed
+on 13 August 2026:
+
+- a Personal Access Token was tested, saved, masked, and reused through the
+  customer connection flow;
+- workspace and project scope was discovered and saved on the pipeline;
+- all eight streams (`workspaces`, `projects`, `sections`, `tags`, `tasks`,
+  `stories`, `teams`, and `users`) were extracted;
+- PostgreSQL, MySQL, and Airtable delivery runs completed successfully with zero
+  failed rows;
+- direct MySQL counts matched the final run's 20,471 delivered rows;
+- the source remains PAT-only, source-only, and non-CDC; stories require a Full
+  Table task traversal.
