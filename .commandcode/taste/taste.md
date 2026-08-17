@@ -17,14 +17,10 @@
 - Prefer consolidated single guide files over multiple separate markdown files for the same topic. Do not create separate files for AWS OIDC, product setup, etc. — one deployment file under infra. Confidence: 0.80
 - Use only `support@mantrixflow.com` for website terms/privacy pages and docs site contact email. Never use `security@mantrixflow.com`. Confidence: 0.85
 - Do not mention internal implementation details (DuckDB, Go API, Python ELT, dbt) in public-facing docs site or website. Use generic terms: "staging"/"temporary storage" instead of DuckDB, "SQL" instead of "dbt SQL", omit internal service layers entirely. Confidence: 0.80
+- After adding a new connector (e.g., MySQL, Notion, Asana, Linear, Stripe, HubSpot), always update both the docs site and marketing website to reflect the new source/destination in the same change cycle. Confidence: 0.80
 
 # infra
-- Production infrastructure lives in `apps/mantrixflow-infra` as its own standalone Git repository (CDK + Terraform). Not inside `apps/app`. Confidence: 0.85
-- Infra repo deploys on merge to `main`; app/API/ELT repos use `mantrixflow` as production branch. Confidence: 0.75
-- Use GitHub OIDC for AWS auth in CI/CD, not long-lived AWS access keys. Confidence: 0.80
-- Use Cloudflare API token (not API key) for Terraform Cloudflare provider authentication. Confidence: 0.75
-- Main server repo: `dabhivijay2478/cloud.api.mantrixflow.com`. ELT server repo: `dabhivijay2478/cloud.api.etl.server.mantrixflow.com`. Confidence: 0.75
-
+See [infra/taste.md](infra/taste.md)
 # github-integration
 - GitHub App env vars use `GH_` prefix (e.g., `GH_APP_SLUG`), never `GITHUB_` prefix — GitHub Actions rejects `GITHUB_` prefixed secrets. Confidence: 0.80
 - Pipeline push to GitHub always creates a new branch and PR; never push directly to main. Branch naming: `mantrixflow/{pipeline-name}-{timestamp}`. Confidence: 0.80
@@ -47,6 +43,19 @@
 See [architecture/taste.md](architecture/taste.md)
 # debugging
 - When fixing bugs, always find and fix the root cause. Do not apply patch fixes or workarounds. Confidence: 0.90
+- When user reports a connector missing from the UI catalog (e.g., "i not see asana name"), first check if the issue is stale local services (ELT/Go) and restart them before assuming code-side gating. Confidence: 0.75
+- When verifying pipeline fixes, restart services in this exact order: ELT server first (port 8000), then Go main server (port 5000), then frontend app (port 3000). Each must be healthy before the next starts. Confidence: 0.85
+- For real data-movement verification, run end-to-end tests one pipeline at a time rather than in parallel — MySQL and other SQL connectors do not tolerate concurrent connections against the same source/destination reliably. Confidence: 0.70
+
+# connector-rollout
+- New connectors (Linear, Notion, Asana, Stripe, HubSpot, Airtable, MySQL) must be runtime health-gated: the frontend `/api/v1/connectors/health` endpoint reports per-connector source/destination availability, and the UI hides the connector card when the capability is unavailable. Confidence: 0.85
+- When a connector is added but not showing in the UI, check that the runtime enablement allowlist (e.g., `ENABLED_CONNECTOR_IDS`) includes the connector — having it in the registry is not enough; the gate is explicit. Confidence: 0.80
+- Frontend connector catalog entries must declare `availability: "runtime"` (not omit the field) when they need ELT-side health confirmation. An omitted `availability` field renders the connector even when the backend can't support it. The matching ELT `/health` endpoint must publish a `clickhouse` (or other connector) entry with `{source, destination, available, reason}` so the frontend gate has something to read. Confidence: 0.85
+
+# browser-verification
+- For connector and pipeline verification, use the user's existing signed-in Chrome session (Profile 1) via the Chrome-control skill rather than spinning up a fresh logged-out session — saved connections and organizations live in that session. Confidence: 0.90
+- When running real-data pipeline tests, the agent must use the live UI in the user's Chrome (click through Connections → New Connection → Test → Save → Pipeline → Run), not only API-level checks. Mocked or skipped movement does not count as production verification. Confidence: 0.85
+- After any frontend code change in the local app, reload the tab (`tab.reload()`) before re-verifying — hot reload is not assumed reliable. Confidence: 0.75
 
 # cdc
 - Product CDC (LOG_BASED, replication slots) is removed from active product behavior. pg_replication package may remain on disk but must not be imported or surfaced by active routes. Confidence: 0.75

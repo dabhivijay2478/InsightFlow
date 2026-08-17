@@ -1,0 +1,23 @@
+{
+  "permissions": {
+    "allow": [
+      "Shell(cd apps/server/main-server && GOCACHE=$(pwd)/.gocache-test go test ./internal/server/ -run \"TestClickHouse\" -v 2>&1 | tail -40)",
+      "Shell(cd apps/server/main-server && GOCACHE=$(pwd)/.gocache-test go test ./internal/server/ -run \"TestClickHouse\" -v 2>&1 | tail -30)",
+      "Shell(cd apps/server/main-server && GOCACHE=$(pwd)/.gocache-test go test ./internal/server/ -run \"TestClickHouse\" -v 2>&1 | tail -25)",
+      "Shell(cd apps/server/main-server && GOCACHE=$(pwd)/.gocache-test go test ./internal/server/ -run \"TestClickHouse\" -v 2>&1 | tail -20)",
+      "Shell(cd apps/server/main-server && GOCACHE=$(pwd)/.gocache-test go test ./internal/server/ 2>&1 | tail -10)",
+      "Shell(go:*)",
+      "Shell(cd apps/server/main-server && GOCACHE=$(pwd)/.gocache-test go test ./... 2>&1 | tail -20)",
+      "Shell(bun:*)",
+      "Shell(bunx biome check features/connections/data/databaseConnectionFields.ts features/connections/components/credentialForm.helpers.ts features/connections/components/connectionForm.schema.ts features/connections/components/CredentialForm.tsx features/data-sources/connection/schemas/database-connection-schemas.ts 2 >& 1)",
+      "Shell(cd apps/server/main-server && GOCACHE=$(pwd)/.gocache-test go test -race ./internal/server/ -run \"TestClickHouse\" 2>&1 | tail -10)",
+      "Shell(cd apps/server/main-server && GOCACHE=$(pwd)/.gocache-test go test ./internal/server/ -run \"TestClickHouse\" 2>&1 | tail -5 && echo \"---\" && go vet ./... 2>&1 | tail -3)",
+      "Shell(cd apps/server/main-server && GOCACHE=$(pwd)/.gocache-test go test ./internal/server/ -run \"TestClickHouse\" -count=1 2>&1 | tail -3)",
+      "Shell(bunx biome check features/connections/data/connectors.ts features/data-sources/connection/schemas/database-connection-schemas.ts features/connections/data/databaseConnectionFields.ts features/connections/components/credentialForm.helpers.ts features/connections/components/CredentialForm.tsx features/connections/components/connectionForm.schema.ts 2 >& 1)",
+      "Shell(cd apps/app && find . -path ./node_modules -prune -o -name \"*.ts*\" -print 2>/dev/null | xargs grep -l \"workspace/connections\\|use-connector-health\\|isConnectorAvailable\" 2>/dev/null | head -10)",
+      "Shell(cd apps/app && find . -path ./node_modules -prune -o -name \"*.ts*\" -print 2>/dev/null | xargs grep -l \"workspace/connections\\|use-connector-health\\|isConnectorAvailable\" 2>/dev/null | head -20)"
+    ],
+    "deny": [],
+    "defaultMode": "default"
+  }
+}
