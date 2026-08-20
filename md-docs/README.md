@@ -69,6 +69,9 @@ Legacy filenames redirect to the above (`betterstack-status-page-creation.md`, `
   setup, Slack Dashboard URLs, OAuth and Marketplace install, App Home,
   commands, events, copyable manifest, native builder behavior, review
   checklist, and troubleshooting.
+- [`zendesk-oauth-setup.md`](./zendesk-oauth-setup.md) — Zendesk Support
+  OAuth-only connector setup, local/global client requirements, callback URL,
+  scopes, migration behavior, and verification.
 
 ## Agents
 
