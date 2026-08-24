@@ -24,7 +24,8 @@
       "Shell(sleep:*)",
       "Shell(curl -s http://127.0.0.1:8000/health)",
       "Shell(lsof:*)",
-      "Shell(.venv/bin/python:*)"
+      "Shell(.venv/bin/python:*)",
+      "Shell(echo \"EFFERD_REGISTRY_TOKEN is set: $([ -n \\\"$EFFERD_REGISTRY_TOKEN\\\" ] && echo 'yes' || echo 'no')\")"
     ],
     "deny": [],
     "defaultMode": "default"

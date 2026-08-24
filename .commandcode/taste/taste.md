@@ -8,6 +8,7 @@
 # bun
 - Use `bun run` for all scripts (lint, build, biome check, dev) instead of npm/yarn equivalents. Confidence: 0.85
 - Use `bunx` instead of `npx` for running CLI tools like shadcn. Confidence: 0.85
+- shadcn CLI reads registry tokens (like EFFERD_REGISTRY_TOKEN) from the app's .env file, not from system environment variables — always ensure tokens are in the target app's .env before running shadcn add commands. Confidence: 0.85
 
 # go-testing
 - Run Go tests with explicit GOCACHE: `GOCACHE=$(pwd)/.gocache-test go test ./internal/server/... ./internal/database/...`. Confidence: 0.80
