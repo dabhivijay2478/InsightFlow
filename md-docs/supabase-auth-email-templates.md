@@ -2,7 +2,7 @@
 
 Paste these templates into Supabase Dashboard -> Authentication -> Emails. They use the verified AutoSend sender `no-reply@mantrixflow.com` and keep replies/support text pointed at `support@mantrixflow.com`.
 
-Supabase template variables used here are documented by Supabase: `{{ .ConfirmationURL }}`, `{{ .Token }}`, `{{ .SiteURL }}`, `{{ .RedirectTo }}`, `{{ .Email }}`, and `{{ .NewEmail }}`.
+Supabase template variables used here are documented by Supabase: `{{ .ConfirmationURL }}`, `{{ .Token }}`, `{{ .TokenHash }}`, `{{ .SiteURL }}`, `{{ .RedirectTo }}`, `{{ .Email }}`, and `{{ .NewEmail }}`.
 
 Important: do not paste this whole Markdown file into Supabase. For each Supabase template screen, copy only:
 
@@ -15,7 +15,7 @@ If the Supabase preview shows `# Supabase Auth Email Templates` or triple backti
 
 - Use AutoSend SMTP on port `465`.
 - Set Supabase SMTP sender email to `no-reply@mantrixflow.com`.
-- Keep the design minimal for deliverability: small logo, one CTA, fallback link/code, security copy.
+- Keep the design minimal for deliverability: small logo, one CTA, fallback link, security copy.
 - Do not enable click tracking on auth links.
 
 ## Confirm Sign Up
@@ -106,7 +106,9 @@ HTML:
 </html>
 ```
 
-## Magic Link Or OTP
+## Passwordless Magic Link
+
+The application supplies `/auth/callback?type=magiclink` as `RedirectTo`, so the `&amp;token_hash=` separator below is intentional. Apply this template before enabling the unified flow in production.
 
 Subject:
 
@@ -133,11 +135,9 @@ HTML:
       <div class="brand-row"><img src="https://d1v739xuxrzdgy.cloudfront.net/orgs/6a158503d8ca8942a075ce15/projects/6a158503d8ca8942a075ce18/media/1ce9920218c57a04ed.png" width="32" alt=""><span>MantrixFlow</span></div>
       <p class="eyebrow">Sign in</p>
       <h1>Open MantrixFlow</h1>
-      <p>Use this secure link to sign in. It expires shortly and can only be used once.</p>
-      <a href="{{ .ConfirmationURL }}" class="cta">Sign in</a>
-      <p class="fallback">If the button does not work, open this link:<br><a href="{{ .ConfirmationURL }}">{{ .ConfirmationURL }}</a></p>
-      <p class="fallback">One-time code:</p>
-      <div class="code">{{ .Token }}</div>
+      <p>Use this secure link to create your account or sign in. It expires shortly and can only be used once.</p>
+      <a href="{{ .RedirectTo }}&amp;token_hash={{ .TokenHash }}" class="cta">Continue to MantrixFlow</a>
+      <p class="fallback">If the button does not work, open this link:<br><a href="{{ .RedirectTo }}&amp;token_hash={{ .TokenHash }}">{{ .RedirectTo }}&amp;token_hash={{ .TokenHash }}</a></p>
       <div class="divider"></div>
       <div class="footer">
         <p>If you did not request this sign-in email, you can safely ignore it.</p>
