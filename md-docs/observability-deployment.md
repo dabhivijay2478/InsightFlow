@@ -205,3 +205,9 @@ Webhook needs **both** `BETTERSTACK_*` in SSM and PostHog configured per [postho
 - [posthog-setup.md](./posthog-setup.md)
 - [deployment-vercel.md](./deployment-vercel.md)
 - [apps/mantrixflow-infra/DEPLOYMENT.md](../apps/mantrixflow-infra/DEPLOYMENT.md)
+# Historical AWS/ECS observability deployment
+
+> **Historical only.** The current backend deployment is Hetzner/Terraform; use
+> [`../apps/mantrixflow-infra/DEPLOYMENT.md`](../apps/mantrixflow-infra/DEPLOYMENT.md).
+> The AWS SSM/ECS commands below are retained for migration history and must not
+> be used as current production guidance.

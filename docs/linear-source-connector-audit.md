@@ -1,16 +1,17 @@
 # Linear source connector audit
 
 Audit date: 2026-08-14  
-Decision: **NOT READY**  
-Implemented release stage: **Beta**  
+Independent certification: **PENDING**  
+Implemented release stage: **Available Now**  
 Direction: **SOURCE ONLY**
 
 At the user's explicit request, Linear is present in the frontend enabled
-allowlist as a clickable **Beta** source connector before credential-backed live
+allowlist as a clickable **Available Now** source connector before credential-backed live
 E2E certification. Mock/in-process validation is strong, but no real Linear data
 was moved through MantrixFlow staging, transformation, and a real destination in
-this environment. Enablement does not change this audit's **NOT READY**
-production-certification decision.
+this environment. Enablement is the current owner release classification; it
+does not change the pending independent-certification decision. Manual UI
+validation is pending.
 
 ## 1. Repository heads
 
@@ -94,7 +95,7 @@ canonicalizes `credential`/`api_key` to encrypted `access_token`; ELT accepts
 that canonical value as `SaaSRunConfig.credential`.
 
 No reusable platform OAuth framework was found, so a one-off Linear OAuth stack
-was not created. The connector is marked Beta. **OAuth with read-only scopes is
+was not created. The connector is marked Available Now. **OAuth with read-only scopes is
 required before GA multi-customer rollout.**
 
 Linear authentication references:
@@ -135,7 +136,7 @@ preview-capable, incremental-capable, destination-disabled, and non-CDC. The
 source registry entry has no synthetic stream list; discovery is authoritative
 from ELT. Destination-role requests receive the exact source-only rejection.
 
-Frontend registration includes the Linear brand icon, Beta badge, runtime
+Frontend registration includes the Linear brand icon, Available Now badge, runtime
 availability, source-only capability, API-key form, setup guide, saved-connection
 mapping, authoritative preview catalog, and pipeline source scope UI. Linear is
 in `ENABLED_CONNECTOR_IDS` at the user's explicit request. The source card and
@@ -267,7 +268,7 @@ credential logging, dynamic query interpolation, or GraphQL mutation.
 - Frontend TypeScript: passed.
 - Frontend production build: passed with pre-existing DuckDB dynamic-import and
   browser-baseline warnings.
-- Playwright Linear Beta catalog and role gate: **3 passed** including setup.
+- Playwright Linear Available Now catalog and role gate: **3 passed** including setup.
 - Credential-gated Linear live Playwright project: **1 skipped** without
   `LINEAR_TEST_API_KEY` and while the production allowlist remains closed.
 - Python compile audit: passed.
@@ -308,15 +309,15 @@ failed checkpoint rollback.
 5. No Linear-to-MySQL/MariaDB type matrix was executed.
 6. Project-to-team relationships above 50 deliberately fail instead of loading
    partial relation data.
-7. The Beta source setup is enabled at the user's explicit direction before live
+7. The Available Now source setup is enabled at the user's explicit direction before live
    E2E certification; this is a documented production-readiness exception.
 8. Unrelated baseline lint, file-size, and MySQL integration failures remain.
 
 ## 22. Production-readiness decision
 
-**NOT READY.** The implementation is exposed as a Beta source connector at the
-user's explicit direction, but it is not production-certified. To reconsider
-readiness:
+**AVAILABLE NOW; independent certification pending.** The implementation is
+exposed as an Available Now source connector at the user's explicit direction.
+To complete the remaining evidence:
 
 1. provide a controlled `LINEAR_TEST_API_KEY` or approved read-only OAuth token;
 2. run connection, discovery, preview, selected team/project/resource, full and
@@ -326,7 +327,7 @@ readiness:
 4. resolve or explicitly accept the repository-wide lint/file-size and ELT
    MySQL baseline failures;
 5. rerun the complete Playwright and live destination flow before promoting
-   Linear beyond Beta;
+   Linear beyond Available Now;
 6. implement platform OAuth before GA multi-customer rollout.
 
 Suggested PR title: `feat: add Linear source connector with dlt and GraphQL`.

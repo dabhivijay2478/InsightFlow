@@ -1,28 +1,31 @@
 # MantrixFlow Server (Go API + Python ELT)
 
-Production runs on **AWS ECS Fargate** (`ap-south-1`), not a VPS. Use the infra repo guide and service READMEs for day-to-day work.
+The current backend deployment is a Terraform-provisioned **Hetzner** host with
+Go and ELT on a private Docker network. Use the infrastructure guide and
+service READMEs for day-to-day work.
 
-## Production (AWS)
+## Current production guidance (Hetzner)
 
 | Guide | Purpose |
 | --- | --- |
-| [`apps/mantrixflow-infra/DEPLOYMENT.md`](../mantrixflow-infra/DEPLOYMENT.md) | ECS, ALB, SSM secrets, GitHub Actions, smoke checks |
+| [`apps/mantrixflow-infra/DEPLOYMENT.md`](../mantrixflow-infra/DEPLOYMENT.md) | Terraform, Hetzner, Caddy, private Docker network, GitHub Actions, smoke checks |
 | [`md-docs/aws-ses-setup.md`](../../md-docs/aws-ses-setup.md) | Transactional email (Go API `EMAIL_PROVIDER=ses`) |
 | [`md-docs/deployment-vercel.md`](../../md-docs/deployment-vercel.md) | Frontend on Vercel |
 | Observability | `betterstack-setup.md` → `posthog-setup.md` → `observability-deployment.md` |
 | [`md-docs/betterstack-setup.md`](../../md-docs/betterstack-setup.md) | Better Stack UI |
 | [`md-docs/posthog-setup.md`](../../md-docs/posthog-setup.md) | PostHog UI |
-| [`md-docs/observability-deployment.md`](../../md-docs/observability-deployment.md) | SSM + Vercel deploy |
+| [`md-docs/observability-deployment.md`](../../md-docs/observability-deployment.md) | Observability configuration and Vercel deploy |
 
 **Production URLs**
 
 ```text
 App:  https://cloud.mantrixflow.com          (Vercel)
-API:  https://cloud.api.mantrixflow.com      (ALB → ECS Go API :8080)
-ELT:  http://elt-service:8000                (internal Service Connect only)
+API:  https://cloud.api.mantrixflow.com      (Caddy → Go API :8080)
+ELT:  http://mantrixflow-elt:8000            (private Docker network only)
 ```
 
-Secrets: AWS SSM `/mantrixflow/production/*` — see `.env.production.example` for names.
+Secrets are injected from the protected `production-hetzner` GitHub
+environments; see `.env.production.example` for names.
 
 Deploy flow: push `mantrixflow` branch → **Deploy API Production** / **Deploy ELT Production** workflows (repos `main-server-mantrixflow.com`, `etl-server-mantrixflow.com`).
 
@@ -43,7 +46,8 @@ See `main-server/README.md` and `elt-server/README.md` for env files.
 
 ## Optional: Docker Compose (local / staging only)
 
-`docker-compose.prod.yml` runs API + ELT on one machine for integration tests. **Not** used for AWS production.
+`docker-compose.prod.yml` runs API + ELT on one machine and mirrors the current
+single-host topology for local or staging validation.
 
 ```bash
 cd apps/server
@@ -56,24 +60,31 @@ docker compose -f docker-compose.prod.yml up -d --build
 ```text
 apps/server/
 ├── docker-compose.prod.yml      # optional local stack
-├── .env.production.example      # env names (production values → SSM on AWS)
+├── .env.production.example      # deployment environment names
 ├── main-server/                 # Go API (Fiber)
 └── etl-server/                  # Python ELT (FastAPI + dlt)
 ```
 
-## Architecture (AWS)
+## Architecture (current)
 
 ```text
 Internet
    │
    ├── cloud.mantrixflow.com ──────────► Vercel (Next.js)
    │
-   └── cloud.api.mantrixflow.com ──────► ALB → ECS Go API :8080
-                                              │
-                                              └── Service Connect
-                                                    elt-service:8000 (ELT)
+   └── cloud.api.mantrixflow.com ──────► Caddy → Go API :8080
+                                                │
+                                                └── private Docker network
+                                                      mantrixflow-elt:8000
 ```
 
-- API is public (TLS at ALB; Cloudflare DNS-only on `cloud.api`).
+- API is public (TLS at Caddy; Cloudflare DNS-only on `cloud.api`).
 - ELT has no public hostname; health is exposed via API `GET /status` → `components.elt_server`.
-- Product email: **AWS SES** (`md-docs/aws-ses-setup.md`).
+- Product email may use the configured provider; the AWS SES document is a
+  provider-specific historical/setup reference, not the backend deployment.
+
+## Historical deployment material
+
+AWS/ECS, Oracle, Contabo, and Dokploy files are retained for history only. They
+are not current production instructions. Do not delete them or use them for a
+new deployment without an explicit architecture decision.

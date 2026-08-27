@@ -4,9 +4,17 @@ Date: 2026-08-20
 
 ## Status
 
-**NOT READY** — a gated Beta implementation exists, but no live disposable Strapi 5 application or real MantrixFlow destination E2E was available. Mock HTTP tests, real dlt normalization into an isolated DuckDB file, connection-test behavior, preview behavior, and green repository suites are not treated as production proof.
+**CURRENT STATUS: AVAILABLE NOW — source only; manual UI and live destination validation pending.**
 
-The connector is source-only and read-only. No Strapi destination, reverse ETL, mutation, media download, schema mutation, admin API access, or GraphQL operation was added. At the user's explicit direction on 2026-08-20, Strapi is present in the frontend `ENABLED_CONNECTOR_IDS` set and appears under Available Now when runtime health reports the source available. This early UI enablement does not change the production-readiness result.
+The earlier readiness assessment is an independent-certification assessment,
+not the current owner release classification. Mock HTTP tests, real dlt
+normalization into an isolated DuckDB file, connection-test behavior, preview
+behavior, and green repository suites are not treated as production proof.
+
+The connector is source-only and read-only. No Strapi destination, reverse ELT,
+mutation, media download, schema mutation, admin API access, or GraphQL operation
+was added. Strapi appears under Available Now. Runtime health remains a
+diagnostic and does not demote the owner-approved catalog status.
 
 ## Repository and upstream audit
 
@@ -45,7 +53,7 @@ The current [Strapi 5 documentation](https://docs.strapi.io/) shows flattened Co
 - Incremental: disabled pending live filter/key/state verification
 - CDC: false
 - Supported version: Strapi 5 only
-- Release stage: Beta metadata, frontend-enabled and runtime-health gated
+- Release stage: Available Now; runtime health is diagnostic
 - Authentication: Strapi API Token using `Authorization: Bearer <token>`
 - Recommended token: Read Only or custom `find`/`findOne` permissions
 
@@ -177,4 +185,7 @@ Readiness blockers:
 6. Complete multi-tenant adversarial and secret-redaction sweeps across every telemetry/agent surface were not run with a live connector.
 7. Application-level DNS validation should be paired with hosted egress/network policy to close DNS-rebinding and transport-level SSRF races.
 
-Production readiness remains **NOT READY**. The user explicitly enabled the Beta connector in the frontend before live E2E completion; runtime health still gates availability. Production promotion requires a disposable Strapi 5 fixture, completion of the live security/data-type matrix, and at least Strapi → PostgreSQL, Strapi → MySQL, and Strapi → MariaDB flows through the full MantrixFlow staging/dbt/delivery architecture.
+Independent production certification remains pending. The owner classified the
+connector as Available Now before live E2E completion. A disposable Strapi 5
+fixture, live security/data-type matrix, destination matrix, and manual UI test
+remain recorded evidence items rather than catalog gates.

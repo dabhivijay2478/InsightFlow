@@ -2,14 +2,17 @@
 
 ## Status
 
-**GITHUB STATUS: ENABLED BETA (live destination validation remains pending)**
+**CURRENT STATUS: AVAILABLE NOW — source only; manual UI and live destination validation pending**
+
+Available Now is the owner's release classification as of 2026-08-27. It
+records code support and does not claim independent production certification.
 
 The existing connector was audited and hardened on the repositories' current
 branches. No branch was created, no branch was switched, and no merge was
 performed. Deterministic GitHub tests pass, but no authenticated live
 GitHub-to-destination matrix was available in this workspace. At the user's
 explicit direction, the hardened source connector is enabled in the frontend
-as a Beta connector while that live validation remains an acknowledged release
+as an Available Now connector while that live validation remains an acknowledged release
 limitation.
 
 ## Repository baselines
@@ -35,14 +38,14 @@ and frontend repositories and was not merged into the data connector.
 | Discovery / preview | Yes / Yes |
 | Incremental | Conditional, resource-specific |
 | CDC | No |
-| Release stage | Beta |
+| Release stage | Available Now |
 | Supported host | GitHub.com only |
 | Repository scope | One repository per connection/pipeline |
 | Mutation behavior | None; read-only APIs only |
 
 GitHub is absent from the destination registry and destination selection. The
 Go capability map is authoritative for source/destination roles. The frontend
-definition is reused rather than duplicated and now carries Beta, runtime, and
+definition is reused rather than duplicated and now carries availability and
 `cdcCapable: false` metadata.
 
 ## Existing implementation and current dlt boundary
@@ -68,7 +71,7 @@ The custom REST resources are not described as upstream verified resources.
 
 ## Authentication and credential security
 
-- The Beta data connector supports Personal Access Token authentication only.
+- The Available Now data connector supports Personal Access Token authentication only.
 - PAT values are opaque; no `ghp_` or `github_pat_` prefix is required.
 - `credential` and `api_key` remain accepted as legacy input aliases. Go
   canonicalizes them to encrypted `access_token` storage.
@@ -111,18 +114,18 @@ synthetic GitHub stream list was removed.
 
 | Resource | API | Primary key | Mode | Origin / tier | Important limitation |
 | --- | --- | --- | --- | --- | --- |
-| Issues | GraphQL | repository ID + number | Full Table | verified / Beta | nested connections first 100 |
-| Pull Requests | GraphQL | repository ID + number | Full Table | verified / Beta | nested connections first 100 |
-| Stargazers | GraphQL | repository ID + user | Full Table | verified / Beta | not advertised incremental |
-| Commits | REST | SHA | Full Table | extension / Beta | force-push semantics |
-| Releases | REST | ID | Full Table | extension / Beta | metadata only; no asset download |
-| Contributors | REST | ID | Full Table | extension / Beta | not a canonical user table |
-| Milestones | REST | ID | Full Table | extension / Beta | includes closed (`state=all`) |
-| Labels | REST | ID | Full Table | extension / Beta | snapshot |
-| Forks | REST | ID | Full Table | extension / Beta | credential visibility applies |
-| Branches | REST | repository ID + name | Full Table | extension / Beta | single-repository scope |
-| Tags | REST | repository ID + name | Full Table | extension / Beta | single-repository scope |
-| Events | REST | ID | Full Table | extension / Beta | recent-window snapshot |
+| Issues | GraphQL | repository ID + number | Full Table | verified / Available Now | nested connections first 100 |
+| Pull Requests | GraphQL | repository ID + number | Full Table | verified / Available Now | nested connections first 100 |
+| Stargazers | GraphQL | repository ID + user | Full Table | verified / Available Now | not advertised incremental |
+| Commits | REST | SHA | Full Table | extension / Available Now | force-push semantics |
+| Releases | REST | ID | Full Table | extension / Available Now | metadata only; no asset download |
+| Contributors | REST | ID | Full Table | extension / Available Now | not a canonical user table |
+| Milestones | REST | ID | Full Table | extension / Available Now | includes closed (`state=all`) |
+| Labels | REST | ID | Full Table | extension / Available Now | snapshot |
+| Forks | REST | ID | Full Table | extension / Available Now | credential visibility applies |
+| Branches | REST | repository ID + name | Full Table | extension / Available Now | single-repository scope |
+| Tags | REST | repository ID + name | Full Table | extension / Available Now | single-repository scope |
+| Events | REST | ID | Full Table | extension / Available Now | recent-window snapshot |
 | Repo Events | REST | ID, cursor `created_at` | Incremental | verified / experimental | legacy, dynamic tables, unadvertised |
 
 Unknown resources now fail with `Unsupported GitHub resource '<name>'.`. Empty
@@ -255,10 +258,10 @@ implementation exception was introduced by this connector change.
 - GitHub App execution auth, automatic repository-ID persistence, multi-repo,
   nested GraphQL pagination, GHES, ETags, and `repo_events` recovery E2E remain.
 - Fine-grained PAT compatibility must be recorded per resource with live tests;
-  reactions remain classic-PAT Beta.
+  reactions remain classic-PAT only.
 - Existing platform-integration UI/runtime needs an authenticated regression
   run before release.
 
 The implementation is materially hardened and the connector is **ENABLED AS
-BETA**. Full production-readiness is not claimed until the required real
+AVAILABLE NOW**. Full production-readiness is not claimed until the required real
 destination matrix and existing-integration regression pass.

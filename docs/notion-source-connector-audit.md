@@ -4,9 +4,12 @@ Audit date: 2026-08-13
 
 ## Production-readiness decision
 
-**NOT READY**
+**AVAILABLE NOW — source only; independent certification and manual UI
+validation pending.**
 
-The modern source implementation and deterministic local validation are complete, but no real Notion credential was available and no real Notion → PostgreSQL/MySQL/MariaDB movement was executed. Notion is now visible in the frontend and marketing catalog as a runtime-gated, source-only connector; this visibility does not replace the outstanding production E2E gate.
+The modern source implementation and deterministic local validation are
+complete. Available Now is the owner's release classification; it does not
+replace the outstanding credential-backed Notion-to-destination evidence.
 
 ## Repository baselines
 
@@ -169,7 +172,10 @@ NOTION_TEST_DATA_SOURCE_ID
 NOTION_TEST_PAGE_ID
 ```
 
-Consequently, real Notion → PostgreSQL, MySQL, MariaDB, and Airtable tests were not run. The connector has been added to `ENABLED_CONNECTOR_IDS` for runtime-gated access, but must not be marked production READY until the required real supported-destination flows pass.
+Consequently, real Notion → PostgreSQL, MySQL, MariaDB, and Airtable tests were
+not run. The connector is explicitly enabled as Available Now, while these
+credential-backed flows remain pending verification and must not be described
+as independent production certification.
 
 ## Known limitations and next gate
 
@@ -180,4 +186,7 @@ Consequently, real Notion → PostgreSQL, MySQL, MariaDB, and Airtable tests wer
 5. Expanded page-property-item retrieval is not implemented; large relation/rollup/people/rich-text properties retain Notion's inline response limitations.
 6. Repository-wide frontend lint and two unrelated MySQL integration tests remain red outside this connector diff.
 
-The next production gate is a controlled live workspace test covering discovery, schema, preview, FULL_TABLE, INCREMENTAL failure/retry, and real delivery to PostgreSQL, MySQL, and MariaDB. Until that evidence exists, the public connector remains explicitly runtime-gated and source-only.
+The next verification gate is a controlled live workspace test covering
+discovery, schema, preview, FULL_TABLE, INCREMENTAL failure/retry, and real
+delivery to PostgreSQL, MySQL, and MariaDB. The public connector remains
+Available Now and source-only while that manual evidence is pending.

@@ -1,4 +1,107 @@
-# MantrixFlow — System Design & Technical Interview Guide
+# MantrixFlow
+
+MantrixFlow is a multi-tenant data-pipeline product with a Next.js operator
+console, a Go control plane, and a private Python ELT runtime. The browser uses
+Supabase for authentication and sends business-data requests only to Go. Go
+validates authorization, manages encrypted connection configuration, queues
+runs, and coordinates the ELT service.
+
+## Product status
+
+The following owner-approved connector roles are **Available Now** in product
+metadata and selection surfaces. This classification means implemented and
+enabled in the repository; it is not a claim of independent certification or
+completed manual UI validation.
+
+| Connector | Category | Roles | Popular |
+| --- | --- | --- | --- |
+| PostgreSQL | Databases | Source & Destination | Yes |
+| MySQL | Databases | Source & Destination | Yes |
+| MongoDB | Databases | Source & Destination | Yes |
+| ClickHouse | Warehouses & Lakes | Source & Destination | No |
+| DuckDB | Warehouses & Lakes | Source & Destination | No |
+| Stripe | SaaS & APIs | Source only | Yes |
+| HubSpot | SaaS & APIs | Source only | No |
+| GitHub | SaaS & APIs | Source only | No |
+| Airtable | SaaS & APIs | Source & Destination | No |
+| Asana | SaaS & APIs | Source only | No |
+| Linear | SaaS & APIs | Source only | No |
+| Notion | SaaS & APIs | Source only | No |
+| Zendesk | SaaS & APIs | Source only | No |
+| Strapi | SaaS & APIs | Source only | No |
+
+Automated contracts and health metadata cover these roles. Manual UI testing
+is an owner validation step and must be recorded separately. Other connector
+content remains visible only when marked Planned, Coming Soon, or In
+Development.
+
+## Repository map
+
+| Area | Path | Responsibility |
+| --- | --- | --- |
+| Product app | [`apps/app`](apps/app/README.md) | Next.js workspace and connector UI |
+| Go API | [`apps/server/main-server`](apps/server/main-server/README.md) | Authentication, authorization, metadata, orchestration, callbacks |
+| ELT runtime | [`apps/server/elt-server`](apps/server/elt-server/README.md) | Private extraction, transformation, delivery, and runtime diagnostics |
+| Website | [`apps/website`](apps/website/README.md) | Public product and connector pages |
+| Public docs | [`apps/mantrixflow-docs`](apps/mantrixflow-docs/README.md) | Customer-facing setup and connector documentation |
+| Infrastructure | [`apps/mantrixflow-infra`](apps/mantrixflow-infra/DEPLOYMENT.md) | Current Hetzner/Terraform backend deployment |
+
+## Local development
+
+Use the service-specific environment examples; never expose Go/ELT internal or
+callback tokens through `NEXT_PUBLIC_*` variables.
+
+```bash
+# Terminal 1: product app
+cd apps/app
+bun install
+bun run dev
+
+# Terminal 2: Go API
+cd apps/server/main-server
+go run ./cmd/server
+
+# Terminal 3: Python ELT
+cd apps/server/elt-server
+.venv/bin/python -m uvicorn api.main:app --host 127.0.0.1 --port 8000
+```
+
+The Go and ELT processes intentionally fail startup when required internal
+tokens are absent. Public ELT health exposes only status and version; protected
+Go health/metadata routes provide configuration and dependency diagnostics.
+
+## Current deployment guidance
+
+- Frontend: Vercel guidance in [`md-docs/deployment-vercel.md`](md-docs/deployment-vercel.md).
+- Backend: Terraform-provisioned Hetzner host and private Docker network in
+  [`apps/mantrixflow-infra/DEPLOYMENT.md`](apps/mantrixflow-infra/DEPLOYMENT.md).
+- AWS/ECS, Oracle, Contabo, Dokploy, and other former paths are historical and
+  must not be used as current production instructions.
+
+## Engineering references
+
+- [`md-docs/strict-elt-pipeline-guide.md`](md-docs/strict-elt-pipeline-guide.md)
+- [`md-docs/source-to-destination-elt-flow.md`](md-docs/source-to-destination-elt-flow.md)
+- [`apps/server/main-server/docs/RLS_GUIDE.md`](apps/server/main-server/docs/RLS_GUIDE.md)
+- [`docs/ceo-legal-claims-review.md`](docs/ceo-legal-claims-review.md)
+
+## Verification policy
+
+Automated tests demonstrate repository behavior, not external production
+certification. Demos, fixtures, sample companies, and mock runs are synthetic
+unless a document explicitly identifies verified live evidence. Legal,
+privacy, residency, retention, security, availability, and compliance promises
+require CEO/Legal approval before publication.
+
+Validate local links across every repository README, public MDX page, and
+internal Markdown document with `node scripts/check-markdown-links.mjs`.
+
+---
+
+<details>
+<summary>Archived system-design and technical-interview guide (historical; not current deployment or product guidance)</summary>
+
+# Historical MantrixFlow System Design & Technical Interview Guide
 
 Use this document to present **MantrixFlow** in a system design or technical interview. It covers the three services you built: the **Next.js app**, the **Go API (main-server)**, and the **Python ELT server**. Tone is conversational — practice saying these sections out loud, not reading them word-for-word.
 
@@ -371,7 +474,7 @@ Pick 1–2 honest items, e.g.:
 | Where is SQL validated? | ELT `/validate-sql` via Go proxy; in-memory DuckDB schema, no live source writes. |
 | How are secrets stored? | Encrypted connection JSON in Postgres; Fernet master key in env/SSM. |
 | Can the UI create destination tables? | Builder may help **design** tables via pipeline-destination-schema APIs; **runtime delivery never CREATE TABLE**. |
-| What connectors are production-ready? | PostgreSQL, MySQL, and Airtable are available as sources and destinations. Asana, HubSpot, and Stripe are available as sources. MySQL, Airtable, and Asana remain runtime-capability gated. |
+| What connectors are Available Now? | PostgreSQL, MySQL, MongoDB, ClickHouse, DuckDB, and Airtable support source and destination roles. Stripe, HubSpot, GitHub, Asana, Linear, Notion, Zendesk, and Strapi are source-only. This owner classification is not independent certification. |
 | How does realtime UI update? | Go persists run + metadata; Supabase Realtime publish on status (Run drawer polls/subscribes). |
 
 ---
@@ -419,3 +522,5 @@ ai-bi/
 ```
 
 Good luck — lead with the user problem (reliable ELT into **existing** tables), then show how the three services divide responsibility cleanly.
+
+</details>

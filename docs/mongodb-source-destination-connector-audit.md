@@ -2,7 +2,11 @@
 
 Audit date: 2026-08-25
 
-Decision: **BETA**. The implemented paths are production-oriented and the standalone MongoDB paths exercised below move real data successfully. The connector is not marked READY because the complete SQL cross-matrix, Atlas, replica-set, sharded-cluster, and live TLS deployments have not yet been exercised.
+Decision: **AVAILABLE NOW**. This owner release classification records code
+support; it is not independent production certification. The implemented paths
+are production-oriented and the standalone MongoDB paths exercised below move
+real data successfully. Manual UI validation and the complete deployment matrix
+remain pending.
 
 ## 1. Frontend HEAD SHA
 
@@ -32,9 +36,11 @@ The canonical ID is `mongodb`, aliases normalize to that ID, and the connector f
 
 ## 7. Frontend registration
 
-The connector catalog now exposes an explicitly enabled Beta MongoDB card with source and destination roles. A focused field definition collects connection name, full URI, and database. Create/edit/test payloads preserve a masked URI on edit, validate `mongodb://` and `mongodb+srv://`, and reuse the existing connection form. Explicit frontend availability was enabled only after the real MongoDB-to-PostgreSQL, PostgreSQL-to-MongoDB, and MongoDB-to-MongoDB tests passed, so a transient health-response failure no longer moves the connector back to Coming Soon.
+The connector catalog now exposes an explicitly enabled Available Now MongoDB card with source and destination roles. A focused field definition collects connection name, full URI, and database. Create/edit/test payloads preserve a masked URI on edit, validate `mongodb://` and `mongodb+srv://`, and reuse the existing connection form. Explicit frontend availability was enabled only after the real MongoDB-to-PostgreSQL, PostgreSQL-to-MongoDB, and MongoDB-to-MongoDB tests passed, so a transient health-response failure no longer moves the connector back to Coming Soon.
 
-The public Mintlify documentation includes separate MongoDB source and destination setup guides plus a verified MongoDB/PostgreSQL pipeline reference. The marketing website catalog includes MongoDB as an available Beta bidirectional database connector, uses the MongoDB brand icon, links to the setup guide, and exposes the capability in agent-readable connector content and site metadata.
+The public documentation includes separate MongoDB source and destination setup
+guides plus a MongoDB/PostgreSQL pipeline reference. The marketing website
+catalog includes MongoDB as an Available Now bidirectional database connector.
 
 Frontend restructuring audit: no pages, tables, dialogs, links, or shared table implementations were added; no duplicate implementations, empty catches, commented-out code, or dead code were introduced. The largest changed frontend file is `features/data-sources/types/data-sources.ts` at 499 lines. Pre-existing files over 500 lines are `features/team/components/team-screen.tsx` (546) and `features/ai-copilot/server/agent/orchestrator.ts` (526).
 
@@ -197,7 +203,12 @@ Go encryption/redaction tests and Python URI/error-redaction tests pass. Static 
 
 ## 44. Production-readiness decision
 
-**BETA, not READY.** Canonical registration, document-family routing, official dlt extraction, PyMongo destination delivery, discovery, preview, schema inference, BSON conversion, FULL_TABLE, INCREMENTAL, APPEND internals, public UPSERT, secret handling, bounded processing, and the three primary real data-movement paths are implemented and passing. READY should be granted only after the missing SQL cross-matrix, deployment topology/TLS tests, dedicated tenant-isolation test, and live failure-injection cases pass.
+**AVAILABLE NOW; independent certification pending.** Canonical registration,
+document-family routing, extraction, destination delivery, discovery, preview,
+schema inference, BSON conversion, sync modes, public Upsert, secret handling,
+bounded processing, and the primary data-movement paths have automated evidence.
+The missing topology, tenant-isolation, failure-injection, and manual UI checks
+remain explicitly recorded.
 
 ## Verification record
 

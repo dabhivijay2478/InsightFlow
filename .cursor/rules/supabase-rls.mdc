@@ -42,12 +42,12 @@ Current public tables created by GORM live in `apps/server/main-server/internal/
 
 - `organizations` — current-org read only; active org is `users.current_organization_id`.
 - `organization_members` — current-org read only; verifies active membership.
-- `data_sources` — direct `organization_id`; org-scoped CRUD.
-- `data_source_schema_metadata` — direct `organization_id`; client read only.
-- `pipelines` — direct `organization_id`; org-scoped CRUD.
-- `pipeline_agents` — direct `org_id`; org-scoped CRUD.
-- `pipeline_runs` — direct `organization_id`; client read only for dashboards and Realtime.
-- `activity_logs` — direct `organization_id`; client read only.
+- `data_sources` — direct `organization_id`; Go API only.
+- `data_source_schema_metadata` — direct `organization_id`; Go API only.
+- `pipelines` — direct `organization_id`; Go API only.
+- `pipeline_agents` — direct `org_id`; Go API only.
+- `pipeline_runs` — direct `organization_id`; Go API polling only.
+- `activity_logs` — direct `organization_id`; Go API only.
 
 ### Derived org-scoped tables
 

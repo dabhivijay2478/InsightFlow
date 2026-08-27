@@ -2,7 +2,7 @@
 
 ## Status
 
-**AIRTABLE STATUS: READY**
+**AIRTABLE STATUS: AVAILABLE NOW — source and destination.**
 
 The connector implementation, deterministic suites, and the complete authenticated Chrome/UI matrix now pass. The matrix used saved local connections and an isolated Airtable destination table created for this verification; no credentials or customer values are recorded in this report.
 
@@ -40,7 +40,8 @@ The frontend already contained an inactive Airtable catalog entry and legacy Saa
 - Canonical connector ID: `airtable`.
 - Go registry: source and destination entries are present, both using dynamic discovery.
 - Frontend badge/capability: Source + Destination, PAT authentication, CDC false.
-- Frontend availability is runtime-gated. Airtable is selectable only when ELT health reports `source=true`, `destination=true`, and `available=true`.
+- Frontend availability is explicitly enabled. Protected ELT health reports
+  source, destination, dependency, and configuration readiness as diagnostics.
 - The source pipeline UI provides Connection → Base → Tables → FULL_TABLE selection.
 - The destination UI provides Connection → Base → Existing Table → UPSERT → stable field mapping → explicit merge fields.
 - The selected source `base_id` is normalized to `airtable_base_id` at the Go→ELT dispatch boundary; a regression test covers graph persistence through runtime dispatch.
@@ -153,4 +154,8 @@ copy from connector, comparison, navigation, and product sections.
 
 ## Production readiness decision
 
-The connector is **READY** for the documented existing-table, UPSERT-only release scope. Deterministic suites pass, the full authenticated seven-route UI matrix passes, delivered records are visible in Airtable, concurrent destination execution is regression-covered, and no credentials were exposed in UI errors, run details, callbacks, or this audit.
+The connector is **AVAILABLE NOW** for the documented existing-table,
+UPSERT-only scope. Deterministic suites and the recorded authenticated UI matrix
+provide engineering evidence; this wording does not claim independent
+production certification. Delivered-record evidence and limitations remain
+documented above.

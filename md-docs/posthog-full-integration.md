@@ -77,7 +77,7 @@ To reduce volume: lower `apiMetricsSampleRate` in `metrics_middleware.go` or add
 
 Helpers: [`apps/app/lib/posthog/events.ts`](../apps/app/lib/posthog/events.ts).
 
-Identity: [`PostHogIdentify`](../apps/app/components/providers/posthog-identify.tsx) in workspace layout — `identify(user.id)`, `group('organization', orgId)`, `reset()` on logout.
+Identity: [`PostHogIdentify`](../apps/app/shared/providers/posthog-identify.tsx) in workspace layout — `identify(user.id)`, `group('organization', orgId)`, `reset()` on logout.
 
 ### Go API (`apps/server/main-server`)
 
@@ -92,7 +92,7 @@ Identity: [`PostHogIdentify`](../apps/app/components/providers/posthog-identify.
 | `connection_test_succeeded` / `connection_test_failed` | Test-connection handlers |
 | `$exception` | 5xx (`ErrorMiddleware`) |
 
-Package: [`internal/observability/`](../apps/server/main-server/internal/observability/).
+Package entry: [`internal/observability/posthog.go`](../apps/server/main-server/internal/observability/posthog.go).
 
 ### Better Stack relay
 

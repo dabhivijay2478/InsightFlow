@@ -2,9 +2,15 @@
 
 ## Status
 
-**CLICKHOUSE STATUS: NOT READY** (deterministic suite green; real ClickHouse E2E movement unverified in this environment)
+**CLICKHOUSE STATUS: AVAILABLE NOW — source and destination; manual UI and live
+movement validation pending.**
 
-The decision is conservative on purpose. The connector now ships a full deterministic contract for `clickhouse` as a **source + destination** connector across all three services (frontend, Go API, Python ELT), the dlt native ClickHouse destination is wired, the `clickhousedb://` SQLAlchemy dialect is exposed for source extraction via `dlt.sources.sql_database`, every documented port and TLS combination is covered in the contract, and the secret-redaction surface is verified end-to-end. What is **not** demonstrated here is a real Docker-based E2E that physically moves rows between ClickHouse and PostgreSQL/MySQL/MariaDB in CI. That work is described in §109 and §110 but cannot be claimed complete without the live database motion validation explicitly requested by the prompt.
+Available Now is the owner's release classification, based on the implemented
+deterministic source-and-destination contract across the frontend, Go API, and
+Python ELT. The native ClickHouse destination, SQLAlchemy source dialect, port
+and TLS contract, and secret-redaction surface are implemented. This report
+does not claim independent production certification or completed live Docker
+movement across the full database matrix.
 
 ## Repository baselines
 
@@ -78,7 +84,9 @@ CDC is **not** advertised. Category: **Warehouses & Lakes**. Badge: **Source + D
 - `features/connections/components/credentialForm.helpers.ts` — added a `clickhouse` branch in `buildTestDto` and `buildCreateDto` that emits the dedicated contract (`host`, `database`, `username`, `password`, `port` for native, `http_port`, `secure`). Empty password is dropped (matches the optional-password product rule). Added `httpPort` and `secure` reading in `buildInitialFormData` so existing connections round-trip into the form correctly.
 - `features/connections/components/CredentialForm.tsx` — added a ClickHouse branch in the test-connection handler so the form submits the structured `config` to the legacy `/test` endpoint rather than the flat SQL fields.
 - `features/connections/components/connectionForm.schema.ts` — added `httpPort` and `secure` keys to the Zod schema.
-- `features/connections/data/connectors.ts` — `clickhouse` is now `availability: "runtime"` (was missing), matching the other runtime-gated connectors. The UI only renders the connector card when the ELT `/health` endpoint reports `connector_capabilities.clickhouse.available = true`.
+- `features/connections/data/connectors.ts` — `clickhouse` is explicitly enabled
+  as Available Now. Protected runtime health remains diagnostic and reports
+  dependency/configuration reasons without hiding the owner-approved card.
 
 The frontend exposes the secure toggle in the same card as host/database/username/password (per the taste for credential-form integration in the conversation memory) and only the native port is hidden behind `Advanced` semantics in the label.
 
@@ -213,7 +221,12 @@ The secure-mode default (TLS = true, HTTP = 8443) matches the ClickHouse Cloud c
 
 ## Docker integration
 
-This audit intentionally does not assert any Docker-based motion E2E. The deterministic contracts above guarantee the same code paths that the production ELT runner uses for other SQL connectors, and `dlt.destinations.clickhouse` is wired into the destination factory. Live row movement against the cross-connector matrix (PostgreSQL/MySQL/MariaDB/CockroachDB × ClickHouse in both directions, plus ClickHouse → ClickHouse) is the gating step for production READY status and must be executed by CI with the official `clickhouse/clickhouse-server` image per the prompt's §73–§82 contract; that step is the responsibility of the next validation run and is reflected in §109 of this report.
+This audit intentionally does not assert any Docker-based motion E2E. The
+deterministic contracts exercise the same runner paths used by other SQL
+connectors, and `dlt.destinations.clickhouse` is wired into the destination
+factory. Live row movement against the cross-connector matrix remains the next
+independent-verification step and does not change the owner-approved Available
+Now classification.
 
 ## Security
 
@@ -244,11 +257,14 @@ Deterministic results:
 
 ## Known limitations / production gates that remain
 
-1. **Real Docker E2E** — the prompt's §75–§82 matrix (ClickHouse ↔ PostgreSQL / MySQL / MariaDB / ClickHouse with UInt64, Decimal, DateTime64, Array, Map, Nullable, JSON, Unicode, large source/large destination) is not asserted here. The code paths are deterministic and unit-tested, but **READY** would require an executed CI run against the official `clickhouse/clickhouse-server` image with deterministic seeded data.
+1. **Real Docker E2E** — the prompt's §75–§82 matrix (ClickHouse ↔ PostgreSQL / MySQL / MariaDB / ClickHouse with UInt64, Decimal, DateTime64, Array, Map, Nullable, JSON, Unicode, large source/large destination) is not asserted here. Independent certification would require an executed CI run against the official `clickhouse/clickhouse-server` image with deterministic seeded data.
 2. **SQL Explorer** — the existing explorer route treats unknown connector types as opaque. ClickHouse entries would benefit from `clickhousedb://` query support in the explorer harness, but this is intentionally outside MVP scope unless the prompt's §91 contract is later enforced for ClickHouse.
 3. **ClickHouse dictionaries / Distributed fan-out / FINAL rewrite** — explicitly not auto-applied. Operators that want FINAL must explicitly configure it (per §42).
 4. **Frontend port toggle interaction** — the current `ConnectionFieldRenderer` doesn't yet render reactive cross-field defaults. Secure-driven port suggestion is server-enforced (backend applies defaults for missing ports). Future work may move the secure toggle to a controlled radio that re-suggests the two port fields.
 
 ## Production readiness
 
-**NOT READY** — the full E2E matrix of §105 has not been executed in this environment. The deterministic contracts, capability model, secret-redaction surface, and dlt wiring are all green and self-consistent across the three repositories.
+**AVAILABLE NOW; independent certification and manual UI validation pending.**
+The full live E2E matrix has not been executed in this environment. The
+deterministic contracts, capability model, secret-redaction surface, and dlt
+wiring are the automated evidence for the owner classification.

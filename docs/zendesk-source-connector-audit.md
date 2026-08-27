@@ -4,7 +4,11 @@ Date: 2026-08-20
 
 ## Status
 
-**NOT READY** — a Beta implementation exists, but no live Zendesk-to-supported-destination MantrixFlow E2E run was possible without a Zendesk tenant and OAuth client. At the user's explicit direction on 2026-08-20, Zendesk is present in the frontend `ENABLED_CONNECTOR_IDS` set and appears in Available Now when both ELT runtime health and Go OAuth configuration report Zendesk available. Mocked tests, imports, or preview success are not treated as production proof.
+**CURRENT STATUS: AVAILABLE NOW — source only; independent certification and
+manual UI validation pending.** No live Zendesk-to-supported-destination E2E run
+was possible without a Zendesk tenant and OAuth client. Runtime health and Go
+OAuth configuration report diagnostic readiness but do not demote the connector
+from the owner-approved catalog.
 
 The connector is strictly source-only and read-only. No Zendesk destination, reverse ETL operation, or Zendesk mutation was added.
 
@@ -31,7 +35,7 @@ The upstream source graph, API endpoints, pagination types, primary keys, increm
 - Preview: supported
 - Incremental extraction: supported
 - CDC: false
-- Release stage: Beta, frontend-enabled and runtime-health gated
+- Release stage: Available Now; runtime health and OAuth readiness are diagnostic
 - Authentication advertised: OAuth only (`read` scope)
 - Enabled service: Zendesk Support
 - Conversations API / Chat: not used or advertised; it is a different live-chat API and does not replace the Support Ticketing API
@@ -162,4 +166,6 @@ Validation results:
 6. Existing API-token connections must be reconnected through OAuth. They intentionally fail instead of using a deprecated compatibility path.
 7. The Playwright test verifies source-only catalog and form behavior. The requested live authorize/callback/discover/preview/run UI flow remains untested because a Zendesk OAuth tenant/client is absent.
 
-Production readiness remains **NOT READY**. The next release step is to provide the optional Zendesk test credentials and a disposable destination, execute the live MantrixFlow E2E, and inspect secret-bearing surfaces before promoting the Beta connector to production-ready status.
+Independent production certification remains pending. Optional Zendesk test
+credentials, a disposable destination, a live E2E run, secret-surface review,
+and manual UI validation remain recorded evidence items.
