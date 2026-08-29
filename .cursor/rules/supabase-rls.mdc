@@ -75,6 +75,14 @@ Current public tables created by GORM live in `apps/server/main-server/internal/
   `agent_audit_events`, `agent_transfers`, `agent_evidence` — Oria history,
   internal routing, citation metadata, and sanitized audit records;
   keep base tables closed and use the tenant-scoped Go API.
+- `intelligence_simulation_scenarios`, `simulation_scenarios`,
+  `simulation_scenario_versions`, `simulation_runs`,
+  `simulation_run_services`, `simulation_evidence`,
+  `simulation_assertions`, `simulation_assertion_results`,
+  `simulation_saved_tests`, `simulation_faults`,
+  `simulation_world_snapshots`, `simulation_twin_definitions`, and
+  `simulation_twin_instances`, and `simulation_artifacts` — Simulation Platform definitions, execution
+  state, evidence, and internal endpoints; keep API-only.
 
 ### Trigger rule
 
