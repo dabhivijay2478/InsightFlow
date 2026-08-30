@@ -40,6 +40,11 @@
   guarded restore tool, and migration runbooks. These are not activated.
 - OVH host bootstrap scripts, private-network/WireGuard template, self-hosted Dokploy
   configuration, rollback, and deployment-independence documentation.
+- A one-time OVH/Microsandbox setup guide, repeatable deployment runbook, exact
+  GitHub environment matrix, and read-only `gh` checker covering all three
+  deployment repositories.
+- Private cross-host Compose bindings and UFW rules aligned to Go `10.20.0.20`,
+  ELT `10.20.0.30`, and future database `10.20.0.40`.
 
 ## 4. Go ownership
 
@@ -78,6 +83,9 @@ credentials.
 - Strict dynamic-host SSH requires a custom image using a trusted SSH host CA.
 - The MVP supports one simulation manager replica and one active microVM.
 - OVH flavor/image/network identifiers are regional and must be staging-tested.
+- The literal Go VPS requires an explicitly proven route to the Public Cloud
+  simulation subnet; the current Microsandbox cloud-init does not create that
+  cross-network route by itself.
 - WAL-G restore drills and PGMQ version compatibility are mandatory before a
   future database cutover.
 - Generated protobuf sources remain canonical in the Go repository; the Python
@@ -111,3 +119,6 @@ Nomad, service mesh, Redis, or additional sandbox provider was introduced.
   Live staging proof still requires the protected credentials, regional OVH
   identifiers, trusted host-CA image, and private-network routes listed in the
   deployment runbook.
+- Public Git remotes and deployment branches were reachable during the guide
+  audit. Live GitHub environment/secret-name verification remains gated by an
+  authenticated `gh` session and can be rerun with the checked-in read-only script.

@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-30T10:41:15.953Z",
+  "generatedAt": "2026-08-30T11:15:28.643Z",
   "files": [
     {
       "surface": "website",
@@ -2556,10 +2556,10 @@
     {
       "surface": "internal_reference",
       "location": "md-docs/README.md",
-      "bytes": 12271,
-      "words": 1065,
-      "lines": 138,
-      "sha256": "31f1a67c70cb79ef8be6d1ccdb880aa4d980f7b12fc7b9dfdf643abad482e646"
+      "bytes": 12716,
+      "words": 1098,
+      "lines": 144,
+      "sha256": "6785513af1ef402395628a13ca9ad31f11d6f0690b40a4f88194cd4bd3a9bc83"
     },
     {
       "surface": "internal_reference",
@@ -2876,10 +2876,10 @@
     {
       "surface": "internal_reference",
       "location": "md-docs/infrastructure-ci-cd-implementation-report.md",
-      "bytes": 6015,
-      "words": 756,
-      "lines": 114,
-      "sha256": "5fc2952b5dc058f7a5fd4efa9a95f68ee33e99990293a4b939298564c75067bc"
+      "bytes": 6758,
+      "words": 857,
+      "lines": 125,
+      "sha256": "22f102ccd80ba0e2518ad2b8bf03c0e2d6023588066e9c809a2d93528393d283"
     },
     {
       "surface": "internal_reference",

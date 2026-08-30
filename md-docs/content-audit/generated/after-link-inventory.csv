@@ -206,6 +206,8 @@ md-docs/README.md,./posthog-setup.md,OK
 md-docs/README.md,./posthog-full-integration.md,OK
 md-docs/README.md,./observability-deployment.md,OK
 md-docs/README.md,../apps/mantrixflow-infra/DEPLOYMENT.md,OK
+md-docs/README.md,../apps/mantrixflow-infra/docs/setup-guide.md,OK
+md-docs/README.md,../apps/mantrixflow-infra/docs/github-actions.md,OK
 md-docs/README.md,./tigris-storage-setup.md,OK
 md-docs/README.md,./deployment-oracle-cloud.md,OK
 md-docs/README.md,./deployment-vercel.md,OK

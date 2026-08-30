@@ -55,6 +55,12 @@ Legacy filenames redirect to the above (`betterstack-status-page-creation.md`, `
 
 - [`../apps/mantrixflow-infra/DEPLOYMENT.md`](../apps/mantrixflow-infra/DEPLOYMENT.md) —
   current OVHcloud Terraform and self-hosted Dokploy deployment runbook.
+- [`../apps/mantrixflow-infra/docs/setup-guide.md`](../apps/mantrixflow-infra/docs/setup-guide.md) —
+  one-time OVH VPS, Public Cloud, WireGuard, Dokploy, Microsandbox, Supabase
+  simulation schema, and canary setup.
+- [`../apps/mantrixflow-infra/docs/github-actions.md`](../apps/mantrixflow-infra/docs/github-actions.md) —
+  exact repository/environment variable and secret-name matrix plus the live
+  read-only GitHub configuration check.
 - [`tigris-storage-setup.md`](./tigris-storage-setup.md) — Tigris setup for
   simulation artifacts and future PostgreSQL WAL-G backups.
 - [`deployment-oracle-cloud.md`](./deployment-oracle-cloud.md) — Complete

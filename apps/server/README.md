@@ -15,6 +15,11 @@ for production operations. Self-hosted Dokploy runs on its own VPS and manages
 the other servers over dedicated SSH. Go, ELT, and future database deployments
 are independent, and production ELT never runs inside Microsandbox.
 
+First-time infrastructure, private routing, dynamic-host trust, and protected
+GitHub setup are documented in
+[`apps/mantrixflow-infra/docs/setup-guide.md`](../mantrixflow-infra/docs/setup-guide.md)
+and [`apps/mantrixflow-infra/docs/github-actions.md`](../mantrixflow-infra/docs/github-actions.md).
+
 ## Local development
 
 Run services separately:

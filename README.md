@@ -75,6 +75,8 @@ Go health/metadata routes provide configuration and dependency diagnostics.
 - Frontend: Vercel guidance in [`md-docs/deployment-vercel.md`](md-docs/deployment-vercel.md).
 - Backend: independent OVHcloud VPS targets managed by self-hosted Dokploy in
   [`apps/mantrixflow-infra/DEPLOYMENT.md`](apps/mantrixflow-infra/DEPLOYMENT.md).
+- First-time OVH, Tigris, WireGuard, Dokploy, dynamic-host, and GitHub setup:
+  [`apps/mantrixflow-infra/docs/setup-guide.md`](apps/mantrixflow-infra/docs/setup-guide.md).
 - AWS/ECS, Oracle, Contabo, and other former paths are historical and
   must not be used as current production instructions.
 
