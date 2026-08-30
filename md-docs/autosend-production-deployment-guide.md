@@ -83,20 +83,16 @@ Set these in the backend server secret store. In this repo, the full example liv
 apps/server/main-server/.env.production.example
 ```
 
-### Safe CI Rollout With A Separate Secret
+### Self-hosted Dokploy rollout
 
-The running Go API must receive variables named `AUTOSEND_*`, but the GitHub/CI secret that stores them can have a separate name. This lets you add AutoSend without editing the existing multiline production secret immediately.
+The running Go API must receive variables named `AUTOSEND_*`. Add them directly
+to the Go API application environment in self-hosted Dokploy and redeploy only that
+application.
 
-Recommended new GitHub environment secret:
-
-```txt
-HETZNER_API_ENV_AUTOSEND
-```
-
-If deploying through Oracle/OCI instead of Hetzner, use:
+Optional operator-side secret bundle name:
 
 ```txt
-ORACLE_API_ENV_AUTOSEND
+DOKPLOY_GO_AUTOSEND_ENV
 ```
 
 Put only the AutoSend block in that separate secret:
@@ -142,21 +138,16 @@ AUTOSEND_TEMPLATE_TRIAL_EXPIRED=A-6c7ccf48715ad79280f5
 AUTOSEND_TEMPLATE_PAYMENT_FAILED=A-26b35ffc124523857bf4
 ```
 
-Then merge it with the existing env during deployment:
+If an operator prepares an environment file before entering values in Dokploy,
+merge it locally without printing the values:
 
 ```bash
-printf '%s\n' "$HETZNER_API_ENV" > api.env
-printf '\n%s\n' "$HETZNER_API_ENV_AUTOSEND" >> api.env
+printf '%s\n' "$DOKPLOY_GO_ENV" > api.env
+printf '\n%s\n' "$DOKPLOY_GO_AUTOSEND_ENV" >> api.env
 ```
 
-For OCI/Oracle deployments:
-
-```bash
-printf '%s\n' "$ORACLE_API_ENV" > api.env
-printf '\n%s\n' "$ORACLE_API_ENV_AUTOSEND" >> api.env
-```
-
-This avoids touching the current production env secret while still giving the app the normal `AUTOSEND_*` runtime variables. After the rollout is stable, you can optionally fold the AutoSend block into the main `HETZNER_API_ENV` or `ORACLE_API_ENV` secret.
+Delete the temporary local file after the values are stored. Self-hosted Dokploy is
+the production secret source; GitHub Actions does not need AutoSend credentials.
 
 Required AutoSend backend env:
 

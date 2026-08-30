@@ -1,186 +1,74 @@
 # Tigris Storage Setup Guide
 
-This guide sets up Tigris for the Hetzner production deployment.
+Tigris is the private S3-compatible object store for MantrixFlow. It stores
+large simulation artifacts now and will store WAL-G database backups after the
+future OVHcloud PostgreSQL cutover. Active ELT DuckDB staging remains on the
+dedicated ELT VPS at `/var/lib/mantrixflow/staging`.
 
-Tigris is used for:
+## Buckets and access
 
-1. Terraform/OpenTofu remote state for the infra repository.
-2. Hourly backup uploads from the Hetzner server.
-
-Tigris is not the active DuckDB staging disk. Active ELT staging stays on the
-Hetzner server SSD at `/var/mantrixflow/staging`.
-
-## 1. Create A Tigris Account
-
-1. Open [Tigris](https://www.tigrisdata.com/).
-2. Sign in or create an account.
-3. Open the Tigris dashboard.
-
-## 2. Create The Bucket
-
-Create one bucket for MantrixFlow production:
+Create private, purpose-separated buckets:
 
 ```text
-mantrixflow-production
+mantrixflow-terraform-state
+mantrixflow-dokploy-backups
+mantrixflow-simulation-artifacts
+mantrixflow-database-backups
 ```
 
-Recommended settings:
+The database-backup bucket is future-only while Supabase remains active. Do
+not make any bucket public. Create separate scoped access keys for Terraform
+state, Dokploy recovery, simulation artifacts, and the future database backup
+process; never reuse production connector credentials.
 
-| Setting | Value |
-| --- | --- |
-| Bucket name | `mantrixflow-production` |
-| Storage class | Standard |
-| Region/distribution | Tigris default/global |
-| Public access | Private |
-
-Keep this bucket private. GitHub Actions and the Hetzner server access it with
-S3-compatible access keys.
-
-## 3. Create Access Keys
-
-In the Tigris dashboard:
-
-1. Go to **Access Keys**.
-2. Create a new key.
-3. Name it:
+Use the S3-compatible endpoint:
 
 ```text
-mantrixflow-production-ci
+https://fly.storage.tigris.dev
 ```
 
-4. Copy both values immediately:
+Configure the simulation manager in self-hosted Dokploy with:
 
 ```text
-Access key ID
-Secret access key
+SIMULATION_ARTIFACT_ENDPOINT=https://fly.storage.tigris.dev
+SIMULATION_ARTIFACT_REGION=auto
+SIMULATION_ARTIFACT_BUCKET=mantrixflow-simulation-artifacts
+SIMULATION_ARTIFACT_ACCESS_KEY_ID=<scoped key>
+SIMULATION_ARTIFACT_SECRET_ACCESS_KEY=<scoped secret>
 ```
 
-The secret access key is shown once. Store it directly in GitHub secrets.
+Terraform state uses the S3 backend with separate production and staging keys,
+S3 lockfiles, and protected GitHub environment credentials. Configure Dokploy's
+built-in Web Server backup with its dedicated bucket so `/etc/dokploy` and the
+control-plane PostgreSQL database can be recovered independently.
 
-## 4. Endpoint And Bucket Values
+Configure future WAL-G values only when the self-hosted database migration is
+explicitly approved. The prepared variable names and scripts are documented in
+[`../apps/mantrixflow-infra/backup/README.md`](../apps/mantrixflow-infra/backup/README.md).
 
-Use these values for GitHub:
+## Verification
 
-```text
-TIGRIS_BUCKET=mantrixflow-production
-TIGRIS_ENDPOINT=https://fly.storage.tigris.dev
-```
+For simulation artifacts:
 
-Then add the generated key values:
+1. Run an approved canary simulation.
+2. Confirm PostgreSQL contains only artifact metadata and object references.
+3. Confirm the referenced private object exists in the simulation bucket.
+4. Confirm an unauthenticated request cannot read it.
 
-```text
-TIGRIS_ACCESS_KEY_ID=your_tigris_access_key_id
-TIGRIS_SECRET_ACCESS_KEY=your_tigris_secret_access_key
-```
+For the future database service:
 
-## 5. Add Infra Repo Secrets
+1. Run a full backup from the isolated database VPS.
+2. Confirm WAL/full-backup objects appear under the configured prefix.
+3. Restore into a disposable PostgreSQL instance.
+4. Validate schema, PGMQ queues, and representative application reads.
 
-Repository:
+Snapshots are additional protection; they do not replace database-level
+backups or restore drills.
 
-```text
-dabhivijay2478/mantrixflow-infra
-```
+## Retention and rotation
 
-Environment:
-
-```text
-production-hetzner
-```
-
-Branch rule:
-
-```text
-main
-```
-
-Add these environment secrets:
-
-| Secret | Value |
-| --- | --- |
-| `TIGRIS_ACCESS_KEY_ID` | Tigris access key ID |
-| `TIGRIS_SECRET_ACCESS_KEY` | Tigris secret access key |
-| `TIGRIS_ENDPOINT` | `https://fly.storage.tigris.dev` |
-| `TIGRIS_BUCKET` | `mantrixflow-production` |
-
-Do not add Tigris secrets to the API or ELT repositories. Only the infra
-workflow needs them.
-
-## 6. What The Infra Workflow Does
-
-On push to `main`, the infra workflow uses Tigris as the S3-compatible backend
-for Terraform/OpenTofu state.
-
-It also writes Tigris credentials into the server bootstrap flow so the server
-can upload hourly backups from:
-
-```text
-/var/mantrixflow/staging
-```
-
-The backup timer to check after deployment is:
-
-```bash
-systemctl status mantrixflow-tigris-backup.timer
-```
-
-## 7. Verify From GitHub Actions
-
-After the first infra deployment succeeds, confirm the Tigris bucket contains a
-state object. In Tigris, open:
-
-```text
-mantrixflow-production
-```
-
-You should see Terraform/OpenTofu state files or prefixes created by the infra
-workflow.
-
-## 8. Verify From The Hetzner Server
-
-SSH into the server:
-
-```bash
-ssh -i ~/.ssh/mantrixflow_hetzner root@SERVER_IPV4
-```
-
-Check the backup timer:
-
-```bash
-systemctl status mantrixflow-tigris-backup.timer
-```
-
-Run one manual backup check:
-
-```bash
-systemctl start mantrixflow-tigris-backup.service
-journalctl -u mantrixflow-tigris-backup.service -n 100 --no-pager
-```
-
-Then confirm a backup object appears in the Tigris bucket.
-
-## 9. Cost Guardrails
-
-For MVP, keep Tigris small:
-
-1. Terraform state is tiny.
-2. Hourly backups should only include required staging backup data.
-3. Do not store active DuckDB working files directly in Tigris.
-4. Periodically delete old backups or add lifecycle rules when available.
-
-The first 5 GB of Tigris standard storage is free. Above that, storage is billed
-per GB, so keep staging backup retention conservative.
-
-## 10. Secret Rotation
-
-To rotate Tigris keys:
-
-1. Create a new Tigris access key.
-2. Update `TIGRIS_ACCESS_KEY_ID` and `TIGRIS_SECRET_ACCESS_KEY` in the infra
-   repo `production-hetzner` environment.
-3. Run the infra workflow from `main`.
-4. Confirm Terraform state still loads successfully.
-5. Confirm the server backup timer still uploads.
-6. Delete the old Tigris access key.
-
-Do not delete the old key before the new infra workflow has completed
-successfully.
+- Apply lifecycle rules matching the evidence and backup retention policy.
+- Do not persist active DuckDB working files directly in object storage.
+- Rotate one scoped key at a time, update the corresponding self-hosted Dokploy
+  application, verify access, and only then revoke the previous key.
+- Never expose Tigris secrets to the frontend or bake them into an image.

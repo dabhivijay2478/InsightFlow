@@ -57,7 +57,7 @@ The post-cleanup snapshot was generated before this final report and source-of-t
 ### Archived
 
 - The legacy `/workspace/data-sources` implementation was reduced to its existing redirect to `/workspace/connections`; the old URL and navigation behavior remain intact.
-- Historical AWS/ECS and CDK documents now carry archive warnings and point to current Hetzner/Terraform guidance.
+- Historical AWS/ECS and CDK documents carry archive warnings and point to the current OVHcloud/self-hosted Dokploy guidance.
 
 ### Removed
 

@@ -149,7 +149,7 @@ Enable **Web analytics** in PostHog project settings. MantrixFlow already sends 
 
 > **Archived infrastructure details:** The SSM, CDK, and ECS steps below describe
 > the previous deployment. Use the current
-> [Hetzner deployment guide](../apps/mantrixflow-infra/DEPLOYMENT.md) to inject the
+> [OVHcloud deployment guide](../apps/mantrixflow-infra/DEPLOYMENT.md) to inject the
 > same runtime environment variables.
 
 1. Write SSM parameters (see [`observability-deployment.md`](./observability-deployment.md)):

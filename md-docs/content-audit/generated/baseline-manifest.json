@@ -1,53 +1,77 @@
 {
-  "generatedAt": "2026-07-21T20:00:56.735Z",
+  "generatedAt": "2026-08-30T10:41:15.953Z",
   "files": [
     {
       "surface": "website",
+      "location": "apps/website/app/about/page.tsx",
+      "bytes": 2794,
+      "words": 359,
+      "lines": 58,
+      "sha256": "74ae54d6a539db57ef6b3c151a41b97ea28d2f4134031e1204318869222008f9"
+    },
+    {
+      "surface": "website",
       "location": "apps/website/app/agents/page.tsx",
-      "bytes": 13548,
-      "words": 983,
-      "lines": 333,
-      "sha256": "71b3a3a615c33c40abb5a93a18ec9d609e06def5471b0bcca12c9b55dcc0e618"
+      "bytes": 5855,
+      "words": 517,
+      "lines": 151,
+      "sha256": "87eb785e6e46f253d5e295bb122f417298fa2a05f86b5f5aef5d786199cdee0b"
     },
     {
       "surface": "website",
       "location": "apps/website/app/compare/page.tsx",
-      "bytes": 7441,
-      "words": 537,
-      "lines": 214,
-      "sha256": "4ae1c7f0f96ce34d163578e3ab64cb64a9a45a819edff66fed8677c35e5c025c"
+      "bytes": 5732,
+      "words": 499,
+      "lines": 139,
+      "sha256": "ee72f891e000ece59b542157d997572b1d5c2b9faa0dba72d6a881546637ca94"
     },
     {
       "surface": "website",
       "location": "apps/website/app/connectors/page.tsx",
-      "bytes": 1928,
-      "words": 185,
-      "lines": 49,
-      "sha256": "8a334d6d8159fffb29b57d8b8782a19b6ac4bc049d7a93352b375930063a8501"
+      "bytes": 7283,
+      "words": 637,
+      "lines": 183,
+      "sha256": "5210709f6eac4ad92e251ba1a7f05e3ab47c77fbb64971be07e28e3d609f39cd"
+    },
+    {
+      "surface": "website",
+      "location": "apps/website/app/contact/page.tsx",
+      "bytes": 2966,
+      "words": 369,
+      "lines": 63,
+      "sha256": "20741d1127f5bd1b1d01dac32eafd4bedbd6b7f27f2b12c1a4874394e1a38479"
+    },
+    {
+      "surface": "website",
+      "location": "apps/website/app/developers/page.tsx",
+      "bytes": 3365,
+      "words": 407,
+      "lines": 68,
+      "sha256": "f9142c17c7f5425ddfe9650b346cd8695945e7201458c399a9b52c0a420a911c"
     },
     {
       "surface": "website",
       "location": "apps/website/app/integrations/page.tsx",
-      "bytes": 23353,
-      "words": 1588,
-      "lines": 538,
-      "sha256": "f29582af3e322faa4c7759ba9b34fc4db38f0a809f5a713e8e579bec46e4bc8e"
+      "bytes": 5280,
+      "words": 423,
+      "lines": 143,
+      "sha256": "42041371d28518cb00ab7468471f83ed5114d7b17a7c253118446c8f35720307"
     },
     {
       "surface": "website",
       "location": "apps/website/app/layout.tsx",
-      "bytes": 2462,
-      "words": 258,
-      "lines": 100,
-      "sha256": "3ab13bc654e503e54ee880b9a78338a44d30f4c47e42b7bc3ab1169a7964d341"
+      "bytes": 2922,
+      "words": 319,
+      "lines": 116,
+      "sha256": "42dc0e33298b421d3e42581f335827ebfb6b647a84090a9af3b0a7f8ae9ea64c"
     },
     {
       "surface": "website",
       "location": "apps/website/app/legal/legal-client.tsx",
-      "bytes": 2118,
-      "words": 181,
-      "lines": 65,
-      "sha256": "29bbe94984a4bf95a77735e37737e09064923952a7619b8ee9eb5b4addcb84a4"
+      "bytes": 2196,
+      "words": 185,
+      "lines": 66,
+      "sha256": "f911836ee93a83052e46c7cc21686f467314dfb9898e414d54c0af9279afefa0"
     },
     {
       "surface": "website",
@@ -56,6 +80,14 @@
       "words": 50,
       "lines": 16,
       "sha256": "13d27e0efebdb421347556309e3c1cb079dfc0127af56ca10485507ec511db1d"
+    },
+    {
+      "surface": "website",
+      "location": "apps/website/app/not-found.tsx",
+      "bytes": 2316,
+      "words": 206,
+      "lines": 57,
+      "sha256": "82fef416cce605030e0ed9b4a2a4788456a49a9840d79a565b45b6a727a944a2"
     },
     {
       "surface": "website",
@@ -76,10 +108,10 @@
     {
       "surface": "website",
       "location": "apps/website/app/pricing/pricing-client.tsx",
-      "bytes": 15259,
-      "words": 1312,
-      "lines": 460,
-      "sha256": "c7f48aa75e71d91cba6fa49cae7d7d60216601dc01112b3722df23fa659d3bc6"
+      "bytes": 12194,
+      "words": 1030,
+      "lines": 363,
+      "sha256": "78f0064d1cb7392e2752372a174457859aa8a2e1ecac347577858c8f174a4fa2"
     },
     {
       "surface": "website",
@@ -92,10 +124,10 @@
     {
       "surface": "website",
       "location": "apps/website/app/privacy/privacy-client.tsx",
-      "bytes": 5998,
-      "words": 596,
-      "lines": 153,
-      "sha256": "f828a3cac23663040c7d95fb5a2f15103b4d41a51bbf333101e78d8d927e8d25"
+      "bytes": 6213,
+      "words": 613,
+      "lines": 155,
+      "sha256": "7160dd4dd9a33a4a1644c3fd872fc1ed37197197c8ca9db07e0c1bf814bccade"
     },
     {
       "surface": "website",
@@ -108,10 +140,10 @@
     {
       "surface": "website",
       "location": "apps/website/app/subprocessors/subprocessors-client.tsx",
-      "bytes": 5976,
-      "words": 473,
-      "lines": 164,
-      "sha256": "4953e869d95cef3e5d9f2ecb776d98c21c705140ab94cd481d3b5f8b21403228"
+      "bytes": 5959,
+      "words": 475,
+      "lines": 162,
+      "sha256": "02ee3f48e5615b2118cdf6dd4eb299bfb935fbe376242342b43075865e35a326"
     },
     {
       "surface": "website",
@@ -124,10 +156,10 @@
     {
       "surface": "website",
       "location": "apps/website/app/terms/terms-client.tsx",
-      "bytes": 6048,
-      "words": 668,
-      "lines": 144,
-      "sha256": "dcf4c016be18e7ef2c8eeb8e4cb9f3e65b526c938b122d8ee65baa59b9c8fd85"
+      "bytes": 6349,
+      "words": 689,
+      "lines": 151,
+      "sha256": "ff1d04827bb9c8e70b091e946146009d9faae01ea92a077a8f82c9ce79161a2e"
     },
     {
       "surface": "website",
@@ -155,11 +187,19 @@
     },
     {
       "surface": "website",
+      "location": "apps/website/components/commit-graph-layout.ts",
+      "bytes": 3349,
+      "words": 357,
+      "lines": 137,
+      "sha256": "ac1a70e2782ea2e1f6da9feb6f5a4a7903127feaf9a22296deedc5f40a7d52fe"
+    },
+    {
+      "surface": "website",
       "location": "apps/website/components/commit-graph.tsx",
-      "bytes": 19320,
-      "words": 1819,
-      "lines": 646,
-      "sha256": "0fba160e869831510910a713382958a0ef1b1ca15ecf0047674413662072826b"
+      "bytes": 15047,
+      "words": 1284,
+      "lines": 481,
+      "sha256": "291a9df436a6a5b5760ca0000a71b51c2f814fd4d85a506cf98c3c0c8a886638"
     },
     {
       "surface": "website",
@@ -188,26 +228,26 @@
     {
       "surface": "website",
       "location": "apps/website/components/features-accordion-section.tsx",
-      "bytes": 8834,
+      "bytes": 8806,
       "words": 675,
       "lines": 254,
-      "sha256": "14f897b91b010f10cfae893e5a7dc0bd61044b6a0f8e185cc270b1bcc7e02a36"
+      "sha256": "5adeda333e69b48159fadf4c12da0cf41f655790e2fd7da5a3b911ca53ed7e74"
     },
     {
       "surface": "website",
       "location": "apps/website/components/footer.tsx",
-      "bytes": 4632,
-      "words": 360,
-      "lines": 150,
-      "sha256": "e9ef26c3160ff0c79e88d48dcd92714dc4dcb6c238296ec9222eecdc994bc4d8"
+      "bytes": 4448,
+      "words": 382,
+      "lines": 146,
+      "sha256": "aab1718cabc9f63e1a8f2019712865fee036e8411981c4d16aefa523a3f9734a"
     },
     {
       "surface": "website",
       "location": "apps/website/components/hero-section.tsx",
-      "bytes": 9535,
-      "words": 722,
-      "lines": 250,
-      "sha256": "8d4e6c115fead57c31ee12fc45f71336e55940f7182119bc698e7b3d0f574c7b"
+      "bytes": 9551,
+      "words": 725,
+      "lines": 256,
+      "sha256": "37b01bdfa4a3ae3fc58d4d8c55c21881abf2dd949cad86b3c99f71abf8cfebb4"
     },
     {
       "surface": "website",
@@ -219,11 +259,35 @@
     },
     {
       "surface": "website",
+      "location": "apps/website/components/home/home-hero.tsx",
+      "bytes": 2587,
+      "words": 214,
+      "lines": 65,
+      "sha256": "7e14273645bac660e55f02e2b7c06a2a4b20ea94ad8a5359243cbad092bf259d"
+    },
+    {
+      "surface": "website",
+      "location": "apps/website/components/home/home-latest.tsx",
+      "bytes": 2683,
+      "words": 236,
+      "lines": 74,
+      "sha256": "399ee03ad21960b33b1d0d2942161b660d361946cf83a91963f3682ff062a396"
+    },
+    {
+      "surface": "website",
+      "location": "apps/website/components/home/home-story.tsx",
+      "bytes": 11215,
+      "words": 935,
+      "lines": 277,
+      "sha256": "6dcae92fc459219f4d43883d808f3fbae622c1e74c44d0006f116257913e261c"
+    },
+    {
+      "surface": "website",
       "location": "apps/website/components/integrations-section.tsx",
-      "bytes": 1782,
+      "bytes": 1784,
       "words": 125,
       "lines": 53,
-      "sha256": "87206830be45724e284de4c671afd4ff7f12ce749ec638b08181c99eb15062ec"
+      "sha256": "5921f73c75af92fdd26a59d996aa2c481006f225da7511bc817a9168580dc4b7"
     },
     {
       "surface": "website",
@@ -235,11 +299,27 @@
     },
     {
       "surface": "website",
+      "location": "apps/website/components/log-viewer-minimal.tsx",
+      "bytes": 2908,
+      "words": 220,
+      "lines": 102,
+      "sha256": "a699d63b1b0ada19d6eece2ceea81cf1a4435480726b24a19834596bd087fdd2"
+    },
+    {
+      "surface": "website",
+      "location": "apps/website/components/log-viewer-shared.tsx",
+      "bytes": 6357,
+      "words": 628,
+      "lines": 234,
+      "sha256": "b4f46008501800d6db18273e4fec5675e5259095d1dd90766ef2877f490163bf"
+    },
+    {
+      "surface": "website",
       "location": "apps/website/components/log-viewer.tsx",
-      "bytes": 26492,
-      "words": 2293,
-      "lines": 865,
-      "sha256": "8efe5942b20eba1fd26c8076813b3322dd95267fc607746eeffcea6f7dbe886b"
+      "bytes": 15441,
+      "words": 1110,
+      "lines": 494,
+      "sha256": "9a622aa2da012a7b111774dc17dd5130061ff4d1442c76fc2c8d623b34afd34b"
     },
     {
       "surface": "website",
@@ -248,14 +328,6 @@
       "words": 52,
       "lines": 25,
       "sha256": "c3cb721bc907c726dae96c838ca10cea0970109d57f60048e724d6fcff833a0c"
-    },
-    {
-      "surface": "website",
-      "location": "apps/website/components/marketing/agent-showcase.tsx",
-      "bytes": 16956,
-      "words": 1248,
-      "lines": 389,
-      "sha256": "4d0344c55c50365cc09fc9b7e0e3d84d7b0c618d4e5d20f8ed43ffcb147030e2"
     },
     {
       "surface": "website",
@@ -268,10 +340,10 @@
     {
       "surface": "website",
       "location": "apps/website/components/marketing/brand-icons.tsx",
-      "bytes": 7303,
-      "words": 805,
-      "lines": 296,
-      "sha256": "a2277084c131e92859d0a191b881d055e86343e51e810202677987afdb3b8d9d"
+      "bytes": 7984,
+      "words": 869,
+      "lines": 334,
+      "sha256": "29fad7f02ddb978e4b37e75a38d023d7bbdae64f446e5ba91997b4967e4159ac"
     },
     {
       "surface": "website",
@@ -284,18 +356,26 @@
     {
       "surface": "website",
       "location": "apps/website/components/marketing/connectors-grid.tsx",
-      "bytes": 7007,
-      "words": 555,
-      "lines": 198,
-      "sha256": "2773868ab8e2c676d81c2a7279fd288666e5639d13214c199fdafce6ccb4c0de"
+      "bytes": 7345,
+      "words": 568,
+      "lines": 215,
+      "sha256": "b5952a9c5e9ffa0b51d16c82234743903a9d9d98f9a2d79441e521792cfaeba9"
     },
     {
       "surface": "website",
       "location": "apps/website/components/marketing/connectors-teaser.tsx",
-      "bytes": 4254,
-      "words": 319,
+      "bytes": 4265,
+      "words": 322,
       "lines": 124,
-      "sha256": "669e70ffe9e0b4c36fb62dbb36d053ac60001ddd1b526f278d0ee51723f80558"
+      "sha256": "7d90f323287b6cc97b25f91f4b086528cc98d9a65980efaa9615acd5850a3c5d"
+    },
+    {
+      "surface": "website",
+      "location": "apps/website/components/marketing/editorial-page.tsx",
+      "bytes": 3107,
+      "words": 232,
+      "lines": 109,
+      "sha256": "8f162c027018bbbaf7367c8c246040b63905c4c83f2ca0e4c66d676c8a1d385c"
     },
     {
       "surface": "website",
@@ -308,10 +388,10 @@
     {
       "surface": "website",
       "location": "apps/website/components/marketing/features-bento-section.tsx",
-      "bytes": 11755,
-      "words": 1070,
+      "bytes": 11769,
+      "words": 1073,
       "lines": 344,
-      "sha256": "735a0799432eafb7b079768b1876778d5b7d0553d0c89109a856719fffaa44da"
+      "sha256": "4d9ed76e7a8aa67f40f31f9b49a3a1bc42190ebe714e43211c2ff86db9ece7cf"
     },
     {
       "surface": "website",
@@ -372,18 +452,10 @@
     {
       "surface": "website",
       "location": "apps/website/components/marketing/page-shell.tsx",
-      "bytes": 1323,
-      "words": 134,
-      "lines": 63,
-      "sha256": "58b4a36d3b128dc8a36947f51c573b1ae6cc49bd681afd8c724c8ca3be770aff"
-    },
-    {
-      "surface": "website",
-      "location": "apps/website/components/marketing/pricing-comparison.tsx",
-      "bytes": 5279,
-      "words": 391,
-      "lines": 157,
-      "sha256": "9a6246cb28b184605012c7cf1a2e7e08794b503ec668653a2998639bb6ac14cf"
+      "bytes": 2259,
+      "words": 198,
+      "lines": 92,
+      "sha256": "6a1aed0861dcfc56b92b81a377adff9205fb2db83144cdeb8f54e39a5144d814"
     },
     {
       "surface": "website",
@@ -396,26 +468,58 @@
     {
       "surface": "website",
       "location": "apps/website/components/marketing/product-page-blocks.tsx",
-      "bytes": 7955,
-      "words": 643,
-      "lines": 248,
-      "sha256": "8f250cc581fb6192766ffc40ca4b775f6b630dbaac37abbd9c536935090bbb67"
+      "bytes": 9159,
+      "words": 730,
+      "lines": 274,
+      "sha256": "42b458a27682995923ca624bf5e5ab2b0c3085aac84d516d3e77e14a6ba49d26"
     },
     {
       "surface": "website",
       "location": "apps/website/components/marketing/product-screenshot.tsx",
-      "bytes": 574,
+      "bytes": 578,
       "words": 54,
       "lines": 30,
-      "sha256": "3b018d7580bfaeccadc0e7ddca409b9142129e804d91952b1bbca0df2ec093b7"
+      "sha256": "8dc1ade0d3af8eeb2ef9cc6732a800c77226161d240a78e04c9eae4726ca843a"
+    },
+    {
+      "surface": "website",
+      "location": "apps/website/components/marketing/product-workspace-demo-data.ts",
+      "bytes": 1126,
+      "words": 153,
+      "lines": 53,
+      "sha256": "962215ce8f4a9af5db6e534b7460a4bd1097a75975568aa6ab4648fcd96084ac"
+    },
+    {
+      "surface": "website",
+      "location": "apps/website/components/marketing/product-workspace-demo.tsx",
+      "bytes": 6715,
+      "words": 514,
+      "lines": 201,
+      "sha256": "639042af48e8a9a239ce01a890ce3b637590176c4d9cfe1d5b9941052eba0ca7"
+    },
+    {
+      "surface": "website",
+      "location": "apps/website/components/marketing/product-workspace-flow.tsx",
+      "bytes": 7844,
+      "words": 619,
+      "lines": 240,
+      "sha256": "626e1f720fd283cb37e1b08db80fca599de2f925fb9ad7dd4b90a5105f9558ab"
+    },
+    {
+      "surface": "website",
+      "location": "apps/website/components/marketing/product-workspace-run-views.tsx",
+      "bytes": 9954,
+      "words": 733,
+      "lines": 268,
+      "sha256": "33e3c0f4975a5124d0acf76f54b53c973348e5cfa632b4f10d706bad772bf029"
     },
     {
       "surface": "website",
       "location": "apps/website/components/marketing/saas-blocks.tsx",
-      "bytes": 12894,
-      "words": 988,
+      "bytes": 12854,
+      "words": 986,
       "lines": 428,
-      "sha256": "63ba7fe1bcd5dc88b134eae00a9dd7893c6be3294bfbc8541f08463da41b6f80"
+      "sha256": "5e221426670196b2eff952915bf0044a1a74e82f69444e1398a30a9e997b8c91"
     },
     {
       "surface": "website",
@@ -428,10 +532,10 @@
     {
       "surface": "website",
       "location": "apps/website/components/marketing/solutions-menu.tsx",
-      "bytes": 4527,
+      "bytes": 4529,
       "words": 319,
       "lines": 136,
-      "sha256": "5dbcb23a09c3c35f7a1f5122f2a16ab865a9d50971601cbc809343f01c38fce2"
+      "sha256": "18b42fdb261a3e6636f06d7a2c4bd494ae5fbf48edbbc65e335555485416bb6b"
     },
     {
       "surface": "website",
@@ -444,26 +548,26 @@
     {
       "surface": "website",
       "location": "apps/website/components/multi-org-section.tsx",
-      "bytes": 1796,
+      "bytes": 1789,
       "words": 158,
       "lines": 48,
-      "sha256": "2afae7f9aa35cadff0ecee1adf784cfee6c6fcfd7a39972996469ea76a7ea09c"
+      "sha256": "e0876c489f351383f1b69eef41d99ba588443150da5bba51a9dc9eac024f1be8"
     },
     {
       "surface": "website",
       "location": "apps/website/components/navbar.tsx",
-      "bytes": 10325,
-      "words": 830,
-      "lines": 313,
-      "sha256": "e158597faf8fc36137f9740e025ba19aeb675ef917de3712d9e968689f589768"
+      "bytes": 4516,
+      "words": 352,
+      "lines": 149,
+      "sha256": "18312f3f2a25da73d8489f6355a4df66d9a8d19523c06d09dcf78cd3337f66bd"
     },
     {
       "surface": "website",
       "location": "apps/website/components/page-sections.tsx",
-      "bytes": 15900,
-      "words": 1270,
-      "lines": 429,
-      "sha256": "a903add3bfce7bb449ca8bd6c1c855bf8dcc8a82aa15b580987d6ab95be38513"
+      "bytes": 571,
+      "words": 58,
+      "lines": 20,
+      "sha256": "814e090c045de1a9fd042a0a72e3d9313c3fc37c3da81738c4611e8e53d2fc52"
     },
     {
       "surface": "website",
@@ -476,10 +580,10 @@
     {
       "surface": "website",
       "location": "apps/website/components/product-gallery-section.tsx",
-      "bytes": 2099,
-      "words": 144,
+      "bytes": 2080,
+      "words": 143,
       "lines": 51,
-      "sha256": "65d7b2456bbf205d4eaabd8a7173c482a6db2fa72978ec0cc8199d84d7f2158b"
+      "sha256": "1c9c86bfc7dfab03d302bb6e0dec95d7147a6920549d63206e05071b4a725222"
     },
     {
       "surface": "website",
@@ -516,10 +620,10 @@
     {
       "surface": "website",
       "location": "apps/website/components/shared/json-ld.tsx",
-      "bytes": 391,
-      "words": 46,
-      "lines": 19,
-      "sha256": "da0e6edf89d8754791883d1cddeb6a5ea2d8c948c0b8470adc6b0fdcab3d8a43"
+      "bytes": 266,
+      "words": 25,
+      "lines": 15,
+      "sha256": "7446e35690af20f4fe5d6a89e917bafa117fb91221fe1985fdfe9bc8dfca0b86"
     },
     {
       "surface": "website",
@@ -532,18 +636,18 @@
     {
       "surface": "website",
       "location": "apps/website/components/side-nav.tsx",
-      "bytes": 2406,
-      "words": 233,
-      "lines": 83,
-      "sha256": "8255e3c0301da45274d08ec68f9f5f62a6b7fe891d0d8d88f809e4c4e55a2486"
+      "bytes": 3043,
+      "words": 267,
+      "lines": 109,
+      "sha256": "b8883ff4e72cfc3a433a88b62f9f49bb3fe9d0183d410906f6391b85ef97e574"
     },
     {
       "surface": "website",
       "location": "apps/website/components/signals-section.tsx",
-      "bytes": 5864,
-      "words": 599,
+      "bytes": 5849,
+      "words": 595,
       "lines": 187,
-      "sha256": "9285ec709324482038353e7b00d6b3652eb1a7655f4bf8de6b35301dde91214d"
+      "sha256": "3544f9fc3372c271aef2a119f3a98ff5de34c0c9e1cd5d70de0a36533f68b64b"
     },
     {
       "surface": "website",
@@ -571,35 +675,67 @@
     },
     {
       "surface": "website",
-      "location": "apps/website/components/work-section.tsx",
-      "bytes": 7178,
-      "words": 685,
-      "lines": 249,
-      "sha256": "00fa7ad8255ec32b8a0be3bf0542957257df7af3a4f411c602809698c7a2cd84"
+      "location": "apps/website/components/workflow-section.tsx",
+      "bytes": 1828,
+      "words": 130,
+      "lines": 51,
+      "sha256": "58da970675581b851769ee05bdc3fe708c70b43c862c4dea0bf58f35ce8b0e29"
     },
     {
       "surface": "website",
-      "location": "apps/website/components/workflow-section.tsx",
-      "bytes": 1838,
-      "words": 130,
-      "lines": 51,
-      "sha256": "28c320716473b3063062c94391b386079f51a6d811dce0c704c97854b83c654b"
+      "location": "apps/website/lib/agent-readiness/api.ts",
+      "bytes": 1084,
+      "words": 114,
+      "lines": 52,
+      "sha256": "1071c3899cd823fb36db261b837b625d6384ba260f8f5127fb8fdab049f35af8"
+    },
+    {
+      "surface": "website",
+      "location": "apps/website/lib/agent-readiness/capabilities.ts",
+      "bytes": 1733,
+      "words": 134,
+      "lines": 63,
+      "sha256": "1450c344d922fd9183f4f10fbc3f28c5bde1d6804f5c47a53729a6135a9ec4c5"
+    },
+    {
+      "surface": "website",
+      "location": "apps/website/lib/agent-readiness/openapi.ts",
+      "bytes": 6531,
+      "words": 618,
+      "lines": 202,
+      "sha256": "2727507c9565b0b64ce7c5d960bf8e5178fbdfe475913af0b7b1ea3988547c9e"
+    },
+    {
+      "surface": "website",
+      "location": "apps/website/lib/agent-readiness/schema.ts",
+      "bytes": 1644,
+      "words": 135,
+      "lines": 58,
+      "sha256": "4e6aa9ad5de498e0b850a16019b1f57eca2b8d0180599bab58574d98cdcbf4d3"
+    },
+    {
+      "surface": "website",
+      "location": "apps/website/lib/connector-catalog.ts",
+      "bytes": 12437,
+      "words": 1191,
+      "lines": 405,
+      "sha256": "4e28607152ae8fe14be4f0c82aa3721625cb021105454f2ef6f17613cf4c409f"
     },
     {
       "surface": "website",
       "location": "apps/website/lib/github.ts",
-      "bytes": 4281,
-      "words": 551,
-      "lines": 157,
-      "sha256": "b9d6cbcb370b81b1320052c402b35667b20baacfc4937111e1e5ad27f1490b28"
+      "bytes": 4360,
+      "words": 559,
+      "lines": 158,
+      "sha256": "8bb6dd28fdb8ec7cdf22c3de7575bc800622ff5dec231d3341037cca21bb4f9b"
     },
     {
       "surface": "website",
       "location": "apps/website/lib/marketing-content.ts",
-      "bytes": 27787,
-      "words": 3034,
-      "lines": 923,
-      "sha256": "6c2a1780518f26cab4d06f0c1fe820804bd24d972f477fa4143806382cd58749"
+      "bytes": 14595,
+      "words": 1634,
+      "lines": 484,
+      "sha256": "0184facc3cc09b161a374ef64ed57448357ef693eb290605be252f199b4a62cf"
     },
     {
       "surface": "website",
@@ -611,59 +747,467 @@
     },
     {
       "surface": "application",
-      "location": "apps/app/app/auth/accept-invite/page.tsx",
-      "bytes": 301,
-      "words": 26,
+      "location": "apps/app/app/agents/[threadId]/error.tsx",
+      "bytes": 51,
+      "words": 8,
+      "lines": 4,
+      "sha256": "e2401d51c32d9071b1bf0e05333e7db68499a7a3fefb087072592ce7213c2a52"
+    },
+    {
+      "surface": "application",
+      "location": "apps/app/app/agents/[threadId]/loading.tsx",
+      "bytes": 38,
+      "words": 6,
+      "lines": 2,
+      "sha256": "f9871c638174780b97233fbf88e8299ea38c5cba2cbdc545d781949797ab8a2c"
+    },
+    {
+      "surface": "application",
+      "location": "apps/app/app/agents/[threadId]/page.tsx",
+      "bytes": 462,
+      "words": 45,
+      "lines": 16,
+      "sha256": "f74f2c922475756d8f9c15cb363a3526c35a4251cd00b3ecbf7562130f1f5d93"
+    },
+    {
+      "surface": "application",
+      "location": "apps/app/app/agents/activity/page.tsx",
+      "bytes": 174,
+      "words": 15,
+      "lines": 6,
+      "sha256": "74e36cb5c7de665bb76af7c28ab8abf17d1783bb007d7dc2f55a3a5c636f6271"
+    },
+    {
+      "surface": "application",
+      "location": "apps/app/app/agents/automations/page.tsx",
+      "bytes": 190,
+      "words": 15,
+      "lines": 6,
+      "sha256": "a9f7662cfdb2165e7f65c760b4b74c0d17f22b1c6d5b1b22e29c4d3353bd3121"
+    },
+    {
+      "surface": "application",
+      "location": "apps/app/app/agents/automations/policies/page.tsx",
+      "bytes": 194,
+      "words": 15,
+      "lines": 6,
+      "sha256": "393a60a74890e3dae608f1418b4eec3e1668647144e8de73c38cf31096552fad"
+    },
+    {
+      "surface": "application",
+      "location": "apps/app/app/agents/automations/runs/page.tsx",
+      "bytes": 178,
+      "words": 15,
+      "lines": 6,
+      "sha256": "af1752cdc286923494a3085cc9c9a09fbf4b7ae2f27309f76c19e99db22422ba"
+    },
+    {
+      "surface": "application",
+      "location": "apps/app/app/agents/developer/api/page.tsx",
+      "bytes": 167,
+      "words": 15,
+      "lines": 6,
+      "sha256": "18fad0c75503b28e35cd526e72d451806f8105b609745149b7495f46a9eba96b"
+    },
+    {
+      "surface": "application",
+      "location": "apps/app/app/agents/developer/connectors/[connectorId]/page.tsx",
+      "bytes": 333,
+      "words": 37,
+      "lines": 9,
+      "sha256": "37e06d177a57910c302cd58a45c0f3270f75331bec4d40633ce2ac468eb24062"
+    },
+    {
+      "surface": "application",
+      "location": "apps/app/app/agents/developer/connectors/page.tsx",
+      "bytes": 161,
+      "words": 15,
+      "lines": 6,
+      "sha256": "892a1ae589fc26dae4f91d59cf4139ddfadd504502d50f51217aae101f05bb86"
+    },
+    {
+      "surface": "application",
+      "location": "apps/app/app/agents/developer/page.tsx",
+      "bytes": 192,
+      "words": 15,
+      "lines": 6,
+      "sha256": "46993b3805d643ed23b112d5259cf7017b8c0092b76d0326819d6571c572a8c5"
+    },
+    {
+      "surface": "application",
+      "location": "apps/app/app/agents/developer/sdks/page.tsx",
+      "bytes": 143,
+      "words": 15,
+      "lines": 6,
+      "sha256": "727be7d14f28e00504dedda68e685ae0db16834f76b22019c03fbbfa06492419"
+    },
+    {
+      "surface": "application",
+      "location": "apps/app/app/agents/developer/templates/page.tsx",
+      "bytes": 158,
+      "words": 15,
+      "lines": 6,
+      "sha256": "c2c44763330c4b8fcfbd24ae7a84b154d446bd2e8b52d89de95541ed2158dd70"
+    },
+    {
+      "surface": "application",
+      "location": "apps/app/app/agents/developer/webhooks/page.tsx",
+      "bytes": 155,
+      "words": 15,
+      "lines": 6,
+      "sha256": "f1a4d771a5fbd4a60d3588766ee74ff1708c923f291aa92414ca8abbd8f0d3a0"
+    },
+    {
+      "surface": "application",
+      "location": "apps/app/app/agents/documentation/page.tsx",
+      "bytes": 170,
+      "words": 15,
+      "lines": 6,
+      "sha256": "66ff43703afa0b0bc38e63255bc8d0d534ded7ea11590d467d6c42e026956d97"
+    },
+    {
+      "surface": "application",
+      "location": "apps/app/app/agents/enterprise/approvals/page.tsx",
+      "bytes": 189,
+      "words": 15,
+      "lines": 6,
+      "sha256": "081e0a52fe51e88a55b7c11b401c4817afb307e25fca00e99cffe6d68c4b9b19"
+    },
+    {
+      "surface": "application",
+      "location": "apps/app/app/agents/enterprise/compliance/page.tsx",
+      "bytes": 192,
+      "words": 15,
+      "lines": 6,
+      "sha256": "fb78bb706f33ab234eb3881ff52f45aa54c2381b62228cd883778398c4a1dc58"
+    },
+    {
+      "surface": "application",
+      "location": "apps/app/app/agents/enterprise/continuity/page.tsx",
+      "bytes": 192,
+      "words": 15,
+      "lines": 6,
+      "sha256": "1a89a93631d7141bc64a287742b3104e878dfee094ed3bf7d702c66ad4aa7b55"
+    },
+    {
+      "surface": "application",
+      "location": "apps/app/app/agents/enterprise/data-products/page.tsx",
+      "bytes": 198,
+      "words": 15,
+      "lines": 6,
+      "sha256": "8506246371b8815768ec0681d300ffe1c6bb38dba73ece61ec4b33c7ac863a9b"
+    },
+    {
+      "surface": "application",
+      "location": "apps/app/app/agents/enterprise/extensions/page.tsx",
+      "bytes": 192,
+      "words": 15,
+      "lines": 6,
+      "sha256": "78f5f2889b12e387fb33f7b7d93c1eacf251567478bc4ba103697e9185c57d6b"
+    },
+    {
+      "surface": "application",
+      "location": "apps/app/app/agents/enterprise/model-governance/page.tsx",
+      "bytes": 207,
+      "words": 15,
+      "lines": 6,
+      "sha256": "d31d40bca1218f2669cf79f6790e12091faa13a75a14d07ce0beb3a659d63825"
+    },
+    {
+      "surface": "application",
+      "location": "apps/app/app/agents/enterprise/objectives/page.tsx",
+      "bytes": 192,
+      "words": 15,
+      "lines": 6,
+      "sha256": "3795473fd8a5259f8ccc03fe0202bd539063a6233555187861dd13b3e8ca8f5c"
+    },
+    {
+      "surface": "application",
+      "location": "apps/app/app/agents/enterprise/overview/page.tsx",
+      "bytes": 196,
+      "words": 15,
+      "lines": 6,
+      "sha256": "04813efbf4051e1bc93369acdfc4754cef97dcfea86ebaadd30d2af163030899"
+    },
+    {
+      "surface": "application",
+      "location": "apps/app/app/agents/enterprise/page.tsx",
+      "bytes": 196,
+      "words": 15,
+      "lines": 6,
+      "sha256": "01ba9a75836d6ebbf9e8027fb4a6f5e0f0d259bf3b7a460177ae0877540761f5"
+    },
+    {
+      "surface": "application",
+      "location": "apps/app/app/agents/enterprise/plans/[planId]/page.tsx",
+      "bytes": 329,
+      "words": 37,
+      "lines": 9,
+      "sha256": "b5cb8d22e0735259d0546d3c1b3d168210b1aaa802eafee38e6a50f07ed689f6"
+    },
+    {
+      "surface": "application",
+      "location": "apps/app/app/agents/enterprise/plans/page.tsx",
+      "bytes": 177,
+      "words": 15,
+      "lines": 6,
+      "sha256": "e621073fef44a0903025d07d4454b2a0a0d0384601f6582f4d06ca34f41900a4"
+    },
+    {
+      "surface": "application",
+      "location": "apps/app/app/agents/enterprise/risks/page.tsx",
+      "bytes": 177,
+      "words": 15,
+      "lines": 6,
+      "sha256": "923453727abdafaec6375dd1994443933b661df5b88c73e5cba4bd5eba8d7a26"
+    },
+    {
+      "surface": "application",
+      "location": "apps/app/app/agents/error.tsx",
+      "bytes": 886,
+      "words": 98,
+      "lines": 34,
+      "sha256": "323da6860159afad71d165ee8408987194fecfbecda5bfe5e57309517dd1d6f9"
+    },
+    {
+      "surface": "application",
+      "location": "apps/app/app/agents/incidents/page.tsx",
+      "bytes": 157,
+      "words": 15,
+      "lines": 6,
+      "sha256": "30d363014b3769f27abd4bf18155db643807e46b0115cc832b6158e18d86739a"
+    },
+    {
+      "surface": "application",
+      "location": "apps/app/app/agents/intelligence/contracts/page.tsx",
+      "bytes": 169,
+      "words": 15,
+      "lines": 6,
+      "sha256": "f93c493b02e11d918230444a4d1faaab463f887e4085654654b73545552c066f"
+    },
+    {
+      "surface": "application",
+      "location": "apps/app/app/agents/intelligence/digital-twin/page.tsx",
+      "bytes": 167,
+      "words": 15,
+      "lines": 6,
+      "sha256": "bb69af90a7ac838fc9510586a7014ce94d1340f7af3c6653e19ec3a654b9f860"
+    },
+    {
+      "surface": "application",
+      "location": "apps/app/app/agents/intelligence/forecasts/[forecastId]/page.tsx",
+      "bytes": 306,
+      "words": 33,
       "lines": 11,
-      "sha256": "f3a29f87b119820881b218644b07420bb69b90a772d4c0c2064d6fc33b5e8e65"
+      "sha256": "850eee18fe4013484ffc266c9b7d8b53a67b48ff2a6149460dede40f6ac67976"
+    },
+    {
+      "surface": "application",
+      "location": "apps/app/app/agents/intelligence/forecasts/page.tsx",
+      "bytes": 161,
+      "words": 15,
+      "lines": 6,
+      "sha256": "de4704f5468b190035a9b5e6b1739a55bb43477eeab0b44ef1fe39d71f452cf6"
+    },
+    {
+      "surface": "application",
+      "location": "apps/app/app/agents/intelligence/knowledge/page.tsx",
+      "bytes": 173,
+      "words": 15,
+      "lines": 6,
+      "sha256": "856545a1c0e2fcb720c00edb8172fe5cd0927f0c03db8db89584d84dcf9a6a03"
+    },
+    {
+      "surface": "application",
+      "location": "apps/app/app/agents/intelligence/lineage/page.tsx",
+      "bytes": 155,
+      "words": 15,
+      "lines": 6,
+      "sha256": "5db9f18c0c674497c4bb7bf989610fccdea98c1fd626f1e2c49a3fb5b0c83d52"
+    },
+    {
+      "surface": "application",
+      "location": "apps/app/app/agents/intelligence/page.tsx",
+      "bytes": 194,
+      "words": 15,
+      "lines": 6,
+      "sha256": "e81f51d966b7b6204be59c700f42a7872f9c02f69ed726c70892e0b2e301732f"
+    },
+    {
+      "surface": "application",
+      "location": "apps/app/app/agents/intelligence/plans/[planId]/page.tsx",
+      "bytes": 300,
+      "words": 33,
+      "lines": 11,
+      "sha256": "530c546387ffac5e90c1ff5912804ba956e53b8c898209cb178f7ce19ed5ff14"
+    },
+    {
+      "surface": "application",
+      "location": "apps/app/app/agents/intelligence/plans/page.tsx",
+      "bytes": 171,
+      "words": 15,
+      "lines": 6,
+      "sha256": "4490f449d9add6678302e7f8c384b3850554acedf033b6c4ad1f4ada73f5c323"
+    },
+    {
+      "surface": "application",
+      "location": "apps/app/app/agents/intelligence/simulations/[simulationId]/page.tsx",
+      "bytes": 320,
+      "words": 33,
+      "lines": 11,
+      "sha256": "3c192cdef1faf0f18e194f6e51468a6c244f8ffa69d4b82f779c316ab162365f"
+    },
+    {
+      "surface": "application",
+      "location": "apps/app/app/agents/intelligence/simulations/page.tsx",
+      "bytes": 167,
+      "words": 15,
+      "lines": 6,
+      "sha256": "5b29a12b9f25e1fbdbc677e11031b336bcf6e9a7091bc1e682d7bce65aa40f1d"
+    },
+    {
+      "surface": "application",
+      "location": "apps/app/app/agents/layout.tsx",
+      "bytes": 611,
+      "words": 47,
+      "lines": 15,
+      "sha256": "6528330bcd244d7a3b61c2db19f5e152db945b00e8212f4f6247c46e6d113f4f"
+    },
+    {
+      "surface": "application",
+      "location": "apps/app/app/agents/loading.tsx",
+      "bytes": 1009,
+      "words": 96,
+      "lines": 28,
+      "sha256": "bc7d65a17e3507abdc103b35cd5e3be3e6e990494642b19976159d99eb9fc543"
+    },
+    {
+      "surface": "application",
+      "location": "apps/app/app/agents/marketplace/page.tsx",
+      "bytes": 164,
+      "words": 15,
+      "lines": 6,
+      "sha256": "046de2873d883656af7f89c8d11c1ddcd4cbfc1efebc65c26d8fcbafdd5fd659"
+    },
+    {
+      "surface": "application",
+      "location": "apps/app/app/agents/onboarding/page.tsx",
+      "bytes": 161,
+      "words": 15,
+      "lines": 6,
+      "sha256": "18605cae0712aea0bd73205060ac6af931bef7527b7075d59618c5cbde1b22a1"
+    },
+    {
+      "surface": "application",
+      "location": "apps/app/app/agents/page.tsx",
+      "bytes": 103,
+      "words": 13,
+      "lines": 6,
+      "sha256": "2eb49355fe466ab45384f4f16d69fc97a536c98be6c8e7b24786a6cd30aea042"
+    },
+    {
+      "surface": "application",
+      "location": "apps/app/app/agents/platform/environments/page.tsx",
+      "bytes": 167,
+      "words": 15,
+      "lines": 6,
+      "sha256": "be30f61752fead2688c3c687fe3a048cb915deaaf8a057140fc9848e75ea2470"
+    },
+    {
+      "surface": "application",
+      "location": "apps/app/app/agents/platform/quality/page.tsx",
+      "bytes": 152,
+      "words": 15,
+      "lines": 6,
+      "sha256": "4caf3dd0b003995122fc0a7841d4d6e059e8ffc61f750bdae131ea9571395505"
+    },
+    {
+      "surface": "application",
+      "location": "apps/app/app/agents/platform/releases/page.tsx",
+      "bytes": 155,
+      "words": 15,
+      "lines": 6,
+      "sha256": "f8a3a79653f944c77bf358819c07393171d95aedb11bec07dd713e571cadabe6"
+    },
+    {
+      "surface": "application",
+      "location": "apps/app/app/agents/support/[caseId]/page.tsx",
+      "bytes": 313,
+      "words": 37,
+      "lines": 9,
+      "sha256": "28a46af1e0bad7e8b8a5ce87ffc84cb1db2eb9a741419c5507d7cc025a177304"
+    },
+    {
+      "surface": "application",
+      "location": "apps/app/app/agents/support/page.tsx",
+      "bytes": 162,
+      "words": 15,
+      "lines": 6,
+      "sha256": "a3b274b4e5dbc5c3e0f5300c2526787534fb6f4779fc5f5efd690590d34acf6e"
+    },
+    {
+      "surface": "application",
+      "location": "apps/app/app/auth/accept-invite/page.tsx",
+      "bytes": 228,
+      "words": 21,
+      "lines": 10,
+      "sha256": "34364bb180751d870bc87734184f1cbe87366fc5b7a1e48c18e537e2c108dd3c"
     },
     {
       "surface": "application",
       "location": "apps/app/app/auth/auth-code-error/page.tsx",
-      "bytes": 1162,
+      "bytes": 1140,
       "words": 97,
       "lines": 36,
-      "sha256": "59eb526140764971fd8545277f69217b916fb2d4fe9e80e5639f7d595f8c7837"
+      "sha256": "75322b3045ebfcdb99fc47386eef7f02e08e31f227fa896657b4de91e093757f"
+    },
+    {
+      "surface": "application",
+      "location": "apps/app/app/auth/callback/route.ts",
+      "bytes": 8799,
+      "words": 838,
+      "lines": 291,
+      "sha256": "cba26c5c643fc7553383a0369b6afdec13d63aeca820963008fc537431737bff"
     },
     {
       "surface": "application",
       "location": "apps/app/app/auth/forgot-password/page.tsx",
-      "bytes": 309,
-      "words": 26,
-      "lines": 11,
-      "sha256": "2ee976c5fee812c77803e56935982d719cb1157253e393b7989f658bcd740cf0"
+      "bytes": 407,
+      "words": 36,
+      "lines": 13,
+      "sha256": "370f104264923c6162c53ceab40abe0d8d3fafb445d532723ee7655b0cdf39c4"
     },
     {
       "surface": "application",
       "location": "apps/app/app/auth/login/page.tsx",
-      "bytes": 272,
-      "words": 26,
-      "lines": 11,
-      "sha256": "9a8d0f8d9b07f89ed2ec53af3d403cb9798fd1502294b557398f0a15b6d95b08"
+      "bytes": 1332,
+      "words": 148,
+      "lines": 45,
+      "sha256": "8af8e50609125a355267adcbed0f625e9d85796e603139ed2f5215455184611e"
     },
     {
       "surface": "application",
       "location": "apps/app/app/auth/reset-password/page.tsx",
-      "bytes": 305,
-      "words": 26,
-      "lines": 11,
-      "sha256": "9e91e74fb22e87fbf995e3bfbf33cdb0507cab11e2cffaf372a9ce5918940056"
+      "bytes": 404,
+      "words": 36,
+      "lines": 13,
+      "sha256": "8328ef1dea13e3b8a2c11ac1ed343e0aae4cd6fb41fbeb95f4f9d00469c7ddfd"
     },
     {
       "surface": "application",
       "location": "apps/app/app/auth/signup/page.tsx",
-      "bytes": 276,
-      "words": 26,
+      "bytes": 374,
+      "words": 36,
       "lines": 11,
-      "sha256": "ccd8911c4c7c6cb155fe7d99b9277059eb65cf91fb2e05b78a5f449a7339e97a"
+      "sha256": "97cbfa821c96254be49788a49d986ce0e71e730dfc2813feb2d5c3837dce28d3"
     },
     {
       "surface": "application",
       "location": "apps/app/app/error.tsx",
-      "bytes": 1235,
-      "words": 125,
-      "lines": 42,
-      "sha256": "8c20e53644edbbb06e7f41e38d7ed1fb8f56c32962256913a1204764fd8f90e4"
+      "bytes": 1253,
+      "words": 129,
+      "lines": 43,
+      "sha256": "4f99dfbbd5a6c2563bad0130357e44cd4ff3e57900b5a1de6730b5252be3a2b6"
     },
     {
       "surface": "application",
@@ -676,58 +1220,50 @@
     {
       "surface": "application",
       "location": "apps/app/app/layout.tsx",
-      "bytes": 1396,
+      "bytes": 1406,
       "words": 123,
       "lines": 46,
-      "sha256": "e414af9bf83fed38ce06380fc9923a17bd1d80dcb30ddb40ed37816039df8d9e"
+      "sha256": "b7579862ebe5b589c7a1758a9c27a79d8ed05943f11ed6d408afd97407bde2be"
     },
     {
       "surface": "application",
       "location": "apps/app/app/onboarding/complete/page.tsx",
-      "bytes": 720,
-      "words": 80,
-      "lines": 25,
-      "sha256": "fc84c36355994e26cd3897146571f5cac6dbc83c5d16b146a07d07122748c2c7"
+      "bytes": 129,
+      "words": 15,
+      "lines": 6,
+      "sha256": "dd61ebd59d37e1140c98b6d0acf66819fbe862014c89a1a62017234d90b6f01c"
     },
     {
       "surface": "application",
       "location": "apps/app/app/onboarding/connect/[connector]/page.tsx",
-      "bytes": 12651,
-      "words": 857,
-      "lines": 370,
-      "sha256": "7b017455994fed6d70a20988c827131193fa034e5e1f5daec6b53f9c606851ad"
+      "bytes": 126,
+      "words": 15,
+      "lines": 6,
+      "sha256": "3ee1a1c701858356f9bc2b5141cc5a34f29e01640b5e383156323aa9e2171122"
     },
     {
       "surface": "application",
       "location": "apps/app/app/onboarding/connect/[connector]/select/page.tsx",
-      "bytes": 4531,
-      "words": 339,
-      "lines": 138,
-      "sha256": "dd755239ff2dd6a1de66e0302d7854ec088a7045b356c857e80289ae3f88f4c2"
+      "bytes": 142,
+      "words": 15,
+      "lines": 6,
+      "sha256": "426cb88bd47b0da4a44304311ebbb05ad32aebfd5537f3935ba8e38ebd105175"
     },
     {
       "surface": "application",
       "location": "apps/app/app/onboarding/data-source/page.tsx",
-      "bytes": 573,
-      "words": 70,
-      "lines": 24,
-      "sha256": "a46b3e48c46a8131ebe8dd5a28920e3649caf8740e90090713b1ac7806c08c1c"
-    },
-    {
-      "surface": "application",
-      "location": "apps/app/app/onboarding/first-dashboard/page.tsx",
-      "bytes": 445,
-      "words": 46,
-      "lines": 18,
-      "sha256": "74052e0dabf05e2e2d7bfdf9af8e8e40d75a97a9151910554a618094f7761f63"
+      "bytes": 151,
+      "words": 15,
+      "lines": 6,
+      "sha256": "b711ee222afb759e6814f4bbe77e3d02094370b0b1fcdb25879115c67d80c819"
     },
     {
       "surface": "application",
       "location": "apps/app/app/onboarding/importing/page.tsx",
-      "bytes": 3231,
-      "words": 280,
-      "lines": 99,
-      "sha256": "61478451d116a86c65ffce023c9e7ac920b6575c807f2500ec4eee479f8911cd"
+      "bytes": 132,
+      "words": 15,
+      "lines": 6,
+      "sha256": "c1e3c61fed3c03290e3be40299a490cef1ded5a7e5c4bd9e8499e5a6335af710"
     },
     {
       "surface": "application",
@@ -740,34 +1276,26 @@
     {
       "surface": "application",
       "location": "apps/app/app/onboarding/organization/page.tsx",
-      "bytes": 406,
-      "words": 55,
-      "lines": 19,
-      "sha256": "0d795ef95f5bd750546f6ada9ca6d8ab276012f8f3a64099f7bada8527a694c8"
+      "bytes": 157,
+      "words": 15,
+      "lines": 6,
+      "sha256": "17076ed9c1de31f0cb7c22c200b64e2b022b164d7856e50cce36b3c133cc5090"
     },
     {
       "surface": "application",
       "location": "apps/app/app/onboarding/welcome/page.tsx",
-      "bytes": 19761,
-      "words": 1553,
-      "lines": 622,
-      "sha256": "d49906db30c9b1cbb273d7d19f3cfe594cdc0076d65c8adabe5546571c00d927"
+      "bytes": 126,
+      "words": 15,
+      "lines": 6,
+      "sha256": "05c1d17b1de9dbff36cd7f7f74372f9a7ba61f48266888a2351c69288772d34f"
     },
     {
       "surface": "application",
       "location": "apps/app/app/organizations/[id]/edit/page.tsx",
-      "bytes": 8277,
-      "words": 587,
-      "lines": 252,
-      "sha256": "d30692b7ea99a006857a855865becea076f8ea26c83b0f3f858b30eabd66d505"
-    },
-    {
-      "surface": "application",
-      "location": "apps/app/app/organizations/_components/create-organization-dialog.tsx",
-      "bytes": 9788,
-      "words": 666,
-      "lines": 287,
-      "sha256": "536e8569ef129a3633910e99385dc185f61ac0edc7d008aa7e5c4cc73d61773b"
+      "bytes": 338,
+      "words": 34,
+      "lines": 13,
+      "sha256": "b9cc5db25fc08d8ee023a57c2cebd1a8f9a28387d6e2e7bb5c2fac3c1e2415f2"
     },
     {
       "surface": "application",
@@ -780,146 +1308,58 @@
     {
       "surface": "application",
       "location": "apps/app/app/organizations/new/page.tsx",
-      "bytes": 653,
-      "words": 64,
-      "lines": 26,
-      "sha256": "faad388199106ef709373c53155d08f0c07ab45c976faeb9ddf86e4df019a515"
+      "bytes": 134,
+      "words": 13,
+      "lines": 6,
+      "sha256": "bcb7daf6fff977cded3175687ae3439b77a1b65aa96116b31053dc768e693f19"
     },
     {
       "surface": "application",
       "location": "apps/app/app/organizations/page.tsx",
-      "bytes": 14436,
-      "words": 1135,
-      "lines": 456,
-      "sha256": "fffeb34ffc8d1d642e32d3c65940fe73b19355434b7ecf3ade62be3e9d94e8b6"
+      "bytes": 283,
+      "words": 29,
+      "lines": 12,
+      "sha256": "af69c1b7429587d89cef6af30548f6da5dd213f80e1b7ca483ffb7496a92077e"
     },
     {
       "surface": "application",
       "location": "apps/app/app/page.tsx",
-      "bytes": 114,
-      "words": 13,
-      "lines": 6,
-      "sha256": "cab841a9f0a3bef544d9f3faeeecfa80d24acd1d967cc28eef791ef4686ce7b5"
+      "bytes": 677,
+      "words": 50,
+      "lines": 17,
+      "sha256": "5bbc75ae7e2841164ec4b5f6bb3325be6645367bb61ff11fda61bc101e1f8067"
     },
     {
       "surface": "application",
       "location": "apps/app/app/workspace/activity/page.tsx",
-      "bytes": 18178,
-      "words": 1450,
-      "lines": 564,
-      "sha256": "132c19826bb83666b301088f1f805309bf19b257676ea6fb9a1b0df90e251fbd"
-    },
-    {
-      "surface": "application",
-      "location": "apps/app/app/workspace/analytics/components/KpiCard.tsx",
-      "bytes": 3588,
-      "words": 320,
-      "lines": 114,
-      "sha256": "7ff6ec8c997ce24cbd5294e3250bb77f3ca7bf81d6b87866ece5dca7e27f2d4c"
-    },
-    {
-      "surface": "application",
-      "location": "apps/app/app/workspace/analytics/components/PeriodSelector.tsx",
-      "bytes": 1128,
-      "words": 114,
-      "lines": 38,
-      "sha256": "e9766598f79a4554717ac81ac42491ce5f9ebd17662e0d3e78bdaad76d692804"
-    },
-    {
-      "surface": "application",
-      "location": "apps/app/app/workspace/analytics/components/PipelineRunFrequencyChart.tsx",
-      "bytes": 4889,
-      "words": 348,
-      "lines": 164,
-      "sha256": "8267d5dfc085ed4a136da42ac7a197d1739f8d8893956f29d82d791d482d52b2"
-    },
-    {
-      "surface": "application",
-      "location": "apps/app/app/workspace/analytics/components/RecentFailedRunsTable.tsx",
-      "bytes": 3699,
-      "words": 268,
-      "lines": 123,
-      "sha256": "b2ff3f05f65850998675a32a2852b10fe77e5a4e83bf65868297305d17628102"
-    },
-    {
-      "surface": "application",
-      "location": "apps/app/app/workspace/analytics/components/RowsOverTimeChart.tsx",
-      "bytes": 6639,
-      "words": 489,
-      "lines": 224,
-      "sha256": "171344ef6d6e884fb74a08ec4c58b13471d23cd0de94d60d0c72541cc4c386d3"
-    },
-    {
-      "surface": "application",
-      "location": "apps/app/app/workspace/analytics/components/RunDurationTrendChart.tsx",
-      "bytes": 6594,
-      "words": 475,
-      "lines": 226,
-      "sha256": "21d93edb68317d3087512bb5732e334a86b0ea760b8a07eb0a1278fd39eaa236"
-    },
-    {
-      "surface": "application",
-      "location": "apps/app/app/workspace/analytics/components/RunStatusDonut.tsx",
-      "bytes": 5726,
-      "words": 469,
-      "lines": 196,
-      "sha256": "b56e4178e6b9a3b6f332c711edc536ca2e1516c1513983d2b45f93eff64c423e"
-    },
-    {
-      "surface": "application",
-      "location": "apps/app/app/workspace/analytics/components/TopPipelinesTable.tsx",
-      "bytes": 3540,
-      "words": 251,
-      "lines": 119,
-      "sha256": "3c763dd2c4320a929c0eb796131c2924aa897efb2bc6802934ff6dba4b4fe465"
-    },
-    {
-      "surface": "application",
-      "location": "apps/app/app/workspace/analytics/components/UsageProgressBars.tsx",
-      "bytes": 7847,
-      "words": 663,
-      "lines": 259,
-      "sha256": "de5e9cbc95b13fba0c828c7f769d42b6aa822be4d666fa0bd8756e7c6357a42e"
-    },
-    {
-      "surface": "application",
-      "location": "apps/app/app/workspace/analytics/components/recent-failed-runs-columns.tsx",
-      "bytes": 3699,
-      "words": 301,
-      "lines": 127,
-      "sha256": "5d667ef0b4e2082a37137b6e0e369acf98ef5ab9a8f941ac789d00d1e41b99ce"
-    },
-    {
-      "surface": "application",
-      "location": "apps/app/app/workspace/analytics/components/top-pipelines-columns.tsx",
-      "bytes": 2326,
-      "words": 213,
-      "lines": 84,
-      "sha256": "c51ad7b12992968c85e0a32046b5dbff25f1c936b3edcd598f17666e2e89ba89"
+      "bytes": 127,
+      "words": 15,
+      "lines": 6,
+      "sha256": "58cbb644b063f1964d1460b7549e12139ad5b6f716dba26ebb70ecc3baab5475"
     },
     {
       "surface": "application",
       "location": "apps/app/app/workspace/analytics/page.tsx",
-      "bytes": 15050,
-      "words": 1073,
-      "lines": 465,
-      "sha256": "0e7823fd8f796510d3c0cc2c01c443c0a20f91a7b3ca0eedddca7061e3645a3d"
+      "bytes": 131,
+      "words": 15,
+      "lines": 6,
+      "sha256": "d31cfef809c6653069d413756a07ab8d8d80b93923d6fa1de36e0dd4153ae856"
     },
     {
       "surface": "application",
       "location": "apps/app/app/workspace/billing/checkout/page.tsx",
-      "bytes": 2324,
-      "words": 215,
-      "lines": 72,
-      "sha256": "508c2db710b2ce17d60a50ebd8f389c6302cfba6f1ae598f0bcbbddda9974b19"
+      "bytes": 388,
+      "words": 39,
+      "lines": 16,
+      "sha256": "715c768979ece4b849aa57b9aa73d5bad7faad0cac73236962d1139dac70cf45"
     },
     {
       "surface": "application",
       "location": "apps/app/app/workspace/billing/success/page.tsx",
-      "bytes": 5347,
-      "words": 498,
-      "lines": 164,
-      "sha256": "1492f354694f0fffdee06af87d3e644e7d9dd95c77ccfee3cb82b3b5dc90e557"
+      "bytes": 418,
+      "words": 39,
+      "lines": 19,
+      "sha256": "e4765b2d0ca8e700ec65260191abcfb4158154ad3f7df11bff5caf2f00e56f04"
     },
     {
       "surface": "application",
@@ -932,154 +1372,42 @@
     {
       "surface": "application",
       "location": "apps/app/app/workspace/connections/[id]/edit/page.tsx",
-      "bytes": 2684,
-      "words": 242,
-      "lines": 90,
-      "sha256": "6dc199aefc04c7767409a4d5c13a12e305706e38e8a19b3efe850c3e90a6df72"
+      "bytes": 148,
+      "words": 15,
+      "lines": 6,
+      "sha256": "b80684faaae9d396a958b63b375fea66371715b7341494b85b29a56c7fc9aeb3"
     },
     {
       "surface": "application",
       "location": "apps/app/app/workspace/connections/[id]/page.tsx",
-      "bytes": 12183,
-      "words": 948,
-      "lines": 353,
-      "sha256": "d5b8753ec7f7036dba3bc943a0f9ab570a5cbe22bd94ce65e3869ba81ce283ae"
-    },
-    {
-      "surface": "application",
-      "location": "apps/app/app/workspace/connections/components/CategoryTabs.tsx",
-      "bytes": 1329,
-      "words": 140,
-      "lines": 56,
-      "sha256": "4aa6e0d3259e1898055a844a8dfc5ef8ce4a4fbbbdefbfbe3eab0c9905eb3eb4"
-    },
-    {
-      "surface": "application",
-      "location": "apps/app/app/workspace/connections/components/ConnectionDrawer.tsx",
-      "bytes": 13908,
-      "words": 918,
-      "lines": 420,
-      "sha256": "79b7b9e76c5cb503efdf8b110e453d02354f70a35885669acbc45f001f3e37e4"
-    },
-    {
-      "surface": "application",
-      "location": "apps/app/app/workspace/connections/components/ConnectionFieldRenderer.tsx",
-      "bytes": 3601,
-      "words": 280,
-      "lines": 140,
-      "sha256": "4284e22d758e129f0083ebaaad40b70aea8946248dc453bf50d47b3d4988d2e8"
-    },
-    {
-      "surface": "application",
-      "location": "apps/app/app/workspace/connections/components/ConnectionFormHeader.tsx",
-      "bytes": 2256,
-      "words": 206,
-      "lines": 68,
-      "sha256": "0182768edbf83e4efbd61c2f0df60652ef7086e176e7aadb03d862cefeb20a16"
-    },
-    {
-      "surface": "application",
-      "location": "apps/app/app/workspace/connections/components/ConnectionList.tsx",
-      "bytes": 16837,
-      "words": 1153,
-      "lines": 535,
-      "sha256": "36743b3c44473c0c2848579f760d7b3b2601b2f151b9be817669574b427cc14d"
-    },
-    {
-      "surface": "application",
-      "location": "apps/app/app/workspace/connections/components/ConnectionListRow.tsx",
-      "bytes": 5613,
-      "words": 399,
-      "lines": 185,
-      "sha256": "39432e16138fae9da40cfc2c8d2b2a6d3a9c80d3a9f608d782561779ce3e46fc"
-    },
-    {
-      "surface": "application",
-      "location": "apps/app/app/workspace/connections/components/ConnectionSetupGuide.tsx",
-      "bytes": 8990,
-      "words": 840,
-      "lines": 266,
-      "sha256": "3c576fc4bba6f701f4405eba5dbde9a92d0bb64429a8c33f4670b5e016976978"
-    },
-    {
-      "surface": "application",
-      "location": "apps/app/app/workspace/connections/components/ConnectorCard.tsx",
-      "bytes": 5073,
-      "words": 394,
-      "lines": 178,
-      "sha256": "00ca22d24ee9acc84a7e8bf15c2ab4ec1e27f73d07d3152026a97dc66728d868"
-    },
-    {
-      "surface": "application",
-      "location": "apps/app/app/workspace/connections/components/ConnectorCatalog.tsx",
-      "bytes": 5561,
-      "words": 464,
-      "lines": 169,
-      "sha256": "3244f6dd2d9e02d50e436c5ccc6a54beff08167ab0dc09839f654635b51c8c71"
-    },
-    {
-      "surface": "application",
-      "location": "apps/app/app/workspace/connections/components/CredentialForm.tsx",
-      "bytes": 11000,
-      "words": 878,
-      "lines": 320,
-      "sha256": "edc73d5d418b3801b13b9bfa16b97d5d131950e27f84b21544174de5f33679ac"
-    },
-    {
-      "surface": "application",
-      "location": "apps/app/app/workspace/connections/components/RoleToggle.tsx",
-      "bytes": 1557,
-      "words": 140,
-      "lines": 58,
-      "sha256": "208f7799ad9c49fb37d6abc349c2a4ad0a8183c5705255f78ca9f91d2fe0feaa"
-    },
-    {
-      "surface": "application",
-      "location": "apps/app/app/workspace/connections/data/connectionFields.ts",
-      "bytes": 11902,
-      "words": 1028,
-      "lines": 535,
-      "sha256": "e51c7d1b964831974960f635db4485530f1d125fd10fc00279ae34cfb6f5115a"
-    },
-    {
-      "surface": "application",
-      "location": "apps/app/app/workspace/connections/data/connectors.ts",
-      "bytes": 5842,
-      "words": 613,
-      "lines": 293,
-      "sha256": "45d708e1419e5c685906007782981c0e3d8f82991e79db8e7df5a739a5d586ff"
+      "bytes": 154,
+      "words": 15,
+      "lines": 6,
+      "sha256": "a5703b42a6e9d76f4d094ac0ab72a1aeb8f15bc9b36598190bb3231a3dc42566"
     },
     {
       "surface": "application",
       "location": "apps/app/app/workspace/connections/new/[type]/page.tsx",
-      "bytes": 1805,
-      "words": 154,
-      "lines": 60,
-      "sha256": "1a23f19318db205f7096feb7b62707f1ce38f8226490561e94642929d07a7a31"
+      "bytes": 157,
+      "words": 15,
+      "lines": 6,
+      "sha256": "53aa2a8c5a6e60f39b167a2d5a93e2aef1db4d0804e2d6240d0288efea0a3eb3"
     },
     {
       "surface": "application",
       "location": "apps/app/app/workspace/connections/new/page.tsx",
-      "bytes": 619,
-      "words": 60,
-      "lines": 23,
-      "sha256": "87ca39320206fa2fb04c77d56b8731e4211b9fcf34f6a25d92203e42f636d526"
+      "bytes": 166,
+      "words": 15,
+      "lines": 6,
+      "sha256": "b61abbf1d898d0cc07198761f55b1ca2d60218a15c791c13863ba2865d98c29a"
     },
     {
       "surface": "application",
       "location": "apps/app/app/workspace/connections/page.tsx",
-      "bytes": 4249,
-      "words": 369,
-      "lines": 150,
-      "sha256": "df2733145a6a3848520bf92eb449ef945ddf08cef2497710156e2b6694f9c96d"
-    },
-    {
-      "surface": "application",
-      "location": "apps/app/app/workspace/data-pipelines/[id]/_components/pipeline-operations-page.tsx",
-      "bytes": 149123,
-      "words": 8443,
-      "lines": 3493,
-      "sha256": "0ba91af7156f89f2a6784280a27ff08ded8908bc746fb73777c22fed3c36ab8e"
+      "bytes": 139,
+      "words": 15,
+      "lines": 6,
+      "sha256": "d8b98cfe480822d2221cb1cc33d11cc714c772b6b79042fafa7c5f1ba1185efe"
     },
     {
       "surface": "application",
@@ -1092,1218 +1420,234 @@
     {
       "surface": "application",
       "location": "apps/app/app/workspace/data-pipelines/[id]/destinations/[destinationId]/page.tsx",
-      "bytes": 22560,
-      "words": 1347,
-      "lines": 577,
-      "sha256": "7445d549ca0c0c2d0eb9d8e2e3b04b447d4c567e9d367de8bbca70d78cc70780"
+      "bytes": 155,
+      "words": 15,
+      "lines": 6,
+      "sha256": "e6f96af41bf5b52504be911e8a68eb5af86a010a2776761dd04e32a4460a8f4e"
     },
     {
       "surface": "application",
       "location": "apps/app/app/workspace/data-pipelines/[id]/edit/page.tsx",
-      "bytes": 953,
-      "words": 96,
-      "lines": 31,
-      "sha256": "a37267c367699654ba9c8ab9494049bd86edc500a3262e31c25a5225c280af28"
+      "bytes": 140,
+      "words": 15,
+      "lines": 6,
+      "sha256": "0451a1bb624f68078b8135163e491491cdd002c4a0b3e6be3eae75777748e942"
     },
     {
       "surface": "application",
       "location": "apps/app/app/workspace/data-pipelines/[id]/page.tsx",
-      "bytes": 66,
-      "words": 6,
-      "lines": 2,
-      "sha256": "6679cc77e58789994f07f598f8e2bdb963e07811ae1032703e32d477c40e8473"
+      "bytes": 146,
+      "words": 15,
+      "lines": 6,
+      "sha256": "4915e1eb099e0d81eac3ce7e635e3d7194a25bfb9e7e58408d5db1bdfbf9d098"
     },
     {
       "surface": "application",
       "location": "apps/app/app/workspace/data-pipelines/[id]/transformations/[transformationId]/page.tsx",
-      "bytes": 26121,
-      "words": 1865,
-      "lines": 734,
-      "sha256": "5678666fd9b5d0560a84f09713b0d4112203afc29a3996d88b0fed012d27c33e"
-    },
-    {
-      "surface": "application",
-      "location": "apps/app/app/workspace/data-pipelines/mockListData.ts",
-      "bytes": 2500,
-      "words": 241,
-      "lines": 108,
-      "sha256": "f30c4bf274a509c7e9426ed97918f19d1b1fb3d1e2ce11d2741c8eb3825ff6b3"
+      "bytes": 164,
+      "words": 15,
+      "lines": 6,
+      "sha256": "4558171c00f57a37af7b8bf193b826859d01432a24a93bac3a6598e144ec55e9"
     },
     {
       "surface": "application",
       "location": "apps/app/app/workspace/data-pipelines/new/page.tsx",
-      "bytes": 5728,
-      "words": 460,
-      "lines": 176,
-      "sha256": "1a2fe2837ef2eb8561e7eb6d47ff6bdfe7eb751e00c2154a7007342addd96583"
+      "bytes": 137,
+      "words": 15,
+      "lines": 6,
+      "sha256": "a5ea80c0fdc8f5a1f640d658b28a89dc58d16e995434e493117c61fb3ce892de"
     },
     {
       "surface": "application",
       "location": "apps/app/app/workspace/data-pipelines/page.tsx",
-      "bytes": 10670,
-      "words": 858,
-      "lines": 345,
-      "sha256": "7defea3ead1e03143ac8c6cc1a70c81048c74b121ed1e08c18a8ef4ab61cabbb"
+      "bytes": 135,
+      "words": 15,
+      "lines": 6,
+      "sha256": "4b28b9e0f9c3dc5fde0e568c047dc7c365f8975d45a6c63d466a9b7e3cfdce94"
     },
     {
       "surface": "application",
       "location": "apps/app/app/workspace/data-sources/[id]/page.tsx",
-      "bytes": 449,
-      "words": 52,
-      "lines": 21,
-      "sha256": "8649a1ac3e81ad3d2586b11799f01159347ec0013c7dc22222b71317fbd81a3b"
-    },
-    {
-      "surface": "application",
-      "location": "apps/app/app/workspace/data-sources/[id]/query/dataset-config.tsx",
-      "bytes": 12756,
-      "words": 1022,
-      "lines": 408,
-      "sha256": "3cd9cb327c1f147ff345d72aca3255cd7aeace517513877ab01aa1d72f77ceae"
+      "bytes": 337,
+      "words": 37,
+      "lines": 13,
+      "sha256": "f544147c6e4020e4c3d3ea90ddab34cc015a2afaf8e6dc98ae766e94ad30e7c4"
     },
     {
       "surface": "application",
       "location": "apps/app/app/workspace/data-sources/[id]/query/page.tsx",
-      "bytes": 12960,
-      "words": 1066,
-      "lines": 396,
-      "sha256": "136acb20d1f163f6ec372795523dd1e85f95295ae192a555ea0f886fdf671f29"
+      "bytes": 152,
+      "words": 15,
+      "lines": 6,
+      "sha256": "aaa849ce550a4fd0ca2e6e00c83f004c31a5d68712c1426d25dcf381a1320444"
     },
     {
       "surface": "application",
       "location": "apps/app/app/workspace/data-sources/[id]/query/view/page.tsx",
-      "bytes": 20140,
-      "words": 1839,
-      "lines": 553,
-      "sha256": "47c342b0f936c427ffc4614a63d3330fbc9506d2a2d55dee2a677b2ab48dd56e"
+      "bytes": 155,
+      "words": 15,
+      "lines": 6,
+      "sha256": "8c38e99398f14206b1f4d30aa72ccae7984441d96fbd778cf4e67882fe0fc6f1"
     },
     {
       "surface": "application",
       "location": "apps/app/app/workspace/data-sources/new/page.tsx",
-      "bytes": 276,
-      "words": 32,
-      "lines": 15,
-      "sha256": "3cbe050277fabedf8689e9e77bad18dd0b13bd7151cddf051c7f0b71331517d5"
+      "bytes": 134,
+      "words": 13,
+      "lines": 6,
+      "sha256": "894e571687c1d8bdffbce66def85da5316f005e88d786cb39f97a7a54a2f4aba"
     },
     {
       "surface": "application",
       "location": "apps/app/app/workspace/data-sources/page.tsx",
-      "bytes": 18122,
-      "words": 1426,
-      "lines": 543,
-      "sha256": "7dce769d57421e5f69bac470242ed0bbe9aa11043e69d85ecabbbfeb607039de"
+      "bytes": 129,
+      "words": 13,
+      "lines": 6,
+      "sha256": "667900791de717d882451fd3429eaaacbec475b342926b4b64f448b5c59f51e1"
     },
     {
       "surface": "application",
       "location": "apps/app/app/workspace/datasets/[id]/page.tsx",
-      "bytes": 12247,
-      "words": 877,
-      "lines": 368,
-      "sha256": "106f68a32dc7a9d9494f74aa609192c36fcba8688911605523d94e455766899e"
+      "bytes": 163,
+      "words": 15,
+      "lines": 6,
+      "sha256": "794f821c59947e4977d4f0d79d9d672156404dd566f5c882342ecc7811f477d6"
     },
     {
       "surface": "application",
       "location": "apps/app/app/workspace/layout.tsx",
-      "bytes": 4984,
-      "words": 459,
-      "lines": 150,
-      "sha256": "1f6eaef00d6fe08b610f8599773e2654ef578dca20a797b6605930fe1c5ba1ba"
+      "bytes": 486,
+      "words": 37,
+      "lines": 16,
+      "sha256": "554cc7693928e5cb1fa5dee12c8a0303747eb3c1af51e65bef9f8afc4973d98a"
     },
     {
       "surface": "application",
       "location": "apps/app/app/workspace/notifications/page.tsx",
-      "bytes": 11581,
-      "words": 989,
-      "lines": 385,
-      "sha256": "08230b4b25c3e64dffdf258d461aedc5cdcee76005fa882284c65500627e895b"
+      "bytes": 143,
+      "words": 15,
+      "lines": 6,
+      "sha256": "8844a6a2a92d24961b2d6f1f0564a0989a2f1e483850f596aa074c32502eee71"
     },
     {
       "surface": "application",
       "location": "apps/app/app/workspace/page.tsx",
-      "bytes": 29397,
-      "words": 2071,
-      "lines": 844,
-      "sha256": "f1069b2679b1f495605e29393ac2454f99b949fa09d64c16e1bd129a9fa0f0fe"
-    },
-    {
-      "surface": "application",
-      "location": "apps/app/app/workspace/settings/_components/integrations-catalog.tsx",
-      "bytes": 5467,
-      "words": 452,
-      "lines": 167,
-      "sha256": "2a94b2d28613fa9944c6d96ebbac33a0cad2d6bc72ed06172b56e9330dedda6e"
-    },
-    {
-      "surface": "application",
-      "location": "apps/app/app/workspace/settings/_components/notification-settings-tab.tsx",
-      "bytes": 3011,
-      "words": 222,
-      "lines": 89,
-      "sha256": "f62d43c3a2d793ab7294528165b7dc5ef2f6494ccbc009fa1e2029ef145fdee7"
-    },
-    {
-      "surface": "application",
-      "location": "apps/app/app/workspace/settings/_components/profile-settings-tab.tsx",
-      "bytes": 6787,
-      "words": 474,
-      "lines": 220,
-      "sha256": "e6cf87854a9ed2c50b0dfb409f1685631905cfe5d790b47f0b11f0303d12cb50"
-    },
-    {
-      "surface": "application",
-      "location": "apps/app/app/workspace/settings/_components/security-settings-tab.tsx",
-      "bytes": 2208,
-      "words": 170,
-      "lines": 71,
-      "sha256": "d425b582e90e325c30e5640ac0820b2ad70de88fc98c4b92a51593c2005c6dad"
-    },
-    {
-      "surface": "application",
-      "location": "apps/app/app/workspace/settings/_components/settings-billing-config.ts",
-      "bytes": 2189,
-      "words": 228,
-      "lines": 79,
-      "sha256": "8f5e4e9c55ef0c4b5c0abe0611513057a5405e49d9c323909e65044eccad9741"
-    },
-    {
-      "surface": "application",
-      "location": "apps/app/app/workspace/settings/_components/settings-ui.tsx",
-      "bytes": 8600,
-      "words": 718,
-      "lines": 293,
-      "sha256": "5bf7b8af9fdce0ca3c1b5ab4d7f4ff4ec8a4b02e93baefd0c694b654dead227a"
+      "bytes": 130,
+      "words": 13,
+      "lines": 6,
+      "sha256": "70efc7f853640582219099b27c2db50d39a08672546c871a8a8f07176c1dd574"
     },
     {
       "surface": "application",
       "location": "apps/app/app/workspace/settings/page.tsx",
-      "bytes": 78917,
-      "words": 4865,
-      "lines": 1887,
-      "sha256": "1cf4cbb254fa793d1dc5692638b980eb3a32fca6a263e16e60528828dce3cb2b"
+      "bytes": 127,
+      "words": 15,
+      "lines": 6,
+      "sha256": "5df05df1c44fddb226b5f6c06b99c94432e162cb6c0ddf8d1d54a60aed65b38c"
+    },
+    {
+      "surface": "application",
+      "location": "apps/app/app/workspace/simulations/page.tsx",
+      "bytes": 134,
+      "words": 13,
+      "lines": 6,
+      "sha256": "ff61390605df71ea1f530b93d15626b557f8bff94ae70bdf554a78fa448b06c5"
+    },
+    {
+      "surface": "application",
+      "location": "apps/app/app/workspace/simulations/runs/[runId]/page.tsx",
+      "bytes": 333,
+      "words": 36,
+      "lines": 13,
+      "sha256": "173c4e22033d84d7d1348016c18b7f9c96d01054b2348bccc479be875f023913"
+    },
+    {
+      "surface": "application",
+      "location": "apps/app/app/workspace/simulations/runs/page.tsx",
+      "bytes": 197,
+      "words": 16,
+      "lines": 6,
+      "sha256": "86bc4cfb0ba0da722725605c1d3aea9f1ea7387cbfd7d187f676adc9871f6cfa"
+    },
+    {
+      "surface": "application",
+      "location": "apps/app/app/workspace/simulations/saved-tests/page.tsx",
+      "bytes": 210,
+      "words": 16,
+      "lines": 6,
+      "sha256": "44a285d24c660a4f115f1d349872f93dd8b9ca08a788c6e75ceced3b95b92156"
+    },
+    {
+      "surface": "application",
+      "location": "apps/app/app/workspace/simulations/scenarios/page.tsx",
+      "bytes": 207,
+      "words": 16,
+      "lines": 6,
+      "sha256": "45c1b85e505aac4d397e289416d6467646a0a09e3719c9664ec6ad6b685643a2"
     },
     {
       "surface": "application",
       "location": "apps/app/app/workspace/team/[id]/edit/page.tsx",
-      "bytes": 13898,
-      "words": 1093,
-      "lines": 435,
-      "sha256": "ff73c7488dfe3c4a0fb1717e29eda696e12221314f9e9e3a87d89828a4132fd9"
-    },
-    {
-      "surface": "application",
-      "location": "apps/app/app/workspace/team/_components/edit-team-member-dialog.tsx",
-      "bytes": 4662,
-      "words": 359,
-      "lines": 145,
-      "sha256": "f56f230fbed4ec2ae516bab027781394fa819f63d14edc7f36fb5bb91f06c614"
-    },
-    {
-      "surface": "application",
-      "location": "apps/app/app/workspace/team/_components/invite-team-member-dialog.tsx",
-      "bytes": 5164,
-      "words": 375,
-      "lines": 159,
-      "sha256": "05542f9aa754130b228ca61f0a33136911a7f5bd6e46834003c3ed6a0ab5a6fe"
+      "bytes": 320,
+      "words": 37,
+      "lines": 13,
+      "sha256": "7eaf90183c27d9df39fbe2bb64b9e67957b7b4005545fa8dc88cf8b88ee0ad79"
     },
     {
       "surface": "application",
       "location": "apps/app/app/workspace/team/invite/page.tsx",
-      "bytes": 579,
-      "words": 58,
-      "lines": 22,
-      "sha256": "d1c78bba58bee8e6116a6b388930309367664d89fa3a35c8af78d632cf94eb64"
+      "bytes": 147,
+      "words": 15,
+      "lines": 6,
+      "sha256": "a409a2a4254e5bbc4d69b782e0f6e097d1d11d7055f210da0f0bfd0fd510f924"
     },
     {
       "surface": "application",
       "location": "apps/app/app/workspace/team/page.tsx",
-      "bytes": 25419,
-      "words": 2034,
-      "lines": 785,
-      "sha256": "18515ec2f8938fced3434fa997476f35fe9b097fc365d471268f710c0ab20e4e"
+      "bytes": 111,
+      "words": 15,
+      "lines": 6,
+      "sha256": "e16b5ab2607fe2225d0ad256a0df16146ec43a24fd7846faa21cb04fc10eb569"
     },
     {
       "surface": "application",
-      "location": "apps/app/components/auth/accept-invite-form.tsx",
-      "bytes": 12630,
-      "words": 1086,
-      "lines": 384,
-      "sha256": "d07dcc9fb558903dcaaf9c0d9f2579ef5ce740577338e1e27100fdf14ebc3b8a"
+      "location": "apps/app/components/ai-elements/message.tsx",
+      "bytes": 560,
+      "words": 59,
+      "lines": 23,
+      "sha256": "8dd2a30a742d114ca6d85d37e1f62d819d9e871485ab16a86f9200e32399a4dd"
     },
     {
       "surface": "application",
-      "location": "apps/app/components/auth/auth-page-shell.tsx",
-      "bytes": 844,
-      "words": 78,
-      "lines": 30,
-      "sha256": "829547c8ca195c342f92bf5fec6ea40eff1b5250aea86d8069066cc060857f26"
+      "location": "apps/app/components/ai-elements/reasoning.tsx",
+      "bytes": 5039,
+      "words": 470,
+      "lines": 185,
+      "sha256": "1ee001f9f9501fbbdacc268212f29ba34de0d0a91e58cca03ee8c24b4a3b9adb"
     },
     {
       "surface": "application",
-      "location": "apps/app/components/auth/auth-provider.tsx",
-      "bytes": 989,
-      "words": 96,
-      "lines": 36,
-      "sha256": "3a56872dd637d808554ce9ffab88db7a34b49bec9289b3d584f4a046131c0a12"
-    },
-    {
-      "surface": "application",
-      "location": "apps/app/components/auth/change-password-modal.tsx",
-      "bytes": 6062,
-      "words": 399,
-      "lines": 192,
-      "sha256": "37f14738e028ef90fceab8c5ec893abe85071825ef77ed7b2fb89bf6dbb6b9f8"
-    },
-    {
-      "surface": "application",
-      "location": "apps/app/components/auth/forgot-password-form.tsx",
-      "bytes": 3371,
-      "words": 287,
-      "lines": 122,
-      "sha256": "c0810dfc5c741f25203011c878e00934209c5450f9cfb72ea118d37070c87c64"
-    },
-    {
-      "surface": "application",
-      "location": "apps/app/components/auth/login-form.tsx",
-      "bytes": 11678,
-      "words": 1036,
-      "lines": 363,
-      "sha256": "47196ee0476ee84d3dcf57c2f983c1e0e4c7519dd9f325256e2cf3f3d03ba26d"
-    },
-    {
-      "surface": "application",
-      "location": "apps/app/components/auth/reset-password-form.tsx",
-      "bytes": 8503,
-      "words": 712,
-      "lines": 282,
-      "sha256": "2013ac9a08f74be09e051c23e176da0cabfd39ec842014f7026bd7a2dd3cdacc"
-    },
-    {
-      "surface": "application",
-      "location": "apps/app/components/auth/signup-form.tsx",
-      "bytes": 10486,
-      "words": 778,
-      "lines": 339,
-      "sha256": "92cb67d895d38c40080781a4fbc159193ca21385f1ba21d3097ad49591960964"
-    },
-    {
-      "surface": "application",
-      "location": "apps/app/components/billing/plan-limit-dialog.tsx",
-      "bytes": 3129,
-      "words": 245,
-      "lines": 101,
-      "sha256": "fbe9fb85623cf2d1a149e17350231f43543c2af050f2b69250042b72f4436afb"
-    },
-    {
-      "surface": "application",
-      "location": "apps/app/components/billingsdk/invoice-history.tsx",
-      "bytes": 4133,
-      "words": 295,
-      "lines": 119,
-      "sha256": "fd681f5fb8a3cf5dfa4fa0d7568bd4f1172e2868b078908857beb0ef5afcb65c"
-    },
-    {
-      "surface": "application",
-      "location": "apps/app/components/billingsdk/trial-expiry-card.tsx",
-      "bytes": 1572,
-      "words": 155,
-      "lines": 55,
-      "sha256": "6bcf3d521a839e88f854fe5cd556d25743f9388237c07c10f19bbfb6370acebb"
-    },
-    {
-      "surface": "application",
-      "location": "apps/app/components/billingsdk/update-plan-card.tsx",
-      "bytes": 8769,
-      "words": 685,
-      "lines": 243,
-      "sha256": "dc1c9e54131f2ce744a2bcbba2eb02a80245e1ec4b0f69ffe28e76ac3c7879e0"
-    },
-    {
-      "surface": "application",
-      "location": "apps/app/components/billingsdk/usage-meter-circle.tsx",
-      "bytes": 4322,
-      "words": 374,
-      "lines": 138,
-      "sha256": "733696217a20e6200adc339f67a85b70db5d39c22570336aeac350bcb5246d3d"
-    },
-    {
-      "surface": "application",
-      "location": "apps/app/components/charts/chart-bar-interactive.tsx",
-      "bytes": 4462,
-      "words": 367,
-      "lines": 141,
-      "sha256": "02f6957f0bf1a732d2ff8edda8fa2e2bf899aa5a1a25d137d282cccf2e9af5ac"
-    },
-    {
-      "surface": "application",
-      "location": "apps/app/components/charts/chart-bar-multiple.tsx",
-      "bytes": 2264,
-      "words": 212,
-      "lines": 81,
-      "sha256": "b8cb125fdb1fe68a7e0b7607771327406fdbebc1ed2beae0f37b758b04555144"
-    },
-    {
-      "surface": "application",
-      "location": "apps/app/components/charts/chart-line-label-custom.tsx",
-      "bytes": 3205,
-      "words": 262,
-      "lines": 124,
-      "sha256": "4f5afb3b9d6b926ee3cd17ed468eeaaa6e5c1319bb3ce75b92817ef6d8dee8f0"
-    },
-    {
-      "surface": "application",
-      "location": "apps/app/components/charts/chart-pie-donut-text.tsx",
-      "bytes": 3688,
-      "words": 297,
-      "lines": 130,
-      "sha256": "b0471e2bca71cdf7d6cc28b41c2324a988298bc6a5d41643360093b3b8631a0d"
-    },
-    {
-      "surface": "application",
-      "location": "apps/app/components/charts/chart-pie-label.tsx",
-      "bytes": 2297,
-      "words": 222,
-      "lines": 86,
-      "sha256": "c07cc31940c16b50f57989b73bcecd14807c69924cea5146b69942505ea793f9"
-    },
-    {
-      "surface": "application",
-      "location": "apps/app/components/connections/connection-card.tsx",
-      "bytes": 6766,
-      "words": 564,
-      "lines": 193,
-      "sha256": "6372b314f0873a795fd17eea8109736314f7c22313b99ab3b15359831b2d9d9c"
-    },
-    {
-      "surface": "application",
-      "location": "apps/app/components/connections/connection-wizard.tsx",
-      "bytes": 12814,
-      "words": 1111,
-      "lines": 393,
-      "sha256": "36b9eb75114323b52ef5aa665a38c610e179582d778a70cecefe6c980d35f370"
-    },
-    {
-      "surface": "application",
-      "location": "apps/app/components/connections/database-type-grid.tsx",
-      "bytes": 3112,
-      "words": 262,
-      "lines": 95,
-      "sha256": "6052f9023797e1ce381b7d506cd1242df3263a3c1a7b3e81291cccd0de24a554"
-    },
-    {
-      "surface": "application",
-      "location": "apps/app/components/connections/role-toggle.tsx",
-      "bytes": 1476,
-      "words": 126,
-      "lines": 57,
-      "sha256": "6ebffc3c979935b37f96c85e0c48192a8ab2b2f209798dc6a085c127959083b7"
-    },
-    {
-      "surface": "application",
-      "location": "apps/app/components/data-pipelines/data-preview-table.tsx",
-      "bytes": 7566,
-      "words": 611,
-      "lines": 228,
-      "sha256": "c3239f489120d001f8c627da54438de8eaf599e163268b66c988119a8ea61776"
-    },
-    {
-      "surface": "application",
-      "location": "apps/app/components/data-pipelines/destination-badge-group.tsx",
-      "bytes": 2058,
-      "words": 177,
-      "lines": 64,
-      "sha256": "77e5cda012d07b8361856d77a6b434a7d9bbe5a8b7285cffd2a79fed484ba8dc"
-    },
-    {
-      "surface": "application",
-      "location": "apps/app/components/data-pipelines/destination-transformation-navigator.tsx",
-      "bytes": 9009,
-      "words": 659,
-      "lines": 249,
-      "sha256": "a6265095910d1999c8bd4e96ea3ae03ff0746a59d34827a6184133f2753013ea"
-    },
-    {
-      "surface": "application",
-      "location": "apps/app/components/data-pipelines/destinations-drawer.tsx",
-      "bytes": 6768,
-      "words": 462,
-      "lines": 187,
-      "sha256": "52ba8e55b9192a749c6e301ad7a03f61742362f8309339842d7fe483075f9440"
-    },
-    {
-      "surface": "application",
-      "location": "apps/app/components/data-pipelines/incoming-data-tree-view.tsx",
-      "bytes": 6260,
-      "words": 483,
-      "lines": 159,
-      "sha256": "13526643800d8def127bf6443a0be19e2f4fedbb804b1e4e8eb55c3dc3890e26"
-    },
-    {
-      "surface": "application",
-      "location": "apps/app/components/data-pipelines/pipeline-run-tracker.tsx",
-      "bytes": 10511,
-      "words": 857,
-      "lines": 337,
-      "sha256": "c29f8cd4847e3fddc88f33b68a664b7139dec30ed9d9aa4b99b35dad49128043"
-    },
-    {
-      "surface": "application",
-      "location": "apps/app/components/data-pipelines/python-script-editor.tsx",
-      "bytes": 6079,
-      "words": 533,
-      "lines": 205,
-      "sha256": "66ce8e267a49267023eba75fb9b485d9520101f82af2966ed4b610c26eb38107"
-    },
-    {
-      "surface": "application",
-      "location": "apps/app/components/data-pipelines/schedule-editor.tsx",
-      "bytes": 5969,
-      "words": 465,
-      "lines": 180,
-      "sha256": "07cfe9ef87d8c976fcf0410e9377749ef322d5f4c10e02ff515b2f141ca9ff5b"
-    },
-    {
-      "surface": "application",
-      "location": "apps/app/components/data-pipelines/schema-view.tsx",
-      "bytes": 6642,
-      "words": 449,
-      "lines": 196,
-      "sha256": "0bb88823ab9d97489d4f005e8af2d06ef5d11381846149c34dbc94324c1bc9f0"
-    },
-    {
-      "surface": "application",
-      "location": "apps/app/components/data-sources/add-connector-content.tsx",
-      "bytes": 9813,
-      "words": 834,
-      "lines": 316,
-      "sha256": "f04268974432f657df263020d0154d083d48699e204ea6bb47ff884e60e0330e"
-    },
-    {
-      "surface": "application",
-      "location": "apps/app/components/data-sources/connection-sheet.tsx",
-      "bytes": 20664,
-      "words": 1482,
-      "lines": 579,
-      "sha256": "162dac937ec0e17d91a9a90504d2be3302ed1c757da5429d2ef43961d0962410"
-    },
-    {
-      "surface": "application",
-      "location": "apps/app/components/data-sources/connector-icon.tsx",
-      "bytes": 5736,
-      "words": 531,
-      "lines": 244,
-      "sha256": "31f0ce15516157e41d9a2e3fb069ec246a4f70417c636f5181e766b21b0c2706"
-    },
-    {
-      "surface": "application",
-      "location": "apps/app/components/data-sources/constants.ts",
-      "bytes": 26972,
-      "words": 2546,
-      "lines": 1194,
-      "sha256": "dbe606df77a047d0c4df0a2427cc35ac0ecf6da9e894979442c7d984a7bf9fb5"
-    },
-    {
-      "surface": "application",
-      "location": "apps/app/components/data-sources/data-source-card-skeleton.tsx",
-      "bytes": 1578,
-      "words": 158,
-      "lines": 51,
-      "sha256": "c7216dc403f0d7247e1f6a01ae8831d14b7112e6d4284683cff2cdbf321ceefe"
-    },
-    {
-      "surface": "application",
-      "location": "apps/app/components/data-sources/data-source-card.tsx",
-      "bytes": 4366,
-      "words": 342,
-      "lines": 130,
-      "sha256": "dce1d91f45fc35809daceb7f4a40d6189ddd4add586b8da38ec159a165a028f0"
-    },
-    {
-      "surface": "application",
-      "location": "apps/app/components/data-sources/data-source-detail.tsx",
-      "bytes": 4917,
-      "words": 360,
-      "lines": 146,
-      "sha256": "b682536fdfc26988c1d1c77c6f69d241b299a8d5efaecfe6afa0998efdd23a6b"
-    },
-    {
-      "surface": "application",
-      "location": "apps/app/components/data-sources/data-source-grid.tsx",
-      "bytes": 1477,
-      "words": 134,
-      "lines": 49,
-      "sha256": "919ab2d5a530bbada8abd07f9f5f5b4e19459a985e58def8961586044e663c27"
-    },
-    {
-      "surface": "application",
-      "location": "apps/app/components/data-sources/data-source-preview-dialog.tsx",
-      "bytes": 7047,
-      "words": 575,
-      "lines": 228,
-      "sha256": "dc144dccdf6b5731b43b6b34ac4b9c353e83bb0eec7a6c8a98a3d520a72a54b1"
-    },
-    {
-      "surface": "application",
-      "location": "apps/app/components/data-sources/enhanced-result-viewer.tsx",
-      "bytes": 9538,
-      "words": 775,
-      "lines": 278,
-      "sha256": "a3f28b3c4429b3427d156e88358c235058dd67851289dd6fc71a8e2407e292d6"
-    },
-    {
-      "surface": "application",
-      "location": "apps/app/components/data-sources/saas-source-preview.tsx",
-      "bytes": 25458,
-      "words": 1956,
-      "lines": 825,
-      "sha256": "b3249902a6222a27e1d4da684201cf3073a14cdb28b24344282b0b363a605c66"
-    },
-    {
-      "surface": "application",
-      "location": "apps/app/components/data-sources/schema-table-navigation.tsx",
-      "bytes": 9853,
-      "words": 775,
-      "lines": 272,
-      "sha256": "57574c1199e6e1a74a69818fdc6a833d64037308eaa968eb8bc568e75af0f6c6"
-    },
-    {
-      "surface": "application",
-      "location": "apps/app/components/data-sources/source-configuration-panel.tsx",
-      "bytes": 5443,
-      "words": 453,
-      "lines": 167,
-      "sha256": "e94168458365aa67ff12ee0254303e0dd9327233fd207f38d6a3a6748ac8b68c"
-    },
-    {
-      "surface": "application",
-      "location": "apps/app/components/data-sources/sql-editor.tsx",
-      "bytes": 1342,
-      "words": 115,
-      "lines": 58,
-      "sha256": "c7b6653a4348cc9784efcb0cad398bb0e4dd249d2dcfb2dac8b6449d1e7eea64"
-    },
-    {
-      "surface": "application",
-      "location": "apps/app/components/data-sources/sql-result-viewer.tsx",
-      "bytes": 545,
-      "words": 57,
-      "lines": 21,
-      "sha256": "98bf67a2f27ee7279ad8cdfa49bad7abfd69d9d21c3fd8d1490a50dfd1f95698"
-    },
-    {
-      "surface": "application",
-      "location": "apps/app/components/data-sources/table-data-view.tsx",
-      "bytes": 1670,
-      "words": 140,
-      "lines": 61,
-      "sha256": "fddcedbc57038fa1077c270dd37dc99cb7333313f85f0cba08ddd5b439f16ec2"
-    },
-    {
-      "surface": "application",
-      "location": "apps/app/components/data-sources/table-list-view.tsx",
-      "bytes": 5175,
-      "words": 341,
-      "lines": 143,
-      "sha256": "3338017218e126a4e9a0657bf8c1f868a9c74c88209ecfd4100f8f168370839b"
-    },
-    {
-      "surface": "application",
-      "location": "apps/app/components/data-sources/table-navigation.tsx",
-      "bytes": 3006,
-      "words": 245,
-      "lines": 104,
-      "sha256": "401778bdaca39118fa3b77f71ff3412e1f22ec7fd8824740c075df7868073171"
-    },
-    {
-      "surface": "application",
-      "location": "apps/app/components/data-sources/utils.tsx",
-      "bytes": 417,
-      "words": 44,
-      "lines": 17,
-      "sha256": "22d4e177d24cbc40629deeb339524648e2226c181a9947f44177f520f58ffa4d"
-    },
-    {
-      "surface": "application",
-      "location": "apps/app/components/datasets/dataset-column-selector.tsx",
-      "bytes": 7730,
-      "words": 595,
-      "lines": 279,
-      "sha256": "c27387175015e12b84663c990980882c13e7e4cce2a2918a579023538fc664cf"
-    },
-    {
-      "surface": "application",
-      "location": "apps/app/components/datasets/existing-datasets-columns.tsx",
-      "bytes": 4643,
-      "words": 387,
-      "lines": 160,
-      "sha256": "c48a22eff35127b8d4a8ced155a563a4938fae83cff4c8969688b1499d7de631"
-    },
-    {
-      "surface": "application",
-      "location": "apps/app/components/datasets/existing-datasets-table.tsx",
-      "bytes": 2625,
-      "words": 199,
-      "lines": 92,
-      "sha256": "25f3fb466f020dc9b8fa49829057547d44b7d3eb718241755e68328679d86850"
-    },
-    {
-      "surface": "application",
-      "location": "apps/app/components/explorer/e2e-postgres-sql-panel.tsx",
-      "bytes": 3215,
-      "words": 277,
-      "lines": 95,
-      "sha256": "8254c8a867aa382e355a4625be448b8d465f9edbd2096482204725a5b018a1e1"
-    },
-    {
-      "surface": "application",
-      "location": "apps/app/components/explorer/explorer-data-panel.tsx",
-      "bytes": 10602,
-      "words": 762,
-      "lines": 290,
-      "sha256": "f9f6a3df92b10d360e5718dbd439261fd572eeb22556d0c7c1d8ae13f6271944"
-    },
-    {
-      "surface": "application",
-      "location": "apps/app/components/explorer/explorer-main-view.tsx",
-      "bytes": 3553,
-      "words": 242,
-      "lines": 98,
-      "sha256": "d473018ca79f6c09b22e31e429c3e5e4aff8a90540e8581a3d2a6387a2c77b20"
-    },
-    {
-      "surface": "application",
-      "location": "apps/app/components/explorer/explorer-query-result-panel.tsx",
-      "bytes": 6955,
-      "words": 619,
-      "lines": 224,
-      "sha256": "83dede1a96af712e3ff09dcdeccecb0d430b3b4768d0c26c9556ef3d3071eff1"
-    },
-    {
-      "surface": "application",
-      "location": "apps/app/components/explorer/explorer-run-interceptor.tsx",
-      "bytes": 3894,
-      "words": 314,
-      "lines": 145,
-      "sha256": "9fd49a06a993274cfc250977073484a8eb395fd168b17ab54c1c90ea639045d9"
-    },
-    {
-      "surface": "application",
-      "location": "apps/app/components/explorer/explorer-store.ts",
-      "bytes": 3123,
-      "words": 245,
-      "lines": 111,
-      "sha256": "9b22c82f8e97fefb0995f6303a7eaf6bda1d97f19a6f8caf7d681c709d053e58"
-    },
-    {
-      "surface": "application",
-      "location": "apps/app/components/explorer/sqlrooms-explorer-panel.tsx",
-      "bytes": 1010,
-      "words": 107,
-      "lines": 35,
-      "sha256": "78e48bf8d47897ac133c6dd196939e355cf39769c6e7e6f6798eb058493ba947"
-    },
-    {
-      "surface": "application",
-      "location": "apps/app/components/features/auth/components/auth-error-display.tsx",
-      "bytes": 917,
-      "words": 110,
-      "lines": 35,
-      "sha256": "36e38eacd35137cb296f62610c311a936ca9bc2da479554e36f5beb2a0101148"
-    },
-    {
-      "surface": "application",
-      "location": "apps/app/components/features/auth/components/auth-form-header.tsx",
-      "bytes": 921,
-      "words": 105,
-      "lines": 33,
-      "sha256": "209795c3b7583da40c7092c0c8b2f7658c41b190fd0b0eff70127a6919b0b513"
-    },
-    {
-      "surface": "application",
-      "location": "apps/app/components/features/auth/components/oauth-buttons.tsx",
-      "bytes": 2877,
-      "words": 263,
-      "lines": 102,
-      "sha256": "420f2501c08406d85ea263e02a3e0d3fdaa7ce997694e94bcd067dd82b6267f6"
-    },
-    {
-      "surface": "application",
-      "location": "apps/app/components/logo.tsx",
-      "bytes": 1031,
-      "words": 115,
-      "lines": 40,
-      "sha256": "0f606b68465551d5e88e820138dc69d19b7195a3ad5c9dbd5db2db010233890d"
-    },
-    {
-      "surface": "application",
-      "location": "apps/app/components/pipeline/RunStatusBadge.tsx",
-      "bytes": 1303,
-      "words": 136,
-      "lines": 32,
-      "sha256": "06470df6aeb9814a031e3705b9fb35f6624dcc38fd80d615b4fac4a833edd71a"
-    },
-    {
-      "surface": "application",
-      "location": "apps/app/components/pipeline/SyncModeBadge.tsx",
-      "bytes": 730,
-      "words": 70,
-      "lines": 26,
-      "sha256": "cf53eed340be42f3586fc2bfd01bff5030853c229bdb27db1be5285da6daef94"
-    },
-    {
-      "surface": "application",
-      "location": "apps/app/components/product-tour/product-tour-provider.tsx",
-      "bytes": 22036,
-      "words": 1930,
-      "lines": 728,
-      "sha256": "0bc4d11ace3cc9f4def1b3ece7784f0fa1ca149e579c3a117427a53ec7176ad3"
-    },
-    {
-      "surface": "application",
-      "location": "apps/app/components/providers/posthog-identify.tsx",
-      "bytes": 1760,
-      "words": 192,
-      "lines": 57,
-      "sha256": "bdaa130ab156657000dc4a3ec00779df2dfcc6500c0e63c468e91d5cef9ca365"
-    },
-    {
-      "surface": "application",
-      "location": "apps/app/components/providers/posthog-provider.tsx",
-      "bytes": 1085,
-      "words": 121,
-      "lines": 44,
-      "sha256": "2834839fc1f5ce5b61ca846b1971d9198700ba8c1deb5add5761c5a91e46067c"
-    },
-    {
-      "surface": "application",
-      "location": "apps/app/components/shared/StatusIndicator.tsx",
-      "bytes": 4364,
-      "words": 447,
-      "lines": 174,
-      "sha256": "ac098e597d3be0040721f9c8228eb1cacb2dd01e747bea0e0313ac3289f33302"
-    },
-    {
-      "surface": "application",
-      "location": "apps/app/components/shared/action-status-badge.tsx",
-      "bytes": 1270,
-      "words": 124,
-      "lines": 43,
-      "sha256": "1a2f21ba7f4cec33d3dbbea90676074cb26dd5149d6c060ae221af2d55f7a281"
-    },
-    {
-      "surface": "application",
-      "location": "apps/app/components/shared/confirmation-modal.tsx",
-      "bytes": 6839,
-      "words": 753,
-      "lines": 248,
-      "sha256": "26f89018fa636c5fcdfcc3834352c7b7b789b75a0696431e12bc369eceff5911"
-    },
-    {
-      "surface": "application",
-      "location": "apps/app/components/shared/data-display/timestamp.tsx",
-      "bytes": 2603,
-      "words": 309,
-      "lines": 99,
-      "sha256": "0c2025ac26c1d8d6f2f9f133ece9e0a9ea8335a98d1860a70a5c672365ef39ed"
-    },
-    {
-      "surface": "application",
-      "location": "apps/app/components/shared/data-table/data-table-column-header.tsx",
-      "bytes": 1927,
-      "words": 168,
-      "lines": 66,
-      "sha256": "20ca3eb7dd800dcc3f22f8123996af730eabbc4e1e4d9068ee3dbec600638114"
-    },
-    {
-      "surface": "application",
-      "location": "apps/app/components/shared/data-table/data-table-content.tsx",
-      "bytes": 5460,
-      "words": 341,
-      "lines": 166,
-      "sha256": "801a26645610886051b1fe62fbb8fac0fc4f5a28d38b450495815419cd22eebf"
-    },
-    {
-      "surface": "application",
-      "location": "apps/app/components/shared/data-table/data-table-empty-state.tsx",
-      "bytes": 481,
-      "words": 44,
-      "lines": 21,
-      "sha256": "d1c66f9939c4c7a88d34482684673f6b7e0d56e88a7cb9301d29ea335afd6779"
-    },
-    {
-      "surface": "application",
-      "location": "apps/app/components/shared/data-table/data-table-pagination.tsx",
-      "bytes": 3147,
-      "words": 243,
-      "lines": 98,
-      "sha256": "629394227b48b4a10a00e01cba875313303c42933d0acdaa540677267a3eeaa8"
-    },
-    {
-      "surface": "application",
-      "location": "apps/app/components/shared/data-table/data-table-search.tsx",
-      "bytes": 713,
-      "words": 64,
-      "lines": 33,
-      "sha256": "2f108ad11fc67ca79ce3976b993d83ea65afb21084d4253bbb4a1f39fb763dea"
-    },
-    {
-      "surface": "application",
-      "location": "apps/app/components/shared/data-table/data-table-toolbar.tsx",
-      "bytes": 1072,
-      "words": 89,
-      "lines": 43,
-      "sha256": "84ebb9f542183f10a96c64f8c9d74df8b720bb16358136e5d8be50c867cdd087"
-    },
-    {
-      "surface": "application",
-      "location": "apps/app/components/shared/data-table/data-table-view-options.tsx",
-      "bytes": 1883,
-      "words": 128,
+      "location": "apps/app/components/ai-elements/shimmer.tsx",
+      "bytes": 1551,
+      "words": 138,
       "lines": 65,
-      "sha256": "ae803b45f95cddcf9611288bd92696ac82aa205aa1c84b60c6a6d3986a1bf693"
+      "sha256": "0e653e554341a69244f3189151334d91e4f284cd1988bae88d8758c13461104b"
     },
     {
       "surface": "application",
-      "location": "apps/app/components/shared/data-table/data-table.tsx",
-      "bytes": 11704,
-      "words": 950,
-      "lines": 406,
-      "sha256": "24847bc37e201d464d02d859cb829726b3f4cc931b7bbe01c6075f93824c1d57"
+      "location": "apps/app/components/auth-page.tsx",
+      "bytes": 1731,
+      "words": 124,
+      "lines": 50,
+      "sha256": "0bfd6fe8d2756aed6b6403ec7815609768566f732e6d047b6fcf172eecdbe016"
     },
     {
       "surface": "application",
-      "location": "apps/app/components/shared/data-table/page-size-select.tsx",
-      "bytes": 1346,
-      "words": 104,
-      "lines": 58,
-      "sha256": "a9522264906188ce56d06abb845c70f36cda466ccb1d15d07b76e5bfe9ee8182"
-    },
-    {
-      "surface": "application",
-      "location": "apps/app/components/shared/feedback/dashboard-card-skeleton.tsx",
-      "bytes": 2105,
-      "words": 193,
-      "lines": 63,
-      "sha256": "1da3bcf6804408b95acc0d8077bbb77c30901c887e528e23e5218be88282e8ce"
-    },
-    {
-      "surface": "application",
-      "location": "apps/app/components/shared/feedback/empty-state.tsx",
-      "bytes": 3576,
-      "words": 361,
-      "lines": 124,
-      "sha256": "3f673a30e88b0d6daf972ed34a30527cec17f4b56deb76b0ec5d0d85725c2b19"
-    },
-    {
-      "surface": "application",
-      "location": "apps/app/components/shared/feedback/error-state.tsx",
-      "bytes": 2772,
-      "words": 287,
-      "lines": 91,
-      "sha256": "41e0a2419dab0b35b04802c06e52903f6ef9d1b28d253d3ed99d609f52449e6e"
-    },
-    {
-      "surface": "application",
-      "location": "apps/app/components/shared/feedback/loading-state.tsx",
-      "bytes": 2947,
-      "words": 333,
-      "lines": 100,
-      "sha256": "ad625bfb26f37d8da93965ce831e35ce8241cfb808b6e23c10c7ef8f0304b8f2"
-    },
-    {
-      "surface": "application",
-      "location": "apps/app/components/shared/forms/form-actions.tsx",
-      "bytes": 1996,
-      "words": 225,
-      "lines": 70,
-      "sha256": "d377f38873b451e37e8017a25a507b685ef98b862291fd7b27650d8a950afcd7"
-    },
-    {
-      "surface": "application",
-      "location": "apps/app/components/shared/forms/form-field-wrapper.tsx",
-      "bytes": 2054,
-      "words": 225,
-      "lines": 72,
-      "sha256": "a7c1ad474734b64580418b59887029121fe76be6eca476604b119e9230fd86a9"
-    },
-    {
-      "surface": "application",
-      "location": "apps/app/components/shared/forms/form-section.tsx",
-      "bytes": 1730,
-      "words": 187,
-      "lines": 61,
-      "sha256": "f30f455cfafa35e3448b8d5af5812cc687d235acda1f13b3df56d214c3689347"
-    },
-    {
-      "surface": "application",
-      "location": "apps/app/components/shared/layout/centered-card-layout.tsx",
-      "bytes": 1122,
-      "words": 125,
-      "lines": 42,
-      "sha256": "39aa543887aa0595d4293dbdab43414e9e54f7b8d94897c2d279e5dcb0f58b73"
-    },
-    {
-      "surface": "application",
-      "location": "apps/app/components/shared/layout/page-container.tsx",
-      "bytes": 1101,
-      "words": 127,
-      "lines": 44,
-      "sha256": "51a0c9de3067b5462c5235ebe2724569a9ee0cdf9ce835786833bc3434c1ee16"
-    },
-    {
-      "surface": "application",
-      "location": "apps/app/components/shared/layout/page-header.tsx",
-      "bytes": 3639,
-      "words": 333,
-      "lines": 118,
-      "sha256": "fbcc4d58b8e794f8ec2098245ad1c2b772de62589de007ded00dc2390681a907"
-    },
-    {
-      "surface": "application",
-      "location": "apps/app/components/shared/layout/section.tsx",
-      "bytes": 2020,
-      "words": 214,
-      "lines": 69,
-      "sha256": "f05be06079e09d9c68fd4f50f16f0b4c6a530ea91fad9139e9a6a6788c95193b"
-    },
-    {
-      "surface": "application",
-      "location": "apps/app/components/shared/layout/theme-toggle.tsx",
-      "bytes": 2771,
-      "words": 264,
-      "lines": 104,
-      "sha256": "55f3a84af9c142baadcd7e21878124d0ac7f03f8f5386267bf04206ce2935239"
-    },
-    {
-      "surface": "application",
-      "location": "apps/app/components/shared/metric-card.tsx",
-      "bytes": 1629,
-      "words": 174,
-      "lines": 53,
-      "sha256": "5a5774a6dfd9771f5bbdbf5975f3e3568a0a4b7bf2729f4955cf794f81778462"
-    },
-    {
-      "surface": "application",
-      "location": "apps/app/components/shared/navigation/back-button.tsx",
-      "bytes": 1442,
-      "words": 183,
-      "lines": 59,
-      "sha256": "ace7c91faf0b773b31691c0ce07dd21bed1f23e9d50b9bba00215b0f7350c840"
-    },
-    {
-      "surface": "application",
-      "location": "apps/app/components/shared/navigation/progress-steps.tsx",
-      "bytes": 3503,
-      "words": 322,
-      "lines": 106,
-      "sha256": "ff7f1d9fe26359ef8322a5583e716d0bb016424b1bc55b01a68f8be5561c5269"
-    },
-    {
-      "surface": "application",
-      "location": "apps/app/components/shared/navigation/step-indicator.tsx",
-      "bytes": 3082,
-      "words": 289,
-      "lines": 103,
-      "sha256": "0f9c2c7c0fc32bfa69bd6f8f057ed502153bb9c7e9a409e68e7a7fa7390509df"
-    },
-    {
-      "surface": "application",
-      "location": "apps/app/components/shared/role-select.tsx",
-      "bytes": 3637,
-      "words": 333,
-      "lines": 123,
-      "sha256": "89c107f7f85927a9133c310e2022a07ab2624cfc6e8e8f36fbde2f5649f69527"
-    },
-    {
-      "surface": "application",
-      "location": "apps/app/components/shared/sheet/form-sheet.tsx",
-      "bytes": 1609,
-      "words": 144,
-      "lines": 73,
-      "sha256": "a0cc2bc371dea891b357a5b651b9653c26f5ccfc2b5d882b77158376c208951f"
-    },
-    {
-      "surface": "application",
-      "location": "apps/app/components/shared/skeletons/app-header-skeleton.tsx",
-      "bytes": 2159,
-      "words": 220,
-      "lines": 67,
-      "sha256": "2eadffdac6ae5a585730838ba2e3a55aec145fc0f61a25da07e3d83f8ae3a42f"
-    },
-    {
-      "surface": "application",
-      "location": "apps/app/components/shared/skeletons/dashboard-skeleton.tsx",
-      "bytes": 3859,
-      "words": 330,
-      "lines": 113,
-      "sha256": "38646c7364fe8106274423c8daa149fe0aef1d2d00a53aeb8a79af9b26749218"
-    },
-    {
-      "surface": "application",
-      "location": "apps/app/components/shared/skeletons/inline-skeleton.tsx",
-      "bytes": 2003,
-      "words": 239,
-      "lines": 79,
-      "sha256": "838c9c6af35684ce1f105c25c6dc71398009636a552d5b167dc28f9a0f320a7e"
-    },
-    {
-      "surface": "application",
-      "location": "apps/app/components/shared/skeletons/logs-skeleton.tsx",
-      "bytes": 1984,
-      "words": 215,
-      "lines": 60,
-      "sha256": "5691a1dcd08c83d0893e909903e02f04199d3b448b15244ef3bcad20067e0af2"
-    },
-    {
-      "surface": "application",
-      "location": "apps/app/components/shared/skeletons/page-header-skeleton.tsx",
-      "bytes": 1974,
-      "words": 205,
-      "lines": 58,
-      "sha256": "badc72783db36d3687563f449cbde4b60cb4fb3b662ac2630c125f856c850eca"
-    },
-    {
-      "surface": "application",
-      "location": "apps/app/components/shared/skeletons/settings-skeleton.tsx",
-      "bytes": 2540,
-      "words": 233,
-      "lines": 75,
-      "sha256": "3b6dad2270c4c490c397fb4ba71615190c38397d501048db7510fbcc57bab336"
-    },
-    {
-      "surface": "application",
-      "location": "apps/app/components/shared/skeletons/table-skeleton.tsx",
-      "bytes": 3196,
-      "words": 312,
-      "lines": 96,
-      "sha256": "ea912289cc2f3ad140207d7c3a3287503f4edf54d494a65cd3c1d567c79aff08"
-    },
-    {
-      "surface": "application",
-      "location": "apps/app/components/shared/surface.tsx",
-      "bytes": 2290,
-      "words": 189,
-      "lines": 86,
-      "sha256": "08ff1e17a36f0ed1f02815b1358c41571ecbe8345580855e9b6ea783145bd8df"
-    },
-    {
-      "surface": "application",
-      "location": "apps/app/components/theme-provider.tsx",
-      "bytes": 1165,
-      "words": 132,
-      "lines": 39,
-      "sha256": "cb6bad86d624bc67abacf61977e026bcecde94f57e0592b5ad716d0f34686420"
-    },
-    {
-      "surface": "application",
-      "location": "apps/app/components/theme/color-picker.tsx",
-      "bytes": 4484,
-      "words": 329,
-      "lines": 153,
-      "sha256": "6a641c4a9ff4358f57b51c19e125814bf98849596d384dd96fd0d24f2645f7f3"
-    },
-    {
-      "surface": "application",
-      "location": "apps/app/components/theme/font-selector.tsx",
-      "bytes": 11381,
-      "words": 893,
-      "lines": 351,
-      "sha256": "50570bcd5e620653c5238cbf34c3c2155b0e2c51fd46134d50a2637939fabd6a"
-    },
-    {
-      "surface": "application",
-      "location": "apps/app/components/theme/theme-customizer.tsx",
-      "bytes": 9400,
-      "words": 597,
-      "lines": 262,
-      "sha256": "3addd5dad7cdd2e3b289c6bc792fae37f65a71d7be1965fde0d1f8152a793785"
-    },
-    {
-      "surface": "application",
-      "location": "apps/app/components/theme/theme-preview.tsx",
-      "bytes": 3961,
-      "words": 267,
-      "lines": 119,
-      "sha256": "485983ed41b73f913f323f6fa2a54cdaf37ad2448e241d047c48ae2420844c4d"
-    },
-    {
-      "surface": "application",
-      "location": "apps/app/components/workspace/activity-log-detail-sheet.tsx",
-      "bytes": 5201,
-      "words": 358,
-      "lines": 170,
-      "sha256": "5ba744075525264b50431dc6a5d81e587705d5a79a1a40c65a3112f310f78694"
-    },
-    {
-      "surface": "application",
-      "location": "apps/app/components/workspace/data-dialog.tsx",
-      "bytes": 8279,
-      "words": 568,
-      "lines": 234,
-      "sha256": "e2787a2c7aae3938170a9314c761de524df36a5c238d5b72fe549fc5acb0e75a"
-    },
-    {
-      "surface": "application",
-      "location": "apps/app/components/workspace/data-panel.tsx",
-      "bytes": 7938,
-      "words": 642,
-      "lines": 229,
-      "sha256": "74473a1d951d5aff6417e8876974d4dbf5df3783a666fa93ac50d5b076c828ca"
-    },
-    {
-      "surface": "application",
-      "location": "apps/app/components/workspace/global-search.tsx",
-      "bytes": 13780,
-      "words": 947,
-      "lines": 349,
-      "sha256": "4d0ddfa7b67fde6b14c6c3b9d469dcfc18457963a56a222a87dfafae0221282b"
-    },
-    {
-      "surface": "application",
-      "location": "apps/app/components/workspace/keyboard-shortcuts-dialog.tsx",
-      "bytes": 4201,
-      "words": 320,
-      "lines": 142,
-      "sha256": "7883fcb312faaaf41eff7bf2c49a4fa9d471c328dec385b4cb5276a922482b08"
-    },
-    {
-      "surface": "application",
-      "location": "apps/app/components/workspace/notification-sheet.tsx",
-      "bytes": 12011,
-      "words": 876,
-      "lines": 339,
-      "sha256": "0cc1a5ebc78757fe58d19fe96c0819c02f1eae2c7b6506dc0423159c388f99cb"
-    },
-    {
-      "surface": "application",
-      "location": "apps/app/components/workspace/notifications/workspace-notifications-popover.tsx",
-      "bytes": 9797,
-      "words": 666,
-      "lines": 255,
-      "sha256": "7c94fdf757708d3a8637398ec376dc611648d09832bb2d9679a2776364cae17e"
-    },
-    {
-      "surface": "application",
-      "location": "apps/app/components/workspace/workspace-sidebar.tsx",
-      "bytes": 20666,
-      "words": 1389,
-      "lines": 590,
-      "sha256": "04da34edd4a619d296da2047918c91cd3050dc00e114d672bbec6e7ef4a2d416"
-    },
-    {
-      "surface": "application",
-      "location": "apps/app/components/workspace/workspace-topbar.tsx",
-      "bytes": 7460,
-      "words": 509,
-      "lines": 193,
-      "sha256": "e636daa49e8f1e53748768376f7924272f06eb30b571d2cab50656b0ba5ff428"
-    },
-    {
-      "surface": "application",
-      "location": "apps/app/lib/actions/auth.ts",
-      "bytes": 23645,
-      "words": 2416,
-      "lines": 814,
-      "sha256": "2f11b85b7d2d6ddb9781afa0cabc853cc97d854a909294255f869cad97d5b5ba"
+      "location": "apps/app/components/custom-sidebar-trigger.tsx",
+      "bytes": 686,
+      "words": 63,
+      "lines": 22,
+      "sha256": "76a1ae1ca680c78e4defc7a1dda404aa547dc63772eb6fd13b6b1d5d95d1ecaf"
     },
     {
       "surface": "application",
@@ -2339,19 +1683,11 @@
     },
     {
       "surface": "application",
-      "location": "apps/app/lib/api/EXAMPLE_USAGE.tsx",
-      "bytes": 6020,
-      "words": 631,
-      "lines": 218,
-      "sha256": "670a5499fd927076f3ed67506b9c8e43d265be2e19ccce96e865e1596cf18689"
-    },
-    {
-      "surface": "application",
       "location": "apps/app/lib/api/client.ts",
-      "bytes": 9726,
-      "words": 1063,
-      "lines": 388,
-      "sha256": "19aa62e7c75f96f93b94948d1d71708d664aee289c393e27564670155bb047b5"
+      "bytes": 10288,
+      "words": 1124,
+      "lines": 407,
+      "sha256": "9a177e58a4ce16f6f80b9667d55f0e5619d0a985853ead2ac5a28357e164a219"
     },
     {
       "surface": "application",
@@ -2379,67 +1715,11 @@
     },
     {
       "surface": "application",
-      "location": "apps/app/lib/api/hooks/use-billing.ts",
-      "bytes": 3813,
-      "words": 349,
-      "lines": 114,
-      "sha256": "a8afbd6036c27b94fbdaccf65dd484381a8b8e70757ab0ec37285d488bf09a63"
-    },
-    {
-      "surface": "application",
-      "location": "apps/app/lib/api/hooks/use-connection.ts",
-      "bytes": 9015,
-      "words": 811,
-      "lines": 293,
-      "sha256": "2c648ec9ef1230049314c2c9d7a41a94116f2afcfafe31898a9ace7e46571525"
-    },
-    {
-      "surface": "application",
-      "location": "apps/app/lib/api/hooks/use-dashboard.ts",
-      "bytes": 998,
-      "words": 111,
-      "lines": 37,
-      "sha256": "dc09feafc731a05d75f7e7714b7f80b2b1a2ba77d0c6de7a7771807a3de3f12c"
-    },
-    {
-      "surface": "application",
-      "location": "apps/app/lib/api/hooks/use-data-pipelines.ts",
-      "bytes": 28897,
-      "words": 2587,
-      "lines": 976,
-      "sha256": "77b52110165a3ccde572c71b823f71a3d20e5b1855930f8d79759d92a5627cac"
-    },
-    {
-      "surface": "application",
-      "location": "apps/app/lib/api/hooks/use-data-source.ts",
-      "bytes": 10670,
-      "words": 1051,
-      "lines": 335,
-      "sha256": "f4449ccd87b00db0dcc6dc84bc0125ff9081d9aef97eece1a8cb9fd299281255"
-    },
-    {
-      "surface": "application",
-      "location": "apps/app/lib/api/hooks/use-data-sources.ts",
-      "bytes": 20202,
-      "words": 1833,
-      "lines": 669,
-      "sha256": "cb5031ce6488ca8c6de8a1842eb3ef28017b1933de3b34f2e115a777f01a70ed"
-    },
-    {
-      "surface": "application",
-      "location": "apps/app/lib/api/hooks/use-destination-schemas.ts",
-      "bytes": 15074,
-      "words": 1409,
-      "lines": 524,
-      "sha256": "4fc0d2aacec6ebdceb5756a6ee42846b5e8c3c785a2f644ca7b9fb0f65c010c0"
-    },
-    {
-      "surface": "application",
       "location": "apps/app/lib/api/hooks/use-github.ts",
-      "bytes": 9669,
+      "bytes": 9694,
       "words": 889,
       "lines": 323,
-      "sha256": "a454f9d79f375b226827c5be74d2c182082f61ec979fcbafc5572f7fdef609be"
+      "sha256": "2113069ab804711046f205199ab52d48fcac8f2926ed535780d708b436ec17fa"
     },
     {
       "surface": "application",
@@ -2452,18 +1732,18 @@
     {
       "surface": "application",
       "location": "apps/app/lib/api/hooks/use-organization-members.ts",
-      "bytes": 5856,
-      "words": 576,
-      "lines": 211,
-      "sha256": "c813f145fe0fb3043c78b813c70503ef2029717fa7abf6631487091c213c5bf9"
+      "bytes": 6079,
+      "words": 592,
+      "lines": 213,
+      "sha256": "a1127315f97ba086521f9350f82c61e5d5b00f581c39596fe5b1875644c8f105"
     },
     {
       "surface": "application",
       "location": "apps/app/lib/api/hooks/use-organizations.ts",
-      "bytes": 7864,
-      "words": 613,
-      "lines": 266,
-      "sha256": "0d86b0ee60fecfa1921977c9c785d69ffe089a06fa00d7d740ce0803dc09856a"
+      "bytes": 7729,
+      "words": 608,
+      "lines": 261,
+      "sha256": "df0b44ea9dbe66fef8942178eb7ebe483d83467bd3704abfe6f8b97e2cdb93f4"
     },
     {
       "surface": "application",
@@ -2472,22 +1752,6 @@
       "words": 473,
       "lines": 177,
       "sha256": "4f3422e56ff22631e5f85414ce69f8446b7f068b67c63b7da66a39211f301732"
-    },
-    {
-      "surface": "application",
-      "location": "apps/app/lib/api/hooks/use-source-schemas.ts",
-      "bytes": 12383,
-      "words": 1197,
-      "lines": 406,
-      "sha256": "139af38d0b2ab8c1df62e01065aaeaf42f4e2d8dbac123c8103940633eb5bed2"
-    },
-    {
-      "surface": "application",
-      "location": "apps/app/lib/api/hooks/use-usage.ts",
-      "bytes": 1380,
-      "words": 137,
-      "lines": 45,
-      "sha256": "e0d57b87f1ecef62eef41b486e696b6335dee6ae74153e817a7a49bd3d46b049"
     },
     {
       "surface": "application",
@@ -2508,50 +1772,10 @@
     {
       "surface": "application",
       "location": "apps/app/lib/api/services/activity-logs.service.ts",
-      "bytes": 2192,
-      "words": 187,
-      "lines": 79,
-      "sha256": "a5a7962d509328611fbb5c91257535a18595ec3a46498289085f2fd158ce03fd"
-    },
-    {
-      "surface": "application",
-      "location": "apps/app/lib/api/services/connection.service.ts",
-      "bytes": 6767,
-      "words": 579,
-      "lines": 228,
-      "sha256": "57e40ed80553df8cfd504e5952f21ecf02175bcb57b121b09ff1eaeefd82d2b1"
-    },
-    {
-      "surface": "application",
-      "location": "apps/app/lib/api/services/data-pipelines.service.ts",
-      "bytes": 16597,
-      "words": 1219,
-      "lines": 587,
-      "sha256": "0f949273bfe3d436ffdc59e37fbe01984fe405a721f2bc1a554d3fdca5ca572e"
-    },
-    {
-      "surface": "application",
-      "location": "apps/app/lib/api/services/data-source.service.ts",
-      "bytes": 6794,
-      "words": 633,
-      "lines": 229,
-      "sha256": "76c2b318378dad4c514becd26938b665e62e588aeb7bb0f776f5d13b068ae757"
-    },
-    {
-      "surface": "application",
-      "location": "apps/app/lib/api/services/data-sources.service.ts",
-      "bytes": 48974,
-      "words": 4419,
-      "lines": 1625,
-      "sha256": "eb52d7e9c0e552c78f788cf46cfcf03b872e597bb2029947bd039b4ff67f7d4b"
-    },
-    {
-      "surface": "application",
-      "location": "apps/app/lib/api/services/elt.service.ts",
-      "bytes": 1857,
-      "words": 185,
-      "lines": 71,
-      "sha256": "d71fe70ce17d2dd48bc2095efd15ffe88c736b71b0100c13ba448f121e443b09"
+      "bytes": 2292,
+      "words": 193,
+      "lines": 82,
+      "sha256": "d0cb23dfe1bcccc931c71cbb8904980ac424c3efb473ea05dd80c4e810921c69"
     },
     {
       "surface": "application",
@@ -2567,15 +1791,7 @@
       "bytes": 2314,
       "words": 249,
       "lines": 91,
-      "sha256": "4053a6cf37b07e362b81af5ee8739c23131548ae340d4db3ec01daf728b6cd2f"
-    },
-    {
-      "surface": "application",
-      "location": "apps/app/lib/api/services/python-elt.service.ts",
-      "bytes": 10396,
-      "words": 1045,
-      "lines": 349,
-      "sha256": "934ec758805d4544c19d6a1f7b984e3a1011c9dacd263cebb50953e5b795a7ac"
+      "sha256": "ebfcc71d79490c60cfd4a7899a6e45c0b8bc31f050d2a2f52383fd7bc676468e"
     },
     {
       "surface": "application",
@@ -2587,19 +1803,11 @@
     },
     {
       "surface": "application",
-      "location": "apps/app/lib/api/services/source-schemas.service.ts",
-      "bytes": 5981,
-      "words": 497,
-      "lines": 238,
-      "sha256": "ad9756a4c3317e6b86417ebada69e782cb664a030a54289bdbe5fea3794252df"
-    },
-    {
-      "surface": "application",
       "location": "apps/app/lib/api/types/activity-logs.ts",
-      "bytes": 1322,
-      "words": 165,
-      "lines": 55,
-      "sha256": "ba085a6aa64e0a555b54edc120cb29286b84f0f525cb6951eb01953fa1595e61"
+      "bytes": 1403,
+      "words": 177,
+      "lines": 57,
+      "sha256": "9c6ef9db5e7230ab65f2f43ff80795908be8a9b852f033e92d2c2763baca51aa"
     },
     {
       "surface": "application",
@@ -2608,38 +1816,6 @@
       "words": 253,
       "lines": 120,
       "sha256": "8f61dd526df212237f7be78583b6aa282f459796ddb67adcdaed9758cb3bee59"
-    },
-    {
-      "surface": "application",
-      "location": "apps/app/lib/api/types/billing.ts",
-      "bytes": 1290,
-      "words": 139,
-      "lines": 59,
-      "sha256": "b9d911ca7ff24066064c63bd5eda29615cf47db14590addca934b3b9218a601b"
-    },
-    {
-      "surface": "application",
-      "location": "apps/app/lib/api/types/dashboard.ts",
-      "bytes": 949,
-      "words": 110,
-      "lines": 50,
-      "sha256": "3fd29bacace6cb72f2418962e137ffc67a0030fe207d60cef6c2b4b49738aa93"
-    },
-    {
-      "surface": "application",
-      "location": "apps/app/lib/api/types/data-pipelines.ts",
-      "bytes": 19314,
-      "words": 1848,
-      "lines": 758,
-      "sha256": "64e210f2016e8d0028c2a57bffaf403e9d3ed12766d963781f216f6cc36ce745"
-    },
-    {
-      "surface": "application",
-      "location": "apps/app/lib/api/types/data-sources.ts",
-      "bytes": 10536,
-      "words": 1140,
-      "lines": 487,
-      "sha256": "30c43f7805d03ce472c3746464bb920a2d2521c83bee9f16f2b8f4d30f51267f"
     },
     {
       "surface": "application",
@@ -2659,27 +1835,19 @@
     },
     {
       "surface": "application",
-      "location": "apps/app/lib/api/utils/map-supabase-pipeline-run-row.ts",
-      "bytes": 2449,
-      "words": 254,
-      "lines": 75,
-      "sha256": "eb934f978f05380034b6976efae27343880206d9e69a110fd4d06dcc659dd252"
-    },
-    {
-      "surface": "application",
       "location": "apps/app/lib/constants/data-pipelines.ts",
-      "bytes": 8938,
+      "bytes": 8949,
       "words": 845,
       "lines": 391,
-      "sha256": "3f88163d562ed449e27560497875d947d4d7dfec4636bc79486ce229ad1597a8"
+      "sha256": "cf74d03e495fd46540aeceeff5b5f2d14324cd6cca539a3ac39a2a10fe884390"
     },
     {
       "surface": "application",
       "location": "apps/app/lib/constants/roles.ts",
-      "bytes": 911,
-      "words": 126,
+      "bytes": 869,
+      "words": 114,
       "lines": 34,
-      "sha256": "eec74158e1cbe1e3da266be78d4eee068a57a834ae8abc00753749f149d0132a"
+      "sha256": "18a4d03589dc81001c923dbd7fb24144df5887ab79a4f7a4dcc76b13719b1451"
     },
     {
       "surface": "application",
@@ -2700,10 +1868,10 @@
     {
       "surface": "application",
       "location": "apps/app/lib/explorer/explorer-context.tsx",
-      "bytes": 1626,
+      "bytes": 1640,
       "words": 175,
       "lines": 56,
-      "sha256": "9e2a843986442bafe39dc08309c4684ded45cde3aaa1a50d9c219959480f9071"
+      "sha256": "6057c106bfc733c8f284a5063fb85d8eb84ae6f390a94ca5630b4e808f653a6a"
     },
     {
       "surface": "application",
@@ -2716,18 +1884,18 @@
     {
       "surface": "application",
       "location": "apps/app/lib/pipelines/scheduling.ts",
-      "bytes": 2345,
+      "bytes": 2356,
       "words": 308,
       "lines": 82,
-      "sha256": "1c7b1c342b15fc5f00e3295229b2165cab4351aaa20d5a6c1af89182881a65bc"
+      "sha256": "866d984cffd29e6e227d42ac0b1ee7aa520452910e792442c22515d3b4c81729"
     },
     {
       "surface": "application",
       "location": "apps/app/lib/pipelines/schema-table.ts",
-      "bytes": 5812,
+      "bytes": 5837,
       "words": 622,
       "lines": 195,
-      "sha256": "f755d20396adab23c9538236f69d7d9e8f5dfacddac179a37a09560fd287c23a"
+      "sha256": "ee8a03b1ded688d8779cfaf279f9cfe9587166dc42dcbc42e2eb20c3c37bf7f7"
     },
     {
       "surface": "application",
@@ -2786,14 +1954,6 @@
       "sha256": "951354b0f56ab5e42615a7aa2b343cb4488fcf061faf6860df49c96c38a5d9d5"
     },
     {
-      "surface": "application",
-      "location": "apps/app/lib/validations/auth.ts",
-      "bytes": 3274,
-      "words": 361,
-      "lines": 100,
-      "sha256": "80abb27a924eeb3e55a944b3b953e78fb69b3314425f09b033a9427c69fc0408"
-    },
-    {
       "surface": "documentation",
       "location": "apps/mantrixflow-docs/README.md",
       "bytes": 1553,
@@ -2804,66 +1964,90 @@
     {
       "surface": "documentation",
       "location": "apps/mantrixflow-docs/billing-breakdown.mdx",
-      "bytes": 4372,
-      "words": 774,
-      "lines": 120,
-      "sha256": "3c2755f41ec6dead1fccb50d38a257f7ed5fc269212e6a53a80965b979c33fbf"
+      "bytes": 2102,
+      "words": 318,
+      "lines": 49,
+      "sha256": "a5bf52f643fcbcf5876b47f3b49a28e4421e822f8159fdfb61dcca493d23a83a"
     },
     {
       "surface": "documentation",
-      "location": "apps/mantrixflow-docs/changelog.mdx",
-      "bytes": 1772,
-      "words": 254,
-      "lines": 42,
-      "sha256": "7d92eb072890f07d2b7fe48ac2d4c7b8ef65ad9b67c5c4d84aaae666fadc0f3d"
+      "location": "apps/mantrixflow-docs/connections/destinations/airtable.mdx",
+      "bytes": 5627,
+      "words": 907,
+      "lines": 141,
+      "sha256": "9ea750d4636f09c841f14faa262dddf764947c1ff210f4868f3f63ed41cf7ebf"
+    },
+    {
+      "surface": "documentation",
+      "location": "apps/mantrixflow-docs/connections/destinations/clickhouse.mdx",
+      "bytes": 5622,
+      "words": 838,
+      "lines": 157,
+      "sha256": "0e114bbc9acf435b951d394b006c209c51febf68adf219d99adead5ddeccb78d"
     },
     {
       "surface": "documentation",
       "location": "apps/mantrixflow-docs/connections/destinations/cockroachdb.mdx",
-      "bytes": 570,
-      "words": 73,
+      "bytes": 582,
+      "words": 75,
       "lines": 11,
-      "sha256": "936c35e031ea0fd2db1ee6ddee440e29b8057472225908bd95669bd2c542c924"
+      "sha256": "b3d8cee9a23787c6b293fc798cbdc551d2e11497749e5529d62c58c7d3ead10b"
+    },
+    {
+      "surface": "documentation",
+      "location": "apps/mantrixflow-docs/connections/destinations/duckdb.mdx",
+      "bytes": 3271,
+      "words": 467,
+      "lines": 73,
+      "sha256": "6217fd8722ba8e9e52b29c8f97b0e107a18947be0cf964efc545676c832368e4"
     },
     {
       "surface": "documentation",
       "location": "apps/mantrixflow-docs/connections/destinations/mariadb.mdx",
-      "bytes": 554,
-      "words": 73,
+      "bytes": 566,
+      "words": 75,
       "lines": 11,
-      "sha256": "b28a7dadf95e38e7e9276fade7fa9fe5a481ccd71004002eeb38c16f87ae1b88"
+      "sha256": "6206a5ae7af72680ae1fd1e82311e0049c4e599f7b90798397107c846be5489d"
+    },
+    {
+      "surface": "documentation",
+      "location": "apps/mantrixflow-docs/connections/destinations/mongodb.mdx",
+      "bytes": 5393,
+      "words": 788,
+      "lines": 151,
+      "sha256": "07497c0e02d9ca748ac897dda6d2b0a6e98ae5a2ca84edd03298fadf61f91c58"
     },
     {
       "surface": "documentation",
       "location": "apps/mantrixflow-docs/connections/destinations/mysql.mdx",
-      "bytes": 546,
-      "words": 73,
-      "lines": 11,
-      "sha256": "4083494f22c9f1bc2d71602f95da920e9f0b8d903e6fc402462a79133f807d42"
+      "bytes": 5092,
+      "words": 740,
+      "lines": 151,
+      "sha256": "8a1b76964e97c1fedbca3e250047b17c285df259c9da6bbf41e7ab52b6315de9"
     },
     {
       "surface": "documentation",
       "location": "apps/mantrixflow-docs/connections/destinations/postgresql.mdx",
-      "bytes": 1847,
-      "words": 285,
-      "lines": 64,
-      "sha256": "10ded988f27d2e74e0b2ed088d08b0d7c2f22bf735345e90a52bbcf5deca78d3"
+      "bytes": 1769,
+      "words": 272,
+      "lines": 54,
+      "sha256": "d1c37a19d340e5dd9c7462a515e86c716978f1b76b4e958eb79d0337f114034d"
     },
     {
       "surface": "documentation",
       "location": "apps/mantrixflow-docs/connections/destinations/sqlite.mdx",
-      "bytes": 550,
-      "words": 73,
+      "bytes": 562,
+      "words": 75,
       "lines": 11,
-      "sha256": "371b446ef3ea69982ca082b8c38a4dbaf65f107c4254e973020dfc44e6d18701"
+      "sha256": "dcace2959f77a119afd92c48174867fd1b0cb2ae7d8477044de133c7da2ff261"
     },
     {
       "surface": "documentation",
       "location": "apps/mantrixflow-docs/connections/overview.mdx",
-      "bytes": 1942,
-      "words": 284,
-      "lines": 53,
-      "sha256": "fa6add8c04a501ea4deda57cbfe062fb1e16e47b6b94dd8d3c5de820710fcc40"
+      "bytes": 6480,
+      "words": 816,
+      "lines": 131,
+      "sha256": "98f92e18ce49a0d939e313eec9f2f4a48ef1a03d774145dbfc71038feaf112ad"
     },
     {
       "surface": "documentation",
@@ -2875,211 +2059,331 @@
     },
     {
       "surface": "documentation",
+      "location": "apps/mantrixflow-docs/connections/sources/cms/strapi.mdx",
+      "bytes": 8033,
+      "words": 1174,
+      "lines": 187,
+      "sha256": "77c6e5ebe0d7ec15b98515bf8a4eb53b75016c4d2cdc7a5f022ade785d49c370"
+    },
+    {
+      "surface": "documentation",
       "location": "apps/mantrixflow-docs/connections/sources/crm/hubspot.mdx",
-      "bytes": 5434,
-      "words": 824,
-      "lines": 124,
-      "sha256": "b3bd21bb911119fee83681cf94b997eaeb66bf2ea53a0f2cfaf7d11169216096"
+      "bytes": 5938,
+      "words": 877,
+      "lines": 132,
+      "sha256": "d0759ee3fbab82702d9959da63df72eb392d92c0eb43360abccbf9e2ffaeacad"
+    },
+    {
+      "surface": "documentation",
+      "location": "apps/mantrixflow-docs/connections/sources/customer-support/zendesk.mdx",
+      "bytes": 7963,
+      "words": 1192,
+      "lines": 184,
+      "sha256": "0d6174e4fe4f4bca01a4073f0262fcc8a5c99fbdfcd528080199f8a0141a96cc"
+    },
+    {
+      "surface": "documentation",
+      "location": "apps/mantrixflow-docs/connections/sources/database/clickhouse.mdx",
+      "bytes": 5634,
+      "words": 809,
+      "lines": 157,
+      "sha256": "deeb7cf3c73b0286d3705450fe703bb30646fade92b7e66d29d716edfa46d0db"
     },
     {
       "surface": "documentation",
       "location": "apps/mantrixflow-docs/connections/sources/database/cockroachdb.mdx",
-      "bytes": 537,
-      "words": 72,
+      "bytes": 549,
+      "words": 74,
       "lines": 11,
-      "sha256": "674f5380f22254555751364097c38d0a9e9322c3b44fb7c9576e2d50559140a5"
+      "sha256": "4843f08abf376aa124aa4383eace8f3eb8a980a5dc3c304c6e9e4fe49195071f"
+    },
+    {
+      "surface": "documentation",
+      "location": "apps/mantrixflow-docs/connections/sources/database/duckdb.mdx",
+      "bytes": 4386,
+      "words": 640,
+      "lines": 104,
+      "sha256": "c2916b7d839c771d3ee307107777b78b6ffc207100d824ac994c967ce6189201"
     },
     {
       "surface": "documentation",
       "location": "apps/mantrixflow-docs/connections/sources/database/mariadb.mdx",
-      "bytes": 521,
-      "words": 72,
+      "bytes": 533,
+      "words": 74,
       "lines": 11,
-      "sha256": "74b1a21d82c59c5005e87dc6f094ca9a548be1a8a03b3fd616de631746f3db94"
+      "sha256": "e73e8a506374803c6110ad042e811409e94b4beb1111a0e322a65170981e6645"
+    },
+    {
+      "surface": "documentation",
+      "location": "apps/mantrixflow-docs/connections/sources/database/mongodb.mdx",
+      "bytes": 6037,
+      "words": 879,
+      "lines": 146,
+      "sha256": "6cc3c19360ff8b2ff062f841eb1b981d6c1283071f196e586ae93574c21ba0f4"
     },
     {
       "surface": "documentation",
       "location": "apps/mantrixflow-docs/connections/sources/database/mysql.mdx",
-      "bytes": 513,
-      "words": 72,
-      "lines": 11,
-      "sha256": "93b72cc335016f0af0305a250f52faa09a140be56fcf577102ee383b6312c0f1"
+      "bytes": 5528,
+      "words": 812,
+      "lines": 163,
+      "sha256": "3e470e59980b34596567fb24a68ef32bbca8a9a8d0ecf2f70db09fe72472eb98"
     },
     {
       "surface": "documentation",
       "location": "apps/mantrixflow-docs/connections/sources/database/postgresql.mdx",
-      "bytes": 1313,
-      "words": 224,
-      "lines": 47,
-      "sha256": "79a4eafe73f2cbbf6259f91341691f4ccefa66ed4e81f4c90b2836d3c8f17e15"
+      "bytes": 4497,
+      "words": 643,
+      "lines": 131,
+      "sha256": "0e236efa861e48ff96daef5fb5ffeb3cbb615d08aae928187db973f528b10421"
     },
     {
       "surface": "documentation",
       "location": "apps/mantrixflow-docs/connections/sources/database/sqlite.mdx",
-      "bytes": 517,
-      "words": 72,
+      "bytes": 529,
+      "words": 74,
       "lines": 11,
-      "sha256": "959571c2c7e8cb778b0374467a6cc2dccb31a2c88c9bc18a7470fa3408c6f3b3"
+      "sha256": "9f463b6ac02aba5100903b56b444bdff3f863d13cf73e36a06f6aab845eae18e"
     },
     {
       "surface": "documentation",
       "location": "apps/mantrixflow-docs/connections/sources/developer-tools/github.mdx",
-      "bytes": 500,
-      "words": 72,
-      "lines": 11,
-      "sha256": "93e8b11fb6a51adcf4b63d81eff94ed44ef0130c4a1d277be5b2f238c9ee4380"
+      "bytes": 8613,
+      "words": 1345,
+      "lines": 192,
+      "sha256": "e6e46a56d02db11b5fc6cb2f4c8663ae4aa3dd8ca233c9bc592f77c8777fa800"
     },
     {
       "surface": "documentation",
       "location": "apps/mantrixflow-docs/connections/sources/ecommerce/shopify.mdx",
-      "bytes": 504,
-      "words": 72,
+      "bytes": 516,
+      "words": 74,
       "lines": 11,
-      "sha256": "fbf4bbba2c2365810564e246531d1f73d03409e8bf5e0590ad1ce07d0b9ae946"
+      "sha256": "44647cfc4aac69b7a762f5da5e2d6e180bc5e036118a6fccfc5841984d699d03"
     },
     {
       "surface": "documentation",
       "location": "apps/mantrixflow-docs/connections/sources/finance/stripe.mdx",
-      "bytes": 3758,
-      "words": 506,
-      "lines": 79,
-      "sha256": "dfdafe43e6587f2aaec74cfaadca6fbd06c823872cd3f85ee82053806b58311e"
+      "bytes": 5075,
+      "words": 700,
+      "lines": 131,
+      "sha256": "a11c80327a7ea1c57dcc0919176f0e77683a3bb96cfbea4e436ce68f74054c77"
+    },
+    {
+      "surface": "documentation",
+      "location": "apps/mantrixflow-docs/connections/sources/productivity/airtable.mdx",
+      "bytes": 5151,
+      "words": 787,
+      "lines": 136,
+      "sha256": "016d54ec2e394e6b1e23c0574fb8d07a1c3e52383bb058d5292b6b60f37de8b8"
+    },
+    {
+      "surface": "documentation",
+      "location": "apps/mantrixflow-docs/connections/sources/productivity/asana.mdx",
+      "bytes": 6784,
+      "words": 1059,
+      "lines": 167,
+      "sha256": "6eb99b9d2e42546e9a83c12e12e6848bb4c43f950764662104052d73ad63fee6"
+    },
+    {
+      "surface": "documentation",
+      "location": "apps/mantrixflow-docs/connections/sources/productivity/linear.mdx",
+      "bytes": 7240,
+      "words": 1103,
+      "lines": 176,
+      "sha256": "082553dabe476df7510ed7f985a50cae452b957fbcdedd522cf2fe029ce1abc5"
     },
     {
       "surface": "documentation",
       "location": "apps/mantrixflow-docs/connections/sources/productivity/notion.mdx",
-      "bytes": 500,
-      "words": 72,
-      "lines": 11,
-      "sha256": "aa040f05cffdffdba9de65ebc27aea08689d758815de24a668ba943f88211a16"
+      "bytes": 8083,
+      "words": 1185,
+      "lines": 190,
+      "sha256": "a0fea866bb4b146fce3c66b317dedef5f866a35570a655d03f96fc5fb3ebf894"
     },
     {
       "surface": "documentation",
       "location": "apps/mantrixflow-docs/docs.json",
-      "bytes": 4589,
-      "words": 295,
-      "lines": 187,
-      "sha256": "a03886c3f9b1400e1767e5e112d1b6166b0c470a3b60c1da9948f22390fce81e"
+      "bytes": 6408,
+      "words": 361,
+      "lines": 229,
+      "sha256": "159a48352911e80b74e30a63a6c3524e6f8c2c7dcad468ec60c216603c6f8665"
+    },
+    {
+      "surface": "documentation",
+      "location": "apps/mantrixflow-docs/example/pipelines/airtable-and-mysql.mdx",
+      "bytes": 10130,
+      "words": 1516,
+      "lines": 292,
+      "sha256": "20cca4440decf12f396882ce72190d8320cbeedbaba58e1f8ebb10c994f812f2"
+    },
+    {
+      "surface": "documentation",
+      "location": "apps/mantrixflow-docs/example/pipelines/asana-to-destinations.mdx",
+      "bytes": 4650,
+      "words": 674,
+      "lines": 129,
+      "sha256": "c7e9269547348aac3379123301ebbfe1893ff20f1ae51ec7b1c41dd74ce6c44f"
+    },
+    {
+      "surface": "documentation",
+      "location": "apps/mantrixflow-docs/example/pipelines/clickhouse-and-mysql.mdx",
+      "bytes": 4828,
+      "words": 694,
+      "lines": 121,
+      "sha256": "b902011a930b48c2f2eb619b97e3502ed4c5c8c005b7c61852bc6ca92547fef9"
+    },
+    {
+      "surface": "documentation",
+      "location": "apps/mantrixflow-docs/example/pipelines/hubspot-to-postgres.mdx",
+      "bytes": 4045,
+      "words": 548,
+      "lines": 111,
+      "sha256": "c8e308283b015c37396c05eb3f62e502ee654b442ea34bdb51fd7b3e7564c24a"
+    },
+    {
+      "surface": "documentation",
+      "location": "apps/mantrixflow-docs/example/pipelines/mongodb-and-postgresql.mdx",
+      "bytes": 4173,
+      "words": 593,
+      "lines": 112,
+      "sha256": "e2f7336ffe131114d7168f64ecec3822c93bf6af76e90297945211384f949edc"
+    },
+    {
+      "surface": "documentation",
+      "location": "apps/mantrixflow-docs/example/pipelines/postgres-incremental.mdx",
+      "bytes": 3929,
+      "words": 513,
+      "lines": 144,
+      "sha256": "1c86fe88f746819f53aa455b06f6a63094df49373c2b5e859b7d71e3fe77d0bd"
     },
     {
       "surface": "documentation",
       "location": "apps/mantrixflow-docs/example/pipelines/postgres-to-postgres.mdx",
-      "bytes": 2230,
-      "words": 328,
-      "lines": 98,
-      "sha256": "f588db27cc23bce3f070713e72f59e2ffa6638d4cb70e6e23a96e4afe7b46316"
+      "bytes": 2087,
+      "words": 287,
+      "lines": 72,
+      "sha256": "b38405e902b1e32ee23af7afb4373c475f3cf8c32ca23c90d0d8e69bcc992711"
+    },
+    {
+      "surface": "documentation",
+      "location": "apps/mantrixflow-docs/example/pipelines/stripe-to-postgres.mdx",
+      "bytes": 2474,
+      "words": 350,
+      "lines": 75,
+      "sha256": "c79989f33f61dcd59252931c3347cdd6b1596357b12881652a814d5494d92286"
     },
     {
       "surface": "documentation",
       "location": "apps/mantrixflow-docs/getting-started/core-concepts.mdx",
-      "bytes": 2272,
-      "words": 337,
-      "lines": 74,
-      "sha256": "38f4728d0b9792488f160a6976e74110bb4331013637796d0f901a0a6c83788b"
+      "bytes": 3642,
+      "words": 481,
+      "lines": 93,
+      "sha256": "61f67d0ee124c897616ef1f42ca00a69152ea8f54478d404e9e591a3655223d0"
     },
     {
       "surface": "documentation",
       "location": "apps/mantrixflow-docs/getting-started/faq.mdx",
-      "bytes": 1923,
-      "words": 304,
-      "lines": 59,
-      "sha256": "f2f531d37a076d8b82ff95234be905cee70272b4b0358392b960c79cc6a62920"
+      "bytes": 3192,
+      "words": 464,
+      "lines": 76,
+      "sha256": "f6ad10e4db967d7be76ab8fda29a14685cda2ad7a988461db09beb5efaf89435"
     },
     {
       "surface": "documentation",
       "location": "apps/mantrixflow-docs/getting-started/introduction.mdx",
-      "bytes": 1693,
-      "words": 240,
-      "lines": 35,
-      "sha256": "d7138235fe3b4dd30b9666ff40cf0b73858c55c2fa350eab69ce064d5fa12c2d"
+      "bytes": 3150,
+      "words": 438,
+      "lines": 56,
+      "sha256": "39aadae8b61ece86b637ca939b52ae7fdec636c23aa682a919de3f3ab8a33aa4"
     },
     {
       "surface": "documentation",
       "location": "apps/mantrixflow-docs/getting-started/quick-start.mdx",
-      "bytes": 2574,
-      "words": 366,
-      "lines": 76,
-      "sha256": "09f6ccd1a55b4118050e8363f615e3d7453ef516886c77fe32832691045b36e8"
+      "bytes": 2939,
+      "words": 408,
+      "lines": 100,
+      "sha256": "9d5e53633a5dbf3b0954e6ed7d61859c480c045568d40286d0601a49c3cabfbe"
     },
     {
       "surface": "documentation",
       "location": "apps/mantrixflow-docs/index.mdx",
-      "bytes": 1674,
-      "words": 221,
-      "lines": 42,
-      "sha256": "68a9da6cf36c85d8b7a84ec395c9bd20201bd4a2c2902d166fcd7e138d06d21d"
+      "bytes": 3519,
+      "words": 397,
+      "lines": 64,
+      "sha256": "6b008e655c00ff293315ada37f9350f78ea36825f30ff8e0e7661b178bf30e2b"
     },
     {
       "surface": "documentation",
       "location": "apps/mantrixflow-docs/pipelines/creating.mdx",
-      "bytes": 1565,
-      "words": 248,
-      "lines": 47,
-      "sha256": "94be43e75d4638783946220525afe2b83bfc41bdd1f48b391e47181aac9fc21c"
+      "bytes": 2083,
+      "words": 311,
+      "lines": 64,
+      "sha256": "9d677f346a699028bf54d4035186dbbfdfee256b7038edc78f5c243fe4f04e30"
     },
     {
       "surface": "documentation",
       "location": "apps/mantrixflow-docs/pipelines/data-type-compatibility.mdx",
-      "bytes": 920,
-      "words": 141,
-      "lines": 29,
-      "sha256": "af1cad47b7c890e1856cb570779accbce63830543b0076c4d3446d97d811eeb1"
+      "bytes": 1069,
+      "words": 161,
+      "lines": 32,
+      "sha256": "34128bbcdd873c048400317c881b7ac8e391e8d212015be275013e4fe141da08"
     },
     {
       "surface": "documentation",
       "location": "apps/mantrixflow-docs/pipelines/dbt-layer.mdx",
-      "bytes": 1270,
-      "words": 180,
-      "lines": 46,
-      "sha256": "305b66e89843d9550545364d631d96079914787eef0cae4d2800b1a3d5271773"
+      "bytes": 1726,
+      "words": 241,
+      "lines": 59,
+      "sha256": "7085114e74bc9e49a8b1907a7b6b7124370b8ea31997a2519e568ef0a5a86332"
     },
     {
       "surface": "documentation",
       "location": "apps/mantrixflow-docs/pipelines/normalisation.mdx",
-      "bytes": 1123,
-      "words": 183,
-      "lines": 42,
-      "sha256": "1cf8c5975588fccb05543cba630a259eba699ff67c51e18affcffceff81704d8"
+      "bytes": 1107,
+      "words": 153,
+      "lines": 41,
+      "sha256": "f716318773d4d82f7d95c67fa33e1ab957e857806b5b39b65d8082c054a7e166"
     },
     {
       "surface": "documentation",
       "location": "apps/mantrixflow-docs/pipelines/overview.mdx",
-      "bytes": 1999,
-      "words": 270,
-      "lines": 49,
-      "sha256": "b5f87ea7c460fb022680dd6ee60603fea6e8b088243dcbd5f515b28ca2634920"
+      "bytes": 2908,
+      "words": 402,
+      "lines": 66,
+      "sha256": "a38d008982bc16016792ed416f450e585185dbd2b8add17f3f66bbe004bb29b0"
     },
     {
       "surface": "documentation",
       "location": "apps/mantrixflow-docs/pipelines/run-history.mdx",
-      "bytes": 837,
-      "words": 131,
-      "lines": 32,
-      "sha256": "7d45d9fa4f8d72fc3a842403f7b7d3c663fa26ef8425af56c38b5db18215deba"
+      "bytes": 977,
+      "words": 153,
+      "lines": 34,
+      "sha256": "a226d73020e99a57dd7323c269d6a30fc387db8cd7a7e402c7ff15335dbe9379"
     },
     {
       "surface": "documentation",
       "location": "apps/mantrixflow-docs/pipelines/schedule.mdx",
-      "bytes": 801,
-      "words": 116,
-      "lines": 27,
-      "sha256": "8725d89ec2c0c2f9e2fee84bcc58de210af53558e5bc5567de6c5fe44b9df75a"
+      "bytes": 1111,
+      "words": 161,
+      "lines": 31,
+      "sha256": "276562fb04399710c697b08e8815a2085908204a2e0294772170bf39d2343ebe"
     },
     {
       "surface": "documentation",
       "location": "apps/mantrixflow-docs/pipelines/sync-modes.mdx",
-      "bytes": 920,
-      "words": 144,
-      "lines": 27,
-      "sha256": "841af855d4a3cd8b16f7380d89cccc5a595146c83aa251cf8a5431adf7ff5a05"
+      "bytes": 1255,
+      "words": 186,
+      "lines": 39,
+      "sha256": "d412b0885a2eed1d902b3a427507d31e80cfe6c20accaac67e09949eb79da608"
     },
     {
       "surface": "documentation",
       "location": "apps/mantrixflow-docs/pipelines/transformation-rules.mdx",
-      "bytes": 1025,
-      "words": 150,
-      "lines": 42,
-      "sha256": "65dc08329fb18d50dcd58472aa5df3e4811d9147e0aac2791bdd66353859871a"
+      "bytes": 1203,
+      "words": 171,
+      "lines": 37,
+      "sha256": "af7d83b345e51ad6cfbc39bf6d3edb8bd14bf68e8636178995d02b03b5de5659"
     },
     {
       "surface": "documentation",
@@ -3108,18 +2412,18 @@
     {
       "surface": "documentation",
       "location": "apps/mantrixflow-docs/platform/team-members.mdx",
-      "bytes": 2513,
+      "bytes": 2516,
       "words": 405,
       "lines": 66,
-      "sha256": "d3dfc035d8a8c30deddbc9e7efde541d62df81fb5f8fb7baa1dd881c8a72822e"
+      "sha256": "2f3c4b0e10aff574c4c9e123ff117a9b58085c2486c6fe36fb0d64f3c17246cd"
     },
     {
       "surface": "documentation",
       "location": "apps/mantrixflow-docs/pricing.mdx",
-      "bytes": 4161,
-      "words": 585,
-      "lines": 105,
-      "sha256": "7b01ecb2fc273869f32ee04945d63c863f15fb0aac97e3c1ae9d53629ba5ed4b"
+      "bytes": 1813,
+      "words": 288,
+      "lines": 45,
+      "sha256": "48928d8d5f28461b642b4680bd82713aafc7d0a2875f86b8c4f22ba00d58ef2b"
     },
     {
       "surface": "documentation",
@@ -3140,18 +2444,18 @@
     {
       "surface": "documentation",
       "location": "apps/mantrixflow-docs/sync-reference/full-sync.mdx",
-      "bytes": 973,
-      "words": 148,
-      "lines": 35,
-      "sha256": "f951def1822eaf26400fe5d12a300ac6585e5ca0e2b632f7013851d374c4cc69"
+      "bytes": 1230,
+      "words": 181,
+      "lines": 34,
+      "sha256": "d0ab115c455b5126b6d23b1f2e732ae9343b0a3f4da13651f039942a3688a781"
     },
     {
       "surface": "documentation",
       "location": "apps/mantrixflow-docs/sync-reference/incremental-sync.mdx",
-      "bytes": 1062,
-      "words": 162,
-      "lines": 32,
-      "sha256": "7080bff799b52804cb0b7020952128af7943861f7f8b9c92c3c4651bc7dea118"
+      "bytes": 1380,
+      "words": 203,
+      "lines": 36,
+      "sha256": "3815e85cbf8c67d525f9117d001eff974254e1859de3725d0491d438c49a0820"
     },
     {
       "surface": "documentation",
@@ -3160,6 +2464,14 @@
       "words": 131,
       "lines": 26,
       "sha256": "06af45e528f81914d2a0bebabe884f32f83b49db41bee1fe922740da676dd547"
+    },
+    {
+      "surface": "documentation",
+      "location": "apps/mantrixflow-docs/troubleshooting/index.mdx",
+      "bytes": 2442,
+      "words": 342,
+      "lines": 48,
+      "sha256": "81e2ce9973f85fc618bb94e91ebd4ed33813c492beef7fe1ca842430bf32b8a2"
     },
     {
       "surface": "documentation",
@@ -3172,18 +2484,18 @@
     {
       "surface": "documentation",
       "location": "apps/mantrixflow-docs/user-guide/connections.mdx",
-      "bytes": 1066,
-      "words": 147,
-      "lines": 33,
-      "sha256": "8aefd292f35d391d247dbb6b0096de55b59aeeba992eabb7e6e4880057730964"
+      "bytes": 2921,
+      "words": 359,
+      "lines": 66,
+      "sha256": "0b0b363ab4e6b8359069bb5ad7946b5b0fe04d9bafba281777aeacdb7b147bdf"
     },
     {
       "surface": "documentation",
       "location": "apps/mantrixflow-docs/user-guide/index.mdx",
-      "bytes": 778,
-      "words": 94,
-      "lines": 25,
-      "sha256": "9d1b5be94f8182ce3343e066a7b356ac95d5c426cb51cc9ff521c4b9a5a45da4"
+      "bytes": 1031,
+      "words": 125,
+      "lines": 29,
+      "sha256": "a86e6d09a3ac3c07b9a0da037efbfbfb9821f31813c6db614dc31001360fbf2e"
     },
     {
       "surface": "documentation",
@@ -3195,27 +2507,67 @@
     },
     {
       "surface": "documentation",
+      "location": "apps/mantrixflow-docs/user-guide/oria-copilot.mdx",
+      "bytes": 4890,
+      "words": 731,
+      "lines": 140,
+      "sha256": "593388eb6075881145e6829ac65aea34ba28703e1b01609e6602cfb21f4466e2"
+    },
+    {
+      "surface": "documentation",
       "location": "apps/mantrixflow-docs/user-guide/pipelines.mdx",
-      "bytes": 1223,
-      "words": 176,
-      "lines": 47,
-      "sha256": "6003b536fbd364f0adb08aa29364b5e9dc9ff44fe086304d7b71287d5d3d663b"
+      "bytes": 1621,
+      "words": 204,
+      "lines": 41,
+      "sha256": "5dad3cb47e6087d7d1b1154330a9df4b4a8ccf2e9fba41e67cf73b7983efa8c1"
     },
     {
       "surface": "documentation",
       "location": "apps/mantrixflow-docs/user-guide/transformations-and-branches.mdx",
-      "bytes": 986,
-      "words": 146,
-      "lines": 41,
-      "sha256": "24ac692f8f91b1df678770d10463acd34a558a2edc1314b110553b06b4e78bc0"
+      "bytes": 1621,
+      "words": 227,
+      "lines": 50,
+      "sha256": "98a405e55545f844bc9b079573fe2dae1b18bef152afad4d4dacae3df836d541"
+    },
+    {
+      "surface": "internal_reference",
+      "location": "md-docs/AGENT_GRID_IMPLEMENTATION.md",
+      "bytes": 4078,
+      "words": 521,
+      "lines": 130,
+      "sha256": "4fca8a0e64c0a6b9e22afee44bf0cc870ddd6fb3f007612c634d60eee87f3ca7"
+    },
+    {
+      "surface": "internal_reference",
+      "location": "md-docs/AGENT_GRID_QUICK_START.md",
+      "bytes": 5373,
+      "words": 830,
+      "lines": 217,
+      "sha256": "ad6b4a35cdcb98186c8c76d3cdbf821bc9d7a6b0e98fd1bc6e90eb035c7a4538"
+    },
+    {
+      "surface": "internal_reference",
+      "location": "md-docs/AGENT_GRID_UI_GUIDE.md",
+      "bytes": 12473,
+      "words": 912,
+      "lines": 281,
+      "sha256": "5be3bc8c0a17c57b6f3f43bd637113b0247e702851abffdb4b85eec47609506b"
     },
     {
       "surface": "internal_reference",
       "location": "md-docs/README.md",
-      "bytes": 7239,
-      "words": 687,
-      "lines": 113,
-      "sha256": "f6fc6ef2f23fbd01b7e8a884ad8346e4625f531133cbe11b0f03b04e0b1d3c4b"
+      "bytes": 12271,
+      "words": 1065,
+      "lines": 138,
+      "sha256": "31f1a67c70cb79ef8be6d1ccdb880aa4d980f7b12fc7b9dfdf643abad482e646"
+    },
+    {
+      "surface": "internal_reference",
+      "location": "md-docs/VERCEL_DEPLOYMENT.md",
+      "bytes": 1124,
+      "words": 114,
+      "lines": 32,
+      "sha256": "beef5105fab4854c40595a3f559771f1463e9024909d88417d1bdfa11a33d133"
     },
     {
       "surface": "internal_reference",
@@ -3267,6 +2619,14 @@
     },
     {
       "surface": "internal_reference",
+      "location": "md-docs/ai-copilot-phase-1.md",
+      "bytes": 2450,
+      "words": 305,
+      "lines": 60,
+      "sha256": "1a1401a551dedf148ba1b420cd043d101c6f9c59010449c648c9063a3ff8af51"
+    },
+    {
+      "surface": "internal_reference",
       "location": "md-docs/analytics-page-implementation.md",
       "bytes": 26463,
       "words": 3318,
@@ -3300,10 +2660,10 @@
     {
       "surface": "internal_reference",
       "location": "md-docs/autosend-production-deployment-guide.md",
-      "bytes": 10372,
-      "words": 848,
-      "lines": 309,
-      "sha256": "f997c25398a4f6e8e8354ee9d3239ab31f8782f4128cedc4ce533e36b02b82a2"
+      "bytes": 10054,
+      "words": 807,
+      "lines": 300,
+      "sha256": "4f41f259a4d581925910c2960db5f8e3c3260733cb98beb9d6afd58491bc6428"
     },
     {
       "surface": "internal_reference",
@@ -3403,11 +2763,59 @@
     },
     {
       "surface": "internal_reference",
+      "location": "md-docs/frontend-architecture-audit-final.md",
+      "bytes": 5186,
+      "words": 719,
+      "lines": 123,
+      "sha256": "f1bba2b8118cf2326e3835f3673eb2e93425882d114ae5599a90818ece6488fa"
+    },
+    {
+      "surface": "internal_reference",
+      "location": "md-docs/frontend-architecture-audit-v2.md",
+      "bytes": 17684,
+      "words": 1706,
+      "lines": 158,
+      "sha256": "a9b6e354860f8cad1da3316ad5de7ac3cdf4cf13b5b69f93c79d33a003489d78"
+    },
+    {
+      "surface": "internal_reference",
+      "location": "md-docs/frontend-architecture-audit.md",
+      "bytes": 124964,
+      "words": 23162,
+      "lines": 589,
+      "sha256": "7dea7989cb4b27a64624fc92902eee327308f84500b4cc1070a673161c1550c3"
+    },
+    {
+      "surface": "internal_reference",
+      "location": "md-docs/frontend-file-size-audit.md",
+      "bytes": 19239,
+      "words": 2244,
+      "lines": 183,
+      "sha256": "7196d1d06bc68fd1219bea2571d9e53f2c23c1f50dcc68241429f767a620c239"
+    },
+    {
+      "surface": "internal_reference",
+      "location": "md-docs/frontend-fractal-architecture-report.md",
+      "bytes": 11146,
+      "words": 1443,
+      "lines": 283,
+      "sha256": "107475c32cc5619558a54d6a8c9399af2cc8db572aede858a5c2c3427da41fbd"
+    },
+    {
+      "surface": "internal_reference",
       "location": "md-docs/frontend-refactor-audit.md",
       "bytes": 29604,
       "words": 3635,
       "lines": 608,
       "sha256": "f4ea7af996a20303fcca172fa5a461ea62ac825dae193970fe7c62a5e3328ee6"
+    },
+    {
+      "surface": "internal_reference",
+      "location": "md-docs/frontend-refactor-final-report.md",
+      "bytes": 11682,
+      "words": 1393,
+      "lines": 136,
+      "sha256": "10551c92831a39cb2d29425cce219f6398329de6961e1cd5292806d19ab41222"
     },
     {
       "surface": "internal_reference",
@@ -3459,19 +2867,19 @@
     },
     {
       "surface": "internal_reference",
-      "location": "md-docs/hetzner-server-setup.md",
-      "bytes": 12288,
-      "words": 1593,
-      "lines": 458,
-      "sha256": "a9fb6bc4b41ca36681d759e6d4555053b08af67acdf24b3e167ed5ea5b566aa7"
-    },
-    {
-      "surface": "internal_reference",
       "location": "md-docs/hubspot-postgres-full-phase-plan.md",
       "bytes": 64041,
       "words": 8727,
       "lines": 1163,
       "sha256": "d4686916709e65ae3a9902f05c8302cc9a97a4379589fac2a79efe0d2a3ba734"
+    },
+    {
+      "surface": "internal_reference",
+      "location": "md-docs/infrastructure-ci-cd-implementation-report.md",
+      "bytes": 6015,
+      "words": 756,
+      "lines": 114,
+      "sha256": "5fc2952b5dc058f7a5fd4efa9a95f68ee33e99990293a4b939298564c75067bc"
     },
     {
       "surface": "internal_reference",
@@ -4164,10 +3572,90 @@
     {
       "surface": "internal_reference",
       "location": "md-docs/observability-deployment.md",
-      "bytes": 6997,
-      "words": 861,
-      "lines": 203,
-      "sha256": "9a65eb94e9d0760dab5d38f0bcca1f28926a7f3d9febe98cac1393ac728a0428"
+      "bytes": 7628,
+      "words": 933,
+      "lines": 214,
+      "sha256": "ccee6c540bedd531459916804c24837c3eb3888d5b87e4666c215eb7a921b376"
+    },
+    {
+      "surface": "internal_reference",
+      "location": "md-docs/oria-adk-to-ai-sdk-migration.md",
+      "bytes": 4949,
+      "words": 574,
+      "lines": 104,
+      "sha256": "a678191381d41410fb6c1bc09332e482f311be0a025a07f31f55aef4c5922bb9"
+    },
+    {
+      "surface": "internal_reference",
+      "location": "md-docs/oria-agent-setup.md",
+      "bytes": 4247,
+      "words": 432,
+      "lines": 126,
+      "sha256": "cd9ab12e01d20956c823326ae14bb92a35c79cfd1d0298d88bfaf2f9833b6139"
+    },
+    {
+      "surface": "internal_reference",
+      "location": "md-docs/oria-agent-testing-guide.md",
+      "bytes": 5806,
+      "words": 606,
+      "lines": 93,
+      "sha256": "90faded92e5b5d5a9ed03b2acc24afaae3a11bb258865dd4e03f9b4346807380"
+    },
+    {
+      "surface": "internal_reference",
+      "location": "md-docs/oria-browser-ui-test-log.md",
+      "bytes": 6836,
+      "words": 1094,
+      "lines": 89,
+      "sha256": "0458bd5d3ee0af50c53568aa26ee53aed0541fd8d5f13bc34e92f3f91fba5811"
+    },
+    {
+      "surface": "internal_reference",
+      "location": "md-docs/oria-test-prompts-release1-read.md",
+      "bytes": 101438,
+      "words": 17012,
+      "lines": 920,
+      "sha256": "b83cafd540248b0414140840019854ab0edb5e921f603abe7795008dbdb03f3a"
+    },
+    {
+      "surface": "internal_reference",
+      "location": "md-docs/oria-test-prompts-release2-action.md",
+      "bytes": 197566,
+      "words": 28023,
+      "lines": 939,
+      "sha256": "8ec4da80c052b01a29b7aa2f308af51f34016eb5235938d2d6a3fb3b4049c294"
+    },
+    {
+      "surface": "internal_reference",
+      "location": "md-docs/oria-test-prompts-release3-automation.md",
+      "bytes": 102145,
+      "words": 15992,
+      "lines": 904,
+      "sha256": "1c8d46b5695adfc0110af60e441c4805288ed8f84e8f2aee1c197655059c85c9"
+    },
+    {
+      "surface": "internal_reference",
+      "location": "md-docs/oria-test-prompts-release4-intelligence.md",
+      "bytes": 236884,
+      "words": 33117,
+      "lines": 904,
+      "sha256": "973488f05cfcffe09738c009ebad350891b68931d0a01af6d31a759e7da12634"
+    },
+    {
+      "surface": "internal_reference",
+      "location": "md-docs/oria-test-prompts-release5-enterprise.md",
+      "bytes": 116490,
+      "words": 17525,
+      "lines": 904,
+      "sha256": "7d7ae505fa6bda8c065adf2925bdc1ef1d58cddf44ea9ec15056238383d5956e"
+    },
+    {
+      "surface": "internal_reference",
+      "location": "md-docs/oria-test-prompts-release6-platform.md",
+      "bytes": 128705,
+      "words": 19288,
+      "lines": 895,
+      "sha256": "277c5febe83531fb0b955b730f7ceec75eca05091a7c268d1c3ac5ac12ec021b"
     },
     {
       "surface": "internal_reference",
@@ -4204,10 +3692,10 @@
     {
       "surface": "internal_reference",
       "location": "md-docs/posthog-full-integration.md",
-      "bytes": 6659,
-      "words": 804,
-      "lines": 183,
-      "sha256": "c1d853cecadc0cce045b4ddaf935c15abd305aa169ff70ca450970aa7b09ba8d"
+      "bytes": 6918,
+      "words": 841,
+      "lines": 188,
+      "sha256": "ca01cb8dcb4ed30215bb498c03a8da1e59afa5fd65dc4f64697f294159a8e15b"
     },
     {
       "surface": "internal_reference",
@@ -4275,11 +3763,19 @@
     },
     {
       "surface": "internal_reference",
+      "location": "md-docs/summrayagent.md",
+      "bytes": 4497,
+      "words": 657,
+      "lines": 52,
+      "sha256": "e80e53ab78b96f73f78ab9efc2eeb0181e6d0d1f4012af79e24144e1c97eb118"
+    },
+    {
+      "surface": "internal_reference",
       "location": "md-docs/supabase-auth-email-templates.md",
-      "bytes": 23037,
-      "words": 1184,
+      "bytes": 23291,
+      "words": 1213,
       "lines": 281,
-      "sha256": "f47f14ff77ee45de38a6dd31918314524e3c6b07b44f6145b019caaba28d2f13"
+      "sha256": "153655af66fd40562d18382970a26d4e79624f4135f29fdc436eefcda6d1f64f"
     },
     {
       "surface": "internal_reference",
@@ -4300,10 +3796,18 @@
     {
       "surface": "internal_reference",
       "location": "md-docs/tigris-storage-setup.md",
-      "bytes": 4076,
-      "words": 579,
-      "lines": 187,
-      "sha256": "d73fe7836f9d22a8c610f3a31b255847bf9df8ae4614fe1081275033ff9330ea"
+      "bytes": 2828,
+      "words": 340,
+      "lines": 75,
+      "sha256": "b1bff9e78591f1ebd8494f0a24570a903fb182425b1e6a7a3108cf746fd055f9"
+    },
+    {
+      "surface": "internal_reference",
+      "location": "md-docs/zendesk-oauth-setup.md",
+      "bytes": 5312,
+      "words": 661,
+      "lines": 110,
+      "sha256": "d8a12e7e60c2f9aae3ea53033ac1545cff2b4b365588401387d114f2a218accf"
     }
   ]
 }

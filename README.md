@@ -44,7 +44,7 @@ Development.
 | ELT runtime | [`apps/server/elt-server`](apps/server/elt-server/README.md) | Private extraction, transformation, delivery, and runtime diagnostics |
 | Website | [`apps/website`](apps/website/README.md) | Public product and connector pages |
 | Public docs | [`apps/mantrixflow-docs`](apps/mantrixflow-docs/README.md) | Customer-facing setup and connector documentation |
-| Infrastructure | [`apps/mantrixflow-infra`](apps/mantrixflow-infra/DEPLOYMENT.md) | Current Hetzner/Terraform backend deployment |
+| Infrastructure | [`apps/mantrixflow-infra`](apps/mantrixflow-infra/DEPLOYMENT.md) | OVHcloud Terraform and self-hosted Dokploy deployment |
 
 ## Local development
 
@@ -73,9 +73,9 @@ Go health/metadata routes provide configuration and dependency diagnostics.
 ## Current deployment guidance
 
 - Frontend: Vercel guidance in [`md-docs/deployment-vercel.md`](md-docs/deployment-vercel.md).
-- Backend: Terraform-provisioned Hetzner host and private Docker network in
+- Backend: independent OVHcloud VPS targets managed by self-hosted Dokploy in
   [`apps/mantrixflow-infra/DEPLOYMENT.md`](apps/mantrixflow-infra/DEPLOYMENT.md).
-- AWS/ECS, Oracle, Contabo, Dokploy, and other former paths are historical and
+- AWS/ECS, Oracle, Contabo, and other former paths are historical and
   must not be used as current production instructions.
 
 ## Engineering references

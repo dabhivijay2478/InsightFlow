@@ -2,7 +2,7 @@
 
 > **Archived:** This AWS/ECS procedure is retained for historical reference and
 > is not the current production deployment path. Use the
-> [Hetzner deployment guide](../apps/mantrixflow-infra/DEPLOYMENT.md) for current
+> [OVHcloud deployment guide](../apps/mantrixflow-infra/DEPLOYMENT.md) for current
 > infrastructure and inject the observability variables through that workflow.
 
 Put **PostHog** and **Better Stack** secrets into production and redeploy.  
@@ -207,7 +207,7 @@ Webhook needs **both** `BETTERSTACK_*` in SSM and PostHog configured per [postho
 - [apps/mantrixflow-infra/DEPLOYMENT.md](../apps/mantrixflow-infra/DEPLOYMENT.md)
 # Historical AWS/ECS observability deployment
 
-> **Historical only.** The current backend deployment is Hetzner/Terraform; use
+> **Historical only.** The current backend deployment is OVHcloud/self-hosted Dokploy; use
 > [`../apps/mantrixflow-infra/DEPLOYMENT.md`](../apps/mantrixflow-infra/DEPLOYMENT.md).
 > The AWS SSM/ECS commands below are retained for migration history and must not
 > be used as current production guidance.

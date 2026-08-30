@@ -1,27 +1,27 @@
 {
-  "generatedAt": "2026-07-21T20:17:23.213Z",
-  "files": 536,
+  "generatedAt": "2026-08-30T10:41:16.316Z",
+  "files": 476,
   "bySurface": {
-    "website": 73,
-    "application": 273,
-    "documentation": 53,
-    "internal_reference": 137
+    "website": 93,
+    "application": 151,
+    "documentation": 72,
+    "internal_reference": 160
   },
-  "routes": 57,
-  "layouts": 5,
-  "contentComponents": 217,
-  "dialogs": 18,
-  "tooltips": 5,
-  "articles": 189,
-  "exactDuplicateBlocks": 64,
-  "links": 355,
-  "questionableLinks": 1,
-  "externalLinksRequiringNetworkCheck": 58,
+  "routes": 109,
+  "layouts": 6,
+  "contentComponents": 83,
+  "dialogs": 1,
+  "tooltips": 1,
+  "articles": 231,
+  "exactDuplicateBlocks": 63,
+  "links": 456,
+  "questionableLinks": 3,
+  "externalLinksRequiringNetworkCheck": 76,
   "actions": {
-    "ARCHIVE": 12,
-    "KEEP AND IMPROVE": 319,
-    "MOVE TO ADVANCED SECTION": 111,
-    "REQUIRES PRODUCT CONFIRMATION": 81,
-    "SHORTEN": 13
+    "ARCHIVE": 14,
+    "KEEP AND IMPROVE": 335,
+    "MOVE TO ADVANCED SECTION": 113,
+    "REQUIRES PRODUCT CONFIRMATION": 12,
+    "SHORTEN": 2
   }
 }

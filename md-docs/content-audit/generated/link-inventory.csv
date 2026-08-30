@@ -1,81 +1,72 @@
 location,href,status
 apps/website/app/compare/page.tsx,/pricing,OK
-apps/website/app/compare/page.tsx,/pricing,OK
+apps/website/app/compare/page.tsx,/connectors,OK
 apps/website/app/privacy/privacy-client.tsx,mailto:support@mantrixflow.com,External contact link — syntax only
 apps/website/app/subprocessors/subprocessors-client.tsx,mailto:support@mantrixflow.com,External contact link — syntax only
 apps/website/app/terms/terms-client.tsx,mailto:support@mantrixflow.com,External contact link — syntax only
 apps/website/components/cta-section.tsx,/pricing,OK
 apps/website/components/cta-section.tsx,/compare,OK
 apps/website/components/cta-section.tsx,mailto:support@mantrixflow.com,External contact link — syntax only
-apps/website/components/footer.tsx,/privacy,OK
+apps/website/components/footer.tsx,mailto:support@mantrixflow.com,External contact link — syntax only
+apps/website/components/footer.tsx,https://www.linkedin.com/company/mantrixflow,External — network check required
 apps/website/components/footer.tsx,/terms,OK
+apps/website/components/footer.tsx,/privacy,OK
 apps/website/components/hero-section.tsx,/pricing,OK
-apps/website/components/marketing/agent-showcase.tsx,/agents,OK
+apps/website/components/home/home-hero.tsx,/connectors,OK
+apps/website/components/home/home-hero.tsx,mailto:support@mantrixflow.com,External contact link — syntax only
+apps/website/components/home/home-latest.tsx,/connectors,OK
+apps/website/components/home/home-story.tsx,/compare,OK
+apps/website/components/home/home-story.tsx,/connectors,OK
+apps/website/components/home/home-story.tsx,/pricing,OK
+apps/website/components/home/home-story.tsx,/integrations,OK
 apps/website/components/marketing/connectors-teaser.tsx,/connectors,OK
 apps/website/components/marketing/integrations-teaser.tsx,/integrations,OK
 apps/website/components/marketing/solutions-menu.tsx,/connectors,OK
 apps/website/components/navbar.tsx,/,OK
-apps/website/components/page-sections.tsx,/connectors,OK
-apps/website/components/page-sections.tsx,/connectors,OK
-apps/website/components/page-sections.tsx,/connectors,OK
-apps/website/components/page-sections.tsx,/connectors,OK
-apps/website/components/page-sections.tsx,/integrations,OK
-apps/website/components/page-sections.tsx,/connectors,OK
-apps/website/components/page-sections.tsx,mailto:support@mantrixflow.com,External contact link — syntax only
 apps/website/components/side-nav.tsx,/pricing,OK
+apps/website/components/side-nav.tsx,https://docs.mantrixflow.com/,External — network check required
 apps/app/app/auth/auth-code-error/page.tsx,/auth/login,OK
 apps/app/app/auth/auth-code-error/page.tsx,/,OK
-apps/app/app/error.tsx,/workspace,OK
-apps/app/app/organizations/[id]/edit/page.tsx,/organizations,OK
-apps/app/app/organizations/[id]/edit/page.tsx,/organizations,OK
-apps/app/app/organizations/page.tsx,/workspace,OK
-apps/app/app/workspace/analytics/components/PipelineRunFrequencyChart.tsx,/workspace/data-pipelines,OK
-apps/app/app/workspace/analytics/components/PipelineRunFrequencyChart.tsx,/workspace/data-pipelines,OK
-apps/app/app/workspace/analytics/components/UsageProgressBars.tsx,/workspace/billing/checkout,OK
-apps/app/app/workspace/analytics/page.tsx,/workspace/data-pipelines/new,OK
-apps/app/app/workspace/connections/[id]/edit/page.tsx,/workspace/connections,OK
-apps/app/app/workspace/connections/[id]/page.tsx,/workspace/connections,OK
-apps/app/app/workspace/connections/components/ConnectionDrawer.tsx,/workspace/data-pipelines,OK
-apps/app/app/workspace/connections/components/ConnectionList.tsx,/workspace/connections/new,OK
-apps/app/app/workspace/connections/components/ConnectionSetupGuide.tsx,https://docs.mantrixflow.com/connections/private-database-access,External — network check required
-apps/app/app/workspace/connections/new/[type]/page.tsx,/workspace/connections/new,OK
-apps/app/app/workspace/data-pipelines/new/page.tsx,/workspace/connections,OK
-apps/app/app/workspace/data-pipelines/new/page.tsx,/workspace/data-pipelines,OK
-apps/app/app/workspace/data-pipelines/page.tsx,/workspace/data-pipelines/new,OK
-apps/app/app/workspace/page.tsx,/workspace/data-pipelines/new,OK
-apps/app/app/workspace/page.tsx,/workspace/connections,OK
-apps/app/app/workspace/page.tsx,/workspace/data-pipelines,OK
-apps/app/app/workspace/page.tsx,/workspace/activity,OK
-apps/app/app/workspace/page.tsx,/workspace/activity,OK
-apps/app/app/workspace/team/[id]/edit/page.tsx,/workspace/team,OK
-apps/app/app/workspace/team/[id]/edit/page.tsx,/workspace/team,OK
-apps/app/components/auth/accept-invite-form.tsx,/auth/login,OK
-apps/app/components/auth/auth-page-shell.tsx,/,OK
-apps/app/components/auth/forgot-password-form.tsx,/auth/login,OK
-apps/app/components/auth/login-form.tsx,/auth/forgot-password,OK
-apps/app/components/auth/reset-password-form.tsx,/auth/login,OK
-apps/app/components/auth/signup-form.tsx,/auth/login,OK
-apps/app/components/data-sources/add-connector-content.tsx,/workspace/data-sources,OK
-apps/app/components/data-sources/saas-source-preview.tsx,/workspace/data-pipelines/new,OK
-apps/app/components/shared/navigation/back-button.tsx,/workspace,OK
-apps/app/components/workspace/workspace-sidebar.tsx,/organizations,OK
-apps/app/components/workspace/workspace-sidebar.tsx,/workspace,OK
-apps/app/components/workspace/workspace-sidebar.tsx,/workspace/connections,OK
-apps/app/components/workspace/workspace-sidebar.tsx,/workspace/analytics,OK
-apps/app/components/workspace/workspace-sidebar.tsx,/workspace/data-pipelines,OK
-apps/app/components/workspace/workspace-sidebar.tsx,/workspace/activity,OK
-apps/app/components/workspace/workspace-sidebar.tsx,/workspace/team,OK
-apps/app/components/workspace/workspace-sidebar.tsx,/workspace/settings,OK
+apps/app/app/error.tsx,/,OK
+apps/app/components/auth-page.tsx,/,OK
+apps/app/components/auth-page.tsx,https://mantrixflow.com/terms,External — network check required
+apps/app/components/auth-page.tsx,https://mantrixflow.com/privacy,External — network check required
 apps/app/lib/utils/toast.ts,itemName,External — network check required
 apps/app/lib/utils/toast.ts,"itemName, error",External — network check required
 apps/mantrixflow-docs/README.md,https://mantrixflow.com,External — network check required
 apps/mantrixflow-docs/README.md,https://mintlify.com,External — network check required
+apps/mantrixflow-docs/billing-breakdown.mdx,/pricing,OK
+apps/mantrixflow-docs/billing-breakdown.mdx,mailto:support@mantrixflow.com,External contact link — syntax only
+apps/mantrixflow-docs/connections/destinations/airtable.mdx,/example/pipelines/airtable-and-mysql,OK
+apps/mantrixflow-docs/connections/destinations/clickhouse.mdx,/example/pipelines/clickhouse-and-mysql,OK
 apps/mantrixflow-docs/connections/destinations/cockroachdb.mdx,/connections/destinations/postgresql,OK
+apps/mantrixflow-docs/connections/destinations/duckdb.mdx,/connections/sources/database/duckdb,OK
 apps/mantrixflow-docs/connections/destinations/mariadb.mdx,/connections/destinations/postgresql,OK
-apps/mantrixflow-docs/connections/destinations/mysql.mdx,/connections/destinations/postgresql,OK
+apps/mantrixflow-docs/connections/destinations/mongodb.mdx,/connections/sources/database/mongodb,OK
+apps/mantrixflow-docs/connections/destinations/mongodb.mdx,/example/pipelines/mongodb-and-postgresql,OK
+apps/mantrixflow-docs/connections/destinations/mysql.mdx,/example/pipelines/airtable-and-mysql,OK
+apps/mantrixflow-docs/connections/destinations/postgresql.mdx,/getting-started/quick-start,OK
 apps/mantrixflow-docs/connections/destinations/sqlite.mdx,/connections/destinations/postgresql,OK
+apps/mantrixflow-docs/connections/overview.mdx,/connections/sources/productivity/airtable,OK
+apps/mantrixflow-docs/connections/overview.mdx,/connections/destinations/airtable,OK
+apps/mantrixflow-docs/connections/overview.mdx,/connections/sources/database/mysql,OK
+apps/mantrixflow-docs/connections/overview.mdx,/connections/destinations/mysql,OK
+apps/mantrixflow-docs/connections/overview.mdx,/connections/sources/database/mongodb,OK
+apps/mantrixflow-docs/connections/overview.mdx,/connections/destinations/mongodb,OK
+apps/mantrixflow-docs/connections/overview.mdx,/example/pipelines/mongodb-and-postgresql,OK
+apps/mantrixflow-docs/connections/overview.mdx,/connections/sources/database/clickhouse,OK
+apps/mantrixflow-docs/connections/overview.mdx,/connections/destinations/clickhouse,OK
+apps/mantrixflow-docs/connections/overview.mdx,/example/pipelines/clickhouse-and-mysql,OK
+apps/mantrixflow-docs/connections/overview.mdx,/connections/sources/database/duckdb,OK
+apps/mantrixflow-docs/connections/overview.mdx,/connections/destinations/duckdb,OK
 apps/mantrixflow-docs/connections/overview.mdx,/connections/sources/crm/hubspot,OK
 apps/mantrixflow-docs/connections/overview.mdx,/connections/sources/finance/stripe,OK
+apps/mantrixflow-docs/connections/overview.mdx,/connections/sources/productivity/asana,OK
+apps/mantrixflow-docs/connections/overview.mdx,/connections/sources/productivity/notion,OK
+apps/mantrixflow-docs/connections/overview.mdx,/connections/sources/productivity/linear,OK
+apps/mantrixflow-docs/connections/overview.mdx,/connections/sources/developer-tools/github,OK
+apps/mantrixflow-docs/connections/overview.mdx,/connections/sources/customer-support/zendesk,OK
+apps/mantrixflow-docs/connections/overview.mdx,/connections/sources/cms/strapi,OK
 apps/mantrixflow-docs/connections/overview.mdx,/connections/private-database-access,OK
 apps/mantrixflow-docs/connections/private-database-access.mdx,https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Overview.RDSSecurityGroups.html,External — network check required
 apps/mantrixflow-docs/connections/private-database-access.mdx,https://cloud.google.com/sql/docs/postgres/authorize-networks,External — network check required
@@ -85,35 +76,105 @@ apps/mantrixflow-docs/connections/private-database-access.mdx,https://neon.com/d
 apps/mantrixflow-docs/connections/private-database-access.mdx,https://aiven.io/docs/platform/howto/restrict-access,External — network check required
 apps/mantrixflow-docs/connections/private-database-access.mdx,https://docs.digitalocean.com/products/databases/postgresql/how-to/secure/,External — network check required
 apps/mantrixflow-docs/connections/private-database-access.mdx,https://render.com/docs/databases,External — network check required
+apps/mantrixflow-docs/connections/sources/cms/strapi.mdx,https://docs.strapi.io/,External — network check required
 apps/mantrixflow-docs/connections/sources/crm/hubspot.mdx,/connections/destinations/postgresql,OK
+apps/mantrixflow-docs/connections/sources/crm/hubspot.mdx,/connections/destinations/airtable,OK
+apps/mantrixflow-docs/connections/sources/crm/hubspot.mdx,/example/pipelines/hubspot-to-postgres,OK
+apps/mantrixflow-docs/connections/sources/customer-support/zendesk.mdx,https://support.zendesk.com/hc/en-us/articles/4408845965210-Using-OAuth-authentication-with-your-application,External — network check required
+apps/mantrixflow-docs/connections/sources/customer-support/zendesk.mdx,https://developer.zendesk.com/documentation/marketplace/building-a-marketplace-app/set-up-a-global-oauth-client/,External — network check required
+apps/mantrixflow-docs/connections/sources/database/clickhouse.mdx,/connections/private-database-access,OK
+apps/mantrixflow-docs/connections/sources/database/clickhouse.mdx,/example/pipelines/clickhouse-and-mysql,OK
 apps/mantrixflow-docs/connections/sources/database/cockroachdb.mdx,/connections/sources/database/postgresql,OK
+apps/mantrixflow-docs/connections/sources/database/duckdb.mdx,/connections/destinations/duckdb,OK
 apps/mantrixflow-docs/connections/sources/database/mariadb.mdx,/connections/sources/database/postgresql,OK
-apps/mantrixflow-docs/connections/sources/database/mysql.mdx,/connections/sources/database/postgresql,OK
+apps/mantrixflow-docs/connections/sources/database/mongodb.mdx,/connections/private-database-access,OK
+apps/mantrixflow-docs/connections/sources/database/mongodb.mdx,/connections/destinations/mongodb,OK
+apps/mantrixflow-docs/connections/sources/database/mongodb.mdx,/example/pipelines/mongodb-and-postgresql,OK
+apps/mantrixflow-docs/connections/sources/database/mysql.mdx,/connections/private-database-access,OK
+apps/mantrixflow-docs/connections/sources/database/mysql.mdx,/pipelines/data-type-compatibility,OK
+apps/mantrixflow-docs/connections/sources/database/mysql.mdx,/connections/destinations/mysql,OK
+apps/mantrixflow-docs/connections/sources/database/mysql.mdx,/example/pipelines/airtable-and-mysql,OK
+apps/mantrixflow-docs/connections/sources/database/postgresql.mdx,/connections/private-database-access,OK
+apps/mantrixflow-docs/connections/sources/database/postgresql.mdx,/pipelines/data-type-compatibility,OK
+apps/mantrixflow-docs/connections/sources/database/postgresql.mdx,/example/pipelines/postgres-to-postgres,OK
+apps/mantrixflow-docs/connections/sources/database/postgresql.mdx,/example/pipelines/postgres-incremental,OK
 apps/mantrixflow-docs/connections/sources/database/sqlite.mdx,/connections/sources/database/postgresql,OK
 apps/mantrixflow-docs/connections/sources/developer-tools/github.mdx,/connections/overview,OK
 apps/mantrixflow-docs/connections/sources/ecommerce/shopify.mdx,/connections/overview,OK
-apps/mantrixflow-docs/connections/sources/finance/stripe.mdx,mailto:support@mantrixflow.com,External contact link — syntax only
-apps/mantrixflow-docs/connections/sources/productivity/notion.mdx,/connections/overview,OK
+apps/mantrixflow-docs/connections/sources/finance/stripe.mdx,/example/pipelines/stripe-to-postgres,OK
+apps/mantrixflow-docs/connections/sources/productivity/airtable.mdx,/example/pipelines/airtable-and-mysql,OK
+apps/mantrixflow-docs/connections/sources/productivity/airtable.mdx,/connections/destinations/airtable,OK
+apps/mantrixflow-docs/connections/sources/productivity/asana.mdx,https://app.asana.com/0/my-apps,External — network check required
+apps/mantrixflow-docs/connections/sources/productivity/asana.mdx,https://developers.asana.com/docs/authentication,External — network check required
+apps/mantrixflow-docs/connections/sources/productivity/asana.mdx,https://developers.asana.com/docs/rate-limits,External — network check required
+apps/mantrixflow-docs/connections/sources/productivity/asana.mdx,/example/pipelines/asana-to-destinations,OK
+apps/mantrixflow-docs/connections/sources/productivity/linear.mdx,https://linear.app/developers/graphql,External — network check required
+apps/mantrixflow-docs/connections/sources/productivity/linear.mdx,https://linear.app/docs/security-and-access,External — network check required
+apps/mantrixflow-docs/connections/sources/productivity/linear.mdx,https://linear.app/developers/pagination,External — network check required
+apps/mantrixflow-docs/connections/sources/productivity/linear.mdx,https://linear.app/developers/rate-limiting,External — network check required
+apps/mantrixflow-docs/connections/sources/productivity/notion.mdx,https://www.notion.so/my-integrations,External — network check required
+apps/mantrixflow-docs/connections/sources/productivity/notion.mdx,/pipelines/sync-modes,OK
+apps/mantrixflow-docs/connections/sources/productivity/notion.mdx,/sync-reference/incremental-sync,OK
+apps/mantrixflow-docs/example/pipelines/airtable-and-mysql.mdx,/connections/sources/productivity/airtable,OK
+apps/mantrixflow-docs/example/pipelines/airtable-and-mysql.mdx,/connections/destinations/airtable,OK
+apps/mantrixflow-docs/example/pipelines/airtable-and-mysql.mdx,/connections/sources/database/mysql,OK
+apps/mantrixflow-docs/example/pipelines/airtable-and-mysql.mdx,/connections/destinations/mysql,OK
+apps/mantrixflow-docs/example/pipelines/asana-to-destinations.mdx,/connections/sources/productivity/asana,OK
+apps/mantrixflow-docs/example/pipelines/clickhouse-and-mysql.mdx,/connections/sources/database/clickhouse,OK
+apps/mantrixflow-docs/example/pipelines/clickhouse-and-mysql.mdx,/connections/destinations/clickhouse,OK
+apps/mantrixflow-docs/example/pipelines/clickhouse-and-mysql.mdx,/connections/destinations/clickhouse,OK
+apps/mantrixflow-docs/example/pipelines/clickhouse-and-mysql.mdx,/connections/sources/database/clickhouse,OK
+apps/mantrixflow-docs/example/pipelines/clickhouse-and-mysql.mdx,/connections/destinations/clickhouse,OK
+apps/mantrixflow-docs/example/pipelines/clickhouse-and-mysql.mdx,/example/pipelines/postgres-incremental,OK
+apps/mantrixflow-docs/example/pipelines/hubspot-to-postgres.mdx,/connections/sources/crm/hubspot,OK
+apps/mantrixflow-docs/example/pipelines/mongodb-and-postgresql.mdx,/connections/sources/database/mongodb,OK
+apps/mantrixflow-docs/example/pipelines/mongodb-and-postgresql.mdx,/connections/destinations/mongodb,OK
+apps/mantrixflow-docs/example/pipelines/mongodb-and-postgresql.mdx,/connections/sources/database/mongodb,OK
+apps/mantrixflow-docs/example/pipelines/mongodb-and-postgresql.mdx,/connections/destinations/mongodb,OK
+apps/mantrixflow-docs/example/pipelines/stripe-to-postgres.mdx,/connections/sources/finance/stripe,OK
+apps/mantrixflow-docs/getting-started/faq.mdx,/connections/overview,OK
+apps/mantrixflow-docs/getting-started/faq.mdx,/troubleshooting,OK
 apps/mantrixflow-docs/getting-started/introduction.mdx,/getting-started/quick-start,OK
 apps/mantrixflow-docs/getting-started/introduction.mdx,/connections/sources/crm/hubspot,OK
+apps/mantrixflow-docs/getting-started/introduction.mdx,/example/pipelines/airtable-and-mysql,OK
+apps/mantrixflow-docs/getting-started/introduction.mdx,/example/pipelines/mongodb-and-postgresql,OK
 apps/mantrixflow-docs/index.mdx,/getting-started/quick-start,OK
 apps/mantrixflow-docs/index.mdx,/getting-started/core-concepts,OK
 apps/mantrixflow-docs/index.mdx,/connections/overview,OK
 apps/mantrixflow-docs/index.mdx,/pipelines/overview,OK
 apps/mantrixflow-docs/index.mdx,/example/pipelines/postgres-to-postgres,OK
-apps/mantrixflow-docs/pricing.mdx,https://cloud.mantrixflow.com,External — network check required
-apps/mantrixflow-docs/pricing.mdx,https://cloud.mantrixflow.com,External — network check required
-apps/mantrixflow-docs/pricing.mdx,https://cloud.mantrixflow.com,External — network check required
+apps/mantrixflow-docs/index.mdx,/example/pipelines/postgres-incremental,OK
+apps/mantrixflow-docs/index.mdx,/example/pipelines/stripe-to-postgres,OK
+apps/mantrixflow-docs/index.mdx,/example/pipelines/hubspot-to-postgres,OK
+apps/mantrixflow-docs/index.mdx,/example/pipelines/airtable-and-mysql,OK
+apps/mantrixflow-docs/index.mdx,/example/pipelines/asana-to-destinations,OK
+apps/mantrixflow-docs/index.mdx,/connections/sources/productivity/notion,OK
+apps/mantrixflow-docs/index.mdx,/connections/sources/productivity/linear,OK
+apps/mantrixflow-docs/index.mdx,/connections/sources/customer-support/zendesk,OK
+apps/mantrixflow-docs/index.mdx,/connections/sources/developer-tools/github,OK
+apps/mantrixflow-docs/index.mdx,/example/pipelines/mongodb-and-postgresql,OK
+apps/mantrixflow-docs/pipelines/transformation-rules.mdx,/pipelines/dbt-layer,OK
 apps/mantrixflow-docs/pricing.mdx,mailto:support@mantrixflow.com,External contact link — syntax only
 apps/mantrixflow-docs/pricing.mdx,/billing-breakdown,OK
-apps/mantrixflow-docs/pricing.mdx,https://cloud.mantrixflow.com,External — network check required
-apps/mantrixflow-docs/pricing.mdx,https://cloud.mantrixflow.com,External — network check required
-apps/mantrixflow-docs/pricing.mdx,https://cloud.mantrixflow.com,External — network check required
-apps/mantrixflow-docs/pricing.mdx,mailto:support@mantrixflow.com,External contact link — syntax only
 apps/mantrixflow-docs/sync-reference/cdc-overview.mdx,/sync-reference/full-sync,OK
 apps/mantrixflow-docs/sync-reference/cdc-overview.mdx,/sync-reference/incremental-sync,OK
 apps/mantrixflow-docs/sync-reference/cdc-postgresql.mdx,/sync-reference/incremental-sync,OK
+apps/mantrixflow-docs/troubleshooting/index.mdx,/connections/private-database-access,OK
+apps/mantrixflow-docs/troubleshooting/index.mdx,/pipelines/dbt-layer,OK
+apps/mantrixflow-docs/troubleshooting/index.mdx,/sync-reference/incremental-sync,OK
+apps/mantrixflow-docs/troubleshooting/index.mdx,/sync-reference/sync-state,OK
+apps/mantrixflow-docs/troubleshooting/index.mdx,mailto:support@mantrixflow.com,External contact link — syntax only
 apps/mantrixflow-docs/user-guide/connections.mdx,/connections/sources/crm/hubspot,OK
+apps/mantrixflow-docs/user-guide/connections.mdx,/connections/sources/finance/stripe,OK
+apps/mantrixflow-docs/user-guide/connections.mdx,/connections/sources/productivity/airtable,OK
+apps/mantrixflow-docs/user-guide/connections.mdx,/connections/sources/database/mysql,OK
+apps/mantrixflow-docs/user-guide/connections.mdx,/connections/sources/database/mongodb,OK
+apps/mantrixflow-docs/user-guide/connections.mdx,/connections/sources/productivity/asana,OK
+apps/mantrixflow-docs/user-guide/connections.mdx,/connections/sources/productivity/linear,OK
+apps/mantrixflow-docs/user-guide/connections.mdx,/connections/sources/productivity/notion,OK
+apps/mantrixflow-docs/user-guide/connections.mdx,/connections/sources/developer-tools/github,OK
+apps/mantrixflow-docs/user-guide/connections.mdx,/connections/destinations/mongodb,OK
+apps/mantrixflow-docs/user-guide/index.mdx,/user-guide/oria-copilot,OK
 apps/mantrixflow-docs/user-guide/index.mdx,/user-guide/connections,OK
 apps/mantrixflow-docs/user-guide/index.mdx,/user-guide/pipelines,OK
 apps/mantrixflow-docs/user-guide/index.mdx,/user-guide/transformations-and-branches,OK
@@ -122,6 +183,7 @@ apps/mantrixflow-docs/user-guide/index.mdx,/user-guide/activity-and-edge-cases,O
 apps/mantrixflow-docs/user-guide/organizations.mdx,/images/user-guide/ug-organization-create-form.png,OK
 apps/mantrixflow-docs/user-guide/organizations.mdx,/images/user-guide/ug-organization-switcher.png,OK
 apps/mantrixflow-docs/user-guide/organizations.mdx,/images/user-guide/ug-settings-organization.png,OK
+apps/mantrixflow-docs/user-guide/transformations-and-branches.mdx,/pipelines/dbt-layer,OK
 md-docs/README.md,./strict-elt-pipeline-guide.md,OK
 md-docs/README.md,./source-to-destination-elt-flow.md,OK
 md-docs/README.md,./analytics-page-implementation.md,OK
@@ -143,19 +205,42 @@ md-docs/README.md,./betterstack-setup.md,OK
 md-docs/README.md,./posthog-setup.md,OK
 md-docs/README.md,./posthog-full-integration.md,OK
 md-docs/README.md,./observability-deployment.md,OK
-md-docs/README.md,./hetzner-server-setup.md,OK
+md-docs/README.md,../apps/mantrixflow-infra/DEPLOYMENT.md,OK
 md-docs/README.md,./tigris-storage-setup.md,OK
 md-docs/README.md,./deployment-oracle-cloud.md,OK
 md-docs/README.md,./deployment-vercel.md,OK
 md-docs/README.md,./aws-ses-setup.md,OK
 md-docs/README.md,./slack-guide.md,OK
+md-docs/README.md,./zendesk-oauth-setup.md,OK
 md-docs/README.md,./agents/README.md,OK
+md-docs/README.md,./oria-adk-to-ai-sdk-migration.md,OK
+md-docs/README.md,./oria-agent-setup.md,OK
+md-docs/README.md,./oria-agent-testing-guide.md,OK
+md-docs/README.md,./oria-test-prompts-release1-read.md,OK
+md-docs/README.md,./oria-test-prompts-release2-action.md,OK
+md-docs/README.md,./oria-test-prompts-release3-automation.md,OK
+md-docs/README.md,./oria-test-prompts-release4-intelligence.md,OK
+md-docs/README.md,./oria-test-prompts-release5-enterprise.md,OK
+md-docs/README.md,./oria-test-prompts-release6-platform.md,OK
+md-docs/README.md,../apps/mantrixflow-docs/user-guide/oria-copilot.mdx,OK
+md-docs/README.md,./ai-copilot-phase-1.md,OK
 md-docs/README.md,./frontend-refactor-audit.md,OK
 md-docs/README.md,./pipeline-all-streams-chrome-e2e-report-2026-07-19.md,OK
 md-docs/README.md,./pipeline-new-layout-e2e-report-2026-07-18.md,OK
 md-docs/README.md,./testing-local.md,OK
 md-docs/README.md,./manual-testing/slack-pipeline-e2e.md,OK
 md-docs/README.md,./manual-testing/postgres-to-postgres-data-types-ui.md,OK
+md-docs/README.md,../docs/github-source-connector-audit.md,OK
+md-docs/README.md,../apps/mantrixflow-docs/connections/sources/developer-tools/github.mdx,OK
+md-docs/README.md,../apps/mantrixflow-docs/connections/sources/productivity/asana.mdx,OK
+md-docs/README.md,../apps/mantrixflow-docs/connections/sources/productivity/linear.mdx,OK
+md-docs/README.md,../apps/mantrixflow-docs/example/pipelines/asana-to-destinations.mdx,OK
+md-docs/README.md,../apps/mantrixflow-docs/connections/sources/productivity/airtable.mdx,OK
+md-docs/README.md,../apps/mantrixflow-docs/connections/destinations/airtable.mdx,OK
+md-docs/README.md,../apps/mantrixflow-docs/connections/sources/database/mysql.mdx,OK
+md-docs/README.md,../apps/mantrixflow-docs/connections/destinations/mysql.mdx,OK
+md-docs/README.md,../apps/mantrixflow-docs/example/pipelines/airtable-and-mysql.mdx,OK
+md-docs/README.md,../docs/airtable-source-destination-connector-audit.md,OK
 md-docs/README.md,./saas-sources-group2.md,OK
 md-docs/README.md,./stripe-connector-ai-prompts.md,OK
 md-docs/README.md,./hubspot-postgres-full-phase-plan.md,OK
@@ -167,6 +252,8 @@ md-docs/agents/README.md,./setup-guide.md,OK
 md-docs/agents/README.md,./model-providers.md,OK
 md-docs/agents/README.md,./how-it-works.md,OK
 md-docs/agents/setup-guide.md,./model-providers.md,OK
+md-docs/ai-copilot-phase-1.md,./oria-agent-setup.md,OK
+md-docs/ai-copilot-phase-1.md,./oria-adk-to-ai-sdk-migration.md,OK
 md-docs/autosend-dodo-supabase-production-runbook.md,./dodo-autosend-transformations.md,OK
 md-docs/autosend-dodo-supabase-production-runbook.md,./autosend-template-id-map.md,OK
 md-docs/autosend-dodo-supabase-production-runbook.md,https://docs.dodopayments.com/integrations/autosend,External — network check required
@@ -206,13 +293,14 @@ md-docs/deployment-oracle-cloud.md,https://docs.oracle.com/en-us/iaas/Content/Fr
 md-docs/deployment-oracle-cloud.md,https://www.oracle.com/cloud/free/,External — network check required
 md-docs/deployment-oracle-cloud.md,https://www.cloudflare.com/plans/free/,External — network check required
 md-docs/dodo-payments-flowchart.md,./billing-dodo-billingsdk.md,OK
+md-docs/frontend-architecture-audit-final.md,/...,Missing route
+md-docs/frontend-architecture-audit-final.md,/workspace,Missing route
+md-docs/frontend-fractal-architecture-report.md,/...,Missing route
 md-docs/github/README.md,backend-plan.md,OK
 md-docs/github/README.md,yaml-contract.md,OK
 md-docs/github/README.md,frontend-plan.md,OK
 md-docs/github/README.md,test-plan.md,OK
 md-docs/github/README.md,setup/github-app-setup.md,OK
-md-docs/hetzner-server-setup.md,./tigris-storage-setup.md,OK
-md-docs/hetzner-server-setup.md,./autosend-production-deployment-guide.md,OK
 md-docs/hubspot-postgres-full-phase-plan.md,https://dlthub.com/docs/dlt-ecosystem/verified-sources/hubspot,External — network check required
 md-docs/hubspot-postgres-full-phase-plan.md,https://dlthub.com/docs/general-usage/source,External — network check required
 md-docs/hubspot-postgres-full-phase-plan.md,https://docs.estuary.dev/reference/Connectors/capture-connectors/HubSpot-real-time/,External — network check required
@@ -285,6 +373,7 @@ md-docs/manual-testing/ui-testing/README.md,db/mysql-ui.md,OK
 md-docs/manual-testing/ui-testing/README.md,db/mariadb-ui.md,OK
 md-docs/manual-testing/ui-testing/README.md,db/sqlite-ui.md,OK
 md-docs/manual-testing/ui-testing/README.md,db/cockroachdb-ui.md,OK
+md-docs/observability-deployment.md,../apps/mantrixflow-infra/DEPLOYMENT.md,OK
 md-docs/observability-deployment.md,./betterstack-setup.md,OK
 md-docs/observability-deployment.md,./posthog-setup.md,OK
 md-docs/observability-deployment.md,../apps/mantrixflow-infra/DEPLOYMENT.md,OK
@@ -297,6 +386,23 @@ md-docs/observability-deployment.md,./betterstack-setup.md,OK
 md-docs/observability-deployment.md,./posthog-setup.md,OK
 md-docs/observability-deployment.md,./deployment-vercel.md,OK
 md-docs/observability-deployment.md,../apps/mantrixflow-infra/DEPLOYMENT.md,OK
+md-docs/observability-deployment.md,../apps/mantrixflow-infra/DEPLOYMENT.md,OK
+md-docs/oria-adk-to-ai-sdk-migration.md,./oria-agent-setup.md,OK
+md-docs/oria-adk-to-ai-sdk-migration.md,./oria-browser-ui-test-log.md,OK
+md-docs/oria-adk-to-ai-sdk-migration.md,./oria-agent-testing-guide.md,OK
+md-docs/oria-agent-setup.md,./oria-adk-to-ai-sdk-migration.md,OK
+md-docs/oria-agent-testing-guide.md,./oria-test-prompts-release1-read.md,OK
+md-docs/oria-agent-testing-guide.md,./oria-test-prompts-release2-action.md,OK
+md-docs/oria-agent-testing-guide.md,./oria-test-prompts-release3-automation.md,OK
+md-docs/oria-agent-testing-guide.md,./oria-test-prompts-release4-intelligence.md,OK
+md-docs/oria-agent-testing-guide.md,./oria-test-prompts-release5-enterprise.md,OK
+md-docs/oria-agent-testing-guide.md,./oria-test-prompts-release6-platform.md,OK
+md-docs/oria-agent-testing-guide.md,./oria-agent-setup.md,OK
+md-docs/oria-agent-testing-guide.md,./oria-agent-setup.md,OK
+md-docs/oria-agent-testing-guide.md,./oria-adk-to-ai-sdk-migration.md,OK
+md-docs/oria-agent-testing-guide.md,./oria-browser-ui-test-log.md,OK
+md-docs/oria-browser-ui-test-log.md,./oria-test-prompts-release1-read.md,OK
+md-docs/oria-test-prompts-release1-read.md,./oria-agent-setup.md,OK
 md-docs/pipeline-all-streams-chrome-e2e-report-2026-07-19.md,https://github.com/dabhivijay2478/mantrixflow-git-testing/pull/3,External — network check required
 md-docs/posthog-betterstack-setup.md,./betterstack-setup.md,OK
 md-docs/posthog-betterstack-setup.md,./posthog-setup.md,OK
@@ -306,13 +412,13 @@ md-docs/posthog-full-integration.md,./posthog-setup.md,OK
 md-docs/posthog-full-integration.md,./betterstack-setup.md,OK
 md-docs/posthog-full-integration.md,./observability-deployment.md,OK
 md-docs/posthog-full-integration.md,../apps/app/lib/posthog/events.ts,OK
-md-docs/posthog-full-integration.md,../apps/app/components/providers/posthog-identify.tsx,OK
-md-docs/posthog-full-integration.md,../apps/server/main-server/internal/observability/,OK
+md-docs/posthog-full-integration.md,../apps/app/shared/providers/posthog-identify.tsx,OK
+md-docs/posthog-full-integration.md,../apps/server/main-server/internal/observability/posthog.go,OK
 md-docs/posthog-full-integration.md,../apps/server/main-server/internal/server/incident_webhook.go,OK
 md-docs/posthog-full-integration.md,../apps/app/hooks/use-feature-flag.ts,OK
 md-docs/posthog-full-integration.md,../apps/app/lib/posthog/client.ts,OK
+md-docs/posthog-full-integration.md,../apps/mantrixflow-infra/DEPLOYMENT.md,OK
 md-docs/posthog-full-integration.md,./observability-deployment.md,OK
-md-docs/posthog-full-integration.md,../apps/mantrixflow-infra/cdk/lib/config.ts,Missing local target
 md-docs/posthog-full-integration.md,./posthog-setup.md,OK
 md-docs/posthog-setup.md,https://us.posthog.com,External — network check required
 md-docs/posthog-setup.md,./observability-deployment.md,OK
@@ -343,4 +449,9 @@ md-docs/supabase-auth-email-templates.md,mailto:support@mantrixflow.com,External
 md-docs/supabase-auth-email-templates.md,mailto:support@mantrixflow.com,External contact link — syntax only
 md-docs/supabase-auth-email-templates.md,mailto:support@mantrixflow.com,External contact link — syntax only
 md-docs/testing-local.md,./source-to-destination-elt-flow.md,OK
-md-docs/tigris-storage-setup.md,https://www.tigrisdata.com/,External — network check required
+md-docs/tigris-storage-setup.md,../apps/mantrixflow-infra/backup/README.md,OK
+md-docs/zendesk-oauth-setup.md,https://developer.zendesk.com/documentation/authentication/oauth-migration/,External — network check required
+md-docs/zendesk-oauth-setup.md,https://developer.zendesk.com/documentation/marketplace/building-a-marketplace-app/set-up-a-global-oauth-client/,External — network check required
+md-docs/zendesk-oauth-setup.md,https://developer.zendesk.com/api-reference/ticketing/oauth/oauth_tokens/#scopes,External — network check required
+md-docs/zendesk-oauth-setup.md,https://developer.zendesk.com/api-reference/ticketing/introduction/,External — network check required
+md-docs/zendesk-oauth-setup.md,https://developer.zendesk.com/api-reference/live-chat/chat-conversations-api/conversations-api/,External — network check required

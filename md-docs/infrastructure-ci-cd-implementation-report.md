@@ -17,9 +17,9 @@
 
 ## 2. Modified
 
-- Replaced the shared Hetzner/rootless-Docker simulation path with an on-demand
+- Replaced the retired shared-host/rootless-Docker simulation path with an on-demand
   OVH outer-host lifecycle and Microsandbox microVM manager.
-- Normalized immutable GHCR `sha-...` CI/CD and independent Dokploy deployments
+- Normalized immutable GHCR `sha-...` CI/CD and independent self-hosted Dokploy deployments
   for Go, ELT, and the simulation manager.
 - Added `MAX_ELT_CONCURRENCY` while retaining the legacy Python setting alias.
 - Added public liveness/readiness endpoints and container probes.
@@ -38,7 +38,7 @@
   checkpoints, and simulations, with a GORM/PostgreSQL implementation.
 - Future-only PostgreSQL 17 + PGMQ, PgBouncer, WAL-G/Tigris, backup timer,
   guarded restore tool, and migration runbooks. These are not activated.
-- OVH host bootstrap scripts, private-network/WireGuard template, Dokploy
+- OVH host bootstrap scripts, private-network/WireGuard template, self-hosted Dokploy
   configuration, rollback, and deployment-independence documentation.
 
 ## 4. Go ownership
@@ -57,7 +57,7 @@ Production and simulation use the same engine with different endpoints.
 
 ## 6. Infrastructure ownership
 
-Infrastructure defines separate OVH/Dokploy targets, private networking,
+Infrastructure defines separate OVHcloud/self-hosted Dokploy targets, private networking,
 firewalls, Compose deployment units, future database/PgBouncer preparation,
 backup/restore operations, and secrets placement. The Go manager—not static
 IaC—owns dynamic simulation instances.
@@ -83,6 +83,9 @@ credentials.
 - Generated protobuf sources remain canonical in the Go repository; the Python
   repository checks generated modules but cross-repository generation must be
   coordinated when the contract changes.
+- OVHcloud is the only backend infrastructure provider. Self-hosted Dokploy manages
+  persistent VPS applications; dynamic Public Cloud simulation hosts remain
+  outside Dokploy and are reconciled directly through the OVHcloud API.
 
 ## Acceptance mapping
 
