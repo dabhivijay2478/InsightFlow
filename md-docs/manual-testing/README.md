@@ -48,7 +48,7 @@ manual-testing/
 | Go API | `http://localhost:5000` |
 | Python ELT server | `http://localhost:8000` |
 
-Start all three before any manual test. See [`testing-local.md`](../testing-local.md) for start commands.
+Start all three before any manual test. See [`testing-local.md`](../testing/local-development.md) for start commands.
 
 ---
 

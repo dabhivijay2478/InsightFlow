@@ -1,143 +1,125 @@
-# md-docs
+# MantrixFlow documentation
 
-Repository-level notes that are **broader than a single app**. Each guide has
-one job; read them in order when onboarding.
+This directory is the single home for maintained engineering guides, runbooks,
+architecture notes, audits, and test reports. Documentation is grouped by
+subject so service repositories do not grow their own competing `docs/` trees.
 
-## ELT product — start here
+## Directory map
 
-1. [`strict-elt-pipeline-guide.md`](./strict-elt-pipeline-guide.md) —
-   authoritative step-by-step guide: `schema.table` contract, 5-phase flow,
-   UI walkthrough, run-status drawer, 12 invariants, manual verification.
-2. [`source-to-destination-elt-flow.md`](./source-to-destination-elt-flow.md)
-   — deeper reference for the saved graph contract, normalisation rules,
-   and cross-service payload shapes.
-3. [`analytics-page-implementation.md`](./analytics-page-implementation.md) —
-   repo-aligned implementation spec for the workspace Analytics page and its
-   org-scoped analytics APIs.
+```text
+md-docs/
+├── architecture/     System, ELT, frontend, and simulation design
+├── infrastructure/   OVH, Terraform, networking, storage, CI/CD, and database plans
+├── deployment/       Current service runbooks plus isolated legacy guides
+├── operations/       Observability and production operations
+├── integrations/     Billing, connectors, email, and provider setup
+├── ai/               Oria and Agent Grid implementation guides
+├── audits/           Connector, frontend, product, and legal reviews
+├── testing/          Local test guides and test reports
+├── manual-testing/   Detailed connector and pipeline verification matrices
+├── agents/           Custom Agent Builder documentation
+├── github/           GitHub integration contracts and plans
+└── content-audit/     Documentation inventory and generated audit evidence
+```
 
-The 12 non-negotiable invariants are enforced directly in
-[`.cursor/rules/strict-elt-invariants.mdc`](../.cursor/rules/strict-elt-invariants.mdc),
-and the ASCII flow diagram lives in
-[`.cursor/rules/elt-flow-diagram.mdc`](../.cursor/rules/elt-flow-diagram.mdc).
+Component `README.md` files remain beside their code as short entry points.
+Generated Swagger files remain in `apps/server/main-server/docs/` because that
+directory is a generated Go package imported by the server. Customer-facing
+MDX remains in `apps/mantrixflow-docs/`, and code-owned templates, migrations,
+skills, and test fixtures remain beside their consumers.
 
-## Billing
+## Start here
 
-- [`billing-dodo-billingsdk.md`](./billing-dodo-billingsdk.md) — current billing architecture: Dodo hosted checkout for paid purchases/upgrades, scheduled downgrades, Dodo portal for payment/receipts, and BillingSDK-style settings UI.
-- [`dodo-payments-setup.md`](./dodo-payments-setup.md) — Dodo product IDs, checkout, webhooks, environment variables, and troubleshooting.
-- [`dodo-payments-flowchart.md`](./dodo-payments-flowchart.md) — **Mermaid flow charts:** app → Go API → Dodo hosted checkout, portal, invoices, and webhook reconciliation.
+| Subject | Primary document |
+| --- | --- |
+| New OVH architecture setup | [OVH, Dokploy, and Microsandbox setup](./infrastructure/setup/ovh-dokploy-microsandbox.md) |
+| Production deployment | [OVH and Microsandbox runbook](./deployment/infrastructure/ovh-microsandbox-runbook.md) |
+| GitHub environments | [GitHub Actions environment matrix](./infrastructure/ci-cd/github-actions.md) |
+| Production architecture | [Production architecture](./infrastructure/architecture/production-architecture.md) |
+| Simulation platform | [Microsandbox platform](./architecture/simulation/platform.md) |
+| Strict ELT | [Strict ELT pipeline guide](./architecture/elt/strict-pipeline-guide.md) |
+| Local verification | [Local development and testing](./testing/local-development.md) |
 
-## Email
+## Infrastructure and deployment
 
-- [`autosend-email-system-plan.md`](./autosend-email-system-plan.md) - AutoSend architecture, Supabase SMTP setup, backend API setup, Dodo integration setup, and duplicate-prevention rules.
-- [`autosend-email-catalog.md`](./autosend-email-catalog.md) - Owner-by-owner email catalog for Supabase Auth, Go backend, and Dodo Payments.
-- [`autosend-template-copy.md`](./autosend-template-copy.md) - Subject lines, preview text, CTA labels, and body copy for every AutoSend template.
-- [`autosend-template-design-guide.md`](./autosend-template-design-guide.md) - Responsive MantrixFlow email layout rules and base shell.
-- [`autosend-template-id-map.md`](./autosend-template-id-map.md) - AutoSend-created template IDs and env mapping.
-- [`dodo-autosend-transformations.md`](./dodo-autosend-transformations.md) - Dodo to AutoSend JavaScript transformation examples.
-- [`autosend-dodo-supabase-production-runbook.md`](./autosend-dodo-supabase-production-runbook.md) - Production setup, Dodo integration steps, Supabase SMTP timeout troubleshooting, and rollout checklist.
-- [`autosend-production-deployment-guide.md`](./autosend-production-deployment-guide.md) - Production deployment checklist and exact env/dashboard values for AutoSend, Supabase, backend, Dodo, and frontend.
-- [`supabase-auth-email-templates.md`](./supabase-auth-email-templates.md) - Paste-ready Supabase Auth HTML templates for confirmation, invite, magic link, email change, password reset, and reauthentication.
+- [OVH, Dokploy, and Microsandbox setup](./infrastructure/setup/ovh-dokploy-microsandbox.md)
+- [OVH and Microsandbox deployment runbook](./deployment/infrastructure/ovh-microsandbox-runbook.md)
+- [Go API and simulation-manager deployment](./deployment/services/go-api-simulation-manager.md)
+- [Python ELT and simulation-runtime deployment](./deployment/services/python-elt-simulation-runtime.md)
+- [GitHub Actions environments](./infrastructure/ci-cd/github-actions.md)
+- [Deployment independence](./infrastructure/ci-cd/deployment-independence.md)
+- [Private networking](./infrastructure/networking/private-network.md)
+- [Dokploy operations](./infrastructure/operations/dokploy.md)
+- [Backup and restore](./infrastructure/operations/backup-restore.md)
+- [Tigris storage](./infrastructure/storage/tigris.md)
+- [Supabase transition plan](./infrastructure/database/supabase-transition.md)
+- [Supabase RLS guide](./infrastructure/database/supabase-rls-guide.md)
 
-## Observability (three separate guides)
+Frontend deployment remains separate under
+[deployment/frontend](./deployment/frontend/). Superseded provider material is
+isolated under [deployment/legacy](./deployment/legacy/); it is not the current
+backend architecture.
 
-Read in this order:
+## Architecture
 
-| Order | Doc | What you do there |
-| --- | --- | --- |
-| 1 | [`betterstack-setup.md`](./betterstack-setup.md) | Better Stack UI: monitors, status page, domain, API IDs |
-| 2 | [`posthog-setup.md`](./posthog-setup.md) | PostHog UI: project key, error tracking, optional webhook |
-| 3 | [`posthog-full-integration.md`](./posthog-full-integration.md) | Architecture, events catalog, quotas, flags, surveys, troubleshooting |
-| 4 | [`observability-deployment.md`](./observability-deployment.md) | AWS SSM + Vercel env + ECS redeploy + smoke tests |
+- [Strict ELT pipeline guide](./architecture/elt/strict-pipeline-guide.md)
+- [Source-to-destination ELT flow](./architecture/elt/source-to-destination-flow.md)
+- [Simulation platform](./architecture/simulation/platform.md)
+- [Simulation implementation report](./architecture/simulation/implementation-report.md)
+- [Analytics page implementation](./architecture/frontend/analytics-page-implementation.md)
 
-Legacy filenames redirect to the above (`betterstack-status-page-creation.md`, `posthog-betterstack-setup.md`).
+The non-negotiable ELT invariants remain executable repository rules in
+[strict-elt-invariants.mdc](../.cursor/rules/strict-elt-invariants.mdc) and
+[elt-flow-diagram.mdc](../.cursor/rules/elt-flow-diagram.mdc).
 
-## Deployment
+## Operations
 
-- [`../apps/mantrixflow-infra/DEPLOYMENT.md`](../apps/mantrixflow-infra/DEPLOYMENT.md) —
-  current OVHcloud Terraform and self-hosted Dokploy deployment runbook.
-- [`../apps/mantrixflow-infra/docs/setup-guide.md`](../apps/mantrixflow-infra/docs/setup-guide.md) —
-  one-time OVH VPS, Public Cloud, WireGuard, Dokploy, Microsandbox, Supabase
-  simulation schema, and canary setup.
-- [`../apps/mantrixflow-infra/docs/github-actions.md`](../apps/mantrixflow-infra/docs/github-actions.md) —
-  exact repository/environment variable and secret-name matrix plus the live
-  read-only GitHub configuration check.
-- [`tigris-storage-setup.md`](./tigris-storage-setup.md) — Tigris setup for
-  simulation artifacts and future PostgreSQL WAL-G backups.
-- [`deployment-oracle-cloud.md`](./deployment-oracle-cloud.md) — Complete
-  Oracle Cloud two-VM Terraform, GitHub Actions, OCI Run Command, deployment,
-  verification, rollback, and recovery guide.
-- [`deployment-vercel.md`](./deployment-vercel.md) — Vercel frontend.
-- [`aws-ses-setup.md`](./aws-ses-setup.md) — AWS SES email.
+- [Better Stack setup](./operations/observability/betterstack-setup.md)
+- [PostHog setup](./operations/observability/posthog-setup.md)
+- [PostHog integration reference](./operations/observability/posthog-full-integration.md)
+- [Observability deployment](./operations/observability/deployment.md)
 
 ## Integrations
 
-- [`slack-guide.md`](./slack-guide.md) — **Single** Slack guide: local ngrok
-  setup, Slack Dashboard URLs, OAuth and Marketplace install, App Home,
-  commands, events, copyable manifest, native builder behavior, review
-  checklist, and troubleshooting.
-- [`zendesk-oauth-setup.md`](./zendesk-oauth-setup.md) — Zendesk Support
-  OAuth-only connector setup, local/global client requirements, callback URL,
-  scopes, migration behavior, and verification.
+- [Billing documentation](./integrations/billing/)
+- [Connector guides and plans](./integrations/connectors/)
+- [Email and AutoSend documentation](./integrations/email/)
+- [GitHub integration documentation](./github/)
 
-## Agents
+Implementation and release reviews for connectors are kept separately under
+[audits/connectors](./audits/connectors/) so setup guides are not confused with
+point-in-time audit evidence.
 
-- [`agents/README.md`](./agents/README.md) - Custom Agent Builder docs: flow charts, different workflows, setup guide, and how the embedded data Q&A agent works.
-- [`oria-adk-to-ai-sdk-migration.md`](./oria-adk-to-ai-sdk-migration.md) - ADK → Vercel AI SDK migration report (architecture, removed files, test status).
-- [`oria-agent-setup.md`](./oria-agent-setup.md) - Private Oria runtime setup: Next.js OpenRouter + Go tools/persistence, env vars, verification.
-- [`oria-agent-testing-guide.md`](./oria-agent-testing-guide.md) - Master index for six release test corpora (~5,100 prompts, all 73 agents).
-- [`oria-test-prompts-release1-read.md`](./oria-test-prompts-release1-read.md) - Release 1 read specialists + Oria root (850 prompts).
-- [`oria-test-prompts-release2-action.md`](./oria-test-prompts-release2-action.md) - Release 2 action specialists: pipeline build, connections, transforms, runs (881 prompts).
-- [`oria-test-prompts-release3-automation.md`](./oria-test-prompts-release3-automation.md) - Release 3 automation specialists (852 prompts).
-- [`oria-test-prompts-release4-intelligence.md`](./oria-test-prompts-release4-intelligence.md) - Release 4 intelligence specialists (852 prompts).
-- [`oria-test-prompts-release5-enterprise.md`](./oria-test-prompts-release5-enterprise.md) - Release 5 enterprise specialists (861 prompts).
-- [`oria-test-prompts-release6-platform.md`](./oria-test-prompts-release6-platform.md) - Release 6 platform specialists (852 prompts).
-- [`../apps/mantrixflow-docs/user-guide/oria-copilot.mdx`](../apps/mantrixflow-docs/user-guide/oria-copilot.mdx) - Public Oria Copilot guide covering navigation, context, example questions, history, safety boundaries, and troubleshooting without exposing internal capability names.
-- [`ai-copilot-phase-1.md`](./ai-copilot-phase-1.md) - Workspace Copilot Release 1 architecture, provider setup, 12-agent/tool registries, redaction, persistence, and testing.
+## AI and agents
+
+- [Oria documentation](./ai/oria/)
+- [Agent Grid documentation](./ai/agent-grid/)
+- [Custom Agent Builder index](./agents/README.md)
+
+## Audits and reports
+
+- [Connector audits](./audits/connectors/)
+- [Frontend audits](./audits/frontend/)
+- [Product audits](./audits/product/)
+- [Legal reviews](./audits/legal/)
+- [Infrastructure implementation reports](./infrastructure/reports/)
+- [Test reports](./testing/reports/)
+- [Content audit](./content-audit/)
 
 ## Testing
 
-- [`frontend-refactor-audit.md`](./frontend-refactor-audit.md) — complete
-  frontend size/duplication audit, target architecture, safety baseline, and
-  incremental feature-by-feature refactoring plan.
-- [`pipeline-all-streams-chrome-e2e-report-2026-07-19.md`](./pipeline-all-streams-chrome-e2e-report-2026-07-19.md)
-  — final live-Chrome all-streams PostgreSQL, HubSpot, and Stripe pipeline report,
-  including Neon cleanup, GitHub/YAML round trip, fixes, and destination evidence.
-- [`pipeline-new-layout-e2e-report-2026-07-18.md`](./pipeline-new-layout-e2e-report-2026-07-18.md)
-  — previous API-focused report with historical Chrome/GitHub blockers.
-- [`testing-local.md`](./testing-local.md) — manual UI testing guide,
-  connector-by-connector checklists, and final-target verification for the
-  local ELT stack.
-- [`manual-testing/slack-pipeline-e2e.md`](./manual-testing/slack-pipeline-e2e.md)
-  — Slack-native pipeline creation test using Neon source and RDS Postgres
-  destination, including strict destination table setup.
-- [`manual-testing/postgres-to-postgres-data-types-ui.md`](./manual-testing/postgres-to-postgres-data-types-ui.md)
-  — live PostgreSQL source to PostgreSQL destination UI test covering schema
-  setup, wide data types, dbt SQL, full-table sync, and incremental upsert.
+- [Local development and testing](./testing/local-development.md)
+- [General test cases](./testing/test-cases.md)
+- [Frontend testing documentation](./testing/frontend/README.md)
+- [Manual testing library](./manual-testing/README.md)
+- [Pipeline E2E reports](./testing/reports/)
 
-## Connectors
+## Documentation rules
 
-- [`../docs/github-source-connector-audit.md`](../docs/github-source-connector-audit.md) — enabled GitHub Available Now source audit: verified dlt boundary, MantrixFlow REST extensions, PAT security, resource contract, pagination/rate-limit hardening, tests, and remaining live-E2E release gates.
-- [`../apps/mantrixflow-docs/connections/sources/developer-tools/github.mdx`](../apps/mantrixflow-docs/connections/sources/developer-tools/github.mdx) — public GitHub Available Now source guide: PAT setup, 12 discoverable resources, staging relations, pagination and rate-limit behavior, security, and limitations.
-- [`../apps/mantrixflow-docs/connections/sources/productivity/asana.mdx`](../apps/mantrixflow-docs/connections/sources/productivity/asana.mdx) — public Asana source guide: PAT setup, workspace/project scope, eight streams, task incremental mode, staging relations, verification, and limitations.
-- [`../apps/mantrixflow-docs/connections/sources/productivity/linear.mdx`](../apps/mantrixflow-docs/connections/sources/productivity/linear.mdx) — public Linear Available Now source guide: Personal API Key setup, team/project scope, eight resources, `updatedAt` incremental mode, staging relations, verification, and limitations.
-- [`../apps/mantrixflow-docs/example/pipelines/asana-to-destinations.mdx`](../apps/mantrixflow-docs/example/pipelines/asana-to-destinations.mdx) — all-stream Asana setup for PostgreSQL, MySQL, and Airtable destinations.
-- [`../apps/mantrixflow-docs/connections/sources/productivity/airtable.mdx`](../apps/mantrixflow-docs/connections/sources/productivity/airtable.mdx) — public Airtable source guide: Personal Access Token scopes, base/table discovery, stable staging names, Full Table behavior, and troubleshooting.
-- [`../apps/mantrixflow-docs/connections/destinations/airtable.mdx`](../apps/mantrixflow-docs/connections/destinations/airtable.mdx) — public Airtable destination guide: existing-table contract, writable field mapping, merge keys, Upsert behavior, verification, and errors.
-- [`../apps/mantrixflow-docs/connections/sources/database/mysql.mdx`](../apps/mantrixflow-docs/connections/sources/database/mysql.mdx) — public MySQL source guide: least-privilege grants, discovery, Full Table and Incremental modes, types, and verification.
-- [`../apps/mantrixflow-docs/connections/destinations/mysql.mdx`](../apps/mantrixflow-docs/connections/destinations/mysql.mdx) — public MySQL destination guide: destination DDL, writer grants, Upsert contract, verification queries, and troubleshooting.
-- [`../apps/mantrixflow-docs/example/pipelines/airtable-and-mysql.mdx`](../apps/mantrixflow-docs/example/pipelines/airtable-and-mysql.mdx) — end-to-end Airtable → MySQL, MySQL → Airtable, and Airtable → Airtable setup and run guide.
-- [`../docs/airtable-source-destination-connector-audit.md`](../docs/airtable-source-destination-connector-audit.md) — implementation and live-Chrome verification audit for the Airtable bidirectional connector and seven-route matrix.
-- [`saas-sources-group2.md`](./saas-sources-group2.md) — detailed SaaS
-  source implementation guide (dlt verified sources: HubSpot, Stripe, …).
-- [`stripe-connector-ai-prompts.md`](./stripe-connector-ai-prompts.md) —
-  AI prompt/reference pack for designing or extending the Stripe source
-  connector.
-- [`hubspot-postgres-full-phase-plan.md`](./hubspot-postgres-full-phase-plan.md) —
-  implemented production architecture for the HubSpot source to existing PostgreSQL
-  destination flow across registration, discovery, preflight, dlt/DuckDB,
-  UI SQL/dbt, delivery, checkpoints, AI safety, testing, and release gates.
-- [`salesforce-postgres-setup.md`](./salesforce-postgres-setup.md) —
-  Salesforce source to PostgreSQL destination setup guide, including OAuth,
-  dynamic discovery, Bulk API, CDC streamer, and destination table contract.
-- [`salesforce-postgres-testing-guide.md`](./salesforce-postgres-testing-guide.md)
-  — Salesforce to PostgreSQL automated and manual testing guide.
+1. Put new standalone engineering documentation in the closest category here.
+2. Keep a component `README.md` short and link to the canonical guide here.
+3. Do not create another repository-level `docs/` directory.
+4. Keep public customer documentation in `apps/mantrixflow-docs/`.
+5. Keep generated documentation and code-owned Markdown beside the generator or
+   runtime that consumes it.
+6. Use kebab-case filenames and update this index when adding a new category.

@@ -17,7 +17,7 @@ Use when a table in `apps/server/main-server/internal/models/` changes or a new 
    - `custom` when org access comes from joins or nullable ownership columns
    - `no_client_access` for secret-bearing tables such as `data_source_connections`
 3. Update `apps/server/main-server/sql/supabase_rls.sql` directly.
-4. Read `apps/server/main-server/docs/RLS_GUIDE.md` and keep the new table aligned with its checklist.
+4. Read `md-docs/infrastructure/database/supabase-rls-guide.md` and keep the new table aligned with its checklist.
 5. For local application, use `APPLY_SUPABASE_RLS_ONCE=true` when starting the Go API. The server applies the SQL through GORM and records the checksum as a comment on `public.app_user_org_id()`.
 6. If a new ownership pattern was introduced, update the **Schema map** section below so later work does not rediscover it.
 
@@ -31,7 +31,7 @@ Use when a table in `apps/server/main-server/internal/models/` changes or a new 
 
 ## References
 
-- `apps/server/main-server/docs/RLS_GUIDE.md` — maintenance checklist and local apply flow.
+- `md-docs/infrastructure/database/supabase-rls-guide.md` — maintenance checklist and local apply flow.
 - The file applied to Supabase is `apps/server/main-server/sql/supabase_rls.sql`.
 
 ## Schema map (current public tables)

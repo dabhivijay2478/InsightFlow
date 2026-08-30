@@ -10,15 +10,15 @@ The backend uses independent OVHcloud targets managed by self-hosted Dokploy:
 | Future PostgreSQL and PgBouncer | Separate OVHcloud VPS-2 | Prepared; Supabase remains active |
 | Microsandbox | On-demand OVHcloud Public Cloud host | Private, temporary simulation compute |
 
-Use [`apps/mantrixflow-infra/DEPLOYMENT.md`](../mantrixflow-infra/DEPLOYMENT.md)
+Use the [OVH and Microsandbox deployment runbook](../../md-docs/deployment/infrastructure/ovh-microsandbox-runbook.md)
 for production operations. Self-hosted Dokploy runs on its own VPS and manages
 the other servers over dedicated SSH. Go, ELT, and future database deployments
 are independent, and production ELT never runs inside Microsandbox.
 
 First-time infrastructure, private routing, dynamic-host trust, and protected
 GitHub setup are documented in
-[`apps/mantrixflow-infra/docs/setup-guide.md`](../mantrixflow-infra/docs/setup-guide.md)
-and [`apps/mantrixflow-infra/docs/github-actions.md`](../mantrixflow-infra/docs/github-actions.md).
+the [infrastructure setup guide](../../md-docs/infrastructure/setup/ovh-dokploy-microsandbox.md)
+and [GitHub Actions guide](../../md-docs/infrastructure/ci-cd/github-actions.md).
 
 ## Local development
 

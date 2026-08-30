@@ -31,7 +31,7 @@ Pipeline work under `apps/server/elt-server/**`, `apps/server/main-server/**`, o
 - [`.cursor/rules/strict-elt-invariants.mdc`](./strict-elt-invariants.mdc) — 12 invariants
 - [`.cursor/rules/elt-flow-diagram.mdc`](./elt-flow-diagram.mdc) — 5-phase flow
 
-Human-readable narrative: [`md-docs/strict-elt-pipeline-guide.md`](../../md-docs/strict-elt-pipeline-guide.md).
+Human-readable narrative: [`md-docs/architecture/elt/strict-pipeline-guide.md`](../../md-docs/architecture/elt/strict-pipeline-guide.md).
 
 **Hard-fail patterns:** `CREATE TABLE` on delivery paths; `selected_streams` as plain string lists; `sql_models` missing `dest_table` / `duckdb_source_table`; legacy replication or processing paths (`cleanup.py`, `transform_script`, old replication branches, old processing drawers).
 

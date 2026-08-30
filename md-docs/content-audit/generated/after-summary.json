@@ -1,26 +1,26 @@
 {
-  "generatedAt": "2026-08-30T11:15:29.007Z",
-  "files": 476,
+  "generatedAt": "2026-08-30T11:43:17.016Z",
+  "files": 530,
   "bySurface": {
     "website": 93,
     "application": 151,
     "documentation": 72,
-    "internal_reference": 160
+    "internal_reference": 214
   },
   "routes": 109,
   "layouts": 6,
   "contentComponents": 83,
   "dialogs": 1,
   "tooltips": 1,
-  "articles": 231,
-  "exactDuplicateBlocks": 63,
-  "links": 458,
+  "articles": 285,
+  "exactDuplicateBlocks": 64,
+  "links": 530,
   "questionableLinks": 3,
-  "externalLinksRequiringNetworkCheck": 76,
+  "externalLinksRequiringNetworkCheck": 94,
   "actions": {
-    "ARCHIVE": 14,
-    "KEEP AND IMPROVE": 335,
-    "MOVE TO ADVANCED SECTION": 113,
+    "ARCHIVE": 11,
+    "KEEP AND IMPROVE": 385,
+    "MOVE TO ADVANCED SECTION": 120,
     "REQUIRES PRODUCT CONFIRMATION": 12,
     "SHORTEN": 2
   }

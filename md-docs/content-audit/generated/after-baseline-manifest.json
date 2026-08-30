@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-30T11:15:29.007Z",
+  "generatedAt": "2026-08-30T11:43:17.016Z",
   "files": [
     {
       "surface": "website",
@@ -2531,43 +2531,11 @@
     },
     {
       "surface": "internal_reference",
-      "location": "md-docs/AGENT_GRID_IMPLEMENTATION.md",
-      "bytes": 4078,
-      "words": 521,
-      "lines": 130,
-      "sha256": "4fca8a0e64c0a6b9e22afee44bf0cc870ddd6fb3f007612c634d60eee87f3ca7"
-    },
-    {
-      "surface": "internal_reference",
-      "location": "md-docs/AGENT_GRID_QUICK_START.md",
-      "bytes": 5373,
-      "words": 830,
-      "lines": 217,
-      "sha256": "ad6b4a35cdcb98186c8c76d3cdbf821bc9d7a6b0e98fd1bc6e90eb035c7a4538"
-    },
-    {
-      "surface": "internal_reference",
-      "location": "md-docs/AGENT_GRID_UI_GUIDE.md",
-      "bytes": 12473,
-      "words": 912,
-      "lines": 281,
-      "sha256": "5be3bc8c0a17c57b6f3f43bd637113b0247e702851abffdb4b85eec47609506b"
-    },
-    {
-      "surface": "internal_reference",
       "location": "md-docs/README.md",
-      "bytes": 12716,
-      "words": 1098,
-      "lines": 144,
-      "sha256": "6785513af1ef402395628a13ca9ad31f11d6f0690b40a4f88194cd4bd3a9bc83"
-    },
-    {
-      "surface": "internal_reference",
-      "location": "md-docs/VERCEL_DEPLOYMENT.md",
-      "bytes": 1124,
-      "words": 114,
-      "lines": 32,
-      "sha256": "beef5105fab4854c40595a3f559771f1463e9024909d88417d1bdfa11a33d133"
+      "bytes": 6195,
+      "words": 559,
+      "lines": 126,
+      "sha256": "bb0b2abf0ae3e113b9ad23b81c2861c56bda1ff2459f378daef04d04bc1a4d27"
     },
     {
       "surface": "internal_reference",
@@ -2619,15 +2587,159 @@
     },
     {
       "surface": "internal_reference",
-      "location": "md-docs/ai-copilot-phase-1.md",
-      "bytes": 2450,
-      "words": 305,
-      "lines": 60,
-      "sha256": "1a1401a551dedf148ba1b420cd043d101c6f9c59010449c648c9063a3ff8af51"
+      "location": "md-docs/ai/agent-grid/README.md",
+      "bytes": 130,
+      "words": 12,
+      "lines": 6,
+      "sha256": "d39b638207b046b2fe19fbe9fbfc963846389c7ad7442e0f881943a02cb77b9a"
     },
     {
       "surface": "internal_reference",
-      "location": "md-docs/analytics-page-implementation.md",
+      "location": "md-docs/ai/agent-grid/implementation.md",
+      "bytes": 4078,
+      "words": 521,
+      "lines": 130,
+      "sha256": "4fca8a0e64c0a6b9e22afee44bf0cc870ddd6fb3f007612c634d60eee87f3ca7"
+    },
+    {
+      "surface": "internal_reference",
+      "location": "md-docs/ai/agent-grid/quick-start.md",
+      "bytes": 5373,
+      "words": 830,
+      "lines": 217,
+      "sha256": "ad6b4a35cdcb98186c8c76d3cdbf821bc9d7a6b0e98fd1bc6e90eb035c7a4538"
+    },
+    {
+      "surface": "internal_reference",
+      "location": "md-docs/ai/agent-grid/ui-guide.md",
+      "bytes": 12473,
+      "words": 912,
+      "lines": 281,
+      "sha256": "5be3bc8c0a17c57b6f3f43bd637113b0247e702851abffdb4b85eec47609506b"
+    },
+    {
+      "surface": "internal_reference",
+      "location": "md-docs/ai/oria/README.md",
+      "bytes": 358,
+      "words": 33,
+      "lines": 11,
+      "sha256": "c2c0ec5113e9f4ba0e60f1fbb1b6b696455a9973cb687f6d39f02be97bd4a644"
+    },
+    {
+      "surface": "internal_reference",
+      "location": "md-docs/ai/oria/adk-to-ai-sdk-migration.md",
+      "bytes": 4934,
+      "words": 574,
+      "lines": 104,
+      "sha256": "15106d32b98c2b2570d230fee3867c92efa8d6dca69cba52b120816e66da46ed"
+    },
+    {
+      "surface": "internal_reference",
+      "location": "md-docs/ai/oria/agent-setup.md",
+      "bytes": 4242,
+      "words": 432,
+      "lines": 126,
+      "sha256": "da49e39d28c8ff9cc239a48c1e92958eb1a9c69b43fffcd9eaefa54979800052"
+    },
+    {
+      "surface": "internal_reference",
+      "location": "md-docs/ai/oria/agent-testing-guide.md",
+      "bytes": 5756,
+      "words": 606,
+      "lines": 93,
+      "sha256": "20ac4f574d538a5eea5fe57499f4f6b49b8fec9e259e873835125bcbff1ec953"
+    },
+    {
+      "surface": "internal_reference",
+      "location": "md-docs/ai/oria/browser-ui-test-log.md",
+      "bytes": 6831,
+      "words": 1094,
+      "lines": 89,
+      "sha256": "fc430e1958bd59c06c100b06441e9bcb28ea935d093acac0c66a025f8f2a2a13"
+    },
+    {
+      "surface": "internal_reference",
+      "location": "md-docs/ai/oria/copilot-phase-1.md",
+      "bytes": 2440,
+      "words": 305,
+      "lines": 60,
+      "sha256": "921a04842d38882d884b7b2660a134b44a92801c85c20da2d50a423d53aa5ce7"
+    },
+    {
+      "surface": "internal_reference",
+      "location": "md-docs/ai/oria/summary-agent.md",
+      "bytes": 4497,
+      "words": 657,
+      "lines": 52,
+      "sha256": "e80e53ab78b96f73f78ab9efc2eeb0181e6d0d1f4012af79e24144e1c97eb118"
+    },
+    {
+      "surface": "internal_reference",
+      "location": "md-docs/ai/oria/test-prompts-release1-read.md",
+      "bytes": 101424,
+      "words": 17015,
+      "lines": 920,
+      "sha256": "f020c6e00a1c79b3bb719cd37b3aaa42f9e110b34d927c71afe74c9f90951286"
+    },
+    {
+      "surface": "internal_reference",
+      "location": "md-docs/ai/oria/test-prompts-release2-action.md",
+      "bytes": 197566,
+      "words": 28023,
+      "lines": 939,
+      "sha256": "8ec4da80c052b01a29b7aa2f308af51f34016eb5235938d2d6a3fb3b4049c294"
+    },
+    {
+      "surface": "internal_reference",
+      "location": "md-docs/ai/oria/test-prompts-release3-automation.md",
+      "bytes": 102148,
+      "words": 15992,
+      "lines": 904,
+      "sha256": "f348889b9b8650cff90d0db7ebbfc5c83b0a9a6ce7a4270eeeb959d25b6773b6"
+    },
+    {
+      "surface": "internal_reference",
+      "location": "md-docs/ai/oria/test-prompts-release4-intelligence.md",
+      "bytes": 236884,
+      "words": 33117,
+      "lines": 904,
+      "sha256": "973488f05cfcffe09738c009ebad350891b68931d0a01af6d31a759e7da12634"
+    },
+    {
+      "surface": "internal_reference",
+      "location": "md-docs/ai/oria/test-prompts-release5-enterprise.md",
+      "bytes": 116490,
+      "words": 17525,
+      "lines": 904,
+      "sha256": "7d7ae505fa6bda8c065adf2925bdc1ef1d58cddf44ea9ec15056238383d5956e"
+    },
+    {
+      "surface": "internal_reference",
+      "location": "md-docs/ai/oria/test-prompts-release6-platform.md",
+      "bytes": 128708,
+      "words": 19288,
+      "lines": 895,
+      "sha256": "4933fbdfe00f2098f236da11ea4ce449156775ad6e64dc8ee8389c8d039d2795"
+    },
+    {
+      "surface": "internal_reference",
+      "location": "md-docs/architecture/elt/source-to-destination-flow.md",
+      "bytes": 8688,
+      "words": 1257,
+      "lines": 395,
+      "sha256": "086f403c1f90d5108dbd61e317ff8b925318a3b15ac6b9ca1efa4519098711b6"
+    },
+    {
+      "surface": "internal_reference",
+      "location": "md-docs/architecture/elt/strict-pipeline-guide.md",
+      "bytes": 8445,
+      "words": 1149,
+      "lines": 189,
+      "sha256": "4eb386bc496b3b1dcb9601bac1d7f7110ed73411e2f9b83a18c2d99414d6f86f"
+    },
+    {
+      "surface": "internal_reference",
+      "location": "md-docs/architecture/frontend/analytics-page-implementation.md",
       "bytes": 26463,
       "words": 3318,
       "lines": 878,
@@ -2635,135 +2747,135 @@
     },
     {
       "surface": "internal_reference",
-      "location": "md-docs/autosend-dodo-supabase-production-runbook.md",
-      "bytes": 6007,
-      "words": 867,
-      "lines": 122,
-      "sha256": "7dcfa08874442875c2cd0fb58243dcb897bd7ba272a7201f845b4f276da0aa37"
+      "location": "md-docs/architecture/simulation/implementation-report.md",
+      "bytes": 1734,
+      "words": 216,
+      "lines": 38,
+      "sha256": "062fc69b90049aba98a900f0d67e4352c9da68f7ec0bfd0a0a2abbe9632eee17"
     },
     {
       "surface": "internal_reference",
-      "location": "md-docs/autosend-email-catalog.md",
-      "bytes": 9521,
-      "words": 1206,
-      "lines": 65,
-      "sha256": "bff93ecbddd2e3f02e3723c083e4233f1f31fd8a8c0f5821ee6e619489b6d9d4"
+      "location": "md-docs/architecture/simulation/platform.md",
+      "bytes": 2771,
+      "words": 376,
+      "lines": 59,
+      "sha256": "0c22c081d879ae6b63c6cd58dba2f1a2e8ffe538ba42c4a9290a8164d76b5cad"
     },
     {
       "surface": "internal_reference",
-      "location": "md-docs/autosend-email-system-plan.md",
-      "bytes": 4714,
-      "words": 548,
-      "lines": 94,
-      "sha256": "488daa6af300494cb9cf4a400b987af4c86de1cbdda24739540a3ecbcc895fdb"
+      "location": "md-docs/audits/connectors/README.md",
+      "bytes": 325,
+      "words": 40,
+      "lines": 7,
+      "sha256": "4a0d3c77e3e3cd32077ad97c49332a88a7dad9ece0f1ab433964b8a5236add71"
     },
     {
       "surface": "internal_reference",
-      "location": "md-docs/autosend-production-deployment-guide.md",
-      "bytes": 10054,
-      "words": 807,
+      "location": "md-docs/audits/connectors/airtable-source-destination-connector-audit.md",
+      "bytes": 11927,
+      "words": 1595,
+      "lines": 162,
+      "sha256": "449c6bb2721709177ac8373124d87d0f3f49c82b392365249be60c8fb52413ab"
+    },
+    {
+      "surface": "internal_reference",
+      "location": "md-docs/audits/connectors/asana-source-connector-audit.md",
+      "bytes": 13153,
+      "words": 1871,
+      "lines": 164,
+      "sha256": "18d145b36e7c69dc5bf3080d8fb127d3cb389858107f08c943ccda2ad8050759"
+    },
+    {
+      "surface": "internal_reference",
+      "location": "md-docs/audits/connectors/clickhouse-source-destination-connector-audit.md",
+      "bytes": 18580,
+      "words": 2104,
+      "lines": 271,
+      "sha256": "bd245bf3127bd71b04eca15988ac9741013d96dae627a691e7caf562e838d056"
+    },
+    {
+      "surface": "internal_reference",
+      "location": "md-docs/audits/connectors/duckdb-source-destination-connector-audit.md",
+      "bytes": 15281,
+      "words": 2041,
+      "lines": 246,
+      "sha256": "063c523bd5e89ce051289da51478876eef1ff34822e0e37171aec1a6889d63a7"
+    },
+    {
+      "surface": "internal_reference",
+      "location": "md-docs/audits/connectors/github-source-connector-audit.md",
+      "bytes": 14241,
+      "words": 2033,
+      "lines": 268,
+      "sha256": "bc1b07e54ca79f347aff36c513ac5b07475337da2c76c80645b7775c7b1419d2"
+    },
+    {
+      "surface": "internal_reference",
+      "location": "md-docs/audits/connectors/linear-source-connector-audit.md",
+      "bytes": 16179,
+      "words": 2121,
+      "lines": 334,
+      "sha256": "d43137b1d5446703a006d8ad0414c2b1b1470b642bfbb1b3b67437d6135d0d7e"
+    },
+    {
+      "surface": "internal_reference",
+      "location": "md-docs/audits/connectors/mongodb-source-destination-connector-audit.md",
+      "bytes": 17284,
+      "words": 2290,
+      "lines": 226,
+      "sha256": "7ad32394de595fc828ac333436b67e7c963fdc186ffb3ecfd7b7653a11719f6e"
+    },
+    {
+      "surface": "internal_reference",
+      "location": "md-docs/audits/connectors/mysql-final-gap-audit.md",
+      "bytes": 14947,
+      "words": 2056,
       "lines": 300,
-      "sha256": "4f41f259a4d581925910c2960db5f8e3c3260733cb98beb9d6afd58491bc6428"
+      "sha256": "8f33028c9ead66772eae0a59ab1d294804e8198192ac175171ad1681fce8e3db"
     },
     {
       "surface": "internal_reference",
-      "location": "md-docs/autosend-template-copy.md",
-      "bytes": 11338,
-      "words": 1626,
-      "lines": 69,
-      "sha256": "923b670ea6ae4a3dd36763de94652a9993f20a92133361f4f6b9492a61067ad2"
+      "location": "md-docs/audits/connectors/mysql-source-destination-connector-audit.md",
+      "bytes": 13979,
+      "words": 1819,
+      "lines": 196,
+      "sha256": "d53f6812d79af98d2e3849fb48a9513a61ffcc148641f712f4e596574ce76de0"
     },
     {
       "surface": "internal_reference",
-      "location": "md-docs/autosend-template-design-guide.md",
-      "bytes": 5339,
-      "words": 512,
-      "lines": 88,
-      "sha256": "ce1c7ea85c9a9b086dcaf6990721ea082cf1d07f8a7bc043063bf9163462574f"
+      "location": "md-docs/audits/connectors/notion-source-connector-audit.md",
+      "bytes": 11167,
+      "words": 1416,
+      "lines": 193,
+      "sha256": "47d1b7b58f250980cf652be6c2cf659968a3e7898dd3b95ff428ba8f1cb6379b"
     },
     {
       "surface": "internal_reference",
-      "location": "md-docs/autosend-template-id-map.md",
-      "bytes": 9152,
-      "words": 699,
-      "lines": 106,
-      "sha256": "23758f945104b9053d66069ec5e2d6bf8e5bb630f32dfcef223a5a31a71957f7"
+      "location": "md-docs/audits/connectors/strapi-source-connector-audit.md",
+      "bytes": 15731,
+      "words": 2054,
+      "lines": 192,
+      "sha256": "06745d724dea1b3916c440ddc51b1c59578a3976572c99785cb99358febc74b0"
     },
     {
       "surface": "internal_reference",
-      "location": "md-docs/aws-ses-setup.md",
-      "bytes": 12619,
-      "words": 1801,
-      "lines": 419,
-      "sha256": "124f2ab8c1efa532ad9a8ecfafb3a73d60285e6632f2babc1d689d95c12c0862"
+      "location": "md-docs/audits/connectors/zendesk-source-connector-audit.md",
+      "bytes": 13784,
+      "words": 1813,
+      "lines": 172,
+      "sha256": "ee10462fc97f1877c5fabaa9c82573c3efad41c05ee894528209c98d7d46ea91"
     },
     {
       "surface": "internal_reference",
-      "location": "md-docs/betterstack-setup.md",
-      "bytes": 5326,
-      "words": 741,
-      "lines": 169,
-      "sha256": "d699a52e4130c78509f9e22f26dcc7bff20295827c1d848e9a932336e0374eb4"
+      "location": "md-docs/audits/frontend/README.md",
+      "bytes": 307,
+      "words": 28,
+      "lines": 9,
+      "sha256": "615e1c15840e870d7975d1200184baca741a1228a6abd3160615ec95191a3079"
     },
     {
       "surface": "internal_reference",
-      "location": "md-docs/betterstack-status-page-creation.md",
-      "bytes": 236,
-      "words": 20,
-      "lines": 8,
-      "sha256": "08f8175077fb3f4b4b440941a3be72c7f65e5f121279ffd7d8a39188a4a30cc9"
-    },
-    {
-      "surface": "internal_reference",
-      "location": "md-docs/billing-dodo-billingsdk.md",
-      "bytes": 4935,
-      "words": 710,
-      "lines": 106,
-      "sha256": "506cccb45b42962a18eb19b204817140379d4e63b2ba38f54f5f97378b76f629"
-    },
-    {
-      "surface": "internal_reference",
-      "location": "md-docs/deployment-oracle-cloud.md",
-      "bytes": 17072,
-      "words": 2380,
-      "lines": 420,
-      "sha256": "504584127d80c18332ad530c5608d0622714e8a041c6ea3cd929c0c511ed411e"
-    },
-    {
-      "surface": "internal_reference",
-      "location": "md-docs/deployment-vercel.md",
-      "bytes": 1194,
-      "words": 158,
-      "lines": 41,
-      "sha256": "c627a54d03c8f2860e685c827fc1bc1267288aad1b4905a98bf8afc6dbb24c20"
-    },
-    {
-      "surface": "internal_reference",
-      "location": "md-docs/dodo-autosend-transformations.md",
-      "bytes": 11618,
-      "words": 1062,
-      "lines": 278,
-      "sha256": "22cbcccad25aed78829c45239bc9079f744464fec118e650e56817cf3018bbbf"
-    },
-    {
-      "surface": "internal_reference",
-      "location": "md-docs/dodo-payments-flowchart.md",
-      "bytes": 2435,
-      "words": 347,
-      "lines": 79,
-      "sha256": "c5315719b635b7985452de78c5e488d5dfb6ba204b91d38599daefaf8f442a35"
-    },
-    {
-      "surface": "internal_reference",
-      "location": "md-docs/dodo-payments-setup.md",
-      "bytes": 5163,
-      "words": 730,
-      "lines": 132,
-      "sha256": "bd5a0344cc2825c946db1fd98b54a90bf0a744b45f9daca08dbfd0af2840dbf2"
-    },
-    {
-      "surface": "internal_reference",
-      "location": "md-docs/frontend-architecture-audit-final.md",
+      "location": "md-docs/audits/frontend/architecture-final.md",
       "bytes": 5186,
       "words": 719,
       "lines": 123,
@@ -2771,7 +2883,7 @@
     },
     {
       "surface": "internal_reference",
-      "location": "md-docs/frontend-architecture-audit-v2.md",
+      "location": "md-docs/audits/frontend/architecture-v2.md",
       "bytes": 17684,
       "words": 1706,
       "lines": 158,
@@ -2779,15 +2891,15 @@
     },
     {
       "surface": "internal_reference",
-      "location": "md-docs/frontend-architecture-audit.md",
-      "bytes": 124964,
+      "location": "md-docs/audits/frontend/architecture.md",
+      "bytes": 124963,
       "words": 23162,
-      "lines": 589,
-      "sha256": "7dea7989cb4b27a64624fc92902eee327308f84500b4cc1070a673161c1550c3"
+      "lines": 588,
+      "sha256": "30004b7ade00ad3be3c79a187657020a53b11dfc1bcb2a0e04f23c8d0b5c5624"
     },
     {
       "surface": "internal_reference",
-      "location": "md-docs/frontend-file-size-audit.md",
+      "location": "md-docs/audits/frontend/file-size.md",
       "bytes": 19239,
       "words": 2244,
       "lines": 183,
@@ -2795,7 +2907,7 @@
     },
     {
       "surface": "internal_reference",
-      "location": "md-docs/frontend-fractal-architecture-report.md",
+      "location": "md-docs/audits/frontend/fractal-architecture-report.md",
       "bytes": 11146,
       "words": 1443,
       "lines": 283,
@@ -2803,7 +2915,15 @@
     },
     {
       "surface": "internal_reference",
-      "location": "md-docs/frontend-refactor-audit.md",
+      "location": "md-docs/audits/frontend/refactor-final-report.md",
+      "bytes": 11682,
+      "words": 1393,
+      "lines": 136,
+      "sha256": "10551c92831a39cb2d29425cce219f6398329de6961e1cd5292806d19ab41222"
+    },
+    {
+      "surface": "internal_reference",
+      "location": "md-docs/audits/frontend/refactor.md",
       "bytes": 29604,
       "words": 3635,
       "lines": 608,
@@ -2811,11 +2931,99 @@
     },
     {
       "surface": "internal_reference",
-      "location": "md-docs/frontend-refactor-final-report.md",
-      "bytes": 11682,
-      "words": 1393,
-      "lines": 136,
-      "sha256": "10551c92831a39cb2d29425cce219f6398329de6961e1cd5292806d19ab41222"
+      "location": "md-docs/audits/legal/README.md",
+      "bytes": 88,
+      "words": 10,
+      "lines": 4,
+      "sha256": "0ddd9614cfd313c6335c41e3b346587b260085bcb8f15e468012ef7da2b4bb65"
+    },
+    {
+      "surface": "internal_reference",
+      "location": "md-docs/audits/legal/ceo-legal-claims-review.md",
+      "bytes": 1989,
+      "words": 281,
+      "lines": 24,
+      "sha256": "ae7efcc83388576f45def9cec501769ec3168edad3d2afefe48a87c85160d247"
+    },
+    {
+      "surface": "internal_reference",
+      "location": "md-docs/audits/product/README.md",
+      "bytes": 93,
+      "words": 9,
+      "lines": 4,
+      "sha256": "5a08e0c606b0db210609698a0033c3c1b67bde4d82c011babe55b10a3e85839f"
+    },
+    {
+      "surface": "internal_reference",
+      "location": "md-docs/audits/product/oria-twenty-ai-experience-audit.md",
+      "bytes": 6553,
+      "words": 900,
+      "lines": 69,
+      "sha256": "db8fc8c4d615bf6769f8ee58f5e500f792f07941e0e6538b58975ca0d7619577"
+    },
+    {
+      "surface": "internal_reference",
+      "location": "md-docs/deployment/frontend/README.md",
+      "bytes": 137,
+      "words": 13,
+      "lines": 5,
+      "sha256": "70ffc525f8fd2fddc0d63280db032e63b5e20e25b0d2d337b24140e2ca6bab44"
+    },
+    {
+      "surface": "internal_reference",
+      "location": "md-docs/deployment/frontend/vercel-deployment.md",
+      "bytes": 1124,
+      "words": 114,
+      "lines": 32,
+      "sha256": "beef5105fab4854c40595a3f559771f1463e9024909d88417d1bdfa11a33d133"
+    },
+    {
+      "surface": "internal_reference",
+      "location": "md-docs/deployment/frontend/vercel.md",
+      "bytes": 1193,
+      "words": 158,
+      "lines": 40,
+      "sha256": "ef2f21f8b2937a5a2fa0062644c40c08078e02a62d4152f82ba1648cb960e16e"
+    },
+    {
+      "surface": "internal_reference",
+      "location": "md-docs/deployment/infrastructure/ovh-microsandbox-runbook.md",
+      "bytes": 8533,
+      "words": 1094,
+      "lines": 219,
+      "sha256": "17cda2eaf01293f5362a64578dfd3d8a8e38b08abb7e810d17cbf31e509ad8fc"
+    },
+    {
+      "surface": "internal_reference",
+      "location": "md-docs/deployment/legacy/README.md",
+      "bytes": 187,
+      "words": 23,
+      "lines": 7,
+      "sha256": "0fc66853561ad9f6dd160d76cfff35a099018ac1eb65465a9e811de31e66e6bf"
+    },
+    {
+      "surface": "internal_reference",
+      "location": "md-docs/deployment/legacy/oracle-cloud.md",
+      "bytes": 17072,
+      "words": 2380,
+      "lines": 420,
+      "sha256": "504584127d80c18332ad530c5608d0622714e8a041c6ea3cd929c0c511ed411e"
+    },
+    {
+      "surface": "internal_reference",
+      "location": "md-docs/deployment/services/go-api-simulation-manager.md",
+      "bytes": 2700,
+      "words": 312,
+      "lines": 66,
+      "sha256": "cb6c3c89ffc0d5fc985bde349a52702ffa98dc3873b1a95b22f1144dffa4d3f8"
+    },
+    {
+      "surface": "internal_reference",
+      "location": "md-docs/deployment/services/python-elt-simulation-runtime.md",
+      "bytes": 2214,
+      "words": 264,
+      "lines": 55,
+      "sha256": "03de66019869167e998582f97a5bc21866c5d8f8b5f0fc32a62e240f03b521d1"
     },
     {
       "surface": "internal_reference",
@@ -2867,15 +3075,79 @@
     },
     {
       "surface": "internal_reference",
-      "location": "md-docs/hubspot-postgres-full-phase-plan.md",
-      "bytes": 64041,
-      "words": 8727,
-      "lines": 1163,
-      "sha256": "d4686916709e65ae3a9902f05c8302cc9a97a4379589fac2a79efe0d2a3ba734"
+      "location": "md-docs/infrastructure/architecture/production-architecture.md",
+      "bytes": 1652,
+      "words": 184,
+      "lines": 32,
+      "sha256": "25554b1052a1a0fd2db5cd3d58ed4af9342327a8c26c677583e866c7a5bcbdf6"
     },
     {
       "surface": "internal_reference",
-      "location": "md-docs/infrastructure-ci-cd-implementation-report.md",
+      "location": "md-docs/infrastructure/ci-cd/deployment-independence.md",
+      "bytes": 921,
+      "words": 124,
+      "lines": 18,
+      "sha256": "fde4145dcf9fbf0c10f2c94a7bee3e6206ee79919e903c951c94e813e656e895"
+    },
+    {
+      "surface": "internal_reference",
+      "location": "md-docs/infrastructure/ci-cd/github-actions.md",
+      "bytes": 7106,
+      "words": 799,
+      "lines": 220,
+      "sha256": "96825df4a8f56c47712f3775cb94a426a8259aaeaf97eb0e3dd0115340b53fd7"
+    },
+    {
+      "surface": "internal_reference",
+      "location": "md-docs/infrastructure/database/supabase-rls-guide.md",
+      "bytes": 3710,
+      "words": 517,
+      "lines": 86,
+      "sha256": "6ec6fd5cb6cdc73952b26742d8cb3968b70f44b1c1d73bde2d138f84aa72c568"
+    },
+    {
+      "surface": "internal_reference",
+      "location": "md-docs/infrastructure/database/supabase-transition.md",
+      "bytes": 1582,
+      "words": 204,
+      "lines": 38,
+      "sha256": "1e9d821942be2adb95cbd4abbeb91ab94768463fad75c76dc470564ac39393b4"
+    },
+    {
+      "surface": "internal_reference",
+      "location": "md-docs/infrastructure/networking/private-network.md",
+      "bytes": 1522,
+      "words": 208,
+      "lines": 29,
+      "sha256": "2822073475876a03fb8d8144c8454c8a7e18b0e6f7807aaf69e5fe7e4ee80f5e"
+    },
+    {
+      "surface": "internal_reference",
+      "location": "md-docs/infrastructure/operations/backup-restore.md",
+      "bytes": 956,
+      "words": 131,
+      "lines": 22,
+      "sha256": "a8d3110111c05635d996393a360067c42c9c7d13aa67b479d26605878d7f7f6c"
+    },
+    {
+      "surface": "internal_reference",
+      "location": "md-docs/infrastructure/operations/dokploy.md",
+      "bytes": 2626,
+      "words": 326,
+      "lines": 60,
+      "sha256": "c3b07e40f7540f912ce99878b667ab602615d7913aaa096b705abca69debeeba"
+    },
+    {
+      "surface": "internal_reference",
+      "location": "md-docs/infrastructure/reports/README.md",
+      "bytes": 96,
+      "words": 9,
+      "lines": 4,
+      "sha256": "9539a63825f10f649fefadfea4a4ccc8d59f69dd48405f2aa6a79c1b94d15dab"
+    },
+    {
+      "surface": "internal_reference",
+      "location": "md-docs/infrastructure/reports/ci-cd-implementation.md",
       "bytes": 6758,
       "words": 857,
       "lines": 125,
@@ -2883,11 +3155,211 @@
     },
     {
       "surface": "internal_reference",
+      "location": "md-docs/infrastructure/setup/ovh-dokploy-microsandbox.md",
+      "bytes": 13051,
+      "words": 1702,
+      "lines": 341,
+      "sha256": "c649f991ac3d974f81f000e77ae9b561c83804b1001da52eb75f64039fc400ff"
+    },
+    {
+      "surface": "internal_reference",
+      "location": "md-docs/infrastructure/storage/tigris.md",
+      "bytes": 2834,
+      "words": 340,
+      "lines": 75,
+      "sha256": "1a6aa0298c2785772410950dc0011d43e890325288bb3c66beda0f8c694f7486"
+    },
+    {
+      "surface": "internal_reference",
+      "location": "md-docs/integrations/billing/README.md",
+      "bytes": 272,
+      "words": 22,
+      "lines": 7,
+      "sha256": "1a187b8b738e31335acb4a8b81a80d4371f9a4500f8a4bd2aafb50a67206efc8"
+    },
+    {
+      "surface": "internal_reference",
+      "location": "md-docs/integrations/billing/dodo-autosend-transformations.md",
+      "bytes": 11618,
+      "words": 1062,
+      "lines": 278,
+      "sha256": "22cbcccad25aed78829c45239bc9079f744464fec118e650e56817cf3018bbbf"
+    },
+    {
+      "surface": "internal_reference",
+      "location": "md-docs/integrations/billing/dodo-billingsdk.md",
+      "bytes": 4935,
+      "words": 710,
+      "lines": 106,
+      "sha256": "506cccb45b42962a18eb19b204817140379d4e63b2ba38f54f5f97378b76f629"
+    },
+    {
+      "surface": "internal_reference",
+      "location": "md-docs/integrations/billing/dodo-payments-flowchart.md",
+      "bytes": 2427,
+      "words": 347,
+      "lines": 79,
+      "sha256": "63ca0466b78d4c51fbbca42615f0afa936dc81680dce8c92fa438e2e98ac0f13"
+    },
+    {
+      "surface": "internal_reference",
+      "location": "md-docs/integrations/billing/dodo-payments-setup.md",
+      "bytes": 5163,
+      "words": 730,
+      "lines": 132,
+      "sha256": "bd5a0344cc2825c946db1fd98b54a90bf0a744b45f9daca08dbfd0af2840dbf2"
+    },
+    {
+      "surface": "internal_reference",
+      "location": "md-docs/integrations/connectors/README.md",
+      "bytes": 521,
+      "words": 38,
+      "lines": 13,
+      "sha256": "95c2ee7f0956696489bf683057ebfe95523773390d8668d2089dc10e36f99b62"
+    },
+    {
+      "surface": "internal_reference",
+      "location": "md-docs/integrations/connectors/plans/hubspot-postgres-full-phase.md",
+      "bytes": 64041,
+      "words": 8727,
+      "lines": 1163,
+      "sha256": "d4686916709e65ae3a9902f05c8302cc9a97a4379589fac2a79efe0d2a3ba734"
+    },
+    {
+      "surface": "internal_reference",
+      "location": "md-docs/integrations/connectors/saas-sources-group2.md",
+      "bytes": 54216,
+      "words": 5696,
+      "lines": 1590,
+      "sha256": "882f4eb19dcc6db8db2d8e06fce93652a959798bb28806d14fda480ba5295c4b"
+    },
+    {
+      "surface": "internal_reference",
+      "location": "md-docs/integrations/connectors/salesforce-postgres-setup.md",
+      "bytes": 8478,
+      "words": 1048,
+      "lines": 326,
+      "sha256": "3ceb1f385aa1048c8828ecdb5810c00e68e6766217769491e2a7db5497d9bbdf"
+    },
+    {
+      "surface": "internal_reference",
+      "location": "md-docs/integrations/connectors/salesforce-postgres-testing.md",
+      "bytes": 8468,
+      "words": 1119,
+      "lines": 356,
+      "sha256": "71ce0392996fa10d45f03b88319c4800f11f977fded3b8fad1862abd6090099d"
+    },
+    {
+      "surface": "internal_reference",
+      "location": "md-docs/integrations/connectors/slack-guide.md",
+      "bytes": 25771,
+      "words": 3226,
+      "lines": 801,
+      "sha256": "4905f6b153aae444f4fc2559870bf1c5b9c6fef3e71c65ac19320d5ea078a6e0"
+    },
+    {
+      "surface": "internal_reference",
+      "location": "md-docs/integrations/connectors/stripe-ai-prompts.md",
+      "bytes": 17041,
+      "words": 2305,
+      "lines": 426,
+      "sha256": "a659de02275e50dd57902a0e470ffb960b0a4521ce43bbe96734d9ef71d986a1"
+    },
+    {
+      "surface": "internal_reference",
+      "location": "md-docs/integrations/connectors/zendesk-oauth-setup.md",
+      "bytes": 5312,
+      "words": 661,
+      "lines": 110,
+      "sha256": "d8a12e7e60c2f9aae3ea53033ac1545cff2b4b365588401387d114f2a218accf"
+    },
+    {
+      "surface": "internal_reference",
+      "location": "md-docs/integrations/email/README.md",
+      "bytes": 191,
+      "words": 15,
+      "lines": 6,
+      "sha256": "a6aa30d8e02238e5e3b785420294ddbbd687f59341135e359c16086ff540b663"
+    },
+    {
+      "surface": "internal_reference",
+      "location": "md-docs/integrations/email/autosend/dodo-supabase-production-runbook.md",
+      "bytes": 6010,
+      "words": 867,
+      "lines": 122,
+      "sha256": "3c69ca0c9b85c4ad2a2f4b51d1a0d78df756976ee7b53bb449ef6f2c0d898a58"
+    },
+    {
+      "surface": "internal_reference",
+      "location": "md-docs/integrations/email/autosend/email-catalog.md",
+      "bytes": 9521,
+      "words": 1206,
+      "lines": 65,
+      "sha256": "bff93ecbddd2e3f02e3723c083e4233f1f31fd8a8c0f5821ee6e619489b6d9d4"
+    },
+    {
+      "surface": "internal_reference",
+      "location": "md-docs/integrations/email/autosend/email-system-plan.md",
+      "bytes": 4708,
+      "words": 548,
+      "lines": 94,
+      "sha256": "2e9d8c205489a47a84c3cf13142426430368f556df5846dc752db6875fc1386b"
+    },
+    {
+      "surface": "internal_reference",
+      "location": "md-docs/integrations/email/autosend/production-deployment-guide.md",
+      "bytes": 10049,
+      "words": 807,
+      "lines": 300,
+      "sha256": "9f28e946347aa7735d0bb8af6ce4e2f1029e718eec4e21048ea72ea6581d9be8"
+    },
+    {
+      "surface": "internal_reference",
+      "location": "md-docs/integrations/email/autosend/template-copy.md",
+      "bytes": 11338,
+      "words": 1626,
+      "lines": 69,
+      "sha256": "923b670ea6ae4a3dd36763de94652a9993f20a92133361f4f6b9492a61067ad2"
+    },
+    {
+      "surface": "internal_reference",
+      "location": "md-docs/integrations/email/autosend/template-design-guide.md",
+      "bytes": 5339,
+      "words": 512,
+      "lines": 88,
+      "sha256": "ce1c7ea85c9a9b086dcaf6990721ea082cf1d07f8a7bc043063bf9163462574f"
+    },
+    {
+      "surface": "internal_reference",
+      "location": "md-docs/integrations/email/autosend/template-id-map.md",
+      "bytes": 9152,
+      "words": 699,
+      "lines": 106,
+      "sha256": "23758f945104b9053d66069ec5e2d6bf8e5bb630f32dfcef223a5a31a71957f7"
+    },
+    {
+      "surface": "internal_reference",
+      "location": "md-docs/integrations/email/aws-ses-setup.md",
+      "bytes": 12619,
+      "words": 1801,
+      "lines": 419,
+      "sha256": "124f2ab8c1efa532ad9a8ecfafb3a73d60285e6632f2babc1d689d95c12c0862"
+    },
+    {
+      "surface": "internal_reference",
+      "location": "md-docs/integrations/email/supabase-auth-templates.md",
+      "bytes": 23291,
+      "words": 1213,
+      "lines": 281,
+      "sha256": "153655af66fd40562d18382970a26d4e79624f4135f29fdc436eefcda6d1f64f"
+    },
+    {
+      "surface": "internal_reference",
       "location": "md-docs/manual-testing/README.md",
-      "bytes": 10213,
+      "bytes": 10225,
       "words": 1434,
       "lines": 232,
-      "sha256": "842c35aa2ad845b8cae13a57a4891a1edb849bcf07609146d276955f797db976"
+      "sha256": "303fb66d9394bcc55d47e8f73196a91203dd0b4c588c96422f69c42a59c82f76"
     },
     {
       "surface": "internal_reference",
@@ -3571,95 +4043,175 @@
     },
     {
       "surface": "internal_reference",
-      "location": "md-docs/observability-deployment.md",
-      "bytes": 7628,
-      "words": 933,
+      "location": "md-docs/operations/observability/betterstack-setup.md",
+      "bytes": 5278,
+      "words": 744,
+      "lines": 169,
+      "sha256": "29899c19bed1325d1b88633afdb44a2a6201f5d6f571ed3b0bf258e6c819d750"
+    },
+    {
+      "surface": "internal_reference",
+      "location": "md-docs/operations/observability/betterstack-status-page-creation.md",
+      "bytes": 222,
+      "words": 20,
+      "lines": 8,
+      "sha256": "34ad576a269bfbfeaf6c932053f6f9b8161037c72cfd46814fca1e51daf18dff"
+    },
+    {
+      "surface": "internal_reference",
+      "location": "md-docs/operations/observability/deployment.md",
+      "bytes": 7723,
+      "words": 945,
       "lines": 214,
-      "sha256": "ccee6c540bedd531459916804c24837c3eb3888d5b87e4666c215eb7a921b376"
+      "sha256": "eaa1dfb397094be5bf35b8c88e204f09c713680c3f67dcacf715ae9f6dc1089a"
     },
     {
       "surface": "internal_reference",
-      "location": "md-docs/oria-adk-to-ai-sdk-migration.md",
-      "bytes": 4949,
-      "words": 574,
-      "lines": 104,
-      "sha256": "a678191381d41410fb6c1bc09332e482f311be0a025a07f31f55aef4c5922bb9"
+      "location": "md-docs/operations/observability/posthog-betterstack-setup.md",
+      "bytes": 254,
+      "words": 27,
+      "lines": 6,
+      "sha256": "bf97a1122984f0b1954198cddf23c4b2d5e8b9727c1d80bfb62730cc691758d2"
     },
     {
       "surface": "internal_reference",
-      "location": "md-docs/oria-agent-setup.md",
-      "bytes": 4247,
-      "words": 432,
-      "lines": 126,
-      "sha256": "cd9ab12e01d20956c823326ae14bb92a35c79cfd1d0298d88bfaf2f9833b6139"
+      "location": "md-docs/operations/observability/posthog-full-integration.md",
+      "bytes": 6971,
+      "words": 841,
+      "lines": 188,
+      "sha256": "fb6787a45817d92b928d3d36bd3c5aa8d1f8a4101cbd6d7da48f4509285d2133"
     },
     {
       "surface": "internal_reference",
-      "location": "md-docs/oria-agent-testing-guide.md",
-      "bytes": 5806,
-      "words": 606,
-      "lines": 93,
-      "sha256": "90faded92e5b5d5a9ed03b2acc24afaae3a11bb258865dd4e03f9b4346807380"
+      "location": "md-docs/operations/observability/posthog-setup.md",
+      "bytes": 16088,
+      "words": 2400,
+      "lines": 403,
+      "sha256": "893c696e61547364c54c7ea30ca4ad55fce697b94da86a02f927f5ced4c353b0"
     },
     {
       "surface": "internal_reference",
-      "location": "md-docs/oria-browser-ui-test-log.md",
-      "bytes": 6836,
-      "words": 1094,
-      "lines": 89,
-      "sha256": "0458bd5d3ee0af50c53568aa26ee53aed0541fd8d5f13bc34e92f3f91fba5811"
+      "location": "md-docs/testing/frontend/README.md",
+      "bytes": 149,
+      "words": 14,
+      "lines": 5,
+      "sha256": "66d0a13d524330c19d14429cd7b67a3ed8370332c029258bc527ed51b9be1b0e"
     },
     {
       "surface": "internal_reference",
-      "location": "md-docs/oria-test-prompts-release1-read.md",
-      "bytes": 101438,
-      "words": 17012,
-      "lines": 920,
-      "sha256": "b83cafd540248b0414140840019854ab0edb5e921f603abe7795008dbdb03f3a"
+      "location": "md-docs/testing/frontend/playwright-guide.md",
+      "bytes": 3008,
+      "words": 399,
+      "lines": 85,
+      "sha256": "c50d72ae569aedf6bea4dec14ffa88ee3d5d79758f5fa40c64e0647da58dca66"
     },
     {
       "surface": "internal_reference",
-      "location": "md-docs/oria-test-prompts-release2-action.md",
-      "bytes": 197566,
-      "words": 28023,
-      "lines": 939,
-      "sha256": "8ec4da80c052b01a29b7aa2f308af51f34016eb5235938d2d6a3fb3b4049c294"
+      "location": "md-docs/testing/frontend/reports/README.md",
+      "bytes": 671,
+      "words": 54,
+      "lines": 16,
+      "sha256": "96ced60dbdcd137bd601129d288c55e176c8e9d0551589fb61bc17d32aacb9da"
     },
     {
       "surface": "internal_reference",
-      "location": "md-docs/oria-test-prompts-release3-automation.md",
-      "bytes": 102145,
-      "words": 15992,
-      "lines": 904,
-      "sha256": "1c8d46b5695adfc0110af60e441c4805288ed8f84e8f2aee1c197655059c85c9"
+      "location": "md-docs/testing/frontend/reports/final-test-summary.md",
+      "bytes": 2299,
+      "words": 358,
+      "lines": 37,
+      "sha256": "1525fc569f898a53c168d4ed56f68cdf33a3bc3632899767f61151fa1a856c8d"
     },
     {
       "surface": "internal_reference",
-      "location": "md-docs/oria-test-prompts-release4-intelligence.md",
-      "bytes": 236884,
-      "words": 33117,
-      "lines": 904,
-      "sha256": "973488f05cfcffe09738c009ebad350891b68931d0a01af6d31a759e7da12634"
+      "location": "md-docs/testing/frontend/reports/fixes-applied.md",
+      "bytes": 2070,
+      "words": 276,
+      "lines": 49,
+      "sha256": "1a2ed339adfc273ef780cd2279b4e64ce2bb1985900860b07829c5062c9c3ee6"
     },
     {
       "surface": "internal_reference",
-      "location": "md-docs/oria-test-prompts-release5-enterprise.md",
-      "bytes": 116490,
-      "words": 17525,
-      "lines": 904,
-      "sha256": "7d7ae505fa6bda8c065adf2925bdc1ef1d58cddf44ea9ec15056238383d5956e"
+      "location": "md-docs/testing/frontend/reports/hubspot-stream-coverage.md",
+      "bytes": 1572,
+      "words": 264,
+      "lines": 29,
+      "sha256": "1a6162f71895ff8696508b1773869d2350354145be64b451a405aa1526264c72"
     },
     {
       "surface": "internal_reference",
-      "location": "md-docs/oria-test-prompts-release6-platform.md",
-      "bytes": 128705,
-      "words": 19288,
-      "lines": 895,
-      "sha256": "277c5febe83531fb0b955b730f7ceec75eca05091a7c268d1c3ac5ac12ec021b"
+      "location": "md-docs/testing/frontend/reports/pipeline-integration-results.md",
+      "bytes": 1281,
+      "words": 183,
+      "lines": 18,
+      "sha256": "ed6f192e3e0adbb089bbdf3c47456cef4a0114e15e347c2648986e775244fb99"
     },
     {
       "surface": "internal_reference",
-      "location": "md-docs/pipeline-all-streams-chrome-e2e-report-2026-07-19.md",
+      "location": "md-docs/testing/frontend/reports/postgres-type-compatibility.md",
+      "bytes": 1605,
+      "words": 239,
+      "lines": 40,
+      "sha256": "ceccb7a150b53caf0941b90242d89244c2e4b4c58b5dde0de6be65ab3291e201"
+    },
+    {
+      "surface": "internal_reference",
+      "location": "md-docs/testing/frontend/reports/service-startup-report.md",
+      "bytes": 829,
+      "words": 140,
+      "lines": 13,
+      "sha256": "70b004caa41e0355624e14e75f00eaa4047e49f242c8659d67802c4fd4181123"
+    },
+    {
+      "surface": "internal_reference",
+      "location": "md-docs/testing/frontend/reports/stream-coverage.md",
+      "bytes": 1167,
+      "words": 181,
+      "lines": 23,
+      "sha256": "10cd8ba43ba73ea6c8c64f1720122e509c9c09f3e55ea998f034a2f8ac4a83f5"
+    },
+    {
+      "surface": "internal_reference",
+      "location": "md-docs/testing/frontend/reports/stripe-stream-coverage.md",
+      "bytes": 2101,
+      "words": 204,
+      "lines": 31,
+      "sha256": "199e2fb68592eb873bd57cbea045f0493d5271aff9ed58e116702468db9478ce"
+    },
+    {
+      "surface": "internal_reference",
+      "location": "md-docs/testing/frontend/reports/test-failure-matrix.md",
+      "bytes": 1531,
+      "words": 241,
+      "lines": 15,
+      "sha256": "8a1d343ca877bcdd4cb298ee9853858aeb5a3c917d95479bfd5dd681202bb135"
+    },
+    {
+      "surface": "internal_reference",
+      "location": "md-docs/testing/frontend/reports/test-summary.md",
+      "bytes": 1231,
+      "words": 194,
+      "lines": 22,
+      "sha256": "9408aa2f2626f9b91ec82e03c44c180221cf79ac933bde9c9878b4588ef384c0"
+    },
+    {
+      "surface": "internal_reference",
+      "location": "md-docs/testing/local-development.md",
+      "bytes": 24911,
+      "words": 3487,
+      "lines": 980,
+      "sha256": "5b5188adb46ce91260fb365ebecc94a711488e1ed0ba34bd1537b8d9c3051e0a"
+    },
+    {
+      "surface": "internal_reference",
+      "location": "md-docs/testing/reports/README.md",
+      "bytes": 250,
+      "words": 17,
+      "lines": 6,
+      "sha256": "f392a50b18d6790ce506d103a7dc314576a905559d1fe9d3bb4f62a55f4f7722"
+    },
+    {
+      "surface": "internal_reference",
+      "location": "md-docs/testing/reports/pipeline-all-streams-chrome-e2e-2026-07-19.md",
       "bytes": 25256,
       "words": 3977,
       "lines": 311,
@@ -3667,7 +4219,7 @@
     },
     {
       "surface": "internal_reference",
-      "location": "md-docs/pipeline-new-layout-e2e-report-2026-07-18.md",
+      "location": "md-docs/testing/reports/pipeline-new-layout-e2e-2026-07-18.md",
       "bytes": 19335,
       "words": 2990,
       "lines": 225,
@@ -3675,7 +4227,7 @@
     },
     {
       "surface": "internal_reference",
-      "location": "md-docs/playwright-complete-workflow-e2e-summary.md",
+      "location": "md-docs/testing/reports/playwright-complete-workflow-e2e-summary.md",
       "bytes": 8265,
       "words": 1269,
       "lines": 82,
@@ -3683,131 +4235,11 @@
     },
     {
       "surface": "internal_reference",
-      "location": "md-docs/posthog-betterstack-setup.md",
-      "bytes": 268,
-      "words": 27,
-      "lines": 6,
-      "sha256": "2370f48c9e857cada54d26a381cda07c25e4d7a0960d385b336fc4b25cc720a4"
-    },
-    {
-      "surface": "internal_reference",
-      "location": "md-docs/posthog-full-integration.md",
-      "bytes": 6918,
-      "words": 841,
-      "lines": 188,
-      "sha256": "ca01cb8dcb4ed30215bb498c03a8da1e59afa5fd65dc4f64697f294159a8e15b"
-    },
-    {
-      "surface": "internal_reference",
-      "location": "md-docs/posthog-setup.md",
-      "bytes": 16116,
-      "words": 2400,
-      "lines": 403,
-      "sha256": "381c8d102d3976a1d1a65d336bd8387fda784dc7e63ff31094124762d035142d"
-    },
-    {
-      "surface": "internal_reference",
-      "location": "md-docs/saas-sources-group2.md",
-      "bytes": 54216,
-      "words": 5696,
-      "lines": 1590,
-      "sha256": "882f4eb19dcc6db8db2d8e06fce93652a959798bb28806d14fda480ba5295c4b"
-    },
-    {
-      "surface": "internal_reference",
-      "location": "md-docs/salesforce-postgres-setup.md",
-      "bytes": 8478,
-      "words": 1048,
-      "lines": 326,
-      "sha256": "3ceb1f385aa1048c8828ecdb5810c00e68e6766217769491e2a7db5497d9bbdf"
-    },
-    {
-      "surface": "internal_reference",
-      "location": "md-docs/salesforce-postgres-testing-guide.md",
-      "bytes": 8468,
-      "words": 1119,
-      "lines": 356,
-      "sha256": "71ce0392996fa10d45f03b88319c4800f11f977fded3b8fad1862abd6090099d"
-    },
-    {
-      "surface": "internal_reference",
-      "location": "md-docs/slack-guide.md",
-      "bytes": 25771,
-      "words": 3226,
-      "lines": 801,
-      "sha256": "4905f6b153aae444f4fc2559870bf1c5b9c6fef3e71c65ac19320d5ea078a6e0"
-    },
-    {
-      "surface": "internal_reference",
-      "location": "md-docs/source-to-destination-elt-flow.md",
-      "bytes": 8688,
-      "words": 1257,
-      "lines": 395,
-      "sha256": "086f403c1f90d5108dbd61e317ff8b925318a3b15ac6b9ca1efa4519098711b6"
-    },
-    {
-      "surface": "internal_reference",
-      "location": "md-docs/strict-elt-pipeline-guide.md",
-      "bytes": 8411,
-      "words": 1149,
-      "lines": 189,
-      "sha256": "9df9e7e7ac7b0601c27fcb7b88de66fffba104a3752fb0c845eec24de3e549ab"
-    },
-    {
-      "surface": "internal_reference",
-      "location": "md-docs/stripe-connector-ai-prompts.md",
-      "bytes": 17041,
-      "words": 2305,
-      "lines": 426,
-      "sha256": "a659de02275e50dd57902a0e470ffb960b0a4521ce43bbe96734d9ef71d986a1"
-    },
-    {
-      "surface": "internal_reference",
-      "location": "md-docs/summrayagent.md",
-      "bytes": 4497,
-      "words": 657,
-      "lines": 52,
-      "sha256": "e80e53ab78b96f73f78ab9efc2eeb0181e6d0d1f4012af79e24144e1c97eb118"
-    },
-    {
-      "surface": "internal_reference",
-      "location": "md-docs/supabase-auth-email-templates.md",
-      "bytes": 23291,
-      "words": 1213,
-      "lines": 281,
-      "sha256": "153655af66fd40562d18382970a26d4e79624f4135f29fdc436eefcda6d1f64f"
-    },
-    {
-      "surface": "internal_reference",
-      "location": "md-docs/testcase.md",
+      "location": "md-docs/testing/test-cases.md",
       "bytes": 20112,
       "words": 2676,
       "lines": 417,
       "sha256": "9d4ede564e9bd7c9de661e4340a28589eb2edcb857f75c71199b4069649259e7"
-    },
-    {
-      "surface": "internal_reference",
-      "location": "md-docs/testing-local.md",
-      "bytes": 24896,
-      "words": 3487,
-      "lines": 979,
-      "sha256": "7d5a7f161f10a8e814cc909bab670682e9eaca88f4dc4a6ef8631f16bdfa92bd"
-    },
-    {
-      "surface": "internal_reference",
-      "location": "md-docs/tigris-storage-setup.md",
-      "bytes": 2828,
-      "words": 340,
-      "lines": 75,
-      "sha256": "b1bff9e78591f1ebd8494f0a24570a903fb182425b1e6a7a3108cf746fd055f9"
-    },
-    {
-      "surface": "internal_reference",
-      "location": "md-docs/zendesk-oauth-setup.md",
-      "bytes": 5312,
-      "words": 661,
-      "lines": 110,
-      "sha256": "d8a12e7e60c2f9aae3ea53033ac1545cff2b4b365588401387d114f2a218accf"
     }
   ]
 }

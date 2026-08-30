@@ -1,0 +1,39 @@
+# Deployment on Vercel (notes)
+
+This repo is a monorepo with:
+
+- **App (Next.js)**: `apps/app`
+- **Go API (Fiber)**: `apps/server/main-server`
+- **Python ELT (FastAPI)**: `apps/server/elt-server`
+
+## Recommended approach
+
+- Deploy **`apps/app`** on Vercel.
+- Deploy **`apps/server/main-server`** and **`apps/server/elt-server`** on a platform that supports long-running services (container / VM / k8s). Vercel is primarily serverless; it can be a poor fit for queue workers and long-lived servers.
+
+## App (Next.js) on Vercel
+
+**Root Directory**: `apps/app`  
+**Install**: `bun install`  
+**Build**: `bun run build`
+
+### Required env vars
+
+- `NEXT_PUBLIC_API_URL` — Go API origin only (e.g. `https://api.example.com`)
+- `NEXT_PUBLIC_SUPABASE_URL`
+- `NEXT_PUBLIC_SUPABASE_ANON_KEY`
+- `NEXT_PUBLIC_SITE_URL` — app origin (used for auth redirects)
+
+## Cross-service URLs (prod)
+
+The app calls the Go API under `/api/v1/...`:
+
+- Example: `${NEXT_PUBLIC_API_URL}/api/v1/health`
+
+The Go API talks to the ELT service via:
+
+- `ELT_PYTHON_SERVICE_URL` (Go API env var)
+
+The ELT service calls back to the Go API via:
+
+- `API_PUBLIC_URL` (Go API env var) → callbacks land at `/api/v1/internal/...`

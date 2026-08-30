@@ -42,7 +42,7 @@ All pipeline changes must satisfy:
 - [`.cursor/rules/strict-elt-invariants.mdc`](./strict-elt-invariants.mdc)
 - [`.cursor/rules/elt-flow-diagram.mdc`](./elt-flow-diagram.mdc)
 
-Human narrative: [`md-docs/strict-elt-pipeline-guide.md`](../../md-docs/strict-elt-pipeline-guide.md).
+Human narrative: [`md-docs/architecture/elt/strict-pipeline-guide.md`](../../md-docs/architecture/elt/strict-pipeline-guide.md).
 
 Short reminders:
 

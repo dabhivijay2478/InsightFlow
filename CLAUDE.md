@@ -282,10 +282,12 @@ k6 run tests/load-tests/k6-etl.js
 
 ## Deployment
 
-See `apps/mantrixflow-infra/DEPLOYMENT.md`, `md-docs/deployment-vercel.md`, and `md-docs/aws-ses-setup.md`.
+See `md-docs/deployment/infrastructure/ovh-microsandbox-runbook.md`,
+`md-docs/deployment/frontend/vercel.md`, and
+`md-docs/integrations/email/aws-ses-setup.md`.
 
 - **App**: Vercel — `cloud.mantrixflow.com` (root: `apps/app`)
-- **API + ELT**: AWS ECS Fargate — API public at `cloud.api.mantrixflow.com`; ELT internal only (root: `apps/server/`)
+- **API + ELT**: independent OVH VPS targets managed by self-hosted Dokploy; API public at `cloud.api.mantrixflow.com`, ELT private only
 - **Email**: AWS SES (Go API `EMAIL_PROVIDER=ses`)
 
 **No Meltano:** The system uses dlt directly — no Singer taps, no Meltano pipelines. ETL fetches connection config from `data_source_connections` and runs dlt pipelines dynamically.

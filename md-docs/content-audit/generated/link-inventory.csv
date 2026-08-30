@@ -184,133 +184,211 @@ apps/mantrixflow-docs/user-guide/organizations.mdx,/images/user-guide/ug-organiz
 apps/mantrixflow-docs/user-guide/organizations.mdx,/images/user-guide/ug-organization-switcher.png,OK
 apps/mantrixflow-docs/user-guide/organizations.mdx,/images/user-guide/ug-settings-organization.png,OK
 apps/mantrixflow-docs/user-guide/transformations-and-branches.mdx,/pipelines/dbt-layer,OK
-md-docs/README.md,./strict-elt-pipeline-guide.md,OK
-md-docs/README.md,./source-to-destination-elt-flow.md,OK
-md-docs/README.md,./analytics-page-implementation.md,OK
+md-docs/README.md,./infrastructure/setup/ovh-dokploy-microsandbox.md,OK
+md-docs/README.md,./deployment/infrastructure/ovh-microsandbox-runbook.md,OK
+md-docs/README.md,./infrastructure/ci-cd/github-actions.md,OK
+md-docs/README.md,./infrastructure/architecture/production-architecture.md,OK
+md-docs/README.md,./architecture/simulation/platform.md,OK
+md-docs/README.md,./architecture/elt/strict-pipeline-guide.md,OK
+md-docs/README.md,./testing/local-development.md,OK
+md-docs/README.md,./infrastructure/setup/ovh-dokploy-microsandbox.md,OK
+md-docs/README.md,./deployment/infrastructure/ovh-microsandbox-runbook.md,OK
+md-docs/README.md,./deployment/services/go-api-simulation-manager.md,OK
+md-docs/README.md,./deployment/services/python-elt-simulation-runtime.md,OK
+md-docs/README.md,./infrastructure/ci-cd/github-actions.md,OK
+md-docs/README.md,./infrastructure/ci-cd/deployment-independence.md,OK
+md-docs/README.md,./infrastructure/networking/private-network.md,OK
+md-docs/README.md,./infrastructure/operations/dokploy.md,OK
+md-docs/README.md,./infrastructure/operations/backup-restore.md,OK
+md-docs/README.md,./infrastructure/storage/tigris.md,OK
+md-docs/README.md,./infrastructure/database/supabase-transition.md,OK
+md-docs/README.md,./infrastructure/database/supabase-rls-guide.md,OK
+md-docs/README.md,./deployment/frontend/,OK
+md-docs/README.md,./deployment/legacy/,OK
+md-docs/README.md,./architecture/elt/strict-pipeline-guide.md,OK
+md-docs/README.md,./architecture/elt/source-to-destination-flow.md,OK
+md-docs/README.md,./architecture/simulation/platform.md,OK
+md-docs/README.md,./architecture/simulation/implementation-report.md,OK
+md-docs/README.md,./architecture/frontend/analytics-page-implementation.md,OK
 md-docs/README.md,../.cursor/rules/strict-elt-invariants.mdc,OK
 md-docs/README.md,../.cursor/rules/elt-flow-diagram.mdc,OK
-md-docs/README.md,./billing-dodo-billingsdk.md,OK
-md-docs/README.md,./dodo-payments-setup.md,OK
-md-docs/README.md,./dodo-payments-flowchart.md,OK
-md-docs/README.md,./autosend-email-system-plan.md,OK
-md-docs/README.md,./autosend-email-catalog.md,OK
-md-docs/README.md,./autosend-template-copy.md,OK
-md-docs/README.md,./autosend-template-design-guide.md,OK
-md-docs/README.md,./autosend-template-id-map.md,OK
-md-docs/README.md,./dodo-autosend-transformations.md,OK
-md-docs/README.md,./autosend-dodo-supabase-production-runbook.md,OK
-md-docs/README.md,./autosend-production-deployment-guide.md,OK
-md-docs/README.md,./supabase-auth-email-templates.md,OK
-md-docs/README.md,./betterstack-setup.md,OK
-md-docs/README.md,./posthog-setup.md,OK
-md-docs/README.md,./posthog-full-integration.md,OK
-md-docs/README.md,./observability-deployment.md,OK
-md-docs/README.md,../apps/mantrixflow-infra/DEPLOYMENT.md,OK
-md-docs/README.md,../apps/mantrixflow-infra/docs/setup-guide.md,OK
-md-docs/README.md,../apps/mantrixflow-infra/docs/github-actions.md,OK
-md-docs/README.md,./tigris-storage-setup.md,OK
-md-docs/README.md,./deployment-oracle-cloud.md,OK
-md-docs/README.md,./deployment-vercel.md,OK
-md-docs/README.md,./aws-ses-setup.md,OK
-md-docs/README.md,./slack-guide.md,OK
-md-docs/README.md,./zendesk-oauth-setup.md,OK
+md-docs/README.md,./operations/observability/betterstack-setup.md,OK
+md-docs/README.md,./operations/observability/posthog-setup.md,OK
+md-docs/README.md,./operations/observability/posthog-full-integration.md,OK
+md-docs/README.md,./operations/observability/deployment.md,OK
+md-docs/README.md,./integrations/billing/,OK
+md-docs/README.md,./integrations/connectors/,OK
+md-docs/README.md,./integrations/email/,OK
+md-docs/README.md,./github/,OK
+md-docs/README.md,./audits/connectors/,OK
+md-docs/README.md,./ai/oria/,OK
+md-docs/README.md,./ai/agent-grid/,OK
 md-docs/README.md,./agents/README.md,OK
-md-docs/README.md,./oria-adk-to-ai-sdk-migration.md,OK
-md-docs/README.md,./oria-agent-setup.md,OK
-md-docs/README.md,./oria-agent-testing-guide.md,OK
-md-docs/README.md,./oria-test-prompts-release1-read.md,OK
-md-docs/README.md,./oria-test-prompts-release2-action.md,OK
-md-docs/README.md,./oria-test-prompts-release3-automation.md,OK
-md-docs/README.md,./oria-test-prompts-release4-intelligence.md,OK
-md-docs/README.md,./oria-test-prompts-release5-enterprise.md,OK
-md-docs/README.md,./oria-test-prompts-release6-platform.md,OK
-md-docs/README.md,../apps/mantrixflow-docs/user-guide/oria-copilot.mdx,OK
-md-docs/README.md,./ai-copilot-phase-1.md,OK
-md-docs/README.md,./frontend-refactor-audit.md,OK
-md-docs/README.md,./pipeline-all-streams-chrome-e2e-report-2026-07-19.md,OK
-md-docs/README.md,./pipeline-new-layout-e2e-report-2026-07-18.md,OK
-md-docs/README.md,./testing-local.md,OK
-md-docs/README.md,./manual-testing/slack-pipeline-e2e.md,OK
-md-docs/README.md,./manual-testing/postgres-to-postgres-data-types-ui.md,OK
-md-docs/README.md,../docs/github-source-connector-audit.md,OK
-md-docs/README.md,../apps/mantrixflow-docs/connections/sources/developer-tools/github.mdx,OK
-md-docs/README.md,../apps/mantrixflow-docs/connections/sources/productivity/asana.mdx,OK
-md-docs/README.md,../apps/mantrixflow-docs/connections/sources/productivity/linear.mdx,OK
-md-docs/README.md,../apps/mantrixflow-docs/example/pipelines/asana-to-destinations.mdx,OK
-md-docs/README.md,../apps/mantrixflow-docs/connections/sources/productivity/airtable.mdx,OK
-md-docs/README.md,../apps/mantrixflow-docs/connections/destinations/airtable.mdx,OK
-md-docs/README.md,../apps/mantrixflow-docs/connections/sources/database/mysql.mdx,OK
-md-docs/README.md,../apps/mantrixflow-docs/connections/destinations/mysql.mdx,OK
-md-docs/README.md,../apps/mantrixflow-docs/example/pipelines/airtable-and-mysql.mdx,OK
-md-docs/README.md,../docs/airtable-source-destination-connector-audit.md,OK
-md-docs/README.md,./saas-sources-group2.md,OK
-md-docs/README.md,./stripe-connector-ai-prompts.md,OK
-md-docs/README.md,./hubspot-postgres-full-phase-plan.md,OK
-md-docs/README.md,./salesforce-postgres-setup.md,OK
-md-docs/README.md,./salesforce-postgres-testing-guide.md,OK
+md-docs/README.md,./audits/connectors/,OK
+md-docs/README.md,./audits/frontend/,OK
+md-docs/README.md,./audits/product/,OK
+md-docs/README.md,./audits/legal/,OK
+md-docs/README.md,./infrastructure/reports/,OK
+md-docs/README.md,./testing/reports/,OK
+md-docs/README.md,./content-audit/,OK
+md-docs/README.md,./testing/local-development.md,OK
+md-docs/README.md,./testing/test-cases.md,OK
+md-docs/README.md,./manual-testing/README.md,OK
+md-docs/README.md,./testing/reports/,OK
 md-docs/agents/README.md,./flow-charts.md,OK
 md-docs/agents/README.md,./workflows.md,OK
 md-docs/agents/README.md,./setup-guide.md,OK
 md-docs/agents/README.md,./model-providers.md,OK
 md-docs/agents/README.md,./how-it-works.md,OK
 md-docs/agents/setup-guide.md,./model-providers.md,OK
-md-docs/ai-copilot-phase-1.md,./oria-agent-setup.md,OK
-md-docs/ai-copilot-phase-1.md,./oria-adk-to-ai-sdk-migration.md,OK
-md-docs/autosend-dodo-supabase-production-runbook.md,./dodo-autosend-transformations.md,OK
-md-docs/autosend-dodo-supabase-production-runbook.md,./autosend-template-id-map.md,OK
-md-docs/autosend-dodo-supabase-production-runbook.md,https://docs.dodopayments.com/integrations/autosend,External — network check required
-md-docs/autosend-dodo-supabase-production-runbook.md,https://docs.autosend.com/api-reference/introduction,External — network check required
-md-docs/autosend-dodo-supabase-production-runbook.md,https://docs.autosend.com/quickstart/smtp,External — network check required
-md-docs/autosend-dodo-supabase-production-runbook.md,https://supabase.com/docs/guides/auth/auth-smtp,External — network check required
-md-docs/autosend-email-system-plan.md,./dodo-autosend-transformations.md,OK
-md-docs/autosend-email-system-plan.md,./autosend-template-id-map.md,OK
-md-docs/autosend-email-system-plan.md,./autosend-dodo-supabase-production-runbook.md,OK
-md-docs/autosend-email-system-plan.md,https://docs.dodopayments.com/integrations/autosend,External — network check required
-md-docs/autosend-email-system-plan.md,https://docs.autosend.com/api-reference/mails/send,External — network check required
-md-docs/autosend-email-system-plan.md,https://docs.autosend.com/quickstart/smtp,External — network check required
-md-docs/autosend-email-system-plan.md,https://supabase.com/docs/guides/auth/auth-smtp,External — network check required
-md-docs/autosend-production-deployment-guide.md,./supabase-auth-email-templates.md,OK
-md-docs/autosend-production-deployment-guide.md,https://docs.autosend.com/api-reference/introduction,External — network check required
-md-docs/autosend-production-deployment-guide.md,https://docs.autosend.com/quickstart/smtp,External — network check required
-md-docs/autosend-production-deployment-guide.md,https://docs.dodopayments.com/integrations/autosend,External — network check required
-md-docs/autosend-production-deployment-guide.md,https://supabase.com/docs/guides/auth/auth-email-templates,External — network check required
-md-docs/autosend-template-design-guide.md,mailto:support@mantrixflow.com,External contact link — syntax only
-md-docs/aws-ses-setup.md,https://docs.aws.amazon.com/ses/latest/dg/creating-identities.html,External — network check required
-md-docs/aws-ses-setup.md,https://docs.aws.amazon.com/ses/latest/dg/mail-from.html,External — network check required
-md-docs/aws-ses-setup.md,https://docs.aws.amazon.com/ses/latest/dg/creating-configuration-sets.html,External — network check required
-md-docs/aws-ses-setup.md,https://docs.aws.amazon.com/ses/latest/dg/request-production-access.html,External — network check required
-md-docs/aws-ses-setup.md,https://docs.aws.amazon.com/ses/latest/dg/smtp-credentials.html,External — network check required
-md-docs/aws-ses-setup.md,https://supabase.com/docs/guides/auth/auth-smtp,External — network check required
-md-docs/betterstack-setup.md,./observability-deployment.md,OK
-md-docs/betterstack-setup.md,../apps/mantrixflow-infra/DEPLOYMENT.md,OK
-md-docs/betterstack-setup.md,https://betterstack.com,External — network check required
-md-docs/betterstack-setup.md,./observability-deployment.md,OK
-md-docs/betterstack-setup.md,./observability-deployment.md,OK
-md-docs/betterstack-setup.md,./posthog-setup.md,OK
-md-docs/betterstack-setup.md,./observability-deployment.md,OK
-md-docs/betterstack-status-page-creation.md,./betterstack-setup.md,OK
-md-docs/betterstack-status-page-creation.md,./observability-deployment.md,OK
-md-docs/deployment-oracle-cloud.md,https://docs.oracle.com/en-us/iaas/Content/FreeTier/freetier_topic-Always_Free_Resources.htm,External — network check required
-md-docs/deployment-oracle-cloud.md,https://docs.oracle.com/en-us/iaas/Content/FreeTier/freetier.htm,External — network check required
-md-docs/deployment-oracle-cloud.md,https://www.oracle.com/cloud/free/,External — network check required
-md-docs/deployment-oracle-cloud.md,https://www.cloudflare.com/plans/free/,External — network check required
-md-docs/dodo-payments-flowchart.md,./billing-dodo-billingsdk.md,OK
-md-docs/frontend-architecture-audit-final.md,/...,Missing route
-md-docs/frontend-architecture-audit-final.md,/workspace,Missing route
-md-docs/frontend-fractal-architecture-report.md,/...,Missing route
+md-docs/ai/agent-grid/README.md,./quick-start.md,OK
+md-docs/ai/agent-grid/README.md,./implementation.md,OK
+md-docs/ai/agent-grid/README.md,./ui-guide.md,OK
+md-docs/ai/oria/README.md,./agent-setup.md,OK
+md-docs/ai/oria/README.md,./adk-to-ai-sdk-migration.md,OK
+md-docs/ai/oria/README.md,./agent-testing-guide.md,OK
+md-docs/ai/oria/README.md,./browser-ui-test-log.md,OK
+md-docs/ai/oria/README.md,./copilot-phase-1.md,OK
+md-docs/ai/oria/README.md,./summary-agent.md,OK
+md-docs/ai/oria/adk-to-ai-sdk-migration.md,./agent-setup.md,OK
+md-docs/ai/oria/adk-to-ai-sdk-migration.md,./browser-ui-test-log.md,OK
+md-docs/ai/oria/adk-to-ai-sdk-migration.md,./agent-testing-guide.md,OK
+md-docs/ai/oria/agent-setup.md,./adk-to-ai-sdk-migration.md,OK
+md-docs/ai/oria/agent-testing-guide.md,./test-prompts-release1-read.md,OK
+md-docs/ai/oria/agent-testing-guide.md,./test-prompts-release2-action.md,OK
+md-docs/ai/oria/agent-testing-guide.md,./test-prompts-release3-automation.md,OK
+md-docs/ai/oria/agent-testing-guide.md,./test-prompts-release4-intelligence.md,OK
+md-docs/ai/oria/agent-testing-guide.md,./test-prompts-release5-enterprise.md,OK
+md-docs/ai/oria/agent-testing-guide.md,./test-prompts-release6-platform.md,OK
+md-docs/ai/oria/agent-testing-guide.md,./agent-setup.md,OK
+md-docs/ai/oria/agent-testing-guide.md,./agent-setup.md,OK
+md-docs/ai/oria/agent-testing-guide.md,./adk-to-ai-sdk-migration.md,OK
+md-docs/ai/oria/agent-testing-guide.md,./browser-ui-test-log.md,OK
+md-docs/ai/oria/browser-ui-test-log.md,./test-prompts-release1-read.md,OK
+md-docs/ai/oria/copilot-phase-1.md,./agent-setup.md,OK
+md-docs/ai/oria/copilot-phase-1.md,./adk-to-ai-sdk-migration.md,OK
+md-docs/ai/oria/test-prompts-release1-read.md,./agent-setup.md,OK
+md-docs/architecture/elt/strict-pipeline-guide.md,../../../.cursor/rules/strict-elt-invariants.mdc,OK
+md-docs/architecture/elt/strict-pipeline-guide.md,../../../.cursor/rules/elt-flow-diagram.mdc,OK
+md-docs/architecture/elt/strict-pipeline-guide.md,../../../.cursor/rules/strict-elt-invariants.mdc,OK
+md-docs/architecture/elt/strict-pipeline-guide.md,../../testing/local-development.md,OK
+md-docs/architecture/simulation/implementation-report.md,../../infrastructure/setup/ovh-dokploy-microsandbox.md,OK
+md-docs/architecture/simulation/platform.md,../../infrastructure/setup/ovh-dokploy-microsandbox.md,OK
+md-docs/audits/connectors/linear-source-connector-audit.md,https://dlthub.com/workspace/source/linear,External — network check required
+md-docs/audits/connectors/linear-source-connector-audit.md,https://dlthub.com/docs/dlt-ecosystem/verified-sources,External — network check required
+md-docs/audits/connectors/linear-source-connector-audit.md,https://linear.app/developers/graphql,External — network check required
+md-docs/audits/connectors/linear-source-connector-audit.md,https://github.com/linear/linear/blob/master/packages/sdk/src/schema.graphql,External — network check required
+md-docs/audits/connectors/linear-source-connector-audit.md,https://linear.app/developers/graphql,External — network check required
+md-docs/audits/connectors/linear-source-connector-audit.md,https://linear.app/developers/oauth-2-0-authentication,External — network check required
+md-docs/audits/connectors/linear-source-connector-audit.md,https://linear.app/developers/filtering,External — network check required
+md-docs/audits/connectors/linear-source-connector-audit.md,https://linear.app/developers/pagination,External — network check required
+md-docs/audits/connectors/linear-source-connector-audit.md,https://linear.app/developers/rate-limiting,External — network check required
+md-docs/audits/connectors/notion-source-connector-audit.md,https://developers.notion.com/reference/versioning,External — network check required
+md-docs/audits/connectors/notion-source-connector-audit.md,https://developers.notion.com/guides/get-started/upgrade-guide-2025-09-03,External — network check required
+md-docs/audits/connectors/notion-source-connector-audit.md,https://dlthub.com/docs/dlt-ecosystem/verified-sources/notion,External — network check required
+md-docs/audits/connectors/notion-source-connector-audit.md,https://raw.githubusercontent.com/dlt-hub/verified-sources/master/sources/notion/helpers/client.py,External — network check required
+md-docs/audits/connectors/notion-source-connector-audit.md,https://raw.githubusercontent.com/dlt-hub/verified-sources/master/sources/notion/helpers/database.py,External — network check required
+md-docs/audits/connectors/notion-source-connector-audit.md,https://developers.notion.com/reference/search-optimizations-and-limitations,External — network check required
+md-docs/audits/connectors/strapi-source-connector-audit.md,https://dlthub.com/docs/dlt-ecosystem/verified-sources/strapi,External — network check required
+md-docs/audits/connectors/strapi-source-connector-audit.md,https://docs.strapi.io/,External — network check required
+md-docs/audits/frontend/README.md,./architecture-final.md,OK
+md-docs/audits/frontend/README.md,./file-size.md,OK
+md-docs/audits/frontend/README.md,./fractal-architecture-report.md,OK
+md-docs/audits/frontend/README.md,./refactor-final-report.md,OK
+md-docs/audits/frontend/architecture-final.md,/...,Missing route
+md-docs/audits/frontend/architecture-final.md,/workspace,Missing route
+md-docs/audits/frontend/fractal-architecture-report.md,/...,Missing route
+md-docs/audits/legal/README.md,./ceo-legal-claims-review.md,OK
+md-docs/audits/product/README.md,./oria-twenty-ai-experience-audit.md,OK
+md-docs/deployment/frontend/README.md,./vercel.md,OK
+md-docs/deployment/frontend/README.md,./vercel-deployment.md,OK
+md-docs/deployment/infrastructure/ovh-microsandbox-runbook.md,../../infrastructure/setup/ovh-dokploy-microsandbox.md,OK
+md-docs/deployment/infrastructure/ovh-microsandbox-runbook.md,../../infrastructure/operations/dokploy.md,OK
+md-docs/deployment/legacy/README.md,./oracle-cloud.md,OK
+md-docs/deployment/legacy/oracle-cloud.md,https://docs.oracle.com/en-us/iaas/Content/FreeTier/freetier_topic-Always_Free_Resources.htm,External — network check required
+md-docs/deployment/legacy/oracle-cloud.md,https://docs.oracle.com/en-us/iaas/Content/FreeTier/freetier.htm,External — network check required
+md-docs/deployment/legacy/oracle-cloud.md,https://www.oracle.com/cloud/free/,External — network check required
+md-docs/deployment/legacy/oracle-cloud.md,https://www.cloudflare.com/plans/free/,External — network check required
+md-docs/deployment/services/go-api-simulation-manager.md,../../infrastructure/setup/ovh-dokploy-microsandbox.md,OK
+md-docs/deployment/services/go-api-simulation-manager.md,../infrastructure/ovh-microsandbox-runbook.md,OK
+md-docs/deployment/services/go-api-simulation-manager.md,../../infrastructure/ci-cd/github-actions.md,OK
+md-docs/deployment/services/python-elt-simulation-runtime.md,../../infrastructure/setup/ovh-dokploy-microsandbox.md,OK
+md-docs/deployment/services/python-elt-simulation-runtime.md,../infrastructure/ovh-microsandbox-runbook.md,OK
+md-docs/deployment/services/python-elt-simulation-runtime.md,../../infrastructure/ci-cd/github-actions.md,OK
 md-docs/github/README.md,backend-plan.md,OK
 md-docs/github/README.md,yaml-contract.md,OK
 md-docs/github/README.md,frontend-plan.md,OK
 md-docs/github/README.md,test-plan.md,OK
 md-docs/github/README.md,setup/github-app-setup.md,OK
-md-docs/hubspot-postgres-full-phase-plan.md,https://dlthub.com/docs/dlt-ecosystem/verified-sources/hubspot,External — network check required
-md-docs/hubspot-postgres-full-phase-plan.md,https://dlthub.com/docs/general-usage/source,External — network check required
-md-docs/hubspot-postgres-full-phase-plan.md,https://docs.estuary.dev/reference/Connectors/capture-connectors/HubSpot-real-time/,External — network check required
-md-docs/hubspot-postgres-full-phase-plan.md,https://developers.hubspot.com/docs/developer-tooling/platform/usage-guidelines,External — network check required
-md-docs/hubspot-postgres-full-phase-plan.md,https://developers.hubspot.com/docs/api-reference/latest/crm/using-object-apis,External — network check required
-md-docs/hubspot-postgres-full-phase-plan.md,https://developers.hubspot.com/docs/apps/developer-platform/build-apps/authentication/scopes,External — network check required
-md-docs/hubspot-postgres-full-phase-plan.md,https://developers.hubspot.com/docs/api-reference/latest/crm/limits-tracking/guide,External — network check required
-md-docs/manual-testing/README.md,../testing-local.md,OK
+md-docs/infrastructure/architecture/production-architecture.md,../setup/ovh-dokploy-microsandbox.md,OK
+md-docs/infrastructure/networking/private-network.md,../setup/ovh-dokploy-microsandbox.md,OK
+md-docs/infrastructure/operations/dokploy.md,../ci-cd/github-actions.md,OK
+md-docs/infrastructure/operations/dokploy.md,../setup/ovh-dokploy-microsandbox.md,OK
+md-docs/infrastructure/reports/README.md,./ci-cd-implementation.md,OK
+md-docs/infrastructure/setup/ovh-dokploy-microsandbox.md,../ci-cd/github-actions.md,OK
+md-docs/infrastructure/setup/ovh-dokploy-microsandbox.md,../ci-cd/github-actions.md,OK
+md-docs/infrastructure/setup/ovh-dokploy-microsandbox.md,../../deployment/infrastructure/ovh-microsandbox-runbook.md,OK
+md-docs/infrastructure/storage/tigris.md,../../../apps/mantrixflow-infra/backup/README.md,OK
+md-docs/integrations/billing/README.md,./dodo-billingsdk.md,OK
+md-docs/integrations/billing/README.md,./dodo-payments-setup.md,OK
+md-docs/integrations/billing/README.md,./dodo-payments-flowchart.md,OK
+md-docs/integrations/billing/README.md,./dodo-autosend-transformations.md,OK
+md-docs/integrations/billing/dodo-payments-flowchart.md,./dodo-billingsdk.md,OK
+md-docs/integrations/connectors/README.md,./saas-sources-group2.md,OK
+md-docs/integrations/connectors/README.md,./salesforce-postgres-setup.md,OK
+md-docs/integrations/connectors/README.md,./salesforce-postgres-testing.md,OK
+md-docs/integrations/connectors/README.md,./slack-guide.md,OK
+md-docs/integrations/connectors/README.md,./stripe-ai-prompts.md,OK
+md-docs/integrations/connectors/README.md,./zendesk-oauth-setup.md,OK
+md-docs/integrations/connectors/README.md,./plans/hubspot-postgres-full-phase.md,OK
+md-docs/integrations/connectors/README.md,../../audits/connectors/README.md,OK
+md-docs/integrations/connectors/plans/hubspot-postgres-full-phase.md,https://dlthub.com/docs/dlt-ecosystem/verified-sources/hubspot,External — network check required
+md-docs/integrations/connectors/plans/hubspot-postgres-full-phase.md,https://dlthub.com/docs/general-usage/source,External — network check required
+md-docs/integrations/connectors/plans/hubspot-postgres-full-phase.md,https://docs.estuary.dev/reference/Connectors/capture-connectors/HubSpot-real-time/,External — network check required
+md-docs/integrations/connectors/plans/hubspot-postgres-full-phase.md,https://developers.hubspot.com/docs/developer-tooling/platform/usage-guidelines,External — network check required
+md-docs/integrations/connectors/plans/hubspot-postgres-full-phase.md,https://developers.hubspot.com/docs/api-reference/latest/crm/using-object-apis,External — network check required
+md-docs/integrations/connectors/plans/hubspot-postgres-full-phase.md,https://developers.hubspot.com/docs/apps/developer-platform/build-apps/authentication/scopes,External — network check required
+md-docs/integrations/connectors/plans/hubspot-postgres-full-phase.md,https://developers.hubspot.com/docs/api-reference/latest/crm/limits-tracking/guide,External — network check required
+md-docs/integrations/connectors/zendesk-oauth-setup.md,https://developer.zendesk.com/documentation/authentication/oauth-migration/,External — network check required
+md-docs/integrations/connectors/zendesk-oauth-setup.md,https://developer.zendesk.com/documentation/marketplace/building-a-marketplace-app/set-up-a-global-oauth-client/,External — network check required
+md-docs/integrations/connectors/zendesk-oauth-setup.md,https://developer.zendesk.com/api-reference/ticketing/oauth/oauth_tokens/#scopes,External — network check required
+md-docs/integrations/connectors/zendesk-oauth-setup.md,https://developer.zendesk.com/api-reference/ticketing/introduction/,External — network check required
+md-docs/integrations/connectors/zendesk-oauth-setup.md,https://developer.zendesk.com/api-reference/live-chat/chat-conversations-api/conversations-api/,External — network check required
+md-docs/integrations/email/README.md,./aws-ses-setup.md,OK
+md-docs/integrations/email/README.md,./supabase-auth-templates.md,OK
+md-docs/integrations/email/README.md,./autosend/email-system-plan.md,OK
+md-docs/integrations/email/autosend/dodo-supabase-production-runbook.md,../../billing/dodo-autosend-transformations.md,OK
+md-docs/integrations/email/autosend/dodo-supabase-production-runbook.md,./template-id-map.md,OK
+md-docs/integrations/email/autosend/dodo-supabase-production-runbook.md,https://docs.dodopayments.com/integrations/autosend,External — network check required
+md-docs/integrations/email/autosend/dodo-supabase-production-runbook.md,https://docs.autosend.com/api-reference/introduction,External — network check required
+md-docs/integrations/email/autosend/dodo-supabase-production-runbook.md,https://docs.autosend.com/quickstart/smtp,External — network check required
+md-docs/integrations/email/autosend/dodo-supabase-production-runbook.md,https://supabase.com/docs/guides/auth/auth-smtp,External — network check required
+md-docs/integrations/email/autosend/email-system-plan.md,../../billing/dodo-autosend-transformations.md,OK
+md-docs/integrations/email/autosend/email-system-plan.md,./template-id-map.md,OK
+md-docs/integrations/email/autosend/email-system-plan.md,./dodo-supabase-production-runbook.md,OK
+md-docs/integrations/email/autosend/email-system-plan.md,https://docs.dodopayments.com/integrations/autosend,External — network check required
+md-docs/integrations/email/autosend/email-system-plan.md,https://docs.autosend.com/api-reference/mails/send,External — network check required
+md-docs/integrations/email/autosend/email-system-plan.md,https://docs.autosend.com/quickstart/smtp,External — network check required
+md-docs/integrations/email/autosend/email-system-plan.md,https://supabase.com/docs/guides/auth/auth-smtp,External — network check required
+md-docs/integrations/email/autosend/production-deployment-guide.md,../supabase-auth-templates.md,OK
+md-docs/integrations/email/autosend/production-deployment-guide.md,https://docs.autosend.com/api-reference/introduction,External — network check required
+md-docs/integrations/email/autosend/production-deployment-guide.md,https://docs.autosend.com/quickstart/smtp,External — network check required
+md-docs/integrations/email/autosend/production-deployment-guide.md,https://docs.dodopayments.com/integrations/autosend,External — network check required
+md-docs/integrations/email/autosend/production-deployment-guide.md,https://supabase.com/docs/guides/auth/auth-email-templates,External — network check required
+md-docs/integrations/email/autosend/template-design-guide.md,mailto:support@mantrixflow.com,External contact link — syntax only
+md-docs/integrations/email/aws-ses-setup.md,https://docs.aws.amazon.com/ses/latest/dg/creating-identities.html,External — network check required
+md-docs/integrations/email/aws-ses-setup.md,https://docs.aws.amazon.com/ses/latest/dg/mail-from.html,External — network check required
+md-docs/integrations/email/aws-ses-setup.md,https://docs.aws.amazon.com/ses/latest/dg/creating-configuration-sets.html,External — network check required
+md-docs/integrations/email/aws-ses-setup.md,https://docs.aws.amazon.com/ses/latest/dg/request-production-access.html,External — network check required
+md-docs/integrations/email/aws-ses-setup.md,https://docs.aws.amazon.com/ses/latest/dg/smtp-credentials.html,External — network check required
+md-docs/integrations/email/aws-ses-setup.md,https://supabase.com/docs/guides/auth/auth-smtp,External — network check required
+md-docs/integrations/email/supabase-auth-templates.md,mailto:support@mantrixflow.com,External contact link — syntax only
+md-docs/integrations/email/supabase-auth-templates.md,mailto:support@mantrixflow.com,External contact link — syntax only
+md-docs/integrations/email/supabase-auth-templates.md,mailto:support@mantrixflow.com,External contact link — syntax only
+md-docs/integrations/email/supabase-auth-templates.md,mailto:support@mantrixflow.com,External contact link — syntax only
+md-docs/integrations/email/supabase-auth-templates.md,mailto:support@mantrixflow.com,External contact link — syntax only
+md-docs/integrations/email/supabase-auth-templates.md,mailto:support@mantrixflow.com,External contact link — syntax only
+md-docs/manual-testing/README.md,../testing/local-development.md,OK
 md-docs/manual-testing/README.md,./postgres-to-postgres-data-types-ui.md,OK
 md-docs/manual-testing/pipeline-step-by-step.md,pipelines/saas/11-hubspot-to-postgres.md,OK
 md-docs/manual-testing/pipelines/README.md,saas/01-stripe-to-postgres.md,OK
@@ -375,85 +453,65 @@ md-docs/manual-testing/ui-testing/README.md,db/mysql-ui.md,OK
 md-docs/manual-testing/ui-testing/README.md,db/mariadb-ui.md,OK
 md-docs/manual-testing/ui-testing/README.md,db/sqlite-ui.md,OK
 md-docs/manual-testing/ui-testing/README.md,db/cockroachdb-ui.md,OK
-md-docs/observability-deployment.md,../apps/mantrixflow-infra/DEPLOYMENT.md,OK
-md-docs/observability-deployment.md,./betterstack-setup.md,OK
-md-docs/observability-deployment.md,./posthog-setup.md,OK
-md-docs/observability-deployment.md,../apps/mantrixflow-infra/DEPLOYMENT.md,OK
-md-docs/observability-deployment.md,./posthog-setup.md,OK
-md-docs/observability-deployment.md,./betterstack-setup.md,OK
-md-docs/observability-deployment.md,./posthog-setup.md,OK
-md-docs/observability-deployment.md,./betterstack-setup.md,OK
-md-docs/observability-deployment.md,./posthog-setup.md,OK
-md-docs/observability-deployment.md,./betterstack-setup.md,OK
-md-docs/observability-deployment.md,./posthog-setup.md,OK
-md-docs/observability-deployment.md,./deployment-vercel.md,OK
-md-docs/observability-deployment.md,../apps/mantrixflow-infra/DEPLOYMENT.md,OK
-md-docs/observability-deployment.md,../apps/mantrixflow-infra/DEPLOYMENT.md,OK
-md-docs/oria-adk-to-ai-sdk-migration.md,./oria-agent-setup.md,OK
-md-docs/oria-adk-to-ai-sdk-migration.md,./oria-browser-ui-test-log.md,OK
-md-docs/oria-adk-to-ai-sdk-migration.md,./oria-agent-testing-guide.md,OK
-md-docs/oria-agent-setup.md,./oria-adk-to-ai-sdk-migration.md,OK
-md-docs/oria-agent-testing-guide.md,./oria-test-prompts-release1-read.md,OK
-md-docs/oria-agent-testing-guide.md,./oria-test-prompts-release2-action.md,OK
-md-docs/oria-agent-testing-guide.md,./oria-test-prompts-release3-automation.md,OK
-md-docs/oria-agent-testing-guide.md,./oria-test-prompts-release4-intelligence.md,OK
-md-docs/oria-agent-testing-guide.md,./oria-test-prompts-release5-enterprise.md,OK
-md-docs/oria-agent-testing-guide.md,./oria-test-prompts-release6-platform.md,OK
-md-docs/oria-agent-testing-guide.md,./oria-agent-setup.md,OK
-md-docs/oria-agent-testing-guide.md,./oria-agent-setup.md,OK
-md-docs/oria-agent-testing-guide.md,./oria-adk-to-ai-sdk-migration.md,OK
-md-docs/oria-agent-testing-guide.md,./oria-browser-ui-test-log.md,OK
-md-docs/oria-browser-ui-test-log.md,./oria-test-prompts-release1-read.md,OK
-md-docs/oria-test-prompts-release1-read.md,./oria-agent-setup.md,OK
-md-docs/pipeline-all-streams-chrome-e2e-report-2026-07-19.md,https://github.com/dabhivijay2478/mantrixflow-git-testing/pull/3,External — network check required
-md-docs/posthog-betterstack-setup.md,./betterstack-setup.md,OK
-md-docs/posthog-betterstack-setup.md,./posthog-setup.md,OK
-md-docs/posthog-betterstack-setup.md,./observability-deployment.md,OK
-md-docs/posthog-full-integration.md,https://status.mantrixflow.com,External — network check required
-md-docs/posthog-full-integration.md,./posthog-setup.md,OK
-md-docs/posthog-full-integration.md,./betterstack-setup.md,OK
-md-docs/posthog-full-integration.md,./observability-deployment.md,OK
-md-docs/posthog-full-integration.md,../apps/app/lib/posthog/events.ts,OK
-md-docs/posthog-full-integration.md,../apps/app/shared/providers/posthog-identify.tsx,OK
-md-docs/posthog-full-integration.md,../apps/server/main-server/internal/observability/posthog.go,OK
-md-docs/posthog-full-integration.md,../apps/server/main-server/internal/server/incident_webhook.go,OK
-md-docs/posthog-full-integration.md,../apps/app/hooks/use-feature-flag.ts,OK
-md-docs/posthog-full-integration.md,../apps/app/lib/posthog/client.ts,OK
-md-docs/posthog-full-integration.md,../apps/mantrixflow-infra/DEPLOYMENT.md,OK
-md-docs/posthog-full-integration.md,./observability-deployment.md,OK
-md-docs/posthog-full-integration.md,./posthog-setup.md,OK
-md-docs/posthog-setup.md,https://us.posthog.com,External — network check required
-md-docs/posthog-setup.md,./observability-deployment.md,OK
-md-docs/posthog-setup.md,https://us.posthog.com,External — network check required
-md-docs/posthog-setup.md,https://posthog.com/docs/getting-started/install,External — network check required
-md-docs/posthog-setup.md,https://us.posthog.com,External — network check required
-md-docs/posthog-setup.md,https://posthog.com/docs/error-tracking/alerts,External — network check required
-md-docs/posthog-setup.md,https://posthog.com/docs/error-tracking/installation/nextjs,External — network check required
-md-docs/posthog-setup.md,https://posthog.com/docs/getting-started/install,External — network check required
-md-docs/posthog-setup.md,https://cloud.mantrixflow.com,External — network check required
-md-docs/posthog-setup.md,https://posthog.com/docs/getting-started/identify,External — network check required
-md-docs/posthog-setup.md,https://posthog.com/docs/error-tracking/alerts,External — network check required
-md-docs/posthog-setup.md,https://status.mantrixflow.com,External — network check required
-md-docs/posthog-setup.md,./betterstack-setup.md,OK
-md-docs/posthog-setup.md,https://posthog.com/docs/error-tracking/spikes,External — network check required
-md-docs/posthog-setup.md,/apps/server/main-server/internal/server/middleware.go,OK
-md-docs/posthog-setup.md,./betterstack-setup.md,OK
-md-docs/posthog-setup.md,./observability-deployment.md,OK
-md-docs/posthog-setup.md,./betterstack-setup.md,OK
-md-docs/strict-elt-pipeline-guide.md,../.cursor/rules/strict-elt-invariants.mdc,OK
-md-docs/strict-elt-pipeline-guide.md,../.cursor/rules/elt-flow-diagram.mdc,OK
-md-docs/strict-elt-pipeline-guide.md,../.cursor/rules/strict-elt-invariants.mdc,OK
-md-docs/strict-elt-pipeline-guide.md,./testing-local.md,OK
-md-docs/supabase-auth-email-templates.md,mailto:support@mantrixflow.com,External contact link — syntax only
-md-docs/supabase-auth-email-templates.md,mailto:support@mantrixflow.com,External contact link — syntax only
-md-docs/supabase-auth-email-templates.md,mailto:support@mantrixflow.com,External contact link — syntax only
-md-docs/supabase-auth-email-templates.md,mailto:support@mantrixflow.com,External contact link — syntax only
-md-docs/supabase-auth-email-templates.md,mailto:support@mantrixflow.com,External contact link — syntax only
-md-docs/supabase-auth-email-templates.md,mailto:support@mantrixflow.com,External contact link — syntax only
-md-docs/testing-local.md,./source-to-destination-elt-flow.md,OK
-md-docs/tigris-storage-setup.md,../apps/mantrixflow-infra/backup/README.md,OK
-md-docs/zendesk-oauth-setup.md,https://developer.zendesk.com/documentation/authentication/oauth-migration/,External — network check required
-md-docs/zendesk-oauth-setup.md,https://developer.zendesk.com/documentation/marketplace/building-a-marketplace-app/set-up-a-global-oauth-client/,External — network check required
-md-docs/zendesk-oauth-setup.md,https://developer.zendesk.com/api-reference/ticketing/oauth/oauth_tokens/#scopes,External — network check required
-md-docs/zendesk-oauth-setup.md,https://developer.zendesk.com/api-reference/ticketing/introduction/,External — network check required
-md-docs/zendesk-oauth-setup.md,https://developer.zendesk.com/api-reference/live-chat/chat-conversations-api/conversations-api/,External — network check required
+md-docs/operations/observability/betterstack-setup.md,./deployment.md,OK
+md-docs/operations/observability/betterstack-setup.md,../../deployment/infrastructure/ovh-microsandbox-runbook.md,OK
+md-docs/operations/observability/betterstack-setup.md,https://betterstack.com,External — network check required
+md-docs/operations/observability/betterstack-setup.md,./deployment.md,OK
+md-docs/operations/observability/betterstack-setup.md,./deployment.md,OK
+md-docs/operations/observability/betterstack-setup.md,./posthog-setup.md,OK
+md-docs/operations/observability/betterstack-setup.md,./deployment.md,OK
+md-docs/operations/observability/betterstack-status-page-creation.md,./betterstack-setup.md,OK
+md-docs/operations/observability/betterstack-status-page-creation.md,./deployment.md,OK
+md-docs/operations/observability/deployment.md,../../deployment/infrastructure/ovh-microsandbox-runbook.md,OK
+md-docs/operations/observability/deployment.md,./betterstack-setup.md,OK
+md-docs/operations/observability/deployment.md,./posthog-setup.md,OK
+md-docs/operations/observability/deployment.md,../../deployment/infrastructure/ovh-microsandbox-runbook.md,OK
+md-docs/operations/observability/deployment.md,./posthog-setup.md,OK
+md-docs/operations/observability/deployment.md,./betterstack-setup.md,OK
+md-docs/operations/observability/deployment.md,./posthog-setup.md,OK
+md-docs/operations/observability/deployment.md,./betterstack-setup.md,OK
+md-docs/operations/observability/deployment.md,./posthog-setup.md,OK
+md-docs/operations/observability/deployment.md,./betterstack-setup.md,OK
+md-docs/operations/observability/deployment.md,./posthog-setup.md,OK
+md-docs/operations/observability/deployment.md,../../deployment/frontend/vercel.md,OK
+md-docs/operations/observability/deployment.md,../../deployment/infrastructure/ovh-microsandbox-runbook.md,OK
+md-docs/operations/observability/deployment.md,../../deployment/infrastructure/ovh-microsandbox-runbook.md,OK
+md-docs/operations/observability/posthog-betterstack-setup.md,./betterstack-setup.md,OK
+md-docs/operations/observability/posthog-betterstack-setup.md,./posthog-setup.md,OK
+md-docs/operations/observability/posthog-betterstack-setup.md,./deployment.md,OK
+md-docs/operations/observability/posthog-full-integration.md,https://status.mantrixflow.com,External — network check required
+md-docs/operations/observability/posthog-full-integration.md,./posthog-setup.md,OK
+md-docs/operations/observability/posthog-full-integration.md,./betterstack-setup.md,OK
+md-docs/operations/observability/posthog-full-integration.md,./deployment.md,OK
+md-docs/operations/observability/posthog-full-integration.md,../../../apps/app/lib/posthog/events.ts,OK
+md-docs/operations/observability/posthog-full-integration.md,../../../apps/app/shared/providers/posthog-identify.tsx,OK
+md-docs/operations/observability/posthog-full-integration.md,../../../apps/server/main-server/internal/observability/posthog.go,OK
+md-docs/operations/observability/posthog-full-integration.md,../../../apps/server/main-server/internal/server/incident_webhook.go,OK
+md-docs/operations/observability/posthog-full-integration.md,../../../apps/app/hooks/use-feature-flag.ts,OK
+md-docs/operations/observability/posthog-full-integration.md,../../../apps/app/lib/posthog/client.ts,OK
+md-docs/operations/observability/posthog-full-integration.md,../../deployment/infrastructure/ovh-microsandbox-runbook.md,OK
+md-docs/operations/observability/posthog-full-integration.md,./deployment.md,OK
+md-docs/operations/observability/posthog-full-integration.md,./posthog-setup.md,OK
+md-docs/operations/observability/posthog-setup.md,https://us.posthog.com,External — network check required
+md-docs/operations/observability/posthog-setup.md,./deployment.md,OK
+md-docs/operations/observability/posthog-setup.md,https://us.posthog.com,External — network check required
+md-docs/operations/observability/posthog-setup.md,https://posthog.com/docs/getting-started/install,External — network check required
+md-docs/operations/observability/posthog-setup.md,https://us.posthog.com,External — network check required
+md-docs/operations/observability/posthog-setup.md,https://posthog.com/docs/error-tracking/alerts,External — network check required
+md-docs/operations/observability/posthog-setup.md,https://posthog.com/docs/error-tracking/installation/nextjs,External — network check required
+md-docs/operations/observability/posthog-setup.md,https://posthog.com/docs/getting-started/install,External — network check required
+md-docs/operations/observability/posthog-setup.md,https://cloud.mantrixflow.com,External — network check required
+md-docs/operations/observability/posthog-setup.md,https://posthog.com/docs/getting-started/identify,External — network check required
+md-docs/operations/observability/posthog-setup.md,https://posthog.com/docs/error-tracking/alerts,External — network check required
+md-docs/operations/observability/posthog-setup.md,https://status.mantrixflow.com,External — network check required
+md-docs/operations/observability/posthog-setup.md,./betterstack-setup.md,OK
+md-docs/operations/observability/posthog-setup.md,https://posthog.com/docs/error-tracking/spikes,External — network check required
+md-docs/operations/observability/posthog-setup.md,/apps/server/main-server/internal/server/middleware.go,OK
+md-docs/operations/observability/posthog-setup.md,./betterstack-setup.md,OK
+md-docs/operations/observability/posthog-setup.md,./deployment.md,OK
+md-docs/operations/observability/posthog-setup.md,./betterstack-setup.md,OK
+md-docs/testing/local-development.md,../architecture/elt/source-to-destination-flow.md,OK
+md-docs/testing/reports/README.md,./pipeline-all-streams-chrome-e2e-2026-07-19.md,OK
+md-docs/testing/reports/README.md,./pipeline-new-layout-e2e-2026-07-18.md,OK
+md-docs/testing/reports/README.md,./playwright-complete-workflow-e2e-summary.md,OK
+md-docs/testing/reports/pipeline-all-streams-chrome-e2e-2026-07-19.md,https://github.com/dabhivijay2478/mantrixflow-git-testing/pull/3,External — network check required

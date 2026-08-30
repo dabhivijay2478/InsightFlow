@@ -1,6 +1,7 @@
 # ============================================================================
 # MantrixFlow — Docker Compose (local / staging only)
-# Production: AWS ECS — see apps/mantrixflow-infra/DEPLOYMENT.md
+# Production uses independent OVH targets through self-hosted Dokploy. See
+# md-docs/deployment/infrastructure/ovh-microsandbox-runbook.md.
 # ============================================================================
 #
 # Directory layout on server:

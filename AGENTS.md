@@ -22,9 +22,9 @@
 - [`.cursor/rules/strict-elt-invariants.mdc`](.cursor/rules/strict-elt-invariants.mdc) — 12 strict ELT invariants
 - [`.cursor/rules/elt-flow-diagram.mdc`](.cursor/rules/elt-flow-diagram.mdc) — 5-phase flow
 
-**Human-readable pipeline guide:** [`md-docs/strict-elt-pipeline-guide.md`](md-docs/strict-elt-pipeline-guide.md)
+**Human-readable pipeline guide:** [`md-docs/architecture/elt/strict-pipeline-guide.md`](./md-docs/architecture/elt/strict-pipeline-guide.md)
 
-**Oria AI SDK runtime setup:** [`md-docs/oria-agent-setup.md`](md-docs/oria-agent-setup.md)
+**Oria AI SDK runtime setup:** [`md-docs/ai/oria/agent-setup.md`](./md-docs/ai/oria/agent-setup.md)
 
 **Frontend structure / TS conventions:** [`.cursor/rules/nextjs-typescript-stack.mdc`](.cursor/rules/nextjs-typescript-stack.mdc)
 

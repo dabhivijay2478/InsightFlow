@@ -44,7 +44,7 @@ Development.
 | ELT runtime | [`apps/server/elt-server`](apps/server/elt-server/README.md) | Private extraction, transformation, delivery, and runtime diagnostics |
 | Website | [`apps/website`](apps/website/README.md) | Public product and connector pages |
 | Public docs | [`apps/mantrixflow-docs`](apps/mantrixflow-docs/README.md) | Customer-facing setup and connector documentation |
-| Infrastructure | [`apps/mantrixflow-infra`](apps/mantrixflow-infra/DEPLOYMENT.md) | OVHcloud Terraform and self-hosted Dokploy deployment |
+| Infrastructure | [`apps/mantrixflow-infra`](./md-docs/deployment/infrastructure/ovh-microsandbox-runbook.md) | OVHcloud Terraform and self-hosted Dokploy deployment |
 
 ## Local development
 
@@ -72,20 +72,20 @@ Go health/metadata routes provide configuration and dependency diagnostics.
 
 ## Current deployment guidance
 
-- Frontend: Vercel guidance in [`md-docs/deployment-vercel.md`](md-docs/deployment-vercel.md).
+- Frontend: Vercel guidance in [`md-docs/deployment/frontend/vercel.md`](./md-docs/deployment/frontend/vercel.md).
 - Backend: independent OVHcloud VPS targets managed by self-hosted Dokploy in
-  [`apps/mantrixflow-infra/DEPLOYMENT.md`](apps/mantrixflow-infra/DEPLOYMENT.md).
+  [`md-docs/deployment/infrastructure/ovh-microsandbox-runbook.md`](./md-docs/deployment/infrastructure/ovh-microsandbox-runbook.md).
 - First-time OVH, Tigris, WireGuard, Dokploy, dynamic-host, and GitHub setup:
-  [`apps/mantrixflow-infra/docs/setup-guide.md`](apps/mantrixflow-infra/docs/setup-guide.md).
+  [`md-docs/infrastructure/setup/ovh-dokploy-microsandbox.md`](./md-docs/infrastructure/setup/ovh-dokploy-microsandbox.md).
 - AWS/ECS, Oracle, Contabo, and other former paths are historical and
   must not be used as current production instructions.
 
 ## Engineering references
 
-- [`md-docs/strict-elt-pipeline-guide.md`](md-docs/strict-elt-pipeline-guide.md)
-- [`md-docs/source-to-destination-elt-flow.md`](md-docs/source-to-destination-elt-flow.md)
-- [`apps/server/main-server/docs/RLS_GUIDE.md`](apps/server/main-server/docs/RLS_GUIDE.md)
-- [`docs/ceo-legal-claims-review.md`](docs/ceo-legal-claims-review.md)
+- [`md-docs/architecture/elt/strict-pipeline-guide.md`](./md-docs/architecture/elt/strict-pipeline-guide.md)
+- [`md-docs/architecture/elt/source-to-destination-flow.md`](./md-docs/architecture/elt/source-to-destination-flow.md)
+- [`md-docs/infrastructure/database/supabase-rls-guide.md`](./md-docs/infrastructure/database/supabase-rls-guide.md)
+- [`md-docs/audits/legal/ceo-legal-claims-review.md`](./md-docs/audits/legal/ceo-legal-claims-review.md)
 
 ## Verification policy
 
@@ -107,7 +107,7 @@ internal Markdown document with `node scripts/check-markdown-links.mjs`.
 
 Use this document to present **MantrixFlow** in a system design or technical interview. It covers the three services you built: the **Next.js app**, the **Go API (main-server)**, and the **Python ELT server**. Tone is conversational — practice saying these sections out loud, not reading them word-for-word.
 
-**Deeper references (optional):** [`md-docs/strict-elt-pipeline-guide.md`](md-docs/strict-elt-pipeline-guide.md), [`md-docs/source-to-destination-elt-flow.md`](md-docs/source-to-destination-elt-flow.md), [`apps/server/README.md`](apps/server/README.md).
+**Deeper references (optional):** [`md-docs/architecture/elt/strict-pipeline-guide.md`](./md-docs/architecture/elt/strict-pipeline-guide.md), [`md-docs/architecture/elt/source-to-destination-flow.md`](./md-docs/architecture/elt/source-to-destination-flow.md), [`apps/server/README.md`](apps/server/README.md).
 
 ---
 
@@ -334,11 +334,11 @@ This is high-value in interviews. Go sends a single structured payload (Pydantic
 ### Production deployment (one sentence each)
 
 - App: **Vercel** → `cloud.mantrixflow.com`
-- API: **AWS ECS Fargate** behind ALB → `cloud.api.mantrixflow.com`
-- ELT: **ECS Service Connect** `elt-service:8000` — no public DNS
-- Secrets: **AWS SSM** `/mantrixflow/production/*`
+- API: **OVH VPS-1** through self-hosted Dokploy → `cloud.api.mantrixflow.com`
+- ELT: **OVH VPS-2** over the private WireGuard overlay — no public service port
+- Secrets: protected GitHub environments and self-hosted Dokploy
 
-See [`apps/mantrixflow-infra/DEPLOYMENT.md`](apps/mantrixflow-infra/DEPLOYMENT.md) if they go deeper on infra.
+See [`md-docs/deployment/infrastructure/ovh-microsandbox-runbook.md`](./md-docs/deployment/infrastructure/ovh-microsandbox-runbook.md) for the current infrastructure runbook.
 
 ---
 

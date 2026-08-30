@@ -8,7 +8,7 @@ alwaysApply: true
 
 These 12 invariants are the non-negotiable rules for MANTrixFlow ELT. The
 human-readable guide lives in
-[`md-docs/strict-elt-pipeline-guide.md`](../../md-docs/strict-elt-pipeline-guide.md).
+[`md-docs/architecture/elt/strict-pipeline-guide.md`](../../md-docs/architecture/elt/strict-pipeline-guide.md).
 **If a change violates any of these, stop and fix before continuing.**
 
 Pipeline boundaries:

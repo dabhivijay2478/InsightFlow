@@ -161,8 +161,8 @@ pipeline verification completed on 26 July 2026:
   run-history paths were exercised in the customer UI.
 
 The retained evidence is in
-`apps/app/tests/reports/STRIPE_STREAM_COVERAGE.md` and
-`apps/app/tests/reports/FINAL_TEST_SUMMARY.md`.
+`md-docs/testing/frontend/reports/stripe-stream-coverage.md` and
+`md-docs/testing/frontend/reports/final-test-summary.md`.
 
 ## August 2026 Asana verification
 
