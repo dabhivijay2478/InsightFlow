@@ -24,8 +24,7 @@ apps/etl/tests/
 docker-compose.test.yml
 
 # Mintlify documentation (separate repository; clone into this path after pulling the monorepo)
-# https://github.com/dabhivijay2478/mantrixflow-docs.git
-mantrixflow-docs/
+arcyria-docs/
 
 # Playwright saved browser session (local; never commit)
 playwright-auth.json

@@ -814,7 +814,7 @@ Use with `AGENT_RUNTIME_ENABLED=true`, `ORIA_RELEASE6_ENABLED=true`, and `ORIA_R
 | 772 | documentation_publisher | Review SLA | Doc review SLA 3 business days for partner submissions | Review SLA policy |
 | 773 | documentation_publisher | Snippets | VS Code snippets package for MantrixFlow SDK | Snippets publish coordination |
 | 774 | documentation_publisher | Printable | Printable onboarding checklist PDF for enterprise customers | PDF generation from onboarding content |
-| 775 | documentation_publisher | Accessibility audit | WCAG 2.2 audit for mantrixflow-docs platform pages | A11y findings summary |
+| 775 | documentation_publisher | Accessibility audit | WCAG 2.2 audit for arcyria-docs platform pages | A11y findings summary |
 | 776 | documentation_publisher | Search index | Reindex Algolia docs search after major restructure | Reindex procedure |
 | 777 | documentation_publisher | Version banner | Show docs version banner when viewing older API version | Version banner UX spec |
 | 778 | documentation_publisher | Contributing | Update CONTRIBUTING.md for docs PR requirements | Contributor guidelines |

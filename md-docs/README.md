@@ -25,7 +25,7 @@ md-docs/
 Component `README.md` files remain beside their code as short entry points.
 Generated Swagger files remain in `apps/server/main-server/docs/` because that
 directory is a generated Go package imported by the server. Customer-facing
-MDX remains in `apps/mantrixflow-docs/`, and code-owned templates, migrations,
+MDX remains in `apps/arcyria-docs/`, and code-owned templates, migrations,
 skills, and test fixtures remain beside their consumers.
 
 ## Start here
@@ -119,7 +119,7 @@ point-in-time audit evidence.
 1. Put new standalone engineering documentation in the closest category here.
 2. Keep a component `README.md` short and link to the canonical guide here.
 3. Do not create another repository-level `docs/` directory.
-4. Keep public customer documentation in `apps/mantrixflow-docs/`.
+4. Keep public customer documentation in `apps/arcyria-docs/`.
 5. Keep generated documentation and code-owned Markdown beside the generator or
    runtime that consumes it.
 6. Use kebab-case filenames and update this index when adding a new category.

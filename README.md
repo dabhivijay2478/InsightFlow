@@ -43,7 +43,7 @@ Development.
 | Go API | [`apps/server/main-server`](apps/server/main-server/README.md) | Authentication, authorization, metadata, orchestration, callbacks |
 | ELT runtime | [`apps/server/elt-server`](apps/server/elt-server/README.md) | Private extraction, transformation, delivery, and runtime diagnostics |
 | Website | [`apps/website`](apps/website/README.md) | Public product and connector pages |
-| Public docs | [`apps/mantrixflow-docs`](apps/mantrixflow-docs/README.md) | Customer-facing setup and connector documentation |
+| Public docs | [`apps/arcyria-docs`](apps/arcyria-docs/README.md) | Customer-facing setup and connector documentation |
 | Infrastructure | [`apps/mantrixflow-infra`](./md-docs/deployment/infrastructure/ovh-microsandbox-runbook.md) | OVHcloud Terraform and self-hosted Dokploy deployment |
 
 ## Local development

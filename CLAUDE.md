@@ -15,11 +15,11 @@ apps/
 │   ├── main-server/ ← Go API server (Fiber + GORM) — ACTIVE
 │   └── elt-server/  ← Python FastAPI ELT server (DuckDB-staged ELT) — ACTIVE
 └── website/      ← Marketing site (Next.js)
-(mantrixflow-docs/) ← Mintlify docs — **not** in this repo; clone: `git clone https://github.com/dabhivijay2478/mantrixflow-docs.git mantrixflow-docs`
+apps/arcyria-docs/ ← Mintlify docs — separate repository; clone the current docs remote into this path
 cloud.api.mantrixflow.com/  ← NestJS API (DEPRECATED, reference only)
 ```
 
-**Documentation:** Mintlify source: **https://github.com/dabhivijay2478/mantrixflow-docs.git**. Clone into **`mantrixflow-docs/`** next to this monorepo if needed. Preview: `cd mantrixflow-docs && npm install && npm run dev`. Edit MDX and `docs.json` only in that repository. The marketing site uses `NEXT_PUBLIC_DOCS_URL` and redirects `/docs/*` to the docs host.
+**Documentation:** The Arcyria Mintlify source lives in **`apps/arcyria-docs/`** as a separate repository. Its GitHub remote still uses the legacy `MantrixFlow-Docs` slug until that external repository is renamed. Preview with `cd apps/arcyria-docs && npm install && npm run dev`. Edit MDX and `docs.json` only in that repository. The marketing site uses `NEXT_PUBLIC_DOCS_URL` and redirects `/docs/*` to the docs host.
 
 **Important:** `cloud.api.mantrixflow.com` is the old NestJS API being replaced by `apps/server/main-server`. Use it only as a reference. Do not write new NestJS code. Do not import from it.
 

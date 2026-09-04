@@ -13,7 +13,7 @@ const outputName = (name) => (isAfterSnapshot ? `after-${name}` : name);
 const roots = {
   website: ["apps/website/app", "apps/website/components", "apps/website/lib"],
   application: ["apps/app/app", "apps/app/components", "apps/app/lib"],
-  documentation: ["apps/mantrixflow-docs"],
+  documentation: ["apps/arcyria-docs"],
   internal_reference: ["md-docs"],
 };
 
@@ -295,7 +295,7 @@ const documentationRoutes = new Set(
     .filter((item) => item.surface === "documentation" && item.kind === "article" && item.location.endsWith(".mdx"))
     .map((item) => {
       const value = item.location
-        .replace(/^apps\/mantrixflow-docs\//, "")
+        .replace(/^apps\/arcyria-docs\//, "")
         .replace(/\.mdx$/, "")
         .replace(/\/index$/, "");
       return value ? `/${value}` : "/";
@@ -323,9 +323,9 @@ for (const [location, source] of sourceByFile) {
     if (/^(?:mailto:|tel:)/.test(href)) status = "External contact link — syntax only";
     if (href.startsWith("/")) {
       const route = href.split(/[?#]/)[0].replace(/\/$/, "") || "/";
-      if (location.startsWith("apps/mantrixflow-docs/") && href.startsWith("/images/")) {
-        status = existsSync(join(root, "apps/mantrixflow-docs", route)) ? "OK" : "Missing local target";
-      } else if (location.startsWith("apps/mantrixflow-docs/")) {
+      if (location.startsWith("apps/arcyria-docs/") && href.startsWith("/images/")) {
+        status = existsSync(join(root, "apps/arcyria-docs", route)) ? "OK" : "Missing local target";
+      } else if (location.startsWith("apps/arcyria-docs/")) {
         status = routeExists(route, documentationRoutes) ? "OK" : "Missing documentation route";
       } else if (location.endsWith(".md") && existsSync(join(root, route))) {
         status = "OK";

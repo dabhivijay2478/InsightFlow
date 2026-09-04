@@ -81,8 +81,11 @@ Current public tables created by GORM live in `apps/server/main-server/internal/
   `simulation_assertions`, `simulation_assertion_results`,
   `simulation_saved_tests`, `simulation_faults`,
   `simulation_world_snapshots`, `simulation_twin_definitions`, and
-  `simulation_twin_instances`, and `simulation_artifacts` — Simulation Platform definitions, execution
-  state, evidence, and internal endpoints; keep API-only.
+  `simulation_twin_instances`, `simulation_artifacts`, and `simulation_hosts` —
+  Simulation Platform definitions, execution state, evidence, infrastructure
+  metadata, and internal endpoints; keep API-only. `simulation_hosts` is created
+  by the dedicated simulation migration command rather than GORM AutoMigrate,
+  so the global RLS bundle protects it conditionally when present.
 
 ### Trigger rule
 
