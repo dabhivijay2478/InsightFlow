@@ -1,7 +1,7 @@
 # Frontend refactor audit and migration plan
 
 Date: 2026-07-21  
-Scope: `apps/app` (Next.js 16 App Router, React 19, TypeScript, Tailwind CSS,
+Scope: `apps/arcyria-platform` (Next.js 16 App Router, React 19, TypeScript, Tailwind CSS,
 shadcn/ui, TanStack Query, TanStack Table)
 
 This document is the pre-implementation audit and the controlling plan for the
@@ -286,12 +286,12 @@ is intentional and must not be removed during structural cleanup.
 
 ## Target architecture
 
-The app currently uses `apps/app` without a `src` directory. Moving every file
+The app currently uses `apps/arcyria-platform` without a `src` directory. Moving every file
 under `src` would create route/import churn without product value, so the
 refactor keeps the existing root and introduces clear feature boundaries:
 
 ```text
-apps/app/
+apps/arcyria-platform/
   app/                         # route shells; URL behavior stays here
   components/
     ui/                        # owned shadcn primitives only

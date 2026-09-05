@@ -136,7 +136,7 @@ Do not simplify substantive legal, privacy, retention, deletion, subprocessors, 
 
 ## Infrastructure documentation
 
-Current infrastructure guidance is the OVHcloud Terraform and self-hosted Dokploy documentation in `apps/mantrixflow-infra`. AWS/ECS and CDK deployment documents are historical references and must retain an archive warning; they are not current deployment instructions.
+Current infrastructure guidance is the OVHcloud Terraform and self-hosted Dokploy documentation in `apps/arcyria-infra`. AWS/ECS and CDK deployment documents are historical references and must retain an archive warning; they are not current deployment instructions.
 
 ## Change control
 

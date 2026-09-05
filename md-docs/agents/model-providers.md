@@ -1,6 +1,6 @@
 # Agent Model Providers
 
-Mantrixflow AI routes are not locked to Anthropic. The Next.js app chooses a model at runtime through `apps/app/lib/ai/model-provider.ts`.
+Mantrixflow AI routes are not locked to Anthropic. The Next.js app chooses a model at runtime through `apps/arcyria-platform/lib/ai/model-provider.ts`.
 
 This affects:
 

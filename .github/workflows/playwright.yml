@@ -22,22 +22,22 @@ jobs:
 
       - name: Install dependencies
         run: |
-          cd apps/app
+          cd apps/arcyria-platform
           bun install --frozen-lockfile || bun install
 
       - name: Install Playwright Browsers with Dependencies
         run: |
-          cd apps/app
+          cd apps/arcyria-platform
           bunx playwright install --with-deps chromium firefox webkit
 
       - name: Build application
         run: |
-          cd apps/app
+          cd apps/arcyria-platform
           bun run build
 
       - name: Run Playwright smoke tests
         run: |
-          cd apps/app
+          cd apps/arcyria-platform
           bun run test:e2e:smoke
         env:
           CI: true
@@ -46,7 +46,7 @@ jobs:
 
       - name: Run Playwright mocked regression tests
         run: |
-          cd apps/app
+          cd apps/arcyria-platform
           bun run test:e2e:mocked
         env:
           CI: true
@@ -58,7 +58,7 @@ jobs:
         if: always()
         with:
           name: playwright-report
-          path: apps/app/playwright-report/
+          path: apps/arcyria-platform/playwright-report/
           retention-days: 14
 
       - name: Upload test results on failure
@@ -66,5 +66,5 @@ jobs:
         if: failure()
         with:
           name: test-results
-          path: apps/app/test-results/
+          path: apps/arcyria-platform/test-results/
           retention-days: 14

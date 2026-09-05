@@ -9,7 +9,7 @@ Architecture: Next.js `/api/copilot/chat` orchestrates; Go `/agent/runs/prepare|
 | Registry export | **PASS** | 72 specialists + root instruction JSON |
 | Go legacy `/agent/chat` (no JWT) | **PASS** | Returns **401** without session; handler is 410 stub when authenticated |
 | Next `/api/copilot/chat` unauthenticated | **PASS** | Returns **401** (route wired, not proxying to Go chat) |
-| Browser Release 1–6 matrix | **BLOCKED** | `/agents` redirects to login in automation; full matrix requires signed-in session + `OPENROUTER_API_KEY` in `apps/app/.env.local` |
+| Browser Release 1–6 matrix | **BLOCKED** | `/agents` redirects to login in automation; full matrix requires signed-in session + `OPENROUTER_API_KEY` in `apps/arcyria-platform/.env.local` |
 
 **Operator next steps:** Sign in → re-run Release 1 smoke from [`oria-test-prompts-release1-read.md`](./test-prompts-release1-read.md). Confirm OpenRouter dashboard activity and `message.delta` streaming (new vs old Go-only `message.completed`).
 

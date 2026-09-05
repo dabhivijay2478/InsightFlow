@@ -44,7 +44,7 @@ control-plane PostgreSQL database can be recovered independently.
 
 Configure future WAL-G values only when the self-hosted database migration is
 explicitly approved. The prepared variable names and scripts are documented in
-[`../apps/mantrixflow-infra/backup/README.md`](../../../apps/mantrixflow-infra/backup/README.md).
+[`../apps/arcyria-infra/backup/README.md`](../../../apps/arcyria-infra/backup/README.md).
 
 ## Verification
 

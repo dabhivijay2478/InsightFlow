@@ -5,12 +5,12 @@
       "path": "."
     },
     {
-      "name": "Go API (main-server)",
-      "path": "apps/server/main-server"
+      "name": "Go API (arcyria-server)",
+      "path": "apps/server/arcyria-server"
     },
     {
-      "name": "Python ELT (elt-server)",
-      "path": "apps/server/elt-server"
+      "name": "Python ELT (arcyria-elt)",
+      "path": "apps/server/arcyria-elt"
     }
   ],
   "settings": {

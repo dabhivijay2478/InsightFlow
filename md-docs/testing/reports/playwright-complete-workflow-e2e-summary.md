@@ -2,18 +2,18 @@
 
 ## Scope
 
-This document tracks the fixture-driven, UI-only Playwright suite in `apps/app/__tests__/playwright/workflow`. It replaces API-assisted setup in the new suite with visible connection, Explorer, pipeline, transformation, destination, run, lifecycle, and cleanup actions.
+This document tracks the fixture-driven, UI-only Playwright suite in `apps/arcyria-platform/__tests__/playwright/workflow`. It replaces API-assisted setup in the new suite with visible connection, Explorer, pipeline, transformation, destination, run, lifecycle, and cleanup actions.
 
 ## Test environment
 
 | Component | Local URL | Command |
 | --- | --- | --- |
-| Next.js frontend | `http://localhost:3000` | `bun run dev` from `apps/app` |
-| Go main API | `http://localhost:5000` | `go run ./cmd/server` from `apps/server/main-server` |
-| Python ELT runner | `http://localhost:8000` | `./.venv/bin/python -m uvicorn api.main:app --host 0.0.0.0 --port 8000 --loop asyncio` from `apps/server/elt-server` |
+| Next.js frontend | `http://localhost:3000` | `bun run dev` from `apps/arcyria-platform` |
+| Go main API | `http://localhost:5000` | `go run ./cmd/server` from `apps/server/arcyria-server` |
+| Python ELT runner | `http://localhost:8000` | `./.venv/bin/python -m uvicorn api.main:app --host 0.0.0.0 --port 8000 --loop asyncio` from `apps/server/arcyria-elt` |
 | Browser | Playwright Desktop Chrome / Chromium | `bun run test:e2e:headed` for visible local execution |
 
-Playwright can start all three services with `E2E_START_SERVERS=1`. Failure screenshots, retained videos, traces, logs, HTML, and CI JUnit results are under `apps/app/.playwright`.
+Playwright can start all three services with `E2E_START_SERVERS=1`. Failure screenshots, retained videos, traces, logs, HTML, and CI JUnit results are under `apps/arcyria-platform/.playwright`.
 
 ## Connections and pipelines
 

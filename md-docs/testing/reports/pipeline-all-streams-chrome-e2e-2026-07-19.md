@@ -31,9 +31,9 @@ The final pipeline list shows all three pipelines as `ready` and `Healthy`:
 
 | Service | Command | URL | Final result |
 | --- | --- | --- | --- |
-| Frontend | `cd apps/app && bun run dev` | `http://localhost:3000` | Responding |
-| API and worker | `cd apps/server/main-server && go run ./cmd/server` | `http://localhost:5000` | Operational |
-| ELT | `cd apps/server/elt-server && .venv/bin/python -m uvicorn api.main:app --host 0.0.0.0 --port 8000 --workers 1 --loop asyncio` | `http://localhost:8000` | Healthy; accepts runs |
+| Frontend | `cd apps/arcyria-platform && bun run dev` | `http://localhost:3000` | Responding |
+| API and worker | `cd apps/server/arcyria-server && go run ./cmd/server` | `http://localhost:5000` | Operational |
+| ELT | `cd apps/server/arcyria-elt && .venv/bin/python -m uvicorn api.main:app --host 0.0.0.0 --port 8000 --workers 1 --loop asyncio` | `http://localhost:8000` | Healthy; accepts runs |
 
 Final health evidence:
 
@@ -46,10 +46,10 @@ Final health evidence:
 
 Regression commands and results:
 
-- `cd apps/server/elt-server && .venv/bin/python -m pytest -q` — **189 passed, 8 skipped, 36 subtests passed**.
-- `cd apps/server/main-server && GOCACHE=/tmp/mantrixflow-go-build go test ./...` — **passed**.
-- `cd apps/app && bun run lint` — **439 files checked, no fixes required**.
-- `cd apps/app && bun run build` — **production build and 46-page static generation passed**.
+- `cd apps/server/arcyria-elt && .venv/bin/python -m pytest -q` — **189 passed, 8 skipped, 36 subtests passed**.
+- `cd apps/server/arcyria-server && GOCACHE=/tmp/mantrixflow-go-build go test ./...` — **passed**.
+- `cd apps/arcyria-platform && bun run lint` — **439 files checked, no fixes required**.
+- `cd apps/arcyria-platform && bun run build` — **production build and 46-page static generation passed**.
 - `go run ./cmd/e2e_all_streams -mode verify -provider <provider>` — exact destination count and data-contract verification.
 - `go run ./cmd/e2e_all_streams -mode yaml -provider all` — all three version 2 YAML exports and GitHub connection verified.
 

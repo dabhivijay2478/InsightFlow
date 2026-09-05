@@ -6,14 +6,14 @@ alwaysApply: true
 Use this as the ground truth diagram whenever you touch the pipeline.
 
 ```
-USER (apps/app)
+USER (apps/arcyria-platform)
   │  1. selects source connection
   │  2. enters source tables as `schema.table`
   │  3. writes one SQL SELECT per source table (dbt staging model)
   │  4. enters destination as `schema.table` (must already exist)
   │  5. clicks Run
   ▼
-Go API  (apps/server/main-server)
+Go API  (apps/server/arcyria-server)
   • validates JWT (Supabase)
   • decrypts source + destination credentials (Fernet AES-256)
   • builds RunConfig with:
@@ -24,14 +24,14 @@ Go API  (apps/server/main-server)
   • enqueues pgmq `pipeline_jobs` / `incremental_sync`
   • returns HTTP 202 { run_id }
   ▼
-Go Queue Worker  (apps/server/main-server)
+Go Queue Worker  (apps/server/arcyria-server)
   • polls pgmq every 5 s
   • MAX_CONCURRENT_RUNS gate
   • calls ELT /disk-status; requires available_gb ≥ plan_limit × 2
       └─ on shortfall: run status=waiting, re-queue with 30 s delay
   • dispatches POST /sync → Python ELT
   ▼
-Python ELT  (apps/server/elt-server)
+Python ELT  (apps/server/arcyria-elt)
   PHASE 0 — PRE-FLIGHT  (runner/handlers/preflight_handler.py)
     • disk_guard.ensure_disk_budget
     • source table discovery (information_schema.tables)
@@ -69,7 +69,7 @@ Python ELT  (apps/server/elt-server)
       delivery_outputs[], staging_size_bytes, dbt_models_run,
       delivery_failures[], no_pk_warnings[]            (gap 9, 11, 12)
   ▼
-Go Callback Handler  (apps/server/main-server/internal/server/callback.go)
+Go Callback Handler  (apps/server/arcyria-server/internal/server/callback.go)
   • updates pipeline_runs (status, rows, duration, run_metadata JSONB)
   • saves checkpoint to pipelines.checkpoint + last_sync_value
   • updates pipelines.last_run_status, last_run_at, counters
@@ -83,24 +83,24 @@ USER sees live update in Run Status Drawer
 
 ## Directory map of authoritative pieces
 
-- `apps/server/elt-server/runner/paths/duckdb_staged.py` — orchestrator
-- `apps/server/elt-server/runner/handlers/` — per-phase handlers
+- `apps/server/arcyria-elt/runner/paths/duckdb_staged.py` — orchestrator
+- `apps/server/arcyria-elt/runner/handlers/` — per-phase handlers
   - `preflight_handler.py` (gaps 3, 4, 10)
   - `state_handler.py`     (gaps 2, 5)
   - `dbt_handler.py`       (gap 6)
   - `delivery_handler.py`  (gaps 3, 4, 12)
   - `disk_guard.py`        (gap 10)
   - `normalisation_handler.py`
-- `apps/server/elt-server/api/routes/`
+- `apps/server/arcyria-elt/api/routes/`
   - `sync.py`, `discover_table.py`, `validate_sql.py`, `disk_status.py`
-- `apps/server/main-server/internal/server/`
+- `apps/server/arcyria-server/internal/server/`
   - `dispatch.go` + `dispatch_incremental.go` — build RunConfig, pre-flight
   - `staged_delivery.go` — disk guard + waiting-requeue helper
   - `pipeline_bundle.go` — `buildSourceStreamConfigs`,
     `buildStrictDBTSQLModels`, `duckdbTableName`
   - `callback.go` — persists delivery_outputs, staging_size_bytes,
     dbt_models_run, no_pk_warnings
-- `apps/app/app/workspace/data-pipelines/[id]/builder/`
+- `apps/arcyria-platform/app/workspace/data-pipelines/[id]/builder/`
   - `panels/DestinationPanel.tsx` — schema.table dest input,
     `useDiscoverDestinationTable`, column pills, dest_match ✓/✗
   - `panels/RunStatusDrawer.tsx` — 3-phase display + no-PK banner

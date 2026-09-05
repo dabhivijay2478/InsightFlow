@@ -23,7 +23,7 @@ md-docs/
 ```
 
 Component `README.md` files remain beside their code as short entry points.
-Generated Swagger files remain in `apps/server/main-server/docs/` because that
+Generated Swagger files remain in `apps/server/arcyria-server/docs/` because that
 directory is a generated Go package imported by the server. Customer-facing
 MDX remains in `apps/arcyria-docs/`, and code-owned templates, migrations,
 skills, and test fixtures remain beside their consumers.

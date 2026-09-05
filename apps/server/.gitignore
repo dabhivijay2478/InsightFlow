@@ -1,6 +1,6 @@
 # Cloned repos (each is its own git repo)
-main-server/
-etl-server/
+arcyria-server/
+arcyria-elt/
 
 # Environment (contains secrets)
 .env.production

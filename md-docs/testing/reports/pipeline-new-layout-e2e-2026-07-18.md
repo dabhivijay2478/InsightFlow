@@ -27,9 +27,9 @@ This report therefore does **not** mark the entire requested task complete even 
 
 | Service | Command | URL | Final health |
 | --- | --- | --- | --- |
-| Frontend | `cd apps/app && bun run dev` | `http://localhost:3000` | Responding |
-| Go API + worker | `cd apps/server/main-server && go run ./cmd/server` | `http://localhost:5000` | Operational; database, ELT, and queue operational |
-| Python ELT | `cd apps/server/elt-server && .venv/bin/python -m uvicorn api.main:app --host 0.0.0.0 --port 8000 --workers 1 --loop asyncio` | `http://localhost:8000` | `status=ok`, accepts new runs, zero active runs |
+| Frontend | `cd apps/arcyria-platform && bun run dev` | `http://localhost:3000` | Responding |
+| Go API + worker | `cd apps/server/arcyria-server && go run ./cmd/server` | `http://localhost:5000` | Operational; database, ELT, and queue operational |
+| Python ELT | `cd apps/server/arcyria-elt && .venv/bin/python -m uvicorn api.main:app --host 0.0.0.0 --port 8000 --workers 1 --loop asyncio` | `http://localhost:8000` | `status=ok`, accepts new runs, zero active runs |
 
 Additional verification commands:
 

@@ -21,14 +21,14 @@ local development org.
 Start Go:
 
 ```bash
-cd apps/server/main-server
+cd apps/server/arcyria-server
 LOG_LEVEL=debug go run ./cmd/server
 ```
 
 Start Next:
 
 ```bash
-cd apps/app
+cd apps/arcyria-platform
 bun dev
 ```
 
@@ -380,7 +380,7 @@ For local Slack E2E testing, either free enough disk space or temporarily lower
 the local dispatch headroom:
 
 ```bash
-cd apps/server/main-server
+cd apps/server/arcyria-server
 ELT_STAGING_DISPATCH_HEADROOM_MULTIPLIER=1 LOG_LEVEL=debug go run ./cmd/server
 ```
 

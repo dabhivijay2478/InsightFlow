@@ -8,14 +8,14 @@ manual Salesforce-to-PostgreSQL pipeline run.
 Python ELT:
 
 ```bash
-cd apps/server/elt-server
+cd apps/server/arcyria-elt
 ./.venv/bin/python -m pytest tests/test_salesforce_source.py tests/test_sync_route.py tests/test_state_sync.py
 ```
 
 Go API:
 
 ```bash
-cd apps/server/main-server
+cd apps/server/arcyria-server
 GOCACHE=/tmp/mantrixflow-go-build \
 GOMODCACHE=/tmp/mantrixflow-go-mod \
 GOPROXY=file:///Users/vijay.d/go/pkg/mod/cache/download \
@@ -25,7 +25,7 @@ go test ./...
 Frontend:
 
 ```bash
-cd apps/app
+cd apps/arcyria-platform
 bun test app/workspace/connections/__tests__/credentialForm.test.ts lib/pipelines/__tests__/schema-table.test.ts
 npm run build
 ```
@@ -34,7 +34,7 @@ Salesforce streamer syntax:
 
 ```bash
 cd /Users/vijay.d/vijay.d/Vapps/incomplete/ai-bi
-apps/server/elt-server/.venv/bin/python -m compileall apps/salesforce-streamer
+apps/server/arcyria-elt/.venv/bin/python -m compileall apps/salesforce-streamer
 ```
 
 ## 2. Local Service Smoke Test
@@ -42,17 +42,17 @@ apps/server/elt-server/.venv/bin/python -m compileall apps/salesforce-streamer
 Start services:
 
 ```bash
-cd apps/server/main-server
+cd apps/server/arcyria-server
 go run ./cmd/server
 ```
 
 ```bash
-cd apps/server/elt-server
+cd apps/server/arcyria-elt
 ./.venv/bin/python -m uvicorn api.main:app --host 0.0.0.0 --port 8000 --loop asyncio
 ```
 
 ```bash
-cd apps/app
+cd apps/arcyria-platform
 bun run dev
 ```
 
@@ -303,7 +303,7 @@ Expected:
 Syntax test:
 
 ```bash
-apps/server/elt-server/.venv/bin/python -m compileall apps/salesforce-streamer
+apps/server/arcyria-elt/.venv/bin/python -m compileall apps/salesforce-streamer
 ```
 
 Queue bridge test in an environment with pgmq:

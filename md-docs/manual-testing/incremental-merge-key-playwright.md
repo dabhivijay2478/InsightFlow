@@ -19,7 +19,7 @@ Override with `INCR_MERGE_SOURCE_ID` / `INCR_MERGE_DESTINATION_ID`.
 ## Prerequisites
 
 1. Go API (port **5000**), ELT server, and Next.js app running locally.
-2. `apps/app/.env.local` with `TEST_ORGANIZATION_ID`, Supabase keys, `NEXT_PUBLIC_API_URL=http://localhost:5000` (or your public Go API URL).
+2. `apps/arcyria-platform/.env.local` with `TEST_ORGANIZATION_ID`, Supabase keys, `NEXT_PUBLIC_API_URL=http://localhost:5000` (or your public Go API URL).
 3. `__tests__/fixtures/credentials/login.json` for a user in that org.
 4. Main server env: `ALLOW_SOURCE_DB_MUTATIONS=true` (E2E SQL seed route).
 
@@ -42,7 +42,7 @@ They must hit the **Go API**, not the Next.js app.
 **Local fix:**
 
 ```bash
-# apps/server/main-server/.env (or export before go run)
+# apps/server/arcyria-server/.env (or export before go run)
 API_PUBLIC_URL=http://127.0.0.1:5000
 ```
 
@@ -58,7 +58,7 @@ Restart the Go API after changing `API_PUBLIC_URL`.
 ## Run
 
 ```bash
-cd apps/app
+cd apps/arcyria-platform
 bun run test:playwright:incr-merge
 ```
 
@@ -88,8 +88,8 @@ The test can treat a run as complete when the **destination row count** is stabl
 
 ## Files
 
-- Spec: `apps/app/__tests__/playwright/ui/incremental-merge-key-grow.spec.ts`
-- SQL/graph helpers: `apps/app/__tests__/helpers/incremental-merge-e2e.ts`
+- Spec: `apps/arcyria-platform/__tests__/playwright/ui/incremental-merge-key-grow.spec.ts`
+- SQL/graph helpers: `apps/arcyria-platform/__tests__/helpers/incremental-merge-e2e.ts`
 - Report JSON: `md-docs/test-logs/incremental-merge-key-*.json`
 
 ## Expected failure modes

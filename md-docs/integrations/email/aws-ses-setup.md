@@ -291,14 +291,14 @@ AWS_SES_EVENT_SNS_TOPIC_ARN=arn:aws:sns:ap-south-1:<account-id>:mantrixflow-ses-
 Local dry run:
 
 ```bash
-cd apps/server/main-server
+cd apps/server/arcyria-server
 go run ./cmd/emailtest -dry-run
 ```
 
 Live staging send:
 
 ```bash
-cd apps/server/main-server
+cd apps/server/arcyria-server
 TEST_EMAIL=you@example.com go run ./cmd/emailtest
 ```
 

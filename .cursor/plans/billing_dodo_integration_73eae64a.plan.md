@@ -208,7 +208,7 @@ authed.Post("/billing/cancel", s.CancelSubscription)
 
 ---
 
-### Frontend (`apps/app`)
+### Frontend (`apps/arcyria-platform`)
 
 **12. `lib/api/services/billing.service.ts`** *(new)*
 ```typescript
@@ -273,7 +273,7 @@ export interface SubscriptionStatus {
 ## Dependency install
 
 ```bash
-cd apps/server/main-server
+cd apps/server/arcyria-server
 go get github.com/dodopayments/dodopayments-go
 ```
 

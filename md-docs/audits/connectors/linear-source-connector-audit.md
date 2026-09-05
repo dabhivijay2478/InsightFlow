@@ -22,9 +22,9 @@ currently uncommitted.
 
 | Repository | HEAD SHA |
 | --- | --- |
-| Frontend (`apps/app`) | `0b3edf3b89d5dd64ac267b7db31d5b221b0bd732` |
-| Go API (`apps/server/main-server`) | `dcb0ff10793dbce03f4e8741d6719dd57994bb17` |
-| ELT (`apps/server/elt-server`) | `987dc04f922d7b2c1a2229590253a571f302f54a` |
+| Frontend (`apps/arcyria-platform`) | `0b3edf3b89d5dd64ac267b7db31d5b221b0bd732` |
+| Go API (`apps/server/arcyria-server`) | `dcb0ff10793dbce03f4e8741d6719dd57994bb17` |
+| ELT (`apps/server/arcyria-elt`) | `987dc04f922d7b2c1a2229590253a571f302f54a` |
 
 ## 2. Existing Linear code found
 

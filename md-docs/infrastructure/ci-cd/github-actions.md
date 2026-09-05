@@ -8,9 +8,9 @@ checker compares names only and never prints secret contents.
 
 | Repository | Local path | Deployment branches |
 | --- | --- | --- |
-| `dabhivijay2478/mantrixflow-infra` | `apps/mantrixflow-infra` | `main` |
-| `dabhivijay2478/main-server-mantrixflow.com` | `apps/server/main-server` | `main`, `mantrixflow` |
-| `dabhivijay2478/etl-server-mantrixflow.com` | `apps/server/elt-server` | `main`, `mantrixflow` |
+| `dabhivijay2478/mantrixflow-infra` | `apps/arcyria-infra` | `main` |
+| `dabhivijay2478/main-server-mantrixflow.com` | `apps/server/arcyria-server` | `main`, `mantrixflow` |
+| `dabhivijay2478/etl-server-mantrixflow.com` | `apps/server/arcyria-elt` | `main`, `mantrixflow` |
 
 The repositories and branches above were verified through their configured Git
 remotes. Authenticate GitHub CLI before checking protected configuration:

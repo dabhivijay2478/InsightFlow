@@ -1,38 +1,38 @@
 location,href,status
-apps/website/app/compare/page.tsx,/pricing,OK
-apps/website/app/compare/page.tsx,/connectors,OK
-apps/website/app/privacy/privacy-client.tsx,mailto:support@mantrixflow.com,External contact link — syntax only
-apps/website/app/subprocessors/subprocessors-client.tsx,mailto:support@mantrixflow.com,External contact link — syntax only
-apps/website/app/terms/terms-client.tsx,mailto:support@mantrixflow.com,External contact link — syntax only
-apps/website/components/cta-section.tsx,/pricing,OK
-apps/website/components/cta-section.tsx,/compare,OK
-apps/website/components/cta-section.tsx,mailto:support@mantrixflow.com,External contact link — syntax only
-apps/website/components/footer.tsx,mailto:support@mantrixflow.com,External contact link — syntax only
-apps/website/components/footer.tsx,https://www.linkedin.com/company/mantrixflow,External — network check required
-apps/website/components/footer.tsx,/terms,OK
-apps/website/components/footer.tsx,/privacy,OK
-apps/website/components/hero-section.tsx,/pricing,OK
-apps/website/components/home/home-hero.tsx,/connectors,OK
-apps/website/components/home/home-hero.tsx,mailto:support@mantrixflow.com,External contact link — syntax only
-apps/website/components/home/home-latest.tsx,/connectors,OK
-apps/website/components/home/home-story.tsx,/compare,OK
-apps/website/components/home/home-story.tsx,/connectors,OK
-apps/website/components/home/home-story.tsx,/pricing,OK
-apps/website/components/home/home-story.tsx,/integrations,OK
-apps/website/components/marketing/connectors-teaser.tsx,/connectors,OK
-apps/website/components/marketing/integrations-teaser.tsx,/integrations,OK
-apps/website/components/marketing/solutions-menu.tsx,/connectors,OK
-apps/website/components/navbar.tsx,/,OK
-apps/website/components/side-nav.tsx,/pricing,OK
-apps/website/components/side-nav.tsx,https://docs.mantrixflow.com/,External — network check required
-apps/app/app/auth/auth-code-error/page.tsx,/auth/login,OK
-apps/app/app/auth/auth-code-error/page.tsx,/,OK
-apps/app/app/error.tsx,/,OK
-apps/app/components/auth-page.tsx,/,OK
-apps/app/components/auth-page.tsx,https://mantrixflow.com/terms,External — network check required
-apps/app/components/auth-page.tsx,https://mantrixflow.com/privacy,External — network check required
-apps/app/lib/utils/toast.ts,itemName,External — network check required
-apps/app/lib/utils/toast.ts,"itemName, error",External — network check required
+apps/arcyria-website/app/compare/page.tsx,/pricing,OK
+apps/arcyria-website/app/compare/page.tsx,/connectors,OK
+apps/arcyria-website/app/privacy/privacy-client.tsx,mailto:support@mantrixflow.com,External contact link — syntax only
+apps/arcyria-website/app/subprocessors/subprocessors-client.tsx,mailto:support@mantrixflow.com,External contact link — syntax only
+apps/arcyria-website/app/terms/terms-client.tsx,mailto:support@mantrixflow.com,External contact link — syntax only
+apps/arcyria-website/components/cta-section.tsx,/pricing,OK
+apps/arcyria-website/components/cta-section.tsx,/compare,OK
+apps/arcyria-website/components/cta-section.tsx,mailto:support@mantrixflow.com,External contact link — syntax only
+apps/arcyria-website/components/footer.tsx,mailto:support@mantrixflow.com,External contact link — syntax only
+apps/arcyria-website/components/footer.tsx,https://www.linkedin.com/company/mantrixflow,External — network check required
+apps/arcyria-website/components/footer.tsx,/terms,OK
+apps/arcyria-website/components/footer.tsx,/privacy,OK
+apps/arcyria-website/components/hero-section.tsx,/pricing,OK
+apps/arcyria-website/components/home/home-hero.tsx,/connectors,OK
+apps/arcyria-website/components/home/home-hero.tsx,mailto:support@mantrixflow.com,External contact link — syntax only
+apps/arcyria-website/components/home/home-latest.tsx,/connectors,OK
+apps/arcyria-website/components/home/home-story.tsx,/compare,OK
+apps/arcyria-website/components/home/home-story.tsx,/connectors,OK
+apps/arcyria-website/components/home/home-story.tsx,/pricing,OK
+apps/arcyria-website/components/home/home-story.tsx,/integrations,OK
+apps/arcyria-website/components/marketing/connectors-teaser.tsx,/connectors,OK
+apps/arcyria-website/components/marketing/integrations-teaser.tsx,/integrations,OK
+apps/arcyria-website/components/marketing/solutions-menu.tsx,/connectors,OK
+apps/arcyria-website/components/navbar.tsx,/,OK
+apps/arcyria-website/components/side-nav.tsx,/pricing,OK
+apps/arcyria-website/components/side-nav.tsx,https://docs.mantrixflow.com/,External — network check required
+apps/arcyria-platform/app/auth/auth-code-error/page.tsx,/auth/login,OK
+apps/arcyria-platform/app/auth/auth-code-error/page.tsx,/,OK
+apps/arcyria-platform/app/error.tsx,/,OK
+apps/arcyria-platform/components/auth-page.tsx,/,OK
+apps/arcyria-platform/components/auth-page.tsx,https://mantrixflow.com/terms,External — network check required
+apps/arcyria-platform/components/auth-page.tsx,https://mantrixflow.com/privacy,External — network check required
+apps/arcyria-platform/lib/utils/toast.ts,itemName,External — network check required
+apps/arcyria-platform/lib/utils/toast.ts,"itemName, error",External — network check required
 apps/mantrixflow-docs/README.md,https://mantrixflow.com,External — network check required
 apps/mantrixflow-docs/README.md,https://mintlify.com,External — network check required
 apps/mantrixflow-docs/billing-breakdown.mdx,/pricing,OK
@@ -328,7 +328,7 @@ md-docs/infrastructure/reports/README.md,./ci-cd-implementation.md,OK
 md-docs/infrastructure/setup/ovh-dokploy-microsandbox.md,../ci-cd/github-actions.md,OK
 md-docs/infrastructure/setup/ovh-dokploy-microsandbox.md,../ci-cd/github-actions.md,OK
 md-docs/infrastructure/setup/ovh-dokploy-microsandbox.md,../../deployment/infrastructure/ovh-microsandbox-runbook.md,OK
-md-docs/infrastructure/storage/tigris.md,../../../apps/mantrixflow-infra/backup/README.md,OK
+md-docs/infrastructure/storage/tigris.md,../../../apps/arcyria-infra/backup/README.md,OK
 md-docs/integrations/billing/README.md,./dodo-billingsdk.md,OK
 md-docs/integrations/billing/README.md,./dodo-payments-setup.md,OK
 md-docs/integrations/billing/README.md,./dodo-payments-flowchart.md,OK
@@ -483,12 +483,12 @@ md-docs/operations/observability/posthog-full-integration.md,https://status.mant
 md-docs/operations/observability/posthog-full-integration.md,./posthog-setup.md,OK
 md-docs/operations/observability/posthog-full-integration.md,./betterstack-setup.md,OK
 md-docs/operations/observability/posthog-full-integration.md,./deployment.md,OK
-md-docs/operations/observability/posthog-full-integration.md,../../../apps/app/lib/posthog/events.ts,OK
-md-docs/operations/observability/posthog-full-integration.md,../../../apps/app/shared/providers/posthog-identify.tsx,OK
-md-docs/operations/observability/posthog-full-integration.md,../../../apps/server/main-server/internal/observability/posthog.go,OK
-md-docs/operations/observability/posthog-full-integration.md,../../../apps/server/main-server/internal/server/incident_webhook.go,OK
-md-docs/operations/observability/posthog-full-integration.md,../../../apps/app/hooks/use-feature-flag.ts,OK
-md-docs/operations/observability/posthog-full-integration.md,../../../apps/app/lib/posthog/client.ts,OK
+md-docs/operations/observability/posthog-full-integration.md,../../../apps/arcyria-platform/lib/posthog/events.ts,OK
+md-docs/operations/observability/posthog-full-integration.md,../../../apps/arcyria-platform/shared/providers/posthog-identify.tsx,OK
+md-docs/operations/observability/posthog-full-integration.md,../../../apps/server/arcyria-server/internal/observability/posthog.go,OK
+md-docs/operations/observability/posthog-full-integration.md,../../../apps/server/arcyria-server/internal/server/incident_webhook.go,OK
+md-docs/operations/observability/posthog-full-integration.md,../../../apps/arcyria-platform/hooks/use-feature-flag.ts,OK
+md-docs/operations/observability/posthog-full-integration.md,../../../apps/arcyria-platform/lib/posthog/client.ts,OK
 md-docs/operations/observability/posthog-full-integration.md,../../deployment/infrastructure/ovh-microsandbox-runbook.md,OK
 md-docs/operations/observability/posthog-full-integration.md,./deployment.md,OK
 md-docs/operations/observability/posthog-full-integration.md,./posthog-setup.md,OK
@@ -506,7 +506,7 @@ md-docs/operations/observability/posthog-setup.md,https://posthog.com/docs/error
 md-docs/operations/observability/posthog-setup.md,https://status.mantrixflow.com,External — network check required
 md-docs/operations/observability/posthog-setup.md,./betterstack-setup.md,OK
 md-docs/operations/observability/posthog-setup.md,https://posthog.com/docs/error-tracking/spikes,External — network check required
-md-docs/operations/observability/posthog-setup.md,/apps/server/main-server/internal/server/middleware.go,OK
+md-docs/operations/observability/posthog-setup.md,/apps/server/arcyria-server/internal/server/middleware.go,OK
 md-docs/operations/observability/posthog-setup.md,./betterstack-setup.md,OK
 md-docs/operations/observability/posthog-setup.md,./deployment.md,OK
 md-docs/operations/observability/posthog-setup.md,./betterstack-setup.md,OK

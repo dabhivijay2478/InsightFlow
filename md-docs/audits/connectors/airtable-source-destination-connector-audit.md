@@ -10,9 +10,9 @@ The connector implementation, deterministic suites, and the complete authenticat
 
 | Repository | Required base | Implementation branch | HEAD before changes |
 | --- | --- | --- | --- |
-| Frontend (`apps/app`) | `main` | `codex/feat/airtable-source-destination-connector` | `a04a72531ad12f0bc7ee25d4cf2c6462424cd093` |
-| Go API (`apps/server/main-server`) | `mantrixflow` | `codex/feat/airtable-source-destination-connector` | `daf0a5a19f5027ad49d875f4f754a088c3fb5dec` |
-| ELT (`apps/server/elt-server`) | `mantrixflow` | `codex/feat/airtable-source-destination-connector` | `6d53fd5e7c42c3ff09ff54d0dd418af9014244a5` |
+| Frontend (`apps/arcyria-platform`) | `main` | `codex/feat/airtable-source-destination-connector` | `a04a72531ad12f0bc7ee25d4cf2c6462424cd093` |
+| Go API (`apps/server/arcyria-server`) | `mantrixflow` | `codex/feat/airtable-source-destination-connector` | `daf0a5a19f5027ad49d875f4f754a088c3fb5dec` |
+| ELT (`apps/server/arcyria-elt`) | `mantrixflow` | `codex/feat/airtable-source-destination-connector` | `6d53fd5e7c42c3ff09ff54d0dd418af9014244a5` |
 
 The frontend already contained an inactive Airtable catalog entry and legacy SaaS schema. Go had no complete Airtable capability/credential/runtime path. ELT had no production Airtable source or destination implementation.
 

@@ -6,9 +6,9 @@ implementations.
 
 ## Runtime ownership (post ADK migration)
 
-- **Next.js** (`apps/app`) orchestrates LLM calls with Vercel AI SDK v7 +
+- **Next.js** (`apps/arcyria-platform`) orchestrates LLM calls with Vercel AI SDK v7 +
   OpenRouter via `POST /api/copilot/chat`.
-- **Go API** (`apps/server/main-server`) owns tool execution, run/message
+- **Go API** (`apps/server/arcyria-server`) owns tool execution, run/message
   persistence, permissions, action preview/confirm, usage, and audit records.
 - The browser must never receive `OPENROUTER_API_KEY`, a Supabase service-role
   key, or `INTERNAL_TOKEN`.
@@ -28,7 +28,7 @@ Legacy `POST /api/v1/organizations/:orgId/agent/chat` on Go returns **410 Gone**
 
 ## 1. Next.js server environment (OpenRouter + loop limits)
 
-Add these to `apps/app/.env.local` (development) or Vercel server env (production).
+Add these to `apps/arcyria-platform/.env.local` (development) or Vercel server env (production).
 **Never** use `NEXT_PUBLIC_` for these.
 
 ```dotenv
@@ -89,8 +89,8 @@ verification, encryption settings, and ELT configuration (see Go server README).
 ## 3. Start the services
 
 ```bash
-cd apps/server/main-server && go run ./cmd/server
-cd apps/app && bun run dev
+cd apps/server/arcyria-server && go run ./cmd/server
+cd apps/arcyria-platform && bun run dev
 ```
 
 Sign in, then open `http://localhost:3000/agents`.
@@ -109,7 +109,7 @@ Sign in, then open `http://localhost:3000/agents`.
 To regenerate TypeScript registry JSON from Go source:
 
 ```bash
-cd apps/server/main-server
+cd apps/server/arcyria-server
 go run ./cmd/export-oria-registry > ../app/features/ai-copilot/server/agent/registry/oria-registry.json
 ```
 

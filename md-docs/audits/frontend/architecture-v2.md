@@ -2,7 +2,7 @@
 
 Date: 2026-07-22
 
-Fresh scan of maintained production frontend source in `apps/app`. Excludes node_modules, .next, dist, __tests__, and test/spec files.
+Fresh scan of maintained production frontend source in `apps/arcyria-platform`. Excludes node_modules, .next, dist, __tests__, and test/spec files.
 
 ## Baseline
 

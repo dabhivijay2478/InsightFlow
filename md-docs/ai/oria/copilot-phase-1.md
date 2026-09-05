@@ -1,8 +1,8 @@
 # Oria Copilot — AI SDK production architecture
 
 Oria is MantrixFlow's workspace Copilot. **LLM orchestration** is owned by
-`apps/app` (Vercel AI SDK v7 + OpenRouter). **Tool execution, persistence,
-permissions, and action confirmation** remain in `apps/server/main-server`.
+`apps/arcyria-platform` (Vercel AI SDK v7 + OpenRouter). **Tool execution, persistence,
+permissions, and action confirmation** remain in `apps/server/arcyria-server`.
 
 Internal capability identities, prompts, routing rules, and tool names are not
 part of the public contract.

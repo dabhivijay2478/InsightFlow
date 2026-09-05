@@ -1,22 +1,22 @@
 ---
 description: Supabase row-level security — tenancy model, workflow for supabase_rls.sql, and schema map
-globs: apps/server/main-server/internal/models/**,apps/server/main-server/sql/**,apps/server/main-server/docs/**
+globs: apps/server/arcyria-server/internal/models/**,apps/server/arcyria-server/sql/**,apps/server/arcyria-server/docs/**
 alwaysApply: false
 ---
 
 # Supabase RLS (MantrixFlow)
 
-Use when a table in `apps/server/main-server/internal/models/` changes or a new table needs client-safe Supabase access.
+Use when a table in `apps/server/arcyria-server/internal/models/` changes or a new table needs client-safe Supabase access.
 
 ## Workflow
 
-1. Read the relevant model file under `apps/server/main-server/internal/models/`.
+1. Read the relevant model file under `apps/server/arcyria-server/internal/models/`.
 2. Classify the table:
    - `org_owned_crud` or `org_owned_select` for direct `organization_id` ownership
    - `self_user` or `self_user_crud` for `auth.uid()` ownership
    - `custom` when org access comes from joins or nullable ownership columns
    - `no_client_access` for secret-bearing tables such as `data_source_connections`
-3. Update `apps/server/main-server/sql/supabase_rls.sql` directly.
+3. Update `apps/server/arcyria-server/sql/supabase_rls.sql` directly.
 4. Read `md-docs/infrastructure/database/supabase-rls-guide.md` and keep the new table aligned with its checklist.
 5. For local application, use `APPLY_SUPABASE_RLS_ONCE=true` when starting the Go API. The server applies the SQL through GORM and records the checksum as a comment on `public.app_user_org_id()`.
 6. If a new ownership pattern was introduced, update the **Schema map** section below so later work does not rediscover it.
@@ -32,11 +32,11 @@ Use when a table in `apps/server/main-server/internal/models/` changes or a new 
 ## References
 
 - `md-docs/infrastructure/database/supabase-rls-guide.md` — maintenance checklist and local apply flow.
-- The file applied to Supabase is `apps/server/main-server/sql/supabase_rls.sql`.
+- The file applied to Supabase is `apps/server/arcyria-server/sql/supabase_rls.sql`.
 
 ## Schema map (current public tables)
 
-Current public tables created by GORM live in `apps/server/main-server/internal/models/`.
+Current public tables created by GORM live in `apps/server/arcyria-server/internal/models/`.
 
 ### Org-scoped tables
 
@@ -93,4 +93,4 @@ Current public tables created by GORM live in `apps/server/main-server/internal/
 
 ### Local apply flow
 
-Committed bundle: `apps/server/main-server/sql/supabase_rls.sql`. Apply on startup with `APPLY_SUPABASE_RLS_ONCE=true`; checksum marker on `public.app_user_org_id()`.
+Committed bundle: `apps/server/arcyria-server/sql/supabase_rls.sql`. Apply on startup with `APPLY_SUPABASE_RLS_ONCE=true`; checksum marker on `public.app_user_org_id()`.

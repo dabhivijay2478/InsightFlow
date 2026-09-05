@@ -50,15 +50,15 @@ checkpoint safety, authenticated callbacks, and no credential disclosure.
 Do not create a parallel runtime. Extend these existing ownership points:
 
 - Frontend catalog, credential, discovery, preview, SQL, approval, and run UI:
-  `apps/app/app/workspace/connections/**` and
-  `apps/app/app/workspace/data-pipelines/[id]/builder/**`.
+  `apps/arcyria-platform/app/workspace/connections/**` and
+  `apps/arcyria-platform/app/workspace/data-pipelines/[id]/builder/**`.
 - Go catalog, connection proxy, dispatch, plan guard, callback, audit, and
   optional approved-DDL control plane:
-  `apps/server/main-server/internal/{connectorsdata,server,models}/**`.
+  `apps/server/arcyria-server/internal/{connectorsdata,server,models}/**`.
 - HubSpot dlt source, discovery, preflight, staging, checkpoint, callback, and
-  tests: `apps/server/elt-server/{saas_sources/hubspot,api/routes,runner,models,tests}/**`.
+  tests: `apps/server/arcyria-elt/{saas_sources/hubspot,api/routes,runner,models,tests}/**`.
 - RLS changes, if AI-context tables are added:
-  `apps/server/main-server/sql/supabase_rls.sql` and the RLS guide.
+  `apps/server/arcyria-server/sql/supabase_rls.sql` and the RLS guide.
 
 ### 1.3 Release-blocking gaps
 

@@ -124,12 +124,12 @@ New ELT package:
 
 New focused tests:
 
-- `apps/server/elt-server/tests/test_strapi_connector.py`
-- `apps/server/main-server/internal/server/strapi_connector_test.go`
+- `apps/server/arcyria-elt/tests/test_strapi_connector.py`
+- `apps/server/arcyria-server/internal/server/strapi_connector_test.go`
 
 New frontend component:
 
-- `apps/app/features/pipelines/operations/source/strapi-source-settings.tsx`
+- `apps/arcyria-platform/features/pipelines/operations/source/strapi-source-settings.tsx`
 
 The frontend connector registry, connection form/schema/DTO mapping, icon, connection display, pipeline settings, discovery, preview, source types, and runtime gate metadata were extended. The Go connector registry, capability/role validation, encryption/display/edit preservation, connection and pipeline validation, runtime option dispatch, health, discovery, preview, and test routes were extended. The ELT SaaS allowlist/model/builder, generic routes, and DuckDB-staged disposition/metrics paths were extended. No new connector framework, normalization engine, table engine, Oria specialist, or destination was created.
 

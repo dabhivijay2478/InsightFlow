@@ -104,7 +104,7 @@ because a new `ovh_vps` starts a billable service immediately.
 After authentication, run:
 
 ```bash
-cd apps/mantrixflow-infra
+cd apps/arcyria-infra
 ./scripts/check-github-environments.sh
 ```
 
@@ -307,7 +307,7 @@ additive simulation migrations as a separate audited operation using the direct
 Supabase connection, never the transaction pooler:
 
 ```bash
-cd apps/server/main-server
+cd apps/server/arcyria-server
 go run ./cmd/simulation-migrate --dry-run
 SIMULATION_MIGRATION_DATABASE_URL='REPLACE_DIRECT_URL' \
   go run ./cmd/simulation-migrate --apply

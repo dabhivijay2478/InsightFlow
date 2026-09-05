@@ -22,7 +22,7 @@ flowchart LR
     Webhook[incident-webhook]
   end
   subgraph elt [Python ELT]
-    ELT[elt-server observability]
+    ELT[arcyria-elt observability]
   end
   PH[PostHog US cloud]
   BS[Better Stack status page]
@@ -39,7 +39,7 @@ flowchart LR
 | --- | --- | --- |
 | Next.js app | `$pageview`, identify, group, custom events, replay, flags, surveys | Footer `StatusIndicator` polls public JSON |
 | Go API | `api_request` (10% sample), pipeline events, 5xx `$exception` | Webhook relay only |
-| Python ELT | `$exception`, pipeline events | Optional resource tag `service:elt-server` |
+| Python ELT | `$exception`, pipeline events | Optional resource tag `service:arcyria-elt` |
 
 ---
 
@@ -62,7 +62,7 @@ To reduce volume: lower `apiMetricsSampleRate` in `metrics_middleware.go` or add
 
 ## Events catalog
 
-### Next.js (`apps/app`)
+### Next.js (`apps/arcyria-platform`)
 
 | Event | When |
 | --- | --- |
@@ -75,11 +75,11 @@ To reduce volume: lower `apiMetricsSampleRate` in `metrics_middleware.go` or add
 | `data_source_discovered` | Source schema discover |
 | `destination_table_mapped` | Destination panel save |
 
-Helpers: [`apps/app/lib/posthog/events.ts`](../../../apps/app/lib/posthog/events.ts).
+Helpers: [`apps/arcyria-platform/lib/posthog/events.ts`](../../../apps/arcyria-platform/lib/posthog/events.ts).
 
-Identity: [`PostHogIdentify`](../../../apps/app/shared/providers/posthog-identify.tsx) in workspace layout — `identify(user.id)`, `group('organization', orgId)`, `reset()` on logout.
+Identity: [`PostHogIdentify`](../../../apps/arcyria-platform/shared/providers/posthog-identify.tsx) in workspace layout — `identify(user.id)`, `group('organization', orgId)`, `reset()` on logout.
 
-### Go API (`apps/server/main-server`)
+### Go API (`apps/server/arcyria-server`)
 
 | Event | When |
 | --- | --- |
@@ -92,13 +92,13 @@ Identity: [`PostHogIdentify`](../../../apps/app/shared/providers/posthog-identif
 | `connection_test_succeeded` / `connection_test_failed` | Test-connection handlers |
 | `$exception` | 5xx (`ErrorMiddleware`) |
 
-Package entry: [`internal/observability/posthog.go`](../../../apps/server/main-server/internal/observability/posthog.go).
+Package entry: [`internal/observability/posthog.go`](../../../apps/server/arcyria-server/internal/observability/posthog.go).
 
 ### Better Stack relay
 
 PostHog `$exception` → `POST /api/v1/internal/incident-webhook` → Better Stack status report.
 
-Improvements in [`incident_webhook.go`](../../../apps/server/main-server/internal/server/incident_webhook.go):
+Improvements in [`incident_webhook.go`](../../../apps/server/arcyria-server/internal/server/incident_webhook.go):
 
 - **Dedup:** same resource within 5 minutes → skip new report
 - **Resolve:** updates open report via `AddStatusUpdate` instead of always creating
@@ -117,13 +117,13 @@ import { useFeatureFlag } from "@/hooks/use-feature-flag";
 const { enabled } = useFeatureFlag("new_pipeline_builder");
 ```
 
-Hook: [`apps/app/hooks/use-feature-flag.ts`](../../../apps/app/hooks/use-feature-flag.ts).
+Hook: [`apps/arcyria-platform/hooks/use-feature-flag.ts`](../../../apps/arcyria-platform/hooks/use-feature-flag.ts).
 
 ---
 
 ## Surveys
 
-`opt_in_site_apps: true` in [`apps/app/lib/posthog/client.ts`](../../../apps/app/lib/posthog/client.ts).
+`opt_in_site_apps: true` in [`apps/arcyria-platform/lib/posthog/client.ts`](../../../apps/arcyria-platform/lib/posthog/client.ts).
 
 Create surveys in PostHog UI → **Surveys**. Example targeting: users with `pipeline_run_triggered` count ≥ 3 (NPS after successful pipeline usage).
 
@@ -178,10 +178,10 @@ Enable **Web analytics** in PostHog project settings. MantrixFlow already sends 
 
 | Layer | Path |
 | --- | --- |
-| Next provider | `apps/app/components/providers/posthog-provider.tsx` |
-| Client init | `apps/app/lib/posthog/client.ts` |
-| Server errors | `apps/app/instrumentation.ts` |
-| Go PostHog | `apps/server/main-server/internal/observability/` |
-| Better Stack client | `apps/server/main-server/internal/betterstack/client.go` |
-| Webhook relay | `apps/server/main-server/internal/server/incident_webhook.go` |
+| Next provider | `apps/arcyria-platform/components/providers/posthog-provider.tsx` |
+| Client init | `apps/arcyria-platform/lib/posthog/client.ts` |
+| Server errors | `apps/arcyria-platform/instrumentation.ts` |
+| Go PostHog | `apps/server/arcyria-server/internal/observability/` |
+| Better Stack client | `apps/server/arcyria-server/internal/betterstack/client.go` |
+| Webhook relay | `apps/server/arcyria-server/internal/server/incident_webhook.go` |
 | Current infrastructure | `md-docs/deployment/infrastructure/ovh-microsandbox-runbook.md` |

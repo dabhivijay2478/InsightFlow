@@ -6,8 +6,8 @@ organization-scoped backend APIs.
 It is intentionally **repo-aligned**, not prompt-literal. Use this document
 when implementing the real feature in:
 
-- `apps/app`
-- `apps/server/main-server`
+- `apps/arcyria-platform`
+- `apps/server/arcyria-server`
 
 This spec is decision-complete for the v1 implementation. If a detail in the
 original prompt conflicts with the current repo shape, follow this document.
@@ -54,18 +54,18 @@ Use the following mapping whenever the original prompt uses generic names.
 
 | Prompt concept | Implement in this repo |
 | --- | --- |
-| Frontend route `/analytics` | `/workspace/analytics` in `apps/app/app/workspace/analytics/page.tsx` |
+| Frontend route `/analytics` | `/workspace/analytics` in `apps/arcyria-platform/app/workspace/analytics/page.tsx` |
 | API prefix `/api/v1/analytics/*` | `/api/v1/organizations/:organizationId/analytics/*` |
 | Legacy API parity | `/api/organizations/:organizationId/analytics/*` via the existing legacy org router |
-| Generic Go `internal/router/router.go` | `apps/server/main-server/internal/server/routes.go` |
-| Generic Go handlers package | `apps/server/main-server/internal/server/analytics_http.go` |
-| Generic Go service package | `apps/server/main-server/internal/services/analytics/*` |
+| Generic Go `internal/router/router.go` | `apps/server/arcyria-server/internal/server/routes.go` |
+| Generic Go handlers package | `apps/server/arcyria-server/internal/server/analytics_http.go` |
+| Generic Go service package | `apps/server/arcyria-server/internal/services/analytics/*` |
 | `etl_pipeline_runs` | `pipeline_runs` |
 | `etl_pipelines` | `pipelines` |
 | `org_id` | `organization_id` |
 | `phase_1_status` / `phase_2_status` / `phase_3_status` columns | derive from `pipeline_runs.run_metadata` |
-| Generic `lib/api/hooks/useAnalytics.ts` | `apps/app/lib/api/hooks/use-analytics.ts` |
-| Generic `lib/api/services/*` | `apps/app/lib/api/services/*` using `orgPath(organizationId)` |
+| Generic `lib/api/hooks/useAnalytics.ts` | `apps/arcyria-platform/lib/api/hooks/use-analytics.ts` |
+| Generic `lib/api/services/*` | `apps/arcyria-platform/lib/api/services/*` using `orgPath(organizationId)` |
 
 Important repo-specific notes:
 
@@ -99,7 +99,7 @@ The page keeps the prompt's layout, but it is rendered under the workspace app:
 
 - Use existing `PageHeader`, shadcn `Card`, `Table`, `Progress`, `Skeleton`,
   and the existing `ChartContainer` / `ChartTooltip` wrappers from
-  `apps/app/components/ui/chart.tsx`.
+  `apps/arcyria-platform/components/ui/chart.tsx`.
 - Keep the page dark-themed and consistent with the rest of the workspace.
 - Use these colors:
   - primary: `blue-500`
@@ -116,7 +116,7 @@ The page keeps the prompt's layout, but it is rendered under the workspace app:
 ### Navigation
 
 Re-enable the commented Analytics sidebar item in
-`apps/app/components/workspace/workspace-sidebar.tsx` and place it literally
+`apps/arcyria-platform/components/workspace/workspace-sidebar.tsx` and place it literally
 between the existing `Connections` and `Data Pipelines` items. Use `BarChart2`
 and route it to `/workspace/analytics`.
 
@@ -128,11 +128,11 @@ and route it to `/workspace/analytics`.
 
 | File | Change |
 | --- | --- |
-| `apps/server/main-server/internal/services/analytics/service.go` | new analytics service constructor and query methods |
-| `apps/server/main-server/internal/services/analytics/types.go` | request-independent response DTOs and helper structs |
-| `apps/server/main-server/internal/server/analytics_http.go` | Fiber handlers for all analytics routes |
-| `apps/server/main-server/internal/server/state.go` | add `Analytics *analytics.Service` to `State` and initialize it in `NewState` |
-| `apps/server/main-server/internal/server/routes.go` | mount `analytics` under `mountOrganizationScopedRoutes` |
+| `apps/server/arcyria-server/internal/services/analytics/service.go` | new analytics service constructor and query methods |
+| `apps/server/arcyria-server/internal/services/analytics/types.go` | request-independent response DTOs and helper structs |
+| `apps/server/arcyria-server/internal/server/analytics_http.go` | Fiber handlers for all analytics routes |
+| `apps/server/arcyria-server/internal/server/state.go` | add `Analytics *analytics.Service` to `State` and initialize it in `NewState` |
+| `apps/server/arcyria-server/internal/server/routes.go` | mount `analytics` under `mountOrganizationScopedRoutes` |
 
 Keep analytics in `internal/server`, not a separate handlers package, to match
 the repo's current server layout.
@@ -552,18 +552,18 @@ Notes:
 
 | File | Change |
 | --- | --- |
-| `apps/app/lib/api/types/analytics.ts` | add analytics TS contracts |
-| `apps/app/lib/api/services/analytics.service.ts` | add analytics service methods |
-| `apps/app/lib/api/hooks/use-analytics.ts` | add analytics query keys and hooks |
-| `apps/app/lib/api/index.ts` | export analytics types, service, hooks |
-| `apps/app/lib/analytics/formatters.ts` | add analytics-specific format helpers |
-| `apps/app/app/workspace/analytics/page.tsx` | replace mock page with real implementation |
-| `apps/app/app/workspace/analytics/components/*` | add route-local analytics components |
-| `apps/app/components/workspace/workspace-sidebar.tsx` | re-enable Analytics nav item |
+| `apps/arcyria-platform/lib/api/types/analytics.ts` | add analytics TS contracts |
+| `apps/arcyria-platform/lib/api/services/analytics.service.ts` | add analytics service methods |
+| `apps/arcyria-platform/lib/api/hooks/use-analytics.ts` | add analytics query keys and hooks |
+| `apps/arcyria-platform/lib/api/index.ts` | export analytics types, service, hooks |
+| `apps/arcyria-platform/lib/analytics/formatters.ts` | add analytics-specific format helpers |
+| `apps/arcyria-platform/app/workspace/analytics/page.tsx` | replace mock page with real implementation |
+| `apps/arcyria-platform/app/workspace/analytics/components/*` | add route-local analytics components |
+| `apps/arcyria-platform/components/workspace/workspace-sidebar.tsx` | re-enable Analytics nav item |
 
 ### 5.2 Public TypeScript Surface
 
-Create `apps/app/lib/api/types/analytics.ts` with:
+Create `apps/arcyria-platform/lib/api/types/analytics.ts` with:
 
 ```ts
 export type AnalyticsPeriod = "7d" | "30d" | "90d";
@@ -581,7 +581,7 @@ Use the backend `data` shapes from section 4.5 exactly.
 
 ### 5.3 Service And Hook Contract
 
-Create `apps/app/lib/api/services/analytics.service.ts` with:
+Create `apps/arcyria-platform/lib/api/services/analytics.service.ts` with:
 
 ```ts
 class AnalyticsService {
@@ -623,7 +623,7 @@ CSV export implementation rule:
 - call `fetch(getApiUrl(...), await createFetchOptions(...))`
 - return `await response.blob()`
 
-Create `apps/app/lib/api/hooks/use-analytics.ts` with:
+Create `apps/arcyria-platform/lib/api/hooks/use-analytics.ts` with:
 
 - `analyticsKeys.all`
 - `analyticsKeys.overview(orgId, period)`
@@ -671,7 +671,7 @@ Selection behavior:
 
 ### 5.5 Route-Local Components
 
-Create these files under `apps/app/app/workspace/analytics/components`:
+Create these files under `apps/arcyria-platform/app/workspace/analytics/components`:
 
 | File | Responsibility |
 | --- | --- |
@@ -776,7 +776,7 @@ Component-specific rules:
 
 ### 5.6 Formatters
 
-Create `apps/app/lib/analytics/formatters.ts` with:
+Create `apps/arcyria-platform/lib/analytics/formatters.ts` with:
 
 - `formatRows(n)`
 - `formatDuration(seconds)`

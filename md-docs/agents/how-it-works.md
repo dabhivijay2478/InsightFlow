@@ -45,7 +45,7 @@ Conversation rows are not directly readable by normal clients.
 
 The implementation keeps AI orchestration in Next.js because the app already uses the Vercel AI SDK. That gives the UI streaming behavior without pushing AI-specific streaming code into Go.
 
-The model provider is selected by `apps/app/lib/ai/model-provider.ts`, so the same routes can use Anthropic, Vercel AI Gateway, OpenRouter, Ollama, or another OpenAI-compatible endpoint. Next.js does not decrypt destination credentials and does not execute SQL. It only:
+The model provider is selected by `apps/arcyria-platform/lib/ai/model-provider.ts`, so the same routes can use Anthropic, Vercel AI Gateway, OpenRouter, Ollama, or another OpenAI-compatible endpoint. Next.js does not decrypt destination credentials and does not execute SQL. It only:
 
 1. Builds the prompt.
 2. Defines tools such as `execute_query`, `run_pipeline`, and `get_run_status`.

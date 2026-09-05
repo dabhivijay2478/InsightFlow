@@ -16,9 +16,9 @@ movement across the full database matrix.
 
 | Repository | Branch | HEAD before changes | Notes |
 | --- | --- | --- | --- |
-| Frontend (`apps/app`) | `main` | `728a584d021b2216afdb97ecc6abccdad47d7e52` | tracking upstream `main` |
-| Go control plane (`apps/server/main-server`) | `mantrixflow` | `39a2581c666d6ae8b00d77956c8d224a59182871` | tracking `origin/mantrixflow` |
-| Python ELT (`apps/server/elt-server`) | `mantrixflow` | `296c8624882a4cf51c03459aa3742e58e5727212` | tracking `origin/mantrixflow` |
+| Frontend (`apps/arcyria-platform`) | `main` | `728a584d021b2216afdb97ecc6abccdad47d7e52` | tracking upstream `main` |
+| Go control plane (`apps/server/arcyria-server`) | `mantrixflow` | `39a2581c666d6ae8b00d77956c8d224a59182871` | tracking `origin/mantrixflow` |
+| Python ELT (`apps/server/arcyria-elt`) | `mantrixflow` | `296c8624882a4cf51c03459aa3742e58e5727212` | tracking `origin/mantrixflow` |
 
 All three remotes were refreshed before the audit. No upstream-differing commits were introduced.
 

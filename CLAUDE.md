@@ -10,18 +10,18 @@ MantrixFlow is a B2B SaaS ETL platform. Users connect source databases, configur
 
 ```
 apps/
-├── app/          ← Next.js 16 + React 19 frontend (App Router)
+├── arcyria-platform/ ← Next.js 16 + React 19 frontend (App Router)
 ├── server/
-│   ├── main-server/ ← Go API server (Fiber + GORM) — ACTIVE
-│   └── elt-server/  ← Python FastAPI ELT server (DuckDB-staged ELT) — ACTIVE
-└── website/      ← Marketing site (Next.js)
+│   ├── arcyria-server/ ← Go API server (Fiber + GORM) — ACTIVE
+│   └── arcyria-elt/    ← Python FastAPI ELT server (DuckDB-staged ELT) — ACTIVE
+└── arcyria-website/ ← Marketing site (Next.js)
 apps/arcyria-docs/ ← Mintlify docs — separate repository; clone the current docs remote into this path
 cloud.api.mantrixflow.com/  ← NestJS API (DEPRECATED, reference only)
 ```
 
 **Documentation:** The Arcyria Mintlify source lives in **`apps/arcyria-docs/`** as a separate repository. Its GitHub remote still uses the legacy `MantrixFlow-Docs` slug until that external repository is renamed. Preview with `cd apps/arcyria-docs && npm install && npm run dev`. Edit MDX and `docs.json` only in that repository. The marketing site uses `NEXT_PUBLIC_DOCS_URL` and redirects `/docs/*` to the docs host.
 
-**Important:** `cloud.api.mantrixflow.com` is the old NestJS API being replaced by `apps/server/main-server`. Use it only as a reference. Do not write new NestJS code. Do not import from it.
+**Important:** `cloud.api.mantrixflow.com` is the old NestJS API being replaced by `apps/server/arcyria-server`. Use it only as a reference. Do not write new NestJS code. Do not import from it.
 
 ## Architecture
 
@@ -69,10 +69,10 @@ Go API enqueues → ETL /sync (HTTP 202) → dlt pipeline runs async → callbac
 
 ## Commands
 
-### API (Go) — `apps/server/main-server/`
+### API (Go) — `apps/server/arcyria-server/`
 
 ```bash
-cd apps/server/main-server
+cd apps/server/arcyria-server
 go run ./cmd/server              # Start dev server (default port 5000)
 go test ./...
 ```
@@ -85,10 +85,10 @@ go test ./...
 - `API_PUBLIC_URL` — public callback base URL (required in prod)
 - `ETL_INTERNAL_TOKEN` / `CALLBACK_TOKEN` — internal auth secrets
 
-### ELT (Python) — `apps/server/elt-server/`
+### ELT (Python) — `apps/server/arcyria-elt/`
 
 ```bash
-cd apps/server/elt-server
+cd apps/server/arcyria-elt
 python3 -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
@@ -102,10 +102,10 @@ uvicorn api.main:app --host 0.0.0.0 --port 8000
 - `ETL_INTERNAL_TOKEN` — validates incoming requests
 - `MAX_CONCURRENT_RUNS` — default 10-20 per instance
 
-### App (Next.js) — `apps/app/`
+### App (Next.js) — `apps/arcyria-platform/`
 
 ```bash
-cd apps/app
+cd apps/arcyria-platform
 bun install
 bun run dev                      # Port 3000
 bun run build
@@ -130,7 +130,7 @@ Tables in Supabase Postgres:
 
 ## API Routes Reference
 
-### Go API (`apps/server/main-server/`) — `/api/v1/`
+### Go API (`apps/server/arcyria-server/`) — `/api/v1/`
 
 All routes require Supabase JWT except `/api/v1/internal/*`:
 - `GET /health` — health check
@@ -142,7 +142,7 @@ All routes require Supabase JWT except `/api/v1/internal/*`:
 - `POST /internal/etl-callback` — ETL posts completion results
 - `POST /internal/checkpoint/:pipelineId` — ETL posts progress updates
 
-### ELT Server (`apps/server/elt-server/`)
+### ELT Server (`apps/server/arcyria-elt/`)
 
 All routes validate `X-ETL-Token`:
 - `GET/POST /health` — capacity info
@@ -219,10 +219,10 @@ All routes validate `X-ETL-Token`:
 - AI Chat Panel (Vercel AI SDK + ai-elements)
 - Connections catalog page
 
-### Needs Implementation (Go API `apps/server/main-server/`)
+### Needs Implementation (Go API `apps/server/arcyria-server/`)
 All routes need implementation. Reference `cloud.api.mantrixflow.com` for expected behavior, then rewrite in Go/Fiber.
 
-### Needs Work (Python ELT `apps/server/elt-server/`)
+### Needs Work (Python ELT `apps/server/arcyria-elt/`)
 Routes exist but may have issues:
 - test-connection should use SQLAlchemy, not subprocess
 - credential handling must be consistent
@@ -233,7 +233,7 @@ Frontend uses mock data in many places. Replace `MOCK_*` constants with real Tan
 
 ## Coding Standards
 
-### TypeScript/React (`apps/app/`)
+### TypeScript/React (`apps/arcyria-platform/`)
 - English for all code/docs
 - Explicit types (avoid `any`)
 - JSDoc for public classes/methods
@@ -244,13 +244,13 @@ Frontend uses mock data in many places. Replace `MOCK_*` constants with real Tan
 - Accessibility attributes on interactive elements
 - Event handlers: `handleClick`, `handleKeyDown`
 
-### Go (`apps/server/main-server/`)
+### Go (`apps/server/arcyria-server/`)
 - Fiber v2 routing (`app.Get`, `app.Post`, `app.Group`)
 - Structured logging with zerolog
 - Thin handlers, thick services
 - GORM models in `internal/models/`
 
-### Python (`apps/server/elt-server/`)
+### Python (`apps/server/arcyria-elt/`)
 - FastAPI with Pydantic v2
 - dlt for all data movement
 - SQLAlchemy for discovery/test-connection
@@ -273,7 +273,7 @@ See `md-docs/testing-local.md` for local testing notes.
 docker compose -f docker-compose.test.yml up -d
 
 # Go API tests
-cd apps/server/main-server && go test ./...
+cd apps/server/arcyria-server && go test ./...
 
 # Load tests (k6)
 k6 run tests/load-tests/k6-api.js
@@ -286,7 +286,7 @@ See `md-docs/deployment/infrastructure/ovh-microsandbox-runbook.md`,
 `md-docs/deployment/frontend/vercel.md`, and
 `md-docs/integrations/email/aws-ses-setup.md`.
 
-- **App**: Vercel — `cloud.mantrixflow.com` (root: `apps/app`)
+- **App**: Vercel — `cloud.mantrixflow.com` (root: `apps/arcyria-platform`)
 - **API + ELT**: independent OVH VPS targets managed by self-hosted Dokploy; API public at `cloud.api.mantrixflow.com`, ELT private only
 - **Email**: AWS SES (Go API `EMAIL_PROVIDER=ses`)
 

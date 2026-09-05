@@ -1,10 +1,10 @@
 ---
-description: Python ELT (FastAPI) — apps/server/elt-server DuckDB-staged runner, API routes, and dlt/dbt boundaries
-globs: apps/server/elt-server/**
+description: Python ELT (FastAPI) — apps/server/arcyria-elt DuckDB-staged runner, API routes, and dlt/dbt boundaries
+globs: apps/server/arcyria-elt/**
 alwaysApply: false
 ---
 
-# Python ELT server (`apps/server/elt-server`)
+# Python ELT server (`apps/server/arcyria-elt`)
 
 FastAPI service for the **active** runtime: DuckDB-staged extract → dbt →
 deliver → callback. Only path: **`duckdb_staged`**.
@@ -67,7 +67,7 @@ Short reminders:
 ## Local run
 
 ```bash
-cd apps/server/elt-server
+cd apps/server/arcyria-elt
 ./.venv/bin/python -m uvicorn api.main:app --host 0.0.0.0 --port 8000 --loop asyncio
 ```
 

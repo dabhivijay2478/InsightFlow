@@ -7,7 +7,7 @@ Added a new **Agent Grid View** to the workspace agents page with filtering and 
 
 ### 1. **AgentGridClient.tsx** (New Component)
 - Displays all agents across pipelines in a responsive card grid
-- Location: `/apps/app/app/workspace/agents/AgentGridClient.tsx`
+- Location: `/apps/arcyria-platform/app/workspace/agents/AgentGridClient.tsx`
 - Features:
   - **Responsive Grid Layout**: 1 column (mobile) → 2 columns (tablet) → 3 columns (desktop)
   - **Agent Cards** with:

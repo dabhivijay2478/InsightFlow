@@ -1,7 +1,7 @@
 # MantrixFlow frontend file-size audit
 
 Date: 2026-07-22  
-Scope: maintained production source under `apps/app` with extensions `.ts`, `.tsx`, `.js`, `.jsx`, `.css`, `.scss`, and `.less`  
+Scope: maintained production source under `apps/arcyria-platform` with extensions `.ts`, `.tsx`, `.js`, `.jsx`, `.css`, `.scss`, and `.less`
 Excluded: `node_modules`, `.next`, build/output/coverage folders, public/vendor assets, generated files, lock files, and existing test/spec files. Tests are intentionally excluded because this task explicitly prohibits creating or restructuring test files.
 
 ## Baseline
@@ -132,7 +132,7 @@ Dialogs are mounted once per feature container rather than once per row.
 The existing App Router paths remain unchanged. Feature implementations move behind thin route entries:
 
 ```text
-apps/app/
+apps/arcyria-platform/
   app/                              # route/layout entry points only
   components/
     ui/                             # shadcn primitives

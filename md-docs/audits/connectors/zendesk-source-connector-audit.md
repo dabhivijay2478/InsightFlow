@@ -104,7 +104,7 @@ Tickets retain custom fields as JSON with ticket identity, and dlt normalization
 
 New ELT package: `saas_sources/zendesk/{__init__,adapter,api_helpers,client,credentials,discovery,errors,registry,settings,verified_source}.py`.
 
-New connector tests: `apps/server/elt-server/tests/test_zendesk_connector.py`, `apps/server/main-server/internal/server/zendesk_connector_test.go`, and `apps/app/tests/connections/zendesk-connector.spec.ts`.
+New connector tests: `apps/server/arcyria-elt/tests/test_zendesk_connector.py`, `apps/server/arcyria-server/internal/server/zendesk_connector_test.go`, and `apps/arcyria-platform/tests/connections/zendesk-connector.spec.ts`.
 
 New integration files include the Go Zendesk connector/OAuth/state/refresh implementation, the frontend OAuth form/service and source settings, and the OAuth-only Python source package.
 

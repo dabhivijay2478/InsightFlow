@@ -7,9 +7,9 @@ API and are never Dokploy applications.
 
 The complete infrastructure sequence is maintained in:
 
-- [`../../mantrixflow-infra/docs/setup-guide.md`](../../infrastructure/setup/ovh-dokploy-microsandbox.md)
-- [`../../mantrixflow-infra/DEPLOYMENT.md`](../infrastructure/ovh-microsandbox-runbook.md)
-- [`../../mantrixflow-infra/docs/github-actions.md`](../../infrastructure/ci-cd/github-actions.md)
+- [`../../arcyria-infra/docs/setup-guide.md`](../../infrastructure/setup/ovh-dokploy-microsandbox.md)
+- [`../../arcyria-infra/DEPLOYMENT.md`](../infrastructure/ovh-microsandbox-runbook.md)
+- [`../../arcyria-infra/docs/github-actions.md`](../../infrastructure/ci-cd/github-actions.md)
 
 ## GitHub deployment units
 

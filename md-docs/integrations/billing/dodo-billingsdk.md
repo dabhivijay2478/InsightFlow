@@ -10,7 +10,7 @@ This guide documents the current MVP billing architecture.
 - Downgrade: scheduled locally for the next billing cycle
 - Payment methods and hosted receipts: Dodo customer portal
 - Invoice list: MantrixFlow API sync/cache of Dodo invoice/payment rows
-- Frontend: local shadcn/BillingSDK-style components under `apps/app/components/billingsdk`
+- Frontend: local shadcn/BillingSDK-style components under `apps/arcyria-platform/components/billingsdk`
 
 No Solo tier, product collection checkout, usage-based add-on billing, upcoming local charges, or user-facing cancel button is part of this MVP model.
 
@@ -84,10 +84,10 @@ Users do not manually switch to Free. Free is an automatic fallback after the cu
 The app uses local, adapted BillingSDK-style components. Do not run the full BillingSDK initializer.
 
 ```text
-apps/app/components/billingsdk/update-plan-card.tsx
-apps/app/components/billingsdk/usage-meter-circle.tsx
-apps/app/components/billingsdk/invoice-history.tsx
-apps/app/components/billingsdk/trial-expiry-card.tsx
+apps/arcyria-platform/components/billingsdk/update-plan-card.tsx
+apps/arcyria-platform/components/billingsdk/usage-meter-circle.tsx
+apps/arcyria-platform/components/billingsdk/invoice-history.tsx
+apps/arcyria-platform/components/billingsdk/trial-expiry-card.tsx
 ```
 
 Browser code must call MantrixFlow API hooks only. It must never call Dodo directly.

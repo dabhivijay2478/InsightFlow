@@ -26,10 +26,10 @@ Run services separately:
 
 ```bash
 # Go API
-cd apps/server/main-server && go run ./cmd/server
+cd apps/server/arcyria-server && go run ./cmd/server
 
 # Python ELT
-cd apps/server/elt-server
+cd apps/server/arcyria-elt
 ./.venv/bin/python -m uvicorn api.main:app --host 127.0.0.1 --port 8000 --loop asyncio
 ```
 
@@ -49,5 +49,5 @@ not the production topology.
   control interfaces are never public.
 
 Provider-specific deployment material outside
-[`apps/mantrixflow-infra`](../mantrixflow-infra/) is historical and must not be
+[`apps/arcyria-infra`](../arcyria-infra/) is historical and must not be
 used as current production guidance.

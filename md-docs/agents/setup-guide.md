@@ -92,9 +92,9 @@ The RLS script includes org-scoped policies for `pipeline_agents` and keeps `pip
 
 Files:
 
-- `apps/server/main-server/internal/models/agent.go`
-- `apps/server/main-server/internal/database/migrate.go`
-- `apps/server/main-server/sql/supabase_rls.sql`
+- `apps/server/arcyria-server/internal/models/agent.go`
+- `apps/server/arcyria-server/internal/database/migrate.go`
+- `apps/server/arcyria-server/sql/supabase_rls.sql`
 
 ## Local Startup
 
@@ -158,21 +158,21 @@ export function App() {
 Backend:
 
 ```bash
-cd apps/server/main-server
+cd apps/server/arcyria-server
 GOCACHE=/tmp/mxf-go-build-cache go test ./internal/server ./internal/database ./internal/models
 ```
 
 Frontend touched-file lint:
 
 ```bash
-cd apps/app
+cd apps/arcyria-platform
 bun run biome check public/agent.js 'app/api/agents/[agentKey]/chat/route.ts' 'app/api/agents/[agentKey]/info/route.ts' 'app/api/pipelines/[id]/agent/chat/route.ts' 'app/workspace/data-pipelines/[id]/agent/page.tsx'
 ```
 
 Standalone platform focused check:
 
 ```bash
-cd apps/app
+cd apps/arcyria-platform
 bun run biome check 'app/workspace/agents/page.tsx' 'app/workspace/agents/AgentsPlatformClient.tsx' components/agents
 ```
 

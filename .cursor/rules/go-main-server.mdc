@@ -1,10 +1,10 @@
 ---
-description: Go API (Fiber) — apps/server/main-server conventions, ELT dispatch, queue, callbacks, and boundaries
-globs: apps/server/main-server/**
+description: Go API (Fiber) — apps/server/arcyria-server conventions, ELT dispatch, queue, callbacks, and boundaries
+globs: apps/server/arcyria-server/**
 alwaysApply: false
 ---
 
-# Go main server (`apps/server/main-server`)
+# Go main server (`apps/server/arcyria-server`)
 
 Fiber + GORM service between the Next.js app and the Python ELT server. **The
 browser never calls ELT directly** — all authenticated product traffic goes
@@ -34,7 +34,7 @@ through this API.
 ## ELT-specific files (keep in sync with Python contract)
 
 When changing dispatch or callbacks, align with Pydantic models in the ELT
-server (`apps/server/elt-server/models/run_config.py`):
+server (`apps/server/arcyria-elt/models/run_config.py`):
 
 - `dispatch.go` / `dispatch_incremental.go` — build `selected_streams` as
   `SourceStreamConfig[]` (not raw `string[]`); `dbt_config.sql_models` with
@@ -50,7 +50,7 @@ server (`apps/server/elt-server/models/run_config.py`):
 
 - Destination contract is **destination-node-first** (`dest_schema`,
   `sql_models[].output_table`, final delivery as `schema.table`). See
-  `apps/server/main-server/README.md` for the short contract summary.
+  `apps/server/arcyria-server/README.md` for the short contract summary.
 - Pipeline runs flow through **pgmq**, not ad-hoc HTTP from the frontend to ELT.
 
 ## Row-level security
@@ -70,7 +70,7 @@ SQL applied to Supabase: `sql/supabase_rls.sql`. Workflow and table map:
 ## Local run
 
 ```bash
-cd apps/server/main-server
+cd apps/server/arcyria-server
 go run ./cmd/server
 ```
 

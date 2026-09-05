@@ -12,9 +12,9 @@ The latest `origin/mantrixflow` was fetched before the feature branches were cre
 
 | Repository | Fetched `origin/mantrixflow` SHA |
 | --- | --- |
-| Frontend (`apps/app`) | `0d74c16ad9254936409b82e8df27a98185544535` |
-| Go API (`apps/server/main-server`) | `4df49ce22b9d641604d68cb9075e0af28cf43d27` |
-| Python ELT (`apps/server/elt-server`) | `6a8e4c6a2f0ecae330fdd8642607cc76c1019f33` |
+| Frontend (`apps/arcyria-platform`) | `0d74c16ad9254936409b82e8df27a98185544535` |
+| Go API (`apps/server/arcyria-server`) | `4df49ce22b9d641604d68cb9075e0af28cf43d27` |
+| Python ELT (`apps/server/arcyria-elt`) | `6a8e4c6a2f0ecae330fdd8642607cc76c1019f33` |
 
 ## Implemented contract
 

@@ -28,7 +28,7 @@ Go API:   http://localhost:5000
 For local Slack testing, expose the frontend port, not the Go port:
 
 ```bash
-cd apps/app
+cd apps/arcyria-platform
 bun run dev
 
 ngrok http 3000
@@ -98,14 +98,14 @@ NEXT_PUBLIC_ALLOWED_ORIGINS=https://cloud.mantrixflow.com,https://cloud.api.mant
 `SLACK_PROXY_TARGET_URL` is optional when `NEXT_PUBLIC_API_URL` already points to
 the Go API.
 
-When you run Go from `apps/server/main-server`, `config.Load()` reads:
+When you run Go from `apps/server/arcyria-server`, `config.Load()` reads:
 
 ```text
-apps/server/main-server/.env
-apps/app/.env
+apps/server/arcyria-server/.env
+apps/arcyria-platform/.env
 ```
 
-The easiest local setup is to keep Slack env vars in `apps/app/.env`, then
+The easiest local setup is to keep Slack env vars in `apps/arcyria-platform/.env`, then
 restart both dev servers after changes.
 
 ## 4. Create Or Update The Slack App
@@ -367,14 +367,14 @@ settings:
 1. Start Go:
 
 ```bash
-cd apps/server/main-server
+cd apps/server/arcyria-server
 go run ./cmd/server
 ```
 
 2. Start Next:
 
 ```bash
-cd apps/app
+cd apps/arcyria-platform
 bun run dev
 ```
 
@@ -780,14 +780,14 @@ If no connections exist, create one:
 Backend:
 
 ```bash
-cd apps/server/main-server
+cd apps/server/arcyria-server
 GOCACHE=$(pwd)/.gocache-test go test ./internal/server/... ./internal/database/...
 ```
 
 Frontend:
 
 ```bash
-cd apps/app
+cd apps/arcyria-platform
 bun run biome check
 bun run build
 ```
@@ -795,6 +795,6 @@ bun run build
 Builder smoke test when available:
 
 ```bash
-cd apps/app
+cd apps/arcyria-platform
 bun run test:playwright:builder
 ```

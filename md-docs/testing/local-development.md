@@ -56,7 +56,7 @@ Recommended local ports:
 ### 1. Start the app
 
 ```bash
-cd apps/app
+cd apps/arcyria-platform
 bun install
 bun run dev
 ```
@@ -69,7 +69,7 @@ Expected result:
 ### 2. Start the Go API
 
 ```bash
-cd apps/server/main-server
+cd apps/server/arcyria-server
 go run ./cmd/server
 ```
 
@@ -81,7 +81,7 @@ Expected result:
 ### 3. Start the ELT server
 
 ```bash
-cd apps/server/elt-server
+cd apps/server/arcyria-elt
 source .venv/bin/activate
 python -m uvicorn api.main:app --host 0.0.0.0 --port 8000 --workers 1 --loop asyncio
 ```

@@ -1,6 +1,6 @@
 ---
 description: MantrixFlow strict ELT invariants — enforced on all ELT/dispatcher/frontend changes
-globs: apps/server/elt-server/**,apps/server/main-server/**,apps/app/**
+globs: apps/server/arcyria-elt/**,apps/server/arcyria-server/**,apps/arcyria-platform/**
 alwaysApply: true
 ---
 
@@ -13,10 +13,10 @@ human-readable guide lives in
 
 Pipeline boundaries:
 
-- Go API (`apps/server/main-server`) orchestrates, encrypts/decrypts credentials,
+- Go API (`apps/server/arcyria-server`) orchestrates, encrypts/decrypts credentials,
   enqueues pgmq jobs, handles callbacks.
-- Python ELT (`apps/server/elt-server`) runs the 5-phase DuckDB-staged pipeline.
-- Frontend (`apps/app`) is the pipeline builder / operator console.
+- Python ELT (`apps/server/arcyria-elt`) runs the 5-phase DuckDB-staged pipeline.
+- Frontend (`apps/arcyria-platform`) is the pipeline builder / operator console.
 
 ## The 12 invariants
 
@@ -54,8 +54,8 @@ Pipeline boundaries:
     `dbt_models_run`, and `no_pk_warnings` (nullable). The Go callback handler
     must persist these into `pipeline_runs.run_metadata`.
 12. **No legacy ETL paths.** The following MUST NOT exist or be reintroduced:
-    - `apps/server/elt-server/runner/paths/cdc_direct.py`
-    - `apps/server/elt-server/routes/cleanup.py`
+    - `apps/server/arcyria-elt/runner/paths/cdc_direct.py`
+    - `apps/server/arcyria-elt/routes/cleanup.py`
     - `transform_script` anywhere
     - old replication branches
     - old processing drawers or canvas nodes

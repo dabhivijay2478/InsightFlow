@@ -9,7 +9,7 @@
 1. [Architecture Overview](#1-architecture-overview)
 2. [Source-by-Source dlt API Reference](#2-source-by-source-dlt-api-reference)
 3. [Python ETL Server Implementation](#3-python-etl-server-implementation)
-4. [Go Main Server Implementation](#4-go-main-server-implementation)
+4. [Go Arcyria Server Implementation](#4-go-arcyria-server-implementation)
 5. [Frontend Implementation](#5-frontend-implementation)
 6. [Transformation & Destination Patterns](#6-transformation--destination-patterns)
 7. [Testing & Validation](#7-testing--validation)
@@ -1005,7 +1005,7 @@ def is_saas_source(source_type: str) -> bool:
 
 ---
 
-## 4. Go Main Server Implementation
+## 4. Go Arcyria Server Implementation
 
 ### 4.1 SaaS Source Registry
 
@@ -1135,7 +1135,7 @@ func ValidateSaaSCredential(sourceType, credential string) error {
 
 ### 5.1 Connector Catalog Updates
 
-Add to `apps/app/app/workspace/connections/data/connectors.ts`:
+Add to `apps/arcyria-platform/app/workspace/connections/data/connectors.ts`:
 
 ```typescript
 // Wave 2 — SaaS Sources
@@ -1189,7 +1189,7 @@ Add to `apps/app/app/workspace/connections/data/connectors.ts`:
 
 ### 5.2 Connection Field Configs
 
-Add to `apps/app/app/workspace/connections/data/connectionFields.ts`:
+Add to `apps/arcyria-platform/app/workspace/connections/data/connectionFields.ts`:
 
 ```typescript
 // SaaS connection fields — API key/token only
@@ -1332,7 +1332,7 @@ The resource picker is a multi-select list where each item has:
 - Incremental/Full Refresh badge
 - Info icon that opens the data preview panel
 
-This should be a new component: `apps/app/components/connections/resource-picker.tsx`
+This should be a new component: `apps/arcyria-platform/components/connections/resource-picker.tsx`
 
 ### 5.4 Data Preview Panel
 
@@ -1579,8 +1579,8 @@ print(info)
 | `etl-server/runner/saas_runner.py` | Create | SaaS pipeline runner with per-source builders |
 | `etl-server/core/connector_support.py` | Edit | Add `SUPPORTED_SAAS_SOURCE_TYPES`, `is_saas_source()` |
 | `etl-server/api/routes/sync.py` | Edit | Route SaaS source types to `saas_runner.run()` |
-| `main-server/internal/saas_registry/` | Create | Go source registry with resource previews |
-| `main-server/internal/server/` | Edit | Add SaaS connection form + job payload serializer |
+| `arcyria-server/internal/saas_registry/` | Create | Go source registry with resource previews |
+| `arcyria-server/internal/server/` | Edit | Add SaaS connection form + job payload serializer |
 | `app/components/connections/resource-picker.tsx` | Create | Multi-select resource picker component |
 | `app/components/connections/data-preview-panel.tsx` | Create | Resource preview drawer component |
 | `app/config/connectors.ts` | Edit | Add SaaS source schemas |

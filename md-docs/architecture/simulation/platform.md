@@ -45,7 +45,7 @@ verifies the installer checksum before execution.
 The literal Go VPS also needs a reviewed private route to the Public Cloud
 simulation subnet; this is not created automatically by the current cloud-init.
 Follow the cross-network and host-CA checks in
-[`../../../mantrixflow-infra/docs/setup-guide.md`](../../infrastructure/setup/ovh-dokploy-microsandbox.md)
+[`../../../arcyria-infra/docs/setup-guide.md`](../../infrastructure/setup/ovh-dokploy-microsandbox.md)
 before enabling the worker.
 
 ## Rollout

@@ -10,15 +10,15 @@ remain pending.
 
 ## 1. Frontend HEAD SHA
 
-`2508dc6ac7bcf9dd74726c3f19a9dc0fd2364fb4` (`apps/app`, merged locally into `main`).
+`2508dc6ac7bcf9dd74726c3f19a9dc0fd2364fb4` (`apps/arcyria-platform`, merged locally into `main`).
 
 ## 2. Go HEAD SHA
 
-`69028a3d1ed783c5d214bd0f72a44d743135da21` (`apps/server/main-server`, merged locally into `mantrixflow`).
+`69028a3d1ed783c5d214bd0f72a44d743135da21` (`apps/server/arcyria-server`, merged locally into `mantrixflow`).
 
 ## 3. ELT HEAD SHA
 
-`686186cb83c69431a7c363124ecde3d9cdd01254` (`apps/server/elt-server`, merged locally into `mantrixflow`).
+`686186cb83c69431a7c363124ecde3d9cdd01254` (`apps/server/arcyria-elt`, merged locally into `mantrixflow`).
 
 The feature branches were merged locally by fast-forward: frontend into `main`, and both backend services into `mantrixflow`. No histories were rebased, force-pushed, or otherwise rewritten.
 
@@ -54,7 +54,7 @@ Generic test, discovery, table discovery, preview, health, sync, source-builder,
 
 ## 10. Official dlt MongoDB source version
 
-Source base: the official `dlt-hub/verified-sources` MongoDB template fetched with `dlt 1.30.0 init mongodb duckdb` on 2026-08-25. The adapted source is `apps/server/elt-server/document_sources/mongodb/verified_source.py`. Runtime dlt version is 1.30.0.
+Source base: the official `dlt-hub/verified-sources` MongoDB template fetched with `dlt 1.30.0 init mongodb duckdb` on 2026-08-25. The adapted source is `apps/server/arcyria-elt/document_sources/mongodb/verified_source.py`. Runtime dlt version is 1.30.0.
 
 ## 11. Source customizations
 
@@ -130,7 +130,7 @@ State is extracted from the dlt pipeline before the transient DuckDB staging fil
 
 ## 29. Custom dlt MongoDB destination
 
-The destination is a real custom `@dlt.destination` backed by PyMongo, located in `apps/server/elt-server/destinations/mongodb`. It consumes transformed DuckDB rows in bounded batches, uses one sequential load job, skips dlt internal tables/fields, performs index preflight checks, and closes its client.
+The destination is a real custom `@dlt.destination` backed by PyMongo, located in `apps/server/arcyria-elt/destinations/mongodb`. It consumes transformed DuckDB rows in bounded batches, uses one sequential load job, skips dlt internal tables/fields, performs index preflight checks, and closes its client.
 
 ## 30. APPEND behavior
 

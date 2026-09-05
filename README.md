@@ -39,12 +39,12 @@ Development.
 
 | Area | Path | Responsibility |
 | --- | --- | --- |
-| Product app | [`apps/app`](apps/app/README.md) | Next.js workspace and connector UI |
-| Go API | [`apps/server/main-server`](apps/server/main-server/README.md) | Authentication, authorization, metadata, orchestration, callbacks |
-| ELT runtime | [`apps/server/elt-server`](apps/server/elt-server/README.md) | Private extraction, transformation, delivery, and runtime diagnostics |
-| Website | [`apps/website`](apps/website/README.md) | Public product and connector pages |
+| Product app | [`apps/arcyria-platform`](apps/arcyria-platform/README.md) | Next.js workspace and connector UI |
+| Go API | [`apps/server/arcyria-server`](apps/server/arcyria-server/README.md) | Authentication, authorization, metadata, orchestration, callbacks |
+| ELT runtime | [`apps/server/arcyria-elt`](apps/server/arcyria-elt/README.md) | Private extraction, transformation, delivery, and runtime diagnostics |
+| Website | [`apps/arcyria-website`](apps/arcyria-website/README.md) | Public product and connector pages |
 | Public docs | [`apps/arcyria-docs`](apps/arcyria-docs/README.md) | Customer-facing setup and connector documentation |
-| Infrastructure | [`apps/mantrixflow-infra`](./md-docs/deployment/infrastructure/ovh-microsandbox-runbook.md) | OVHcloud Terraform and self-hosted Dokploy deployment |
+| Infrastructure | [`apps/arcyria-infra`](./md-docs/deployment/infrastructure/ovh-microsandbox-runbook.md) | OVHcloud Terraform and self-hosted Dokploy deployment |
 
 ## Local development
 
@@ -53,16 +53,16 @@ callback tokens through `NEXT_PUBLIC_*` variables.
 
 ```bash
 # Terminal 1: product app
-cd apps/app
+cd apps/arcyria-platform
 bun install
 bun run dev
 
 # Terminal 2: Go API
-cd apps/server/main-server
+cd apps/server/arcyria-server
 go run ./cmd/server
 
 # Terminal 3: Python ELT
-cd apps/server/elt-server
+cd apps/server/arcyria-elt
 .venv/bin/python -m uvicorn api.main:app --host 127.0.0.1 --port 8000
 ```
 
@@ -105,7 +105,7 @@ internal Markdown document with `node scripts/check-markdown-links.mjs`.
 
 # Historical MantrixFlow System Design & Technical Interview Guide
 
-Use this document to present **MantrixFlow** in a system design or technical interview. It covers the three services you built: the **Next.js app**, the **Go API (main-server)**, and the **Python ELT server**. Tone is conversational — practice saying these sections out loud, not reading them word-for-word.
+Use this document to present **MantrixFlow** in a system design or technical interview. It covers the three services you built: the **Next.js app**, the **Go API (arcyria-server)**, and the **Python ELT server**. Tone is conversational — practice saying these sections out loud, not reading them word-for-word.
 
 **Deeper references (optional):** [`md-docs/architecture/elt/strict-pipeline-guide.md`](./md-docs/architecture/elt/strict-pipeline-guide.md), [`md-docs/architecture/elt/source-to-destination-flow.md`](./md-docs/architecture/elt/source-to-destination-flow.md), [`apps/server/README.md`](apps/server/README.md).
 
@@ -134,14 +134,14 @@ Use this document to present **MantrixFlow** in a system design or technical int
 ```text
 ┌─────────────────────────────────────────────────────────────────────────┐
 │  User (browser)                                                          │
-│  apps/app — Next.js on Vercel (cloud.mantrixflow.com)                    │
+│  apps/arcyria-platform — Next.js on Vercel (cloud.mantrixflow.com)                    │
 │  • Supabase JWT in Authorization header                                  │
 │  • All product APIs → Go /api/v1/...                                     │
 └───────────────────────────────┬─────────────────────────────────────────┘
                                 │ HTTPS + JWT
                                 ▼
 ┌─────────────────────────────────────────────────────────────────────────┐
-│  Go API — apps/server/main-server (ECS Fargate, public ALB)             │
+│  Go API — apps/server/arcyria-server (ECS Fargate, public ALB)             │
 │  • Auth, org scoping, billing (Dodo), pipelines, connections           │
 │  • Encrypt/decrypt credentials; never return secrets in API/errors       │
 │  • POST /pipelines/:id/run → pipeline_runs row + pgmq enqueue → 202      │
@@ -151,7 +151,7 @@ Use this document to present **MantrixFlow** in a system design or technical int
                 │ Postgres (Supabase)          │ Service Connect (private)
                 │ • app data + RLS             ▼
                 │                    ┌──────────────────────────────────────┐
-                │                    │  Python ELT — apps/server/elt-server │
+                │                    │  Python ELT — apps/server/arcyria-elt │
                 │                    │  FastAPI :8000 (no public URL)       │
                 │                    │  dlt + DuckDB + dbt-duckdb per run   │
                 └────────────────────┤  Callback → Go with audit metadata │
@@ -192,7 +192,7 @@ Walk interviewers through this sequence — it shows you understand the full sys
 
 ---
 
-## Service 1 — App (`apps/app`)
+## Service 1 — App (`apps/arcyria-platform`)
 
 ### Role in the system
 
@@ -254,7 +254,7 @@ Say this in plain language:
 
 ---
 
-## Service 2 — Go main-server (`apps/server/main-server`)
+## Service 2 — Go arcyria-server (`apps/server/arcyria-server`)
 
 ### Role in the system
 
@@ -342,7 +342,7 @@ See [`md-docs/deployment/infrastructure/ovh-microsandbox-runbook.md`](./md-docs/
 
 ---
 
-## Service 3 — ELT server (`apps/server/elt-server`)
+## Service 3 — ELT server (`apps/server/arcyria-elt`)
 
 ### Role in the system
 
@@ -485,13 +485,13 @@ Pick 1–2 honest items, e.g.:
 
 ```bash
 # Terminal 1 — App
-cd apps/app && bun install && bun run dev
+cd apps/arcyria-platform && bun install && bun run dev
 
 # Terminal 2 — Go API
-cd apps/server/main-server && go run ./cmd/server
+cd apps/server/arcyria-server && go run ./cmd/server
 
 # Terminal 3 — ELT
-cd apps/server/elt-server
+cd apps/server/arcyria-elt
 ./.venv/bin/python -m uvicorn api.main:app --host 0.0.0.0 --port 8000 --loop asyncio
 ```
 
@@ -516,10 +516,10 @@ Env: app needs `NEXT_PUBLIC_API_URL`, Supabase URL/anon key; Go needs DB URL, JW
 ```text
 ai-bi/
 ├── README.md                 ← this interview guide
-├── apps/app/                 ← Next.js product UI
-├── apps/server/main-server/  ← Go API + worker
-├── apps/server/elt-server/   ← Python ELT
-├── apps/mantrixflow-infra/   ← AWS ECS deployment
+├── apps/arcyria-platform/                 ← Next.js product UI
+├── apps/server/arcyria-server/  ← Go API + worker
+├── apps/server/arcyria-elt/   ← Python ELT
+├── apps/arcyria-infra/   ← AWS ECS deployment
 └── md-docs/                  ← extended product & ops docs
 ```
 

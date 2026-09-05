@@ -4,9 +4,9 @@ This is the canonical guide for the current MANTrixFlow product flow.
 
 It describes the real saved contract and runtime behavior across:
 
-- `apps/app`
-- `apps/server/main-server`
-- `apps/server/elt-server`
+- `apps/arcyria-platform`
+- `apps/server/arcyria-server`
+- `apps/server/arcyria-elt`
 
 ## Product overview
 

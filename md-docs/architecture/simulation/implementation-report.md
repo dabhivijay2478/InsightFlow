@@ -34,4 +34,4 @@ image promotion should use a digest after signature and vulnerability checks.
 
 The one-time operator procedure, including the required Go-VPS-to-Public-Cloud
 private route and dynamic SSH host-CA trust, is maintained in
-[`../../../mantrixflow-infra/docs/setup-guide.md`](../../infrastructure/setup/ovh-dokploy-microsandbox.md).
+[`../../../arcyria-infra/docs/setup-guide.md`](../../infrastructure/setup/ovh-dokploy-microsandbox.md).

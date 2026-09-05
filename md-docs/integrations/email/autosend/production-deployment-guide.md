@@ -80,7 +80,7 @@ Use the templates in [`supabase-auth-email-templates.md`](../supabase-auth-templ
 Set these in the backend server secret store. In this repo, the full example lives in:
 
 ```txt
-apps/server/main-server/.env.production.example
+apps/server/arcyria-server/.env.production.example
 ```
 
 ### Self-hosted Dokploy rollout

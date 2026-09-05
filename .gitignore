@@ -28,7 +28,7 @@ arcyria-docs/
 
 # Playwright saved browser session (local; never commit)
 playwright-auth.json
-apps/app/playwright-auth.json
+apps/arcyria-platform/playwright-auth.json
 
 # Environment and secrets
 .env

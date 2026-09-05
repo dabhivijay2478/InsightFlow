@@ -12,13 +12,13 @@ cd "$SCRIPT_DIR"
 COMPOSE_FILE="docker-compose.prod.yml"
 
 deploy_api() {
-    echo "→ Pulling main-server..."
-    cd main-server && git pull origin main && cd ..
+    echo "→ Pulling arcyria-server..."
+    cd arcyria-server && git pull origin main && cd ..
 }
 
 deploy_etl() {
-    echo "→ Pulling etl-server..."
-    cd etl-server && git pull origin main && cd ..
+    echo "→ Pulling arcyria-elt..."
+    cd arcyria-elt && git pull origin main && cd ..
 }
 
 case "${1:-all}" in

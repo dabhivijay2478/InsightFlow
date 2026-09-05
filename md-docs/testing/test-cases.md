@@ -290,7 +290,7 @@ Tests that custom dbt SQL models handle all data type scenarios:
 
 ### Step 10 — Integration tests: seeded Docker DB with all data types (pytest)
 
-**File**: `apps/server/elt-server/tests/test_data_type_round_trip.py`
+**File**: `apps/server/arcyria-elt/tests/test_data_type_round_trip.py`
 
 Seed Docker DBs with a test table containing **every data type**, then verify coercion + delivery:
 
@@ -340,7 +340,7 @@ CREATE TABLE test_all_types (
 
 ### Step 11 — Integration tests: normalisation rules with all cast types (pytest)
 
-**File**: `apps/server/elt-server/tests/test_normalisation_all_casts.py`
+**File**: `apps/server/arcyria-elt/tests/test_normalisation_all_casts.py`
 
 Test `cast_value()` and `apply_normalisation_rules_to_record()` for every supported cast target:
 
@@ -365,7 +365,7 @@ Plus rename rules:
 
 ### Step 12 — Python integration: sources.yml generation (pytest)
 
-**File**: `apps/server/elt-server/tests/test_duckdb_staged_sources_yml.py`
+**File**: `apps/server/arcyria-elt/tests/test_duckdb_staged_sources_yml.py`
 
 - Test `_write_ui_sql_project()` for all 5 SaaS sources with ALL their streams
 - Test `_write_ui_sql_project()` for all 5 DB sources
@@ -395,9 +395,9 @@ Plus rename rules:
 | `connections/__tests__/credentialForm.test.ts` | Unit | ~10 |
 | `__tests__/e2e/pipeline-combinations.test.ts` | E2E — 50 pipelines × all streams | **50** |
 | `__tests__/unit/dbt-sql-transforms.test.ts` | **Unit — data type transforms** | **~25** |
-| `elt-server/tests/test_data_type_round_trip.py` | **Integration — seeded Docker all types** | **~40** |
-| `elt-server/tests/test_normalisation_all_casts.py` | **Integration — all cast rules** | **~30** |
-| `elt-server/tests/test_duckdb_staged_sources_yml.py` | Python integration | ~10 |
+| `arcyria-elt/tests/test_data_type_round_trip.py` | **Integration — seeded Docker all types** | **~40** |
+| `arcyria-elt/tests/test_normalisation_all_casts.py` | **Integration — all cast rules** | **~30** |
+| `arcyria-elt/tests/test_duckdb_staged_sources_yml.py` | Python integration | ~10 |
 | **Total** | | **~215** |
 
 ---

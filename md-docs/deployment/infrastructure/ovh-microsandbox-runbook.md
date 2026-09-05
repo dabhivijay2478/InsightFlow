@@ -118,7 +118,7 @@ Use a protected direct Supabase URL and keep `DISABLE_AUTO_MIGRATE=true` in both
 Go containers.
 
 ```bash
-cd apps/server/main-server
+cd apps/server/arcyria-server
 go run ./cmd/simulation-migrate --dry-run
 SIMULATION_MIGRATION_DATABASE_URL="$DIRECT_SECRET_VALUE" \
   go run ./cmd/simulation-migrate --apply

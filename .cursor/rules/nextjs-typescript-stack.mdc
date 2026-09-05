@@ -1,12 +1,12 @@
 ---
-description: Next.js app structure, TypeScript/React conventions, and MantrixFlow frontend patterns (apps/app)
+description: Next.js app structure, TypeScript/React conventions, and MantrixFlow frontend patterns (apps/arcyria-platform)
 alwaysApply: true
 ---
 ## TypeScript/React (Next.js 16 + React 19)
 
 ### Structure
 ```
-apps/app/
+apps/arcyria-platform/
 ├── app/
 │   ├── layout.tsx            # Root layout
 │   ├── page.tsx              # Home page

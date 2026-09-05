@@ -1,6 +1,6 @@
 # AutoSend Template ID Map
 
-Generated from `apps/server/main-server/internal/email/templates/*.html`.
+Generated from `apps/server/arcyria-server/internal/email/templates/*.html`.
 
 ## Backend Templates
 

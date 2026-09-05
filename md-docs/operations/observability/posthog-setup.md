@@ -36,8 +36,8 @@ POSTHOG_HOST=https://us.i.posthog.com
 | --- | --- | --- |
 | Browser app | `$pageview`, session replay, `$exception` | (browser) |
 | Next.js server | `$exception` | `app-server` |
-| Go API | `$exception` | `main-server` |
-| Python ELT | `$exception`, pipeline events | `elt-server` |
+| Go API | `$exception` | `arcyria-server` |
+| Python ELT | `$exception`, pipeline events | `arcyria-elt` |
 
 PostHog recommends **one project** for marketing site + app + API so journeys stay in one place ([install docs](https://posthog.com/docs/getting-started/install)).
 
@@ -110,8 +110,8 @@ If your WAF blocks PostHog, allow these **US** IPs ([install docs](https://posth
 
 In **Error tracking** → **Issues** or **Activity**, add a property filter:
 
-- `service` = `main-server` (Go API)
-- `service` = `elt-server` (ELT)
+- `service` = `arcyria-server` (Go API)
+- `service` = `arcyria-elt` (ELT)
 - `service` = `app-server` (Next server)
 
 This matches what MantrixFlow sends from code.
@@ -196,14 +196,14 @@ Wizard step **3 — Configure**:
 | --- | --- |
 | **Slack channel** | e.g. `#engineering`, `#mantrixflow-alerts`, or `#incidents` |
 | **Name** | e.g. `MantrixFlow — issue created` / `MantrixFlow — issue reopened` |
-| **Filters** (if shown) | Optional: property `service` = `main-server` (API only) or leave empty for all services |
+| **Filters** (if shown) | Optional: property `service` = `arcyria-server` (API only) or leave empty for all services |
 
 Use filters when you want separate channels per service:
 
 | Filter | Example channel |
 | --- | --- |
-| `service` = `main-server` | `#api-alerts` |
-| `service` = `elt-server` | `#elt-alerts` |
+| `service` = `arcyria-server` | `#api-alerts` |
+| `service` = `arcyria-elt` | `#elt-alerts` |
 | `service` = `app-server` | `#frontend-alerts` |
 
 Finish:
@@ -260,8 +260,8 @@ The **Error tracking → Alerting** wizard (Slack / Discord / Teams) does **not*
 
 To alert only the Go API (optional second destination):
 
-- Add property filter: `service` **equals** `main-server`  
-  Repeat with `elt-server` / `app-server` if you want separate destinations per service.
+- Add property filter: `service` **equals** `arcyria-server`
+  Repeat with `arcyria-elt` / `arcyria-platform` if you want separate destinations per service.
 
 ##### Webhook URL
 
@@ -305,7 +305,7 @@ Without a valid internal token, the Go API returns **401** with message `Invalid
 
 #### Token fix (401 in webhook logs)
 
-The Go API [`InternalToken()`](/apps/server/main-server/internal/server/middleware.go) accepts credentials in this order:
+The Go API [`InternalToken()`](/apps/server/arcyria-server/internal/server/middleware.go) accepts credentials in this order:
 
 1. Header `X-Callback-Token`
 2. Header `X-Internal-Token`
@@ -364,16 +364,16 @@ You do **not** re-run the install wizard for production if the repo is already w
 
 | Layer | Path |
 | --- | --- |
-| Next.js provider | `apps/app/components/providers/posthog-provider.tsx` |
-| Client init | `apps/app/lib/posthog/client.ts` |
-| Server `onRequestError` | `apps/app/instrumentation.ts` |
-| Go API | `apps/server/main-server/internal/observability/posthog.go` |
-| ELT | `apps/server/elt-server/core/observability.py` |
+| Next.js provider | `apps/arcyria-platform/components/providers/posthog-provider.tsx` |
+| Client init | `apps/arcyria-platform/lib/posthog/client.ts` |
+| Server `onRequestError` | `apps/arcyria-platform/instrumentation.ts` |
+| Go API | `apps/server/arcyria-server/internal/observability/posthog.go` |
+| ELT | `apps/server/arcyria-elt/core/observability.py` |
 
 New greenfield app install (local only):
 
 ```bash
-cd apps/app
+cd apps/arcyria-platform
 npx -y @posthog/wizard@latest --region us
 ```
 

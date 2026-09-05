@@ -6,12 +6,12 @@ Purpose: create or update the agent for one existing pipeline.
 
 Main files:
 
-- `apps/app/app/workspace/agents/page.tsx`
-- `apps/app/app/workspace/agents/AgentsPlatformClient.tsx`
-- `apps/app/components/agents/*`
-- `apps/app/lib/api/services/pipeline-agents.service.ts`
-- `apps/server/main-server/internal/server/agent_http.go`
-- `apps/server/main-server/internal/models/agent.go`
+- `apps/arcyria-platform/app/workspace/agents/page.tsx`
+- `apps/arcyria-platform/app/workspace/agents/AgentsPlatformClient.tsx`
+- `apps/arcyria-platform/components/agents/*`
+- `apps/arcyria-platform/lib/api/services/pipeline-agents.service.ts`
+- `apps/server/arcyria-server/internal/server/agent_http.go`
+- `apps/server/arcyria-server/internal/models/agent.go`
 
 Route path:
 
@@ -36,10 +36,10 @@ Purpose: let workspace users test the agent before embedding it.
 
 Main files:
 
-- `apps/app/app/workspace/agents/AgentsPlatformClient.tsx`
-- `apps/app/components/agents/AgentChatShell.tsx`
-- `apps/app/app/api/pipelines/[id]/agent/chat/route.ts`
-- `apps/server/main-server/internal/server/agent_http.go`
+- `apps/arcyria-platform/app/workspace/agents/AgentsPlatformClient.tsx`
+- `apps/arcyria-platform/components/agents/AgentChatShell.tsx`
+- `apps/arcyria-platform/app/api/pipelines/[id]/agent/chat/route.ts`
+- `apps/server/arcyria-server/internal/server/agent_http.go`
 
 Route path:
 
@@ -62,12 +62,12 @@ Purpose: run the same agent from an external website.
 
 Main files:
 
-- `apps/app/public/agent.js`
+- `apps/arcyria-platform/public/agent.js`
 - `packages/agent-sdk/src/index.tsx`
 - `packages/agent-sdk/src/loader.tsx`
-- `apps/app/app/api/agents/[agentKey]/chat/route.ts`
-- `apps/app/app/api/agents/[agentKey]/info/route.ts`
-- `apps/server/main-server/internal/server/agent_http.go`
+- `apps/arcyria-platform/app/api/agents/[agentKey]/chat/route.ts`
+- `apps/arcyria-platform/app/api/agents/[agentKey]/info/route.ts`
+- `apps/server/arcyria-server/internal/server/agent_http.go`
 
 Route path:
 
@@ -96,8 +96,8 @@ Purpose: let the selected model answer questions without giving it broad databas
 
 Main files:
 
-- `apps/server/main-server/internal/server/agent_http.go`
-- `apps/server/main-server/internal/server/agent_http_test.go`
+- `apps/server/arcyria-server/internal/server/agent_http.go`
+- `apps/server/arcyria-server/internal/server/agent_http_test.go`
 
 Guard order:
 
@@ -120,7 +120,7 @@ Purpose: let an authenticated workspace user operate the pipeline from the agent
 
 Main files:
 
-- `apps/app/app/api/pipelines/[id]/agent/chat/route.ts`
+- `apps/arcyria-platform/app/api/pipelines/[id]/agent/chat/route.ts`
 - existing org-scoped pipeline run APIs
 
 Available only in authenticated chat:
@@ -140,11 +140,11 @@ Purpose: show simple business charts and pipeline run cards when the selected mo
 
 Main files:
 
-- `apps/app/components/agents/AgentChart.tsx`
-- `apps/app/components/agents/AgentRunStatusCard.tsx`
-- `apps/app/components/agents/AgentMessageList.tsx`
+- `apps/arcyria-platform/components/agents/AgentChart.tsx`
+- `apps/arcyria-platform/components/agents/AgentRunStatusCard.tsx`
+- `apps/arcyria-platform/components/agents/AgentMessageList.tsx`
 - `packages/agent-sdk/src/index.tsx`
-- `apps/app/public/agent.js`
+- `apps/arcyria-platform/public/agent.js`
 
 Expected response marker:
 

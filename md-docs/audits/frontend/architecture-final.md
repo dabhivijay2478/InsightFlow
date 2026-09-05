@@ -1,7 +1,7 @@
 # MantrixFlow frontend architecture audit — final
 
 Date: 2026-07-22  
-Scope: maintained production source in `apps/app` (`.ts`, `.tsx`, `.css`). Excludes `node_modules`, `.next`, `__tests__`, generated output, lock files.
+Scope: maintained production source in `apps/arcyria-platform` (`.ts`, `.tsx`, `.css`). Excludes `node_modules`, `.next`, `__tests__`, generated output, lock files.
 
 Strategy: **1A + 1B combined** — in-place compliance (thin routes, shared UI, DataTable) plus full `features/*` domain migration while keeping existing routes and API contracts unchanged.
 

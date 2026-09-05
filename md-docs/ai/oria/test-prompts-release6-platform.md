@@ -184,7 +184,7 @@ Use with `AGENT_RUNTIME_ENABLED=true`, `ORIA_RELEASE6_ENABLED=true`, and `ORIA_R
 | 142 | connector_certification | Accessibility | Certification docs meet accessibility standards for setup guides | Doc a11y checklist pass |
 | 143 | api_sdk_manager | SDK generation | Generate TypeScript SDK from our MantrixFlow OpenAPI spec v1 | Client methods for public /api/v1 routes; typed responses; auth header helpers |
 | 144 | api_sdk_manager | SDK generation | Create Python SDK with async support for pipeline and connection APIs | Async client, pagination helpers, error normalization |
-| 145 | api_sdk_manager | SDK generation | Plan Go SDK package structure for main-server public endpoints | Package layout, idempotency keys, context timeouts |
+| 145 | api_sdk_manager | SDK generation | Plan Go SDK package structure for arcyria-server public endpoints | Package layout, idempotency keys, context timeouts |
 | 146 | api_sdk_manager | OpenAPI sync | Diff OpenAPI spec between v1.2 and v1.3 for breaking changes | Breaking vs additive changes list; migration notes |
 | 147 | api_sdk_manager | OpenAPI sync | Which endpoints missing from published OpenAPI that exist in Fiber routes | Gap analysis; suggests spec updates |
 | 148 | api_sdk_manager | Versioning | SDK semver policy when API adds optional fields only | Minor bump guidance; backward compatibility |
@@ -479,7 +479,7 @@ Use with `AGENT_RUNTIME_ENABLED=true`, `ORIA_RELEASE6_ENABLED=true`, and `ORIA_R
 | 437 | release_deployment_coordinator | Database migrations | Pre-deploy checklist for agent_evidence table migration | GORM singular table, checksum, APPLY_SUPABASE_RLS_ONCE |
 | 438 | release_deployment_coordinator | Database migrations | Rollback strategy if migration 20260803 fails mid-deploy | Forward-fix vs revert decision tree |
 | 439 | release_deployment_coordinator | Smoke tests | Post-deploy smoke test suite for Go API /api/v1/health and agents | Smoke steps and pass criteria |
-| 440 | release_deployment_coordinator | Smoke tests | Verify ELT disk-status endpoint after elt-server deploy | ELT.DiskStatus() gate check |
+| 440 | release_deployment_coordinator | Smoke tests | Verify ELT disk-status endpoint after arcyria-elt deploy | ELT.DiskStatus() gate check |
 | 441 | release_deployment_coordinator | Rollback | Rollback Go API to previous container image v1.4.2 | Rollback steps, pgmq compatibility note |
 | 442 | release_deployment_coordinator | Rollback | Rollback frontend only — safe when API unchanged | Vercel rollback procedure |
 | 443 | release_deployment_coordinator | Communication | Draft customer status page update for scheduled maintenance | Window, impact, no internal jargon |
@@ -541,7 +541,7 @@ Use with `AGENT_RUNTIME_ENABLED=true`, `ORIA_RELEASE6_ENABLED=true`, and `ORIA_R
 | 499 | test_quality_orchestrator | Quality gate | Show quality gate status for promotion request #1847 | Gate results linked to environment_promotion |
 | 500 | test_quality_orchestrator | Test execution | Execute Go test ./internal/agents/... for Release 6 agents | Test command, pass count, failures sanitized |
 | 501 | test_quality_orchestrator | Test execution | Run Python ELT preflight handler tests after column match change | pytest scope and results |
-| 502 | test_quality_orchestrator | Test execution | Trigger frontend type-check and lint for apps/app | bun run lint/tsc results summary |
+| 502 | test_quality_orchestrator | Test execution | Trigger frontend type-check and lint for apps/arcyria-platform | bun run lint/tsc results summary |
 | 503 | test_quality_orchestrator | Coverage | Code coverage report for internal/agents platform specialists | Coverage % if available; gaps listed |
 | 504 | test_quality_orchestrator | Coverage | Untested paths in callback.go delivery_outputs persistence | File reference; test recommendations |
 | 505 | test_quality_orchestrator | E2E tests | Browser-test connector_builder rows from oria-test-prompts-release6-platform.md | E2E pass/fail; no credential in artifacts |

@@ -18,17 +18,17 @@ destination table before running the pipeline.
 Run the active services:
 
 ```bash
-cd apps/server/main-server
+cd apps/server/arcyria-server
 go run ./cmd/server
 ```
 
 ```bash
-cd apps/server/elt-server
+cd apps/server/arcyria-elt
 ./.venv/bin/python -m uvicorn api.main:app --host 0.0.0.0 --port 8000 --loop asyncio
 ```
 
 ```bash
-cd apps/app
+cd apps/arcyria-platform
 bun run dev
 ```
 

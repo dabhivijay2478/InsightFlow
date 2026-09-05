@@ -2,18 +2,18 @@
 
 This repo is a monorepo with:
 
-- **App (Next.js)**: `apps/app`
-- **Go API (Fiber)**: `apps/server/main-server`
-- **Python ELT (FastAPI)**: `apps/server/elt-server`
+- **App (Next.js)**: `apps/arcyria-platform`
+- **Go API (Fiber)**: `apps/server/arcyria-server`
+- **Python ELT (FastAPI)**: `apps/server/arcyria-elt`
 
 ## Recommended approach
 
-- Deploy **`apps/app`** on Vercel.
-- Deploy **`apps/server/main-server`** and **`apps/server/elt-server`** on a platform that supports long-running services (container / VM / k8s). Vercel is primarily serverless; it can be a poor fit for queue workers and long-lived servers.
+- Deploy **`apps/arcyria-platform`** on Vercel.
+- Deploy **`apps/server/arcyria-server`** and **`apps/server/arcyria-elt`** on a platform that supports long-running services (container / VM / k8s). Vercel is primarily serverless; it can be a poor fit for queue workers and long-lived servers.
 
 ## App (Next.js) on Vercel
 
-**Root Directory**: `apps/app`  
+**Root Directory**: `apps/arcyria-platform`
 **Install**: `bun install`  
 **Build**: `bun run build`
 

@@ -7,7 +7,7 @@
 **DuckDB prefix:** `stripe__`
 
 The authoritative catalog and strategy matrix are documented in
-`apps/server/elt-server/saas_sources/stripe_analytics/README.md`. The table
+`apps/server/arcyria-elt/saas_sources/stripe_analytics/README.md`. The table
 below is the original core regression set, not the complete discovery catalog.
 
 ---

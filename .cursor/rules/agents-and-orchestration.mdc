@@ -13,12 +13,12 @@ Repo-wide stack rules and “where to change what” live in [`.cursor/rules/man
 
 | Layer | Path |
 | --- | --- |
-| App (Next.js) | `apps/app` |
-| Go API (Fiber) | `apps/server/main-server` |
-| Python ELT (FastAPI) | `apps/server/elt-server` |
+| App (Next.js) | `apps/arcyria-platform` |
+| Go API (Fiber) | `apps/server/arcyria-server` |
+| Python ELT (FastAPI) | `apps/server/arcyria-elt` |
 | Repo-wide docs | `md-docs/` |
 
-**Request path:** `apps/app` → Go API `/api/v1/...` → pgmq queue/worker → `apps/server/elt-server` → callback → Go API.
+**Request path:** `apps/arcyria-platform` → Go API `/api/v1/...` → pgmq queue/worker → `apps/server/arcyria-elt` → callback → Go API.
 
 Treat references to `apps/api` or `apps/new-etl` as **legacy** unless proven current.
 
@@ -26,7 +26,7 @@ Treat references to `apps/api` or `apps/new-etl` as **legacy** unless proven cur
 
 ## Strict ELT (non-negotiable)
 
-Pipeline work under `apps/server/elt-server/**`, `apps/server/main-server/**`, or `apps/app/**` that touches data pipelines **must** follow:
+Pipeline work under `apps/server/arcyria-elt/**`, `apps/server/arcyria-server/**`, or `apps/arcyria-platform/**` that touches data pipelines **must** follow:
 
 - [`.cursor/rules/strict-elt-invariants.mdc`](./strict-elt-invariants.mdc) — 12 invariants
 - [`.cursor/rules/elt-flow-diagram.mdc`](./elt-flow-diagram.mdc) — 5-phase flow
@@ -43,7 +43,7 @@ Human-readable narrative: [`md-docs/architecture/elt/strict-pipeline-guide.md`](
 
 **Role:** Coordinate the other personas; deduplicate findings; rank by severity; one unified report.
 
-**Full health check (pipeline-related work):** include **ELT invariants reviewer** concerns when the diff touches `apps/server/elt-server/**`, `apps/server/main-server/**`, or `apps/app/**/data-pipelines/**`.
+**Full health check (pipeline-related work):** include **ELT invariants reviewer** concerns when the diff touches `apps/server/arcyria-elt/**`, `apps/server/arcyria-server/**`, or `apps/arcyria-platform/**/data-pipelines/**`.
 
 **Output template:**
 
@@ -114,7 +114,7 @@ Human-readable narrative: [`md-docs/architecture/elt/strict-pipeline-guide.md`](
 
 **Authoritative rules:** [`.cursor/rules/strict-elt-invariants.mdc`](./strict-elt-invariants.mdc) and [`.cursor/rules/elt-flow-diagram.mdc`](./elt-flow-diagram.mdc).
 
-**Scope:** `apps/server/elt-server/**`; `apps/server/main-server/internal/{server,elt,queue}/**`; `apps/app/app/workspace/data-pipelines/**`; pipeline-related `apps/app/lib/api/**`.
+**Scope:** `apps/server/arcyria-elt/**`; `apps/server/arcyria-server/internal/{server,elt,queue}/**`; `apps/arcyria-platform/app/workspace/data-pipelines/**`; pipeline-related `apps/arcyria-platform/lib/api/**`.
 
 **Verify on each diff:** DuckDB `finally` + state extract before delete; no destination `CREATE TABLE`; column errors name the column; no `_dlt_*` at destination; no credential leaks; `schema.table` vs `schema__table`; Upsert delivery; disk guard (dispatcher + Phase 0); callback fields (`delivery_outputs`, `staging_size_bytes`, `dbt_models_run`); no legacy ETL paths; strict `SourceStreamConfig[]` and `dest_table` as `schema.table`.
 

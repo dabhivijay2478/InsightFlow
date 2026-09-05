@@ -181,9 +181,9 @@ const [selectedAgents, setSelectedAgents] = useState<string[]>([]);
 
 ## File Locations Reference
 
-- **Grid Component**: `apps/app/app/workspace/agents/AgentGridClient.tsx`
-- **Page Router**: `apps/app/app/workspace/agents/page.tsx`
-- **Hooks**: `apps/app/lib/api/hooks/use-agents.ts`
+- **Grid Component**: `apps/arcyria-platform/app/workspace/agents/AgentGridClient.tsx`
+- **Page Router**: `apps/arcyria-platform/app/workspace/agents/page.tsx`
+- **Hooks**: `apps/arcyria-platform/lib/api/hooks/use-agents.ts`
 - **Documentation**: 
   - `AGENT_GRID_IMPLEMENTATION.md` - Technical overview
   - `AGENT_GRID_UI_GUIDE.md` - Design guide
@@ -192,7 +192,7 @@ const [selectedAgents, setSelectedAgents] = useState<string[]>([]);
 
 ```bash
 # Navigate to app directory
-cd apps/app
+cd apps/arcyria-platform
 
 # Run development server
 bun run dev

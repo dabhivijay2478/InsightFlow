@@ -8,12 +8,12 @@
 #   server/
 #   ├── docker-compose.prod.yml    ← this file
 #   ├── .env.production            ← your env vars (copy from .env.production.example)
-#   ├── main-server/               ← clone of mantrixflow-api repo
+#   ├── arcyria-server/               ← clone of mantrixflow-api repo
 #   │   ├── Dockerfile             ← included here OR in the repo
 #   │   ├── cmd/
 #   │   ├── internal/
 #   │   └── ...
-#   └── etl-server/                ← clone of mantrixflow-etl repo
+#   └── arcyria-elt/                ← clone of mantrixflow-etl repo
 #       ├── Dockerfile             ← included here OR in the repo
 #       ├── api/
 #       ├── core/
@@ -21,8 +21,8 @@
 #
 # Setup:
 #   cd server/
-#   git clone git@github.com:yourorg/mantrixflow-api.git main-server
-#   git clone git@github.com:yourorg/mantrixflow-etl.git etl-server
+#   git clone git@github.com:yourorg/mantrixflow-api.git arcyria-server
+#   git clone git@github.com:yourorg/mantrixflow-etl.git arcyria-elt
 #   cp .env.production.example .env.production   # fill in values
 #   docker compose -f docker-compose.prod.yml up -d --build
 #
@@ -32,7 +32,7 @@ services:
   # ── Go API Server ─────────────────────────────────────────
   api:
     build:
-      context: ./main-server
+      context: ./arcyria-server
       dockerfile: Dockerfile
     image: mantrixflow/api:latest
     container_name: mantrixflow-api
@@ -91,7 +91,7 @@ services:
   # ── Python ETL Server (dlt) ──────────────────────────────
   etl:
     build:
-      context: ./etl-server
+      context: ./arcyria-elt
       dockerfile: Dockerfile
     image: mantrixflow/etl:latest
     container_name: mantrixflow-etl

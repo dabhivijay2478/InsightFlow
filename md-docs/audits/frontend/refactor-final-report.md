@@ -1,7 +1,7 @@
 # MantrixFlow frontend refactor report
 
 Date: 2026-07-22  
-Scope: maintained production source in `apps/app` with `.ts`, `.tsx`, `.js`, `.jsx`, `.css`, `.scss`, and `.less` extensions. Generated output, dependencies, locks, vendor assets, and test/spec files are excluded. Tests were neither created nor run.
+Scope: maintained production source in `apps/arcyria-platform` with `.ts`, `.tsx`, `.js`, `.jsx`, `.css`, `.scss`, and `.less` extensions. Generated output, dependencies, locks, vendor assets, and test/spec files are excluded. Tests were neither created nor run.
 
 ## Outcome
 

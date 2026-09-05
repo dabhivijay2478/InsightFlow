@@ -11,8 +11,8 @@ const isAfterSnapshot = process.argv.includes("--after");
 const outputName = (name) => (isAfterSnapshot ? `after-${name}` : name);
 
 const roots = {
-  website: ["apps/website/app", "apps/website/components", "apps/website/lib"],
-  application: ["apps/app/app", "apps/app/components", "apps/app/lib"],
+  website: ["apps/arcyria-website/app", "apps/arcyria-website/components", "apps/arcyria-website/lib"],
+  application: ["apps/arcyria-platform/app", "apps/arcyria-platform/components", "apps/arcyria-platform/lib"],
   documentation: ["apps/arcyria-docs"],
   internal_reference: ["md-docs"],
 };
@@ -23,7 +23,7 @@ const ignored = [
   "/.next/",
   "/content-audit/generated/",
   "/components/ui/",
-  "/apps/app/app/api/",
+  "/apps/arcyria-platform/app/api/",
   "/__tests__/",
 ];
 
@@ -73,7 +73,7 @@ function titleFor(file, source) {
 
 function routeFor(file, surface) {
   if (!file.endsWith("/page.tsx") && !file.endsWith("/layout.tsx")) return "";
-  const routeRoot = surface === "website" ? "apps/website/app" : "apps/app/app";
+  const routeRoot = surface === "website" ? "apps/arcyria-website/app" : "apps/arcyria-platform/app";
   let route = relative(join(root, routeRoot), dirname(file)).replaceAll("\\", "/");
   route = route
     .split("/")
@@ -330,7 +330,7 @@ for (const [location, source] of sourceByFile) {
       } else if (location.endsWith(".md") && existsSync(join(root, route))) {
         status = "OK";
       } else {
-        const routes = location.startsWith("apps/app/") ? applicationRoutes : websiteRoutes;
+        const routes = location.startsWith("apps/arcyria-platform/") ? applicationRoutes : websiteRoutes;
         status = routeExists(route, routes) ? "OK" : "Missing route";
       }
     } else if (!/^(?:https?:|mailto:|tel:)/.test(href) && (location.endsWith(".md") || location.endsWith(".mdx"))) {

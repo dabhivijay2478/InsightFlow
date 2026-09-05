@@ -19,9 +19,9 @@ limitation.
 
 | Repository | Current branch | HEAD before changes | Newest audited product branch |
 | --- | --- | --- | --- |
-| Frontend (`apps/app`) | `main` | `bfa5488f6bc4d394863cd888223a5e82477ffa74` | `main` |
-| Go API (`apps/server/main-server`) | `mantrixflow` | `71f863f0acdb8773fc4f725bbd9b00a8f90ac21a` | `mantrixflow` |
-| ELT (`apps/server/elt-server`) | `mantrixflow` | `00d9978237b14afb22cbd15986c1baa4e419391e` | `mantrixflow` |
+| Frontend (`apps/arcyria-platform`) | `main` | `bfa5488f6bc4d394863cd888223a5e82477ffa74` | `main` |
+| Go API (`apps/server/arcyria-server`) | `mantrixflow` | `71f863f0acdb8773fc4f725bbd9b00a8f90ac21a` | `mantrixflow` |
+| ELT (`apps/server/arcyria-elt`) | `mantrixflow` | `00d9978237b14afb22cbd15986c1baa4e419391e` | `mantrixflow` |
 
 Remote refs were fetched and `main`/`mantrixflow` were inspected independently.
 Frontend `main` and backend `mantrixflow` are the newest relevant branches by

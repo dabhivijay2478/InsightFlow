@@ -6,9 +6,9 @@ This repository is **MantrixFlow**.
 
 ## Active projects (use these paths)
 
-- Frontend: `apps/app`
-- Go API: `apps/server/main-server`
-- Python ELT: `apps/server/elt-server`
+- Frontend: `apps/arcyria-platform`
+- Go API: `apps/server/arcyria-server`
+- Python ELT: `apps/server/arcyria-elt`
 
 If you see docs or code referring to `apps/api` or `apps/new-etl`, treat it as **outdated** unless proven otherwise.
 
@@ -20,16 +20,16 @@ If you see docs or code referring to `apps/api` or `apps/new-etl`, treat it as *
 
 ## Where to change what (repo map)
 
-- **New UI flow / component**: `apps/app/app/**` and `apps/app/components/**`
-- **API route or behavior**: `apps/server/main-server/internal/server/**`
-- **DB models**: `apps/server/main-server/internal/models/**`
-- **Supabase RLS SQL**: `apps/server/main-server/sql/supabase_rls.sql` — workflow and table map: [`.cursor/rules/supabase-rls.mdc`](./supabase-rls.mdc)
-- **ELT routes**: `apps/server/elt-server/api/routes/**`
-- **ELT runner logic**: `apps/server/elt-server/runner/**`
+- **New UI flow / component**: `apps/arcyria-platform/app/**` and `apps/arcyria-platform/components/**`
+- **API route or behavior**: `apps/server/arcyria-server/internal/server/**`
+- **DB models**: `apps/server/arcyria-server/internal/models/**`
+- **Supabase RLS SQL**: `apps/server/arcyria-server/sql/supabase_rls.sql` — workflow and table map: [`.cursor/rules/supabase-rls.mdc`](./supabase-rls.mdc)
+- **ELT routes**: `apps/server/arcyria-elt/api/routes/**`
+- **ELT runner logic**: `apps/server/arcyria-elt/runner/**`
 
 ## Docs conventions
 
-- One `README.md` per active project (`apps/app`, `apps/server/main-server`, `apps/server/elt-server`).
+- One `README.md` per active project (`apps/arcyria-platform`, `apps/server/arcyria-server`, `apps/server/arcyria-elt`).
 - Repo-wide notes in `md-docs/` with kebab-case filenames and `md-docs/README.md` as index.
 
 ## Agent guidance
@@ -38,15 +38,15 @@ If you see docs or code referring to `apps/api` or `apps/new-etl`, treat it as *
 
 ## Backend Cursor rules (per service)
 
-- Go API: [`.cursor/rules/go-main-server.mdc`](./go-main-server.mdc) (`apps/server/main-server/**`)
-- Python ELT: [`.cursor/rules/python-elt-server.mdc`](./python-elt-server.mdc) (`apps/server/elt-server/**`)
+- Go API: [`.cursor/rules/go-main-server.mdc`](./go-main-server.mdc) (`apps/server/arcyria-server/**`)
+- Python ELT: [`.cursor/rules/python-elt-server.mdc`](./python-elt-server.mdc) (`apps/server/arcyria-elt/**`)
 
 ## Local dev commands
 
 **App**
 
 ```bash
-cd apps/app
+cd apps/arcyria-platform
 bun install
 bun run dev
 ```
@@ -54,14 +54,14 @@ bun run dev
 **Go API**
 
 ```bash
-cd apps/server/main-server
+cd apps/server/arcyria-server
 go run ./cmd/server
 ```
 
 **ELT**
 
 ```bash
-cd apps/server/elt-server
+cd apps/server/arcyria-elt
 ./.venv/bin/python -m uvicorn api.main:app --host 0.0.0.0 --port 8000 --loop asyncio
 ```
 

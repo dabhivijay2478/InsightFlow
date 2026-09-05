@@ -10,8 +10,8 @@
 
 **Backend services (scoped rules — apply when editing those trees):**
 
-- [`.cursor/rules/go-main-server.mdc`](.cursor/rules/go-main-server.mdc) — `apps/server/main-server` (Fiber, dispatch, callbacks, queue)
-- [`.cursor/rules/python-elt-server.mdc`](.cursor/rules/python-elt-server.mdc) — `apps/server/elt-server` (FastAPI, DuckDB-staged runner)
+- [`.cursor/rules/go-main-server.mdc`](.cursor/rules/go-main-server.mdc) — `apps/server/arcyria-server` (Fiber, dispatch, callbacks, queue)
+- [`.cursor/rules/python-elt-server.mdc`](.cursor/rules/python-elt-server.mdc) — `apps/server/arcyria-elt` (FastAPI, DuckDB-staged runner)
 
 **Supabase RLS workflow and schema map:**
 

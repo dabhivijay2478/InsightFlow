@@ -49,7 +49,7 @@ No Better Stack variables on Vercel (widgets call `status.mantrixflow.com` direc
 
 ## Step 2 — AWS SSM parameters
 
-ECS injects secrets listed in `apps/mantrixflow-infra/cdk/lib/config.ts`.
+ECS injects secrets listed in `apps/arcyria-infra/cdk/lib/config.ts`.
 
 ### PostHog (API + ELT tasks)
 
@@ -149,7 +149,7 @@ export INTERNAL_TOKEN="$(aws ssm get-parameter --name /mantrixflow/production/IN
 curl -sS -X POST "https://cloud.api.mantrixflow.com/api/v1/internal/incident-webhook" \
   -H "Content-Type: application/json" \
   -H "X-Internal-Token: $INTERNAL_TOKEN" \
-  -d '{"event":"alert.triggered","data":{"name":"Smoke test","tags":["service:main-server"]}}'
+  -d '{"event":"alert.triggered","data":{"name":"Smoke test","tags":["service:arcyria-server"]}}'
 ```
 
 Logs: `/ecs/mantrixflow/api`, `/ecs/mantrixflow/elt`.
@@ -170,8 +170,8 @@ Webhook needs **both** `BETTERSTACK_*` in SSM and PostHog configured per [postho
 | `service` tag | Better Stack resource |
 | --- | --- |
 | `app`, `app-server`, `frontend` | `BETTERSTACK_RESOURCE_APP` |
-| `main-server`, `api` | `BETTERSTACK_RESOURCE_API` |
-| `elt-server`, `elt` | `BETTERSTACK_RESOURCE_ELT` |
+| `arcyria-server`, `api` | `BETTERSTACK_RESOURCE_API` |
+| `arcyria-elt`, `elt` | `BETTERSTACK_RESOURCE_ELT` |
 
 ---
 

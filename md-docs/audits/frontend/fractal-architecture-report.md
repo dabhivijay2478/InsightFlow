@@ -1,7 +1,7 @@
 # MantrixFlow frontend — fractal architecture restructure (final)
 
 Date: 2026-07-22  
-Scope: `apps/app` (Next.js 16 frontend)  
+Scope: `apps/arcyria-platform` (Next.js 16 frontend)
 Source of truth: `main` branch conventions, **no `src/` root** (per project decision)
 
 ---
@@ -15,7 +15,7 @@ The frontend was reorganized into a **feature-based fractal architecture** witho
 ## Final folder tree (high level)
 
 ```text
-apps/app/
+apps/arcyria-platform/
 ├── app/                    # Next.js App Router (thin routes only)
 ├── features/               # Domain modules (fractal)
 │   ├── activity/

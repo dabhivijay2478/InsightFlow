@@ -69,7 +69,7 @@ Routing is **model-driven** via `transfer_to_specialist` — no keyword tables o
 
 | Concern | Location |
 | --- | --- |
-| `OPENROUTER_*`, loop limits | `apps/app` server env (Vercel / `.env.local`) |
+| `OPENROUTER_*`, loop limits | `apps/arcyria-platform` server env (Vercel / `.env.local`) |
 | `INTERNAL_TOKEN` | Both Next.js (tool bridge) and Go API |
 | Release flags, action guard, tool gating | Go `AGENT_*` config |
 
@@ -81,7 +81,7 @@ See [`oria-agent-setup.md`](./agent-setup.md) for operator setup.
 | --- | --- | --- |
 | Go build | Pass | `go build ./...` |
 | Go tests | Pass | `go test ./internal/agents/... ./internal/server/...` |
-| TypeScript | Pass | `bun run typecheck` in `apps/app` |
+| TypeScript | Pass | `bun run typecheck` in `apps/arcyria-platform` |
 | Registry export | Pass | `go run ./cmd/export-oria-registry` → 72 specialists |
 | Browser Release 1–6 | Pending operator | Requires live OpenRouter key + signed-in session; see [`oria-browser-ui-test-log.md`](./browser-ui-test-log.md) |
 

@@ -22,8 +22,8 @@ isProject: false
 ## References
 
 - **Skill:** [`.agents/skills/subscription-integration/SKILL.md`](.agents/skills/subscription-integration/SKILL.md) (trials, upgrades/downgrades, `on_payment_failure`, webhooks).
-- **Backend billing:** [`apps/server/main-server/internal/services/billing/billing_service.go`](apps/server/main-server/internal/services/billing/billing_service.go), [`billing_http.go`](apps/server/main-server/internal/server/billing_http.go), [`dodo_error.go`](apps/server/main-server/internal/services/billing/dodo_error.go).
-- **Settings UI:** [`apps/app/app/workspace/settings/page.tsx`](apps/app/app/workspace/settings/page.tsx).
+- **Backend billing:** [`apps/server/arcyria-server/internal/services/billing/billing_service.go`](apps/server/arcyria-server/internal/services/billing/billing_service.go), [`billing_http.go`](apps/server/arcyria-server/internal/server/billing_http.go), [`dodo_error.go`](apps/server/arcyria-server/internal/services/billing/dodo_error.go).
+- **Settings UI:** [`apps/arcyria-platform/app/workspace/settings/page.tsx`](apps/arcyria-platform/app/workspace/settings/page.tsx).
 
 ## Proration modes (Dodo) vs MantrixFlow
 
@@ -44,7 +44,7 @@ Your Step 5 table matches Dodo’s API. In code today:
 
 ## Dunning and recovery (partially aligned with Step 5)
 
-Your snippet uses **`payment.failed`** and **`subscription.active`** (restore access). In [`billing_http.go`](apps/server/main-server/internal/server/billing_http.go):
+Your snippet uses **`payment.failed`** and **`subscription.active`** (restore access). In [`billing_http.go`](apps/server/arcyria-server/internal/server/billing_http.go):
 
 - **`subscription.on_hold`** → `handleSubOnHold` sets **`plan_status` = `past_due`** (not a literal `"on_hold"` enum in DB).
 - **`payment.failed`** → `handlePaymentFailed` sets **`past_due`** if org was `active`.
@@ -72,7 +72,7 @@ flowchart LR
 
 ## Remaining implementation todos (product-facing)
 
-1. **Preview line items for upgrades** — Extend [`BillingPreviewChangePlan`](apps/server/main-server/internal/server/billing_http.go) / preview service to return **`immediate_charge.line_items`** (and totals) from Dodo preview; add TS types and **ConfirmationModal** breakdown before `changePlan` on upgrade.
-2. **Preview parity for scheduled downgrades** — When calling preview with **`effective_at: "next_billing_date"`**, apply the same **`full_immediately`** override as `ChangeSubscriptionPlan` in [`PreviewChangePlan`](apps/server/main-server/internal/services/billing/billing_service.go) so preview matches charge behavior.
+1. **Preview line items for upgrades** — Extend [`BillingPreviewChangePlan`](apps/server/arcyria-server/internal/server/billing_http.go) / preview service to return **`immediate_charge.line_items`** (and totals) from Dodo preview; add TS types and **ConfirmationModal** breakdown before `changePlan` on upgrade.
+2. **Preview parity for scheduled downgrades** — When calling preview with **`effective_at: "next_billing_date"`**, apply the same **`full_immediately`** override as `ChangeSubscriptionPlan` in [`PreviewChangePlan`](apps/server/arcyria-server/internal/services/billing/billing_service.go) so preview matches charge behavior.
 3. **Optional** — Grace-period downgrade job + schema if involuntary churn policy requires it.
 4. **Optional** — Expose additional `proration_billing_mode` values in API only if PM specifies; default matrix above stays.

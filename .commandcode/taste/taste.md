@@ -38,7 +38,7 @@ See [infra/taste.md](infra/taste.md)
 - Use `confirmation-modal.tsx` (existing shared component) for destructive/dangerous actions with toast messages; do not create alternative confirmation dialogs. Confidence: 0.75
 
 # env
-- Environment variables for each service belong in `.env` files inside their respective server directories (app, main-server, elt-server). Confidence: 0.70
+- Environment variables for each service belong in `.env` files inside their respective server directories (arcyria-platform, arcyria-server, arcyria-elt). Confidence: 0.70
 
 # architecture
 See [architecture/taste.md](architecture/taste.md)

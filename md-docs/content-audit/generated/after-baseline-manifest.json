@@ -3,7 +3,7 @@
   "files": [
     {
       "surface": "website",
-      "location": "apps/website/app/about/page.tsx",
+      "location": "apps/arcyria-website/app/about/page.tsx",
       "bytes": 2794,
       "words": 359,
       "lines": 58,
@@ -11,7 +11,7 @@
     },
     {
       "surface": "website",
-      "location": "apps/website/app/agents/page.tsx",
+      "location": "apps/arcyria-website/app/agents/page.tsx",
       "bytes": 5855,
       "words": 517,
       "lines": 151,
@@ -19,7 +19,7 @@
     },
     {
       "surface": "website",
-      "location": "apps/website/app/compare/page.tsx",
+      "location": "apps/arcyria-website/app/compare/page.tsx",
       "bytes": 5732,
       "words": 499,
       "lines": 139,
@@ -27,7 +27,7 @@
     },
     {
       "surface": "website",
-      "location": "apps/website/app/connectors/page.tsx",
+      "location": "apps/arcyria-website/app/connectors/page.tsx",
       "bytes": 7283,
       "words": 637,
       "lines": 183,
@@ -35,7 +35,7 @@
     },
     {
       "surface": "website",
-      "location": "apps/website/app/contact/page.tsx",
+      "location": "apps/arcyria-website/app/contact/page.tsx",
       "bytes": 2966,
       "words": 369,
       "lines": 63,
@@ -43,7 +43,7 @@
     },
     {
       "surface": "website",
-      "location": "apps/website/app/developers/page.tsx",
+      "location": "apps/arcyria-website/app/developers/page.tsx",
       "bytes": 3365,
       "words": 407,
       "lines": 68,
@@ -51,7 +51,7 @@
     },
     {
       "surface": "website",
-      "location": "apps/website/app/integrations/page.tsx",
+      "location": "apps/arcyria-website/app/integrations/page.tsx",
       "bytes": 5280,
       "words": 423,
       "lines": 143,
@@ -59,7 +59,7 @@
     },
     {
       "surface": "website",
-      "location": "apps/website/app/layout.tsx",
+      "location": "apps/arcyria-website/app/layout.tsx",
       "bytes": 2922,
       "words": 319,
       "lines": 116,
@@ -67,7 +67,7 @@
     },
     {
       "surface": "website",
-      "location": "apps/website/app/legal/legal-client.tsx",
+      "location": "apps/arcyria-website/app/legal/legal-client.tsx",
       "bytes": 2196,
       "words": 185,
       "lines": 66,
@@ -75,7 +75,7 @@
     },
     {
       "surface": "website",
-      "location": "apps/website/app/legal/page.tsx",
+      "location": "apps/arcyria-website/app/legal/page.tsx",
       "bytes": 382,
       "words": 50,
       "lines": 16,
@@ -83,7 +83,7 @@
     },
     {
       "surface": "website",
-      "location": "apps/website/app/not-found.tsx",
+      "location": "apps/arcyria-website/app/not-found.tsx",
       "bytes": 2316,
       "words": 206,
       "lines": 57,
@@ -91,7 +91,7 @@
     },
     {
       "surface": "website",
-      "location": "apps/website/app/page.tsx",
+      "location": "apps/arcyria-website/app/page.tsx",
       "bytes": 191,
       "words": 21,
       "lines": 10,
@@ -99,7 +99,7 @@
     },
     {
       "surface": "website",
-      "location": "apps/website/app/pricing/page.tsx",
+      "location": "apps/arcyria-website/app/pricing/page.tsx",
       "bytes": 422,
       "words": 55,
       "lines": 16,
@@ -107,7 +107,7 @@
     },
     {
       "surface": "website",
-      "location": "apps/website/app/pricing/pricing-client.tsx",
+      "location": "apps/arcyria-website/app/pricing/pricing-client.tsx",
       "bytes": 12194,
       "words": 1030,
       "lines": 363,
@@ -115,7 +115,7 @@
     },
     {
       "surface": "website",
-      "location": "apps/website/app/privacy/page.tsx",
+      "location": "apps/arcyria-website/app/privacy/page.tsx",
       "bytes": 359,
       "words": 46,
       "lines": 16,
@@ -123,7 +123,7 @@
     },
     {
       "surface": "website",
-      "location": "apps/website/app/privacy/privacy-client.tsx",
+      "location": "apps/arcyria-website/app/privacy/privacy-client.tsx",
       "bytes": 6213,
       "words": 613,
       "lines": 155,
@@ -131,7 +131,7 @@
     },
     {
       "surface": "website",
-      "location": "apps/website/app/subprocessors/page.tsx",
+      "location": "apps/arcyria-website/app/subprocessors/page.tsx",
       "bytes": 406,
       "words": 47,
       "lines": 16,
@@ -139,7 +139,7 @@
     },
     {
       "surface": "website",
-      "location": "apps/website/app/subprocessors/subprocessors-client.tsx",
+      "location": "apps/arcyria-website/app/subprocessors/subprocessors-client.tsx",
       "bytes": 5959,
       "words": 475,
       "lines": 162,
@@ -147,7 +147,7 @@
     },
     {
       "surface": "website",
-      "location": "apps/website/app/terms/page.tsx",
+      "location": "apps/arcyria-website/app/terms/page.tsx",
       "bytes": 343,
       "words": 46,
       "lines": 15,
@@ -155,7 +155,7 @@
     },
     {
       "surface": "website",
-      "location": "apps/website/app/terms/terms-client.tsx",
+      "location": "apps/arcyria-website/app/terms/terms-client.tsx",
       "bytes": 6349,
       "words": 689,
       "lines": 151,
@@ -163,7 +163,7 @@
     },
     {
       "surface": "website",
-      "location": "apps/website/components/animated-noise.tsx",
+      "location": "apps/arcyria-website/components/animated-noise.tsx",
       "bytes": 1766,
       "words": 205,
       "lines": 81,
@@ -171,7 +171,7 @@
     },
     {
       "surface": "website",
-      "location": "apps/website/components/bitmap-chevron.tsx",
+      "location": "apps/arcyria-website/components/bitmap-chevron.tsx",
       "bytes": 533,
       "words": 39,
       "lines": 20,
@@ -179,7 +179,7 @@
     },
     {
       "surface": "website",
-      "location": "apps/website/components/colophon-section.tsx",
+      "location": "apps/arcyria-website/components/colophon-section.tsx",
       "bytes": 65,
       "words": 8,
       "lines": 2,
@@ -187,7 +187,7 @@
     },
     {
       "surface": "website",
-      "location": "apps/website/components/commit-graph-layout.ts",
+      "location": "apps/arcyria-website/components/commit-graph-layout.ts",
       "bytes": 3349,
       "words": 357,
       "lines": 137,
@@ -195,7 +195,7 @@
     },
     {
       "surface": "website",
-      "location": "apps/website/components/commit-graph.tsx",
+      "location": "apps/arcyria-website/components/commit-graph.tsx",
       "bytes": 15047,
       "words": 1284,
       "lines": 481,
@@ -203,7 +203,7 @@
     },
     {
       "surface": "website",
-      "location": "apps/website/components/core-features-section.tsx",
+      "location": "apps/arcyria-website/components/core-features-section.tsx",
       "bytes": 1776,
       "words": 133,
       "lines": 52,
@@ -211,7 +211,7 @@
     },
     {
       "surface": "website",
-      "location": "apps/website/components/cta-section.tsx",
+      "location": "apps/arcyria-website/components/cta-section.tsx",
       "bytes": 5949,
       "words": 464,
       "lines": 147,
@@ -219,7 +219,7 @@
     },
     {
       "surface": "website",
-      "location": "apps/website/components/draw-text.tsx",
+      "location": "apps/arcyria-website/components/draw-text.tsx",
       "bytes": 4310,
       "words": 377,
       "lines": 154,
@@ -227,7 +227,7 @@
     },
     {
       "surface": "website",
-      "location": "apps/website/components/features-accordion-section.tsx",
+      "location": "apps/arcyria-website/components/features-accordion-section.tsx",
       "bytes": 8806,
       "words": 675,
       "lines": 254,
@@ -235,7 +235,7 @@
     },
     {
       "surface": "website",
-      "location": "apps/website/components/footer.tsx",
+      "location": "apps/arcyria-website/components/footer.tsx",
       "bytes": 4448,
       "words": 382,
       "lines": 146,
@@ -243,7 +243,7 @@
     },
     {
       "surface": "website",
-      "location": "apps/website/components/hero-section.tsx",
+      "location": "apps/arcyria-website/components/hero-section.tsx",
       "bytes": 9551,
       "words": 725,
       "lines": 256,
@@ -251,7 +251,7 @@
     },
     {
       "surface": "website",
-      "location": "apps/website/components/highlight-text.tsx",
+      "location": "apps/arcyria-website/components/highlight-text.tsx",
       "bytes": 2190,
       "words": 206,
       "lines": 95,
@@ -259,7 +259,7 @@
     },
     {
       "surface": "website",
-      "location": "apps/website/components/home/home-hero.tsx",
+      "location": "apps/arcyria-website/components/home/home-hero.tsx",
       "bytes": 2587,
       "words": 214,
       "lines": 65,
@@ -267,7 +267,7 @@
     },
     {
       "surface": "website",
-      "location": "apps/website/components/home/home-latest.tsx",
+      "location": "apps/arcyria-website/components/home/home-latest.tsx",
       "bytes": 2683,
       "words": 236,
       "lines": 74,
@@ -275,7 +275,7 @@
     },
     {
       "surface": "website",
-      "location": "apps/website/components/home/home-story.tsx",
+      "location": "apps/arcyria-website/components/home/home-story.tsx",
       "bytes": 11215,
       "words": 935,
       "lines": 277,
@@ -283,7 +283,7 @@
     },
     {
       "surface": "website",
-      "location": "apps/website/components/integrations-section.tsx",
+      "location": "apps/arcyria-website/components/integrations-section.tsx",
       "bytes": 1784,
       "words": 125,
       "lines": 53,
@@ -291,7 +291,7 @@
     },
     {
       "surface": "website",
-      "location": "apps/website/components/kibo-ui/pill/index.tsx",
+      "location": "apps/arcyria-website/components/kibo-ui/pill/index.tsx",
       "bytes": 3823,
       "words": 412,
       "lines": 171,
@@ -299,7 +299,7 @@
     },
     {
       "surface": "website",
-      "location": "apps/website/components/log-viewer-minimal.tsx",
+      "location": "apps/arcyria-website/components/log-viewer-minimal.tsx",
       "bytes": 2908,
       "words": 220,
       "lines": 102,
@@ -307,7 +307,7 @@
     },
     {
       "surface": "website",
-      "location": "apps/website/components/log-viewer-shared.tsx",
+      "location": "apps/arcyria-website/components/log-viewer-shared.tsx",
       "bytes": 6357,
       "words": 628,
       "lines": 234,
@@ -315,7 +315,7 @@
     },
     {
       "surface": "website",
-      "location": "apps/website/components/log-viewer.tsx",
+      "location": "apps/arcyria-website/components/log-viewer.tsx",
       "bytes": 15441,
       "words": 1110,
       "lines": 494,
@@ -323,7 +323,7 @@
     },
     {
       "surface": "website",
-      "location": "apps/website/components/logo.tsx",
+      "location": "apps/arcyria-website/components/logo.tsx",
       "bytes": 497,
       "words": 52,
       "lines": 25,
@@ -331,7 +331,7 @@
     },
     {
       "surface": "website",
-      "location": "apps/website/components/marketing/announcement-pill.tsx",
+      "location": "apps/arcyria-website/components/marketing/announcement-pill.tsx",
       "bytes": 1031,
       "words": 91,
       "lines": 37,
@@ -339,7 +339,7 @@
     },
     {
       "surface": "website",
-      "location": "apps/website/components/marketing/brand-icons.tsx",
+      "location": "apps/arcyria-website/components/marketing/brand-icons.tsx",
       "bytes": 7984,
       "words": 869,
       "lines": 334,
@@ -347,7 +347,7 @@
     },
     {
       "surface": "website",
-      "location": "apps/website/components/marketing/connector-icon.tsx",
+      "location": "apps/arcyria-website/components/marketing/connector-icon.tsx",
       "bytes": 2036,
       "words": 200,
       "lines": 88,
@@ -355,7 +355,7 @@
     },
     {
       "surface": "website",
-      "location": "apps/website/components/marketing/connectors-grid.tsx",
+      "location": "apps/arcyria-website/components/marketing/connectors-grid.tsx",
       "bytes": 7345,
       "words": 568,
       "lines": 215,
@@ -363,7 +363,7 @@
     },
     {
       "surface": "website",
-      "location": "apps/website/components/marketing/connectors-teaser.tsx",
+      "location": "apps/arcyria-website/components/marketing/connectors-teaser.tsx",
       "bytes": 4265,
       "words": 322,
       "lines": 124,
@@ -371,7 +371,7 @@
     },
     {
       "surface": "website",
-      "location": "apps/website/components/marketing/editorial-page.tsx",
+      "location": "apps/arcyria-website/components/marketing/editorial-page.tsx",
       "bytes": 3107,
       "words": 232,
       "lines": 109,
@@ -379,7 +379,7 @@
     },
     {
       "surface": "website",
-      "location": "apps/website/components/marketing/elt-phases-section.tsx",
+      "location": "apps/arcyria-website/components/marketing/elt-phases-section.tsx",
       "bytes": 3995,
       "words": 355,
       "lines": 125,
@@ -387,7 +387,7 @@
     },
     {
       "surface": "website",
-      "location": "apps/website/components/marketing/features-bento-section.tsx",
+      "location": "apps/arcyria-website/components/marketing/features-bento-section.tsx",
       "bytes": 11769,
       "words": 1073,
       "lines": 344,
@@ -395,7 +395,7 @@
     },
     {
       "surface": "website",
-      "location": "apps/website/components/marketing/hero-feature-cards.tsx",
+      "location": "apps/arcyria-website/components/marketing/hero-feature-cards.tsx",
       "bytes": 2870,
       "words": 259,
       "lines": 97,
@@ -403,7 +403,7 @@
     },
     {
       "surface": "website",
-      "location": "apps/website/components/marketing/how-it-works-data.tsx",
+      "location": "apps/arcyria-website/components/marketing/how-it-works-data.tsx",
       "bytes": 407,
       "words": 48,
       "lines": 25,
@@ -411,7 +411,7 @@
     },
     {
       "surface": "website",
-      "location": "apps/website/components/marketing/how-it-works-flow-tree.tsx",
+      "location": "apps/arcyria-website/components/marketing/how-it-works-flow-tree.tsx",
       "bytes": 6454,
       "words": 468,
       "lines": 173,
@@ -419,7 +419,7 @@
     },
     {
       "surface": "website",
-      "location": "apps/website/components/marketing/how-it-works-preview.tsx",
+      "location": "apps/arcyria-website/components/marketing/how-it-works-preview.tsx",
       "bytes": 10120,
       "words": 902,
       "lines": 297,
@@ -427,7 +427,7 @@
     },
     {
       "surface": "website",
-      "location": "apps/website/components/marketing/how-it-works-section.tsx",
+      "location": "apps/arcyria-website/components/marketing/how-it-works-section.tsx",
       "bytes": 8091,
       "words": 611,
       "lines": 204,
@@ -435,7 +435,7 @@
     },
     {
       "surface": "website",
-      "location": "apps/website/components/marketing/integrations-grid.tsx",
+      "location": "apps/arcyria-website/components/marketing/integrations-grid.tsx",
       "bytes": 1798,
       "words": 159,
       "lines": 65,
@@ -443,7 +443,7 @@
     },
     {
       "surface": "website",
-      "location": "apps/website/components/marketing/integrations-teaser.tsx",
+      "location": "apps/arcyria-website/components/marketing/integrations-teaser.tsx",
       "bytes": 3502,
       "words": 279,
       "lines": 96,
@@ -451,7 +451,7 @@
     },
     {
       "surface": "website",
-      "location": "apps/website/components/marketing/page-shell.tsx",
+      "location": "apps/arcyria-website/components/marketing/page-shell.tsx",
       "bytes": 2259,
       "words": 198,
       "lines": 92,
@@ -459,7 +459,7 @@
     },
     {
       "surface": "website",
-      "location": "apps/website/components/marketing/principles-grid.tsx",
+      "location": "apps/arcyria-website/components/marketing/principles-grid.tsx",
       "bytes": 4659,
       "words": 376,
       "lines": 137,
@@ -467,7 +467,7 @@
     },
     {
       "surface": "website",
-      "location": "apps/website/components/marketing/product-page-blocks.tsx",
+      "location": "apps/arcyria-website/components/marketing/product-page-blocks.tsx",
       "bytes": 9159,
       "words": 730,
       "lines": 274,
@@ -475,7 +475,7 @@
     },
     {
       "surface": "website",
-      "location": "apps/website/components/marketing/product-screenshot.tsx",
+      "location": "apps/arcyria-website/components/marketing/product-screenshot.tsx",
       "bytes": 578,
       "words": 54,
       "lines": 30,
@@ -483,7 +483,7 @@
     },
     {
       "surface": "website",
-      "location": "apps/website/components/marketing/product-workspace-demo-data.ts",
+      "location": "apps/arcyria-website/components/marketing/product-workspace-demo-data.ts",
       "bytes": 1126,
       "words": 153,
       "lines": 53,
@@ -491,7 +491,7 @@
     },
     {
       "surface": "website",
-      "location": "apps/website/components/marketing/product-workspace-demo.tsx",
+      "location": "apps/arcyria-website/components/marketing/product-workspace-demo.tsx",
       "bytes": 6715,
       "words": 514,
       "lines": 201,
@@ -499,7 +499,7 @@
     },
     {
       "surface": "website",
-      "location": "apps/website/components/marketing/product-workspace-flow.tsx",
+      "location": "apps/arcyria-website/components/marketing/product-workspace-flow.tsx",
       "bytes": 7844,
       "words": 619,
       "lines": 240,
@@ -507,7 +507,7 @@
     },
     {
       "surface": "website",
-      "location": "apps/website/components/marketing/product-workspace-run-views.tsx",
+      "location": "apps/arcyria-website/components/marketing/product-workspace-run-views.tsx",
       "bytes": 9954,
       "words": 733,
       "lines": 268,
@@ -515,7 +515,7 @@
     },
     {
       "surface": "website",
-      "location": "apps/website/components/marketing/saas-blocks.tsx",
+      "location": "apps/arcyria-website/components/marketing/saas-blocks.tsx",
       "bytes": 12854,
       "words": 986,
       "lines": 428,
@@ -523,7 +523,7 @@
     },
     {
       "surface": "website",
-      "location": "apps/website/components/marketing/section-header.tsx",
+      "location": "apps/arcyria-website/components/marketing/section-header.tsx",
       "bytes": 1417,
       "words": 148,
       "lines": 60,
@@ -531,7 +531,7 @@
     },
     {
       "surface": "website",
-      "location": "apps/website/components/marketing/solutions-menu.tsx",
+      "location": "apps/arcyria-website/components/marketing/solutions-menu.tsx",
       "bytes": 4529,
       "words": 319,
       "lines": 136,
@@ -539,7 +539,7 @@
     },
     {
       "surface": "website",
-      "location": "apps/website/components/marketing/stats-bar.tsx",
+      "location": "apps/arcyria-website/components/marketing/stats-bar.tsx",
       "bytes": 1803,
       "words": 170,
       "lines": 66,
@@ -547,7 +547,7 @@
     },
     {
       "surface": "website",
-      "location": "apps/website/components/multi-org-section.tsx",
+      "location": "apps/arcyria-website/components/multi-org-section.tsx",
       "bytes": 1789,
       "words": 158,
       "lines": 48,
@@ -555,7 +555,7 @@
     },
     {
       "surface": "website",
-      "location": "apps/website/components/navbar.tsx",
+      "location": "apps/arcyria-website/components/navbar.tsx",
       "bytes": 4516,
       "words": 352,
       "lines": 149,
@@ -563,7 +563,7 @@
     },
     {
       "surface": "website",
-      "location": "apps/website/components/page-sections.tsx",
+      "location": "apps/arcyria-website/components/page-sections.tsx",
       "bytes": 571,
       "words": 58,
       "lines": 20,
@@ -571,7 +571,7 @@
     },
     {
       "surface": "website",
-      "location": "apps/website/components/principles-section.tsx",
+      "location": "apps/arcyria-website/components/principles-section.tsx",
       "bytes": 1303,
       "words": 91,
       "lines": 36,
@@ -579,7 +579,7 @@
     },
     {
       "surface": "website",
-      "location": "apps/website/components/product-gallery-section.tsx",
+      "location": "apps/arcyria-website/components/product-gallery-section.tsx",
       "bytes": 2080,
       "words": 143,
       "lines": 51,
@@ -587,7 +587,7 @@
     },
     {
       "surface": "website",
-      "location": "apps/website/components/repo-card.tsx",
+      "location": "apps/arcyria-website/components/repo-card.tsx",
       "bytes": 9637,
       "words": 888,
       "lines": 285,
@@ -595,7 +595,7 @@
     },
     {
       "surface": "website",
-      "location": "apps/website/components/scramble-text.tsx",
+      "location": "apps/arcyria-website/components/scramble-text.tsx",
       "bytes": 4647,
       "words": 509,
       "lines": 188,
@@ -603,7 +603,7 @@
     },
     {
       "surface": "website",
-      "location": "apps/website/components/section-header.tsx",
+      "location": "apps/arcyria-website/components/section-header.tsx",
       "bytes": 1218,
       "words": 129,
       "lines": 56,
@@ -611,7 +611,7 @@
     },
     {
       "surface": "website",
-      "location": "apps/website/components/shared/error-boundary.tsx",
+      "location": "apps/arcyria-website/components/shared/error-boundary.tsx",
       "bytes": 1432,
       "words": 149,
       "lines": 57,
@@ -619,7 +619,7 @@
     },
     {
       "surface": "website",
-      "location": "apps/website/components/shared/json-ld.tsx",
+      "location": "apps/arcyria-website/components/shared/json-ld.tsx",
       "bytes": 266,
       "words": 25,
       "lines": 15,
@@ -627,7 +627,7 @@
     },
     {
       "surface": "website",
-      "location": "apps/website/components/shared/smart-link.tsx",
+      "location": "apps/arcyria-website/components/shared/smart-link.tsx",
       "bytes": 1490,
       "words": 137,
       "lines": 56,
@@ -635,7 +635,7 @@
     },
     {
       "surface": "website",
-      "location": "apps/website/components/side-nav.tsx",
+      "location": "apps/arcyria-website/components/side-nav.tsx",
       "bytes": 3043,
       "words": 267,
       "lines": 109,
@@ -643,7 +643,7 @@
     },
     {
       "surface": "website",
-      "location": "apps/website/components/signals-section.tsx",
+      "location": "apps/arcyria-website/components/signals-section.tsx",
       "bytes": 5849,
       "words": 595,
       "lines": 187,
@@ -651,7 +651,7 @@
     },
     {
       "surface": "website",
-      "location": "apps/website/components/smooth-scroll.tsx",
+      "location": "apps/arcyria-website/components/smooth-scroll.tsx",
       "bytes": 504,
       "words": 61,
       "lines": 22,
@@ -659,7 +659,7 @@
     },
     {
       "surface": "website",
-      "location": "apps/website/components/split-flap-text.tsx",
+      "location": "apps/arcyria-website/components/split-flap-text.tsx",
       "bytes": 10169,
       "words": 930,
       "lines": 369,
@@ -667,7 +667,7 @@
     },
     {
       "surface": "website",
-      "location": "apps/website/components/status-badge.tsx",
+      "location": "apps/arcyria-website/components/status-badge.tsx",
       "bytes": 3241,
       "words": 315,
       "lines": 131,
@@ -675,7 +675,7 @@
     },
     {
       "surface": "website",
-      "location": "apps/website/components/workflow-section.tsx",
+      "location": "apps/arcyria-website/components/workflow-section.tsx",
       "bytes": 1828,
       "words": 130,
       "lines": 51,
@@ -683,7 +683,7 @@
     },
     {
       "surface": "website",
-      "location": "apps/website/lib/agent-readiness/api.ts",
+      "location": "apps/arcyria-website/lib/agent-readiness/api.ts",
       "bytes": 1084,
       "words": 114,
       "lines": 52,
@@ -691,7 +691,7 @@
     },
     {
       "surface": "website",
-      "location": "apps/website/lib/agent-readiness/capabilities.ts",
+      "location": "apps/arcyria-website/lib/agent-readiness/capabilities.ts",
       "bytes": 1733,
       "words": 134,
       "lines": 63,
@@ -699,7 +699,7 @@
     },
     {
       "surface": "website",
-      "location": "apps/website/lib/agent-readiness/openapi.ts",
+      "location": "apps/arcyria-website/lib/agent-readiness/openapi.ts",
       "bytes": 6531,
       "words": 618,
       "lines": 202,
@@ -707,7 +707,7 @@
     },
     {
       "surface": "website",
-      "location": "apps/website/lib/agent-readiness/schema.ts",
+      "location": "apps/arcyria-website/lib/agent-readiness/schema.ts",
       "bytes": 1644,
       "words": 135,
       "lines": 58,
@@ -715,7 +715,7 @@
     },
     {
       "surface": "website",
-      "location": "apps/website/lib/connector-catalog.ts",
+      "location": "apps/arcyria-website/lib/connector-catalog.ts",
       "bytes": 12437,
       "words": 1191,
       "lines": 405,
@@ -723,7 +723,7 @@
     },
     {
       "surface": "website",
-      "location": "apps/website/lib/github.ts",
+      "location": "apps/arcyria-website/lib/github.ts",
       "bytes": 4360,
       "words": 559,
       "lines": 158,
@@ -731,7 +731,7 @@
     },
     {
       "surface": "website",
-      "location": "apps/website/lib/marketing-content.ts",
+      "location": "apps/arcyria-website/lib/marketing-content.ts",
       "bytes": 14595,
       "words": 1634,
       "lines": 484,
@@ -739,7 +739,7 @@
     },
     {
       "surface": "website",
-      "location": "apps/website/lib/sample-logs.ts",
+      "location": "apps/arcyria-website/lib/sample-logs.ts",
       "bytes": 5789,
       "words": 634,
       "lines": 209,
@@ -747,7 +747,7 @@
     },
     {
       "surface": "application",
-      "location": "apps/app/app/agents/[threadId]/error.tsx",
+      "location": "apps/arcyria-platform/app/agents/[threadId]/error.tsx",
       "bytes": 51,
       "words": 8,
       "lines": 4,
@@ -755,7 +755,7 @@
     },
     {
       "surface": "application",
-      "location": "apps/app/app/agents/[threadId]/loading.tsx",
+      "location": "apps/arcyria-platform/app/agents/[threadId]/loading.tsx",
       "bytes": 38,
       "words": 6,
       "lines": 2,
@@ -763,7 +763,7 @@
     },
     {
       "surface": "application",
-      "location": "apps/app/app/agents/[threadId]/page.tsx",
+      "location": "apps/arcyria-platform/app/agents/[threadId]/page.tsx",
       "bytes": 462,
       "words": 45,
       "lines": 16,
@@ -771,7 +771,7 @@
     },
     {
       "surface": "application",
-      "location": "apps/app/app/agents/activity/page.tsx",
+      "location": "apps/arcyria-platform/app/agents/activity/page.tsx",
       "bytes": 174,
       "words": 15,
       "lines": 6,
@@ -779,7 +779,7 @@
     },
     {
       "surface": "application",
-      "location": "apps/app/app/agents/automations/page.tsx",
+      "location": "apps/arcyria-platform/app/agents/automations/page.tsx",
       "bytes": 190,
       "words": 15,
       "lines": 6,
@@ -787,7 +787,7 @@
     },
     {
       "surface": "application",
-      "location": "apps/app/app/agents/automations/policies/page.tsx",
+      "location": "apps/arcyria-platform/app/agents/automations/policies/page.tsx",
       "bytes": 194,
       "words": 15,
       "lines": 6,
@@ -795,7 +795,7 @@
     },
     {
       "surface": "application",
-      "location": "apps/app/app/agents/automations/runs/page.tsx",
+      "location": "apps/arcyria-platform/app/agents/automations/runs/page.tsx",
       "bytes": 178,
       "words": 15,
       "lines": 6,
@@ -803,7 +803,7 @@
     },
     {
       "surface": "application",
-      "location": "apps/app/app/agents/developer/api/page.tsx",
+      "location": "apps/arcyria-platform/app/agents/developer/api/page.tsx",
       "bytes": 167,
       "words": 15,
       "lines": 6,
@@ -811,7 +811,7 @@
     },
     {
       "surface": "application",
-      "location": "apps/app/app/agents/developer/connectors/[connectorId]/page.tsx",
+      "location": "apps/arcyria-platform/app/agents/developer/connectors/[connectorId]/page.tsx",
       "bytes": 333,
       "words": 37,
       "lines": 9,
@@ -819,7 +819,7 @@
     },
     {
       "surface": "application",
-      "location": "apps/app/app/agents/developer/connectors/page.tsx",
+      "location": "apps/arcyria-platform/app/agents/developer/connectors/page.tsx",
       "bytes": 161,
       "words": 15,
       "lines": 6,
@@ -827,7 +827,7 @@
     },
     {
       "surface": "application",
-      "location": "apps/app/app/agents/developer/page.tsx",
+      "location": "apps/arcyria-platform/app/agents/developer/page.tsx",
       "bytes": 192,
       "words": 15,
       "lines": 6,
@@ -835,7 +835,7 @@
     },
     {
       "surface": "application",
-      "location": "apps/app/app/agents/developer/sdks/page.tsx",
+      "location": "apps/arcyria-platform/app/agents/developer/sdks/page.tsx",
       "bytes": 143,
       "words": 15,
       "lines": 6,
@@ -843,7 +843,7 @@
     },
     {
       "surface": "application",
-      "location": "apps/app/app/agents/developer/templates/page.tsx",
+      "location": "apps/arcyria-platform/app/agents/developer/templates/page.tsx",
       "bytes": 158,
       "words": 15,
       "lines": 6,
@@ -851,7 +851,7 @@
     },
     {
       "surface": "application",
-      "location": "apps/app/app/agents/developer/webhooks/page.tsx",
+      "location": "apps/arcyria-platform/app/agents/developer/webhooks/page.tsx",
       "bytes": 155,
       "words": 15,
       "lines": 6,
@@ -859,7 +859,7 @@
     },
     {
       "surface": "application",
-      "location": "apps/app/app/agents/documentation/page.tsx",
+      "location": "apps/arcyria-platform/app/agents/documentation/page.tsx",
       "bytes": 170,
       "words": 15,
       "lines": 6,
@@ -867,7 +867,7 @@
     },
     {
       "surface": "application",
-      "location": "apps/app/app/agents/enterprise/approvals/page.tsx",
+      "location": "apps/arcyria-platform/app/agents/enterprise/approvals/page.tsx",
       "bytes": 189,
       "words": 15,
       "lines": 6,
@@ -875,7 +875,7 @@
     },
     {
       "surface": "application",
-      "location": "apps/app/app/agents/enterprise/compliance/page.tsx",
+      "location": "apps/arcyria-platform/app/agents/enterprise/compliance/page.tsx",
       "bytes": 192,
       "words": 15,
       "lines": 6,
@@ -883,7 +883,7 @@
     },
     {
       "surface": "application",
-      "location": "apps/app/app/agents/enterprise/continuity/page.tsx",
+      "location": "apps/arcyria-platform/app/agents/enterprise/continuity/page.tsx",
       "bytes": 192,
       "words": 15,
       "lines": 6,
@@ -891,7 +891,7 @@
     },
     {
       "surface": "application",
-      "location": "apps/app/app/agents/enterprise/data-products/page.tsx",
+      "location": "apps/arcyria-platform/app/agents/enterprise/data-products/page.tsx",
       "bytes": 198,
       "words": 15,
       "lines": 6,
@@ -899,7 +899,7 @@
     },
     {
       "surface": "application",
-      "location": "apps/app/app/agents/enterprise/extensions/page.tsx",
+      "location": "apps/arcyria-platform/app/agents/enterprise/extensions/page.tsx",
       "bytes": 192,
       "words": 15,
       "lines": 6,
@@ -907,7 +907,7 @@
     },
     {
       "surface": "application",
-      "location": "apps/app/app/agents/enterprise/model-governance/page.tsx",
+      "location": "apps/arcyria-platform/app/agents/enterprise/model-governance/page.tsx",
       "bytes": 207,
       "words": 15,
       "lines": 6,
@@ -915,7 +915,7 @@
     },
     {
       "surface": "application",
-      "location": "apps/app/app/agents/enterprise/objectives/page.tsx",
+      "location": "apps/arcyria-platform/app/agents/enterprise/objectives/page.tsx",
       "bytes": 192,
       "words": 15,
       "lines": 6,
@@ -923,7 +923,7 @@
     },
     {
       "surface": "application",
-      "location": "apps/app/app/agents/enterprise/overview/page.tsx",
+      "location": "apps/arcyria-platform/app/agents/enterprise/overview/page.tsx",
       "bytes": 196,
       "words": 15,
       "lines": 6,
@@ -931,7 +931,7 @@
     },
     {
       "surface": "application",
-      "location": "apps/app/app/agents/enterprise/page.tsx",
+      "location": "apps/arcyria-platform/app/agents/enterprise/page.tsx",
       "bytes": 196,
       "words": 15,
       "lines": 6,
@@ -939,7 +939,7 @@
     },
     {
       "surface": "application",
-      "location": "apps/app/app/agents/enterprise/plans/[planId]/page.tsx",
+      "location": "apps/arcyria-platform/app/agents/enterprise/plans/[planId]/page.tsx",
       "bytes": 329,
       "words": 37,
       "lines": 9,
@@ -947,7 +947,7 @@
     },
     {
       "surface": "application",
-      "location": "apps/app/app/agents/enterprise/plans/page.tsx",
+      "location": "apps/arcyria-platform/app/agents/enterprise/plans/page.tsx",
       "bytes": 177,
       "words": 15,
       "lines": 6,
@@ -955,7 +955,7 @@
     },
     {
       "surface": "application",
-      "location": "apps/app/app/agents/enterprise/risks/page.tsx",
+      "location": "apps/arcyria-platform/app/agents/enterprise/risks/page.tsx",
       "bytes": 177,
       "words": 15,
       "lines": 6,
@@ -963,7 +963,7 @@
     },
     {
       "surface": "application",
-      "location": "apps/app/app/agents/error.tsx",
+      "location": "apps/arcyria-platform/app/agents/error.tsx",
       "bytes": 886,
       "words": 98,
       "lines": 34,
@@ -971,7 +971,7 @@
     },
     {
       "surface": "application",
-      "location": "apps/app/app/agents/incidents/page.tsx",
+      "location": "apps/arcyria-platform/app/agents/incidents/page.tsx",
       "bytes": 157,
       "words": 15,
       "lines": 6,
@@ -979,7 +979,7 @@
     },
     {
       "surface": "application",
-      "location": "apps/app/app/agents/intelligence/contracts/page.tsx",
+      "location": "apps/arcyria-platform/app/agents/intelligence/contracts/page.tsx",
       "bytes": 169,
       "words": 15,
       "lines": 6,
@@ -987,7 +987,7 @@
     },
     {
       "surface": "application",
-      "location": "apps/app/app/agents/intelligence/digital-twin/page.tsx",
+      "location": "apps/arcyria-platform/app/agents/intelligence/digital-twin/page.tsx",
       "bytes": 167,
       "words": 15,
       "lines": 6,
@@ -995,7 +995,7 @@
     },
     {
       "surface": "application",
-      "location": "apps/app/app/agents/intelligence/forecasts/[forecastId]/page.tsx",
+      "location": "apps/arcyria-platform/app/agents/intelligence/forecasts/[forecastId]/page.tsx",
       "bytes": 306,
       "words": 33,
       "lines": 11,
@@ -1003,7 +1003,7 @@
     },
     {
       "surface": "application",
-      "location": "apps/app/app/agents/intelligence/forecasts/page.tsx",
+      "location": "apps/arcyria-platform/app/agents/intelligence/forecasts/page.tsx",
       "bytes": 161,
       "words": 15,
       "lines": 6,
@@ -1011,7 +1011,7 @@
     },
     {
       "surface": "application",
-      "location": "apps/app/app/agents/intelligence/knowledge/page.tsx",
+      "location": "apps/arcyria-platform/app/agents/intelligence/knowledge/page.tsx",
       "bytes": 173,
       "words": 15,
       "lines": 6,
@@ -1019,7 +1019,7 @@
     },
     {
       "surface": "application",
-      "location": "apps/app/app/agents/intelligence/lineage/page.tsx",
+      "location": "apps/arcyria-platform/app/agents/intelligence/lineage/page.tsx",
       "bytes": 155,
       "words": 15,
       "lines": 6,
@@ -1027,7 +1027,7 @@
     },
     {
       "surface": "application",
-      "location": "apps/app/app/agents/intelligence/page.tsx",
+      "location": "apps/arcyria-platform/app/agents/intelligence/page.tsx",
       "bytes": 194,
       "words": 15,
       "lines": 6,
@@ -1035,7 +1035,7 @@
     },
     {
       "surface": "application",
-      "location": "apps/app/app/agents/intelligence/plans/[planId]/page.tsx",
+      "location": "apps/arcyria-platform/app/agents/intelligence/plans/[planId]/page.tsx",
       "bytes": 300,
       "words": 33,
       "lines": 11,
@@ -1043,7 +1043,7 @@
     },
     {
       "surface": "application",
-      "location": "apps/app/app/agents/intelligence/plans/page.tsx",
+      "location": "apps/arcyria-platform/app/agents/intelligence/plans/page.tsx",
       "bytes": 171,
       "words": 15,
       "lines": 6,
@@ -1051,7 +1051,7 @@
     },
     {
       "surface": "application",
-      "location": "apps/app/app/agents/intelligence/simulations/[simulationId]/page.tsx",
+      "location": "apps/arcyria-platform/app/agents/intelligence/simulations/[simulationId]/page.tsx",
       "bytes": 320,
       "words": 33,
       "lines": 11,
@@ -1059,7 +1059,7 @@
     },
     {
       "surface": "application",
-      "location": "apps/app/app/agents/intelligence/simulations/page.tsx",
+      "location": "apps/arcyria-platform/app/agents/intelligence/simulations/page.tsx",
       "bytes": 167,
       "words": 15,
       "lines": 6,
@@ -1067,7 +1067,7 @@
     },
     {
       "surface": "application",
-      "location": "apps/app/app/agents/layout.tsx",
+      "location": "apps/arcyria-platform/app/agents/layout.tsx",
       "bytes": 611,
       "words": 47,
       "lines": 15,
@@ -1075,7 +1075,7 @@
     },
     {
       "surface": "application",
-      "location": "apps/app/app/agents/loading.tsx",
+      "location": "apps/arcyria-platform/app/agents/loading.tsx",
       "bytes": 1009,
       "words": 96,
       "lines": 28,
@@ -1083,7 +1083,7 @@
     },
     {
       "surface": "application",
-      "location": "apps/app/app/agents/marketplace/page.tsx",
+      "location": "apps/arcyria-platform/app/agents/marketplace/page.tsx",
       "bytes": 164,
       "words": 15,
       "lines": 6,
@@ -1091,7 +1091,7 @@
     },
     {
       "surface": "application",
-      "location": "apps/app/app/agents/onboarding/page.tsx",
+      "location": "apps/arcyria-platform/app/agents/onboarding/page.tsx",
       "bytes": 161,
       "words": 15,
       "lines": 6,
@@ -1099,7 +1099,7 @@
     },
     {
       "surface": "application",
-      "location": "apps/app/app/agents/page.tsx",
+      "location": "apps/arcyria-platform/app/agents/page.tsx",
       "bytes": 103,
       "words": 13,
       "lines": 6,
@@ -1107,7 +1107,7 @@
     },
     {
       "surface": "application",
-      "location": "apps/app/app/agents/platform/environments/page.tsx",
+      "location": "apps/arcyria-platform/app/agents/platform/environments/page.tsx",
       "bytes": 167,
       "words": 15,
       "lines": 6,
@@ -1115,7 +1115,7 @@
     },
     {
       "surface": "application",
-      "location": "apps/app/app/agents/platform/quality/page.tsx",
+      "location": "apps/arcyria-platform/app/agents/platform/quality/page.tsx",
       "bytes": 152,
       "words": 15,
       "lines": 6,
@@ -1123,7 +1123,7 @@
     },
     {
       "surface": "application",
-      "location": "apps/app/app/agents/platform/releases/page.tsx",
+      "location": "apps/arcyria-platform/app/agents/platform/releases/page.tsx",
       "bytes": 155,
       "words": 15,
       "lines": 6,
@@ -1131,7 +1131,7 @@
     },
     {
       "surface": "application",
-      "location": "apps/app/app/agents/support/[caseId]/page.tsx",
+      "location": "apps/arcyria-platform/app/agents/support/[caseId]/page.tsx",
       "bytes": 313,
       "words": 37,
       "lines": 9,
@@ -1139,7 +1139,7 @@
     },
     {
       "surface": "application",
-      "location": "apps/app/app/agents/support/page.tsx",
+      "location": "apps/arcyria-platform/app/agents/support/page.tsx",
       "bytes": 162,
       "words": 15,
       "lines": 6,
@@ -1147,7 +1147,7 @@
     },
     {
       "surface": "application",
-      "location": "apps/app/app/auth/accept-invite/page.tsx",
+      "location": "apps/arcyria-platform/app/auth/accept-invite/page.tsx",
       "bytes": 228,
       "words": 21,
       "lines": 10,
@@ -1155,7 +1155,7 @@
     },
     {
       "surface": "application",
-      "location": "apps/app/app/auth/auth-code-error/page.tsx",
+      "location": "apps/arcyria-platform/app/auth/auth-code-error/page.tsx",
       "bytes": 1140,
       "words": 97,
       "lines": 36,
@@ -1163,7 +1163,7 @@
     },
     {
       "surface": "application",
-      "location": "apps/app/app/auth/callback/route.ts",
+      "location": "apps/arcyria-platform/app/auth/callback/route.ts",
       "bytes": 8799,
       "words": 838,
       "lines": 291,
@@ -1171,7 +1171,7 @@
     },
     {
       "surface": "application",
-      "location": "apps/app/app/auth/forgot-password/page.tsx",
+      "location": "apps/arcyria-platform/app/auth/forgot-password/page.tsx",
       "bytes": 407,
       "words": 36,
       "lines": 13,
@@ -1179,7 +1179,7 @@
     },
     {
       "surface": "application",
-      "location": "apps/app/app/auth/login/page.tsx",
+      "location": "apps/arcyria-platform/app/auth/login/page.tsx",
       "bytes": 1332,
       "words": 148,
       "lines": 45,
@@ -1187,7 +1187,7 @@
     },
     {
       "surface": "application",
-      "location": "apps/app/app/auth/reset-password/page.tsx",
+      "location": "apps/arcyria-platform/app/auth/reset-password/page.tsx",
       "bytes": 404,
       "words": 36,
       "lines": 13,
@@ -1195,7 +1195,7 @@
     },
     {
       "surface": "application",
-      "location": "apps/app/app/auth/signup/page.tsx",
+      "location": "apps/arcyria-platform/app/auth/signup/page.tsx",
       "bytes": 374,
       "words": 36,
       "lines": 11,
@@ -1203,7 +1203,7 @@
     },
     {
       "surface": "application",
-      "location": "apps/app/app/error.tsx",
+      "location": "apps/arcyria-platform/app/error.tsx",
       "bytes": 1253,
       "words": 129,
       "lines": 43,
@@ -1211,7 +1211,7 @@
     },
     {
       "surface": "application",
-      "location": "apps/app/app/global-error.tsx",
+      "location": "apps/arcyria-platform/app/global-error.tsx",
       "bytes": 1480,
       "words": 133,
       "lines": 60,
@@ -1219,7 +1219,7 @@
     },
     {
       "surface": "application",
-      "location": "apps/app/app/layout.tsx",
+      "location": "apps/arcyria-platform/app/layout.tsx",
       "bytes": 1406,
       "words": 123,
       "lines": 46,
@@ -1227,7 +1227,7 @@
     },
     {
       "surface": "application",
-      "location": "apps/app/app/onboarding/complete/page.tsx",
+      "location": "apps/arcyria-platform/app/onboarding/complete/page.tsx",
       "bytes": 129,
       "words": 15,
       "lines": 6,
@@ -1235,7 +1235,7 @@
     },
     {
       "surface": "application",
-      "location": "apps/app/app/onboarding/connect/[connector]/page.tsx",
+      "location": "apps/arcyria-platform/app/onboarding/connect/[connector]/page.tsx",
       "bytes": 126,
       "words": 15,
       "lines": 6,
@@ -1243,7 +1243,7 @@
     },
     {
       "surface": "application",
-      "location": "apps/app/app/onboarding/connect/[connector]/select/page.tsx",
+      "location": "apps/arcyria-platform/app/onboarding/connect/[connector]/select/page.tsx",
       "bytes": 142,
       "words": 15,
       "lines": 6,
@@ -1251,7 +1251,7 @@
     },
     {
       "surface": "application",
-      "location": "apps/app/app/onboarding/data-source/page.tsx",
+      "location": "apps/arcyria-platform/app/onboarding/data-source/page.tsx",
       "bytes": 151,
       "words": 15,
       "lines": 6,
@@ -1259,7 +1259,7 @@
     },
     {
       "surface": "application",
-      "location": "apps/app/app/onboarding/importing/page.tsx",
+      "location": "apps/arcyria-platform/app/onboarding/importing/page.tsx",
       "bytes": 132,
       "words": 15,
       "lines": 6,
@@ -1267,7 +1267,7 @@
     },
     {
       "surface": "application",
-      "location": "apps/app/app/onboarding/layout.tsx",
+      "location": "apps/arcyria-platform/app/onboarding/layout.tsx",
       "bytes": 340,
       "words": 39,
       "lines": 15,
@@ -1275,7 +1275,7 @@
     },
     {
       "surface": "application",
-      "location": "apps/app/app/onboarding/organization/page.tsx",
+      "location": "apps/arcyria-platform/app/onboarding/organization/page.tsx",
       "bytes": 157,
       "words": 15,
       "lines": 6,
@@ -1283,7 +1283,7 @@
     },
     {
       "surface": "application",
-      "location": "apps/app/app/onboarding/welcome/page.tsx",
+      "location": "apps/arcyria-platform/app/onboarding/welcome/page.tsx",
       "bytes": 126,
       "words": 15,
       "lines": 6,
@@ -1291,7 +1291,7 @@
     },
     {
       "surface": "application",
-      "location": "apps/app/app/organizations/[id]/edit/page.tsx",
+      "location": "apps/arcyria-platform/app/organizations/[id]/edit/page.tsx",
       "bytes": 338,
       "words": 34,
       "lines": 13,
@@ -1299,7 +1299,7 @@
     },
     {
       "surface": "application",
-      "location": "apps/app/app/organizations/layout.tsx",
+      "location": "apps/arcyria-platform/app/organizations/layout.tsx",
       "bytes": 125,
       "words": 14,
       "lines": 8,
@@ -1307,7 +1307,7 @@
     },
     {
       "surface": "application",
-      "location": "apps/app/app/organizations/new/page.tsx",
+      "location": "apps/arcyria-platform/app/organizations/new/page.tsx",
       "bytes": 134,
       "words": 13,
       "lines": 6,
@@ -1315,7 +1315,7 @@
     },
     {
       "surface": "application",
-      "location": "apps/app/app/organizations/page.tsx",
+      "location": "apps/arcyria-platform/app/organizations/page.tsx",
       "bytes": 283,
       "words": 29,
       "lines": 12,
@@ -1323,7 +1323,7 @@
     },
     {
       "surface": "application",
-      "location": "apps/app/app/page.tsx",
+      "location": "apps/arcyria-platform/app/page.tsx",
       "bytes": 677,
       "words": 50,
       "lines": 17,
@@ -1331,7 +1331,7 @@
     },
     {
       "surface": "application",
-      "location": "apps/app/app/workspace/activity/page.tsx",
+      "location": "apps/arcyria-platform/app/workspace/activity/page.tsx",
       "bytes": 127,
       "words": 15,
       "lines": 6,
@@ -1339,7 +1339,7 @@
     },
     {
       "surface": "application",
-      "location": "apps/app/app/workspace/analytics/page.tsx",
+      "location": "apps/arcyria-platform/app/workspace/analytics/page.tsx",
       "bytes": 131,
       "words": 15,
       "lines": 6,
@@ -1347,7 +1347,7 @@
     },
     {
       "surface": "application",
-      "location": "apps/app/app/workspace/billing/checkout/page.tsx",
+      "location": "apps/arcyria-platform/app/workspace/billing/checkout/page.tsx",
       "bytes": 388,
       "words": 39,
       "lines": 16,
@@ -1355,7 +1355,7 @@
     },
     {
       "surface": "application",
-      "location": "apps/app/app/workspace/billing/success/page.tsx",
+      "location": "apps/arcyria-platform/app/workspace/billing/success/page.tsx",
       "bytes": 418,
       "words": 39,
       "lines": 19,
@@ -1363,7 +1363,7 @@
     },
     {
       "surface": "application",
-      "location": "apps/app/app/workspace/connections/[id]/cdc-setup/page.tsx",
+      "location": "apps/arcyria-platform/app/workspace/connections/[id]/cdc-setup/page.tsx",
       "bytes": 298,
       "words": 37,
       "lines": 11,
@@ -1371,7 +1371,7 @@
     },
     {
       "surface": "application",
-      "location": "apps/app/app/workspace/connections/[id]/edit/page.tsx",
+      "location": "apps/arcyria-platform/app/workspace/connections/[id]/edit/page.tsx",
       "bytes": 148,
       "words": 15,
       "lines": 6,
@@ -1379,7 +1379,7 @@
     },
     {
       "surface": "application",
-      "location": "apps/app/app/workspace/connections/[id]/page.tsx",
+      "location": "apps/arcyria-platform/app/workspace/connections/[id]/page.tsx",
       "bytes": 154,
       "words": 15,
       "lines": 6,
@@ -1387,7 +1387,7 @@
     },
     {
       "surface": "application",
-      "location": "apps/app/app/workspace/connections/new/[type]/page.tsx",
+      "location": "apps/arcyria-platform/app/workspace/connections/new/[type]/page.tsx",
       "bytes": 157,
       "words": 15,
       "lines": 6,
@@ -1395,7 +1395,7 @@
     },
     {
       "surface": "application",
-      "location": "apps/app/app/workspace/connections/new/page.tsx",
+      "location": "apps/arcyria-platform/app/workspace/connections/new/page.tsx",
       "bytes": 166,
       "words": 15,
       "lines": 6,
@@ -1403,7 +1403,7 @@
     },
     {
       "surface": "application",
-      "location": "apps/app/app/workspace/connections/page.tsx",
+      "location": "apps/arcyria-platform/app/workspace/connections/page.tsx",
       "bytes": 139,
       "words": 15,
       "lines": 6,
@@ -1411,7 +1411,7 @@
     },
     {
       "surface": "application",
-      "location": "apps/app/app/workspace/data-pipelines/[id]/builder/page.tsx",
+      "location": "apps/arcyria-platform/app/workspace/data-pipelines/[id]/builder/page.tsx",
       "bytes": 1184,
       "words": 136,
       "lines": 37,
@@ -1419,7 +1419,7 @@
     },
     {
       "surface": "application",
-      "location": "apps/app/app/workspace/data-pipelines/[id]/destinations/[destinationId]/page.tsx",
+      "location": "apps/arcyria-platform/app/workspace/data-pipelines/[id]/destinations/[destinationId]/page.tsx",
       "bytes": 155,
       "words": 15,
       "lines": 6,
@@ -1427,7 +1427,7 @@
     },
     {
       "surface": "application",
-      "location": "apps/app/app/workspace/data-pipelines/[id]/edit/page.tsx",
+      "location": "apps/arcyria-platform/app/workspace/data-pipelines/[id]/edit/page.tsx",
       "bytes": 140,
       "words": 15,
       "lines": 6,
@@ -1435,7 +1435,7 @@
     },
     {
       "surface": "application",
-      "location": "apps/app/app/workspace/data-pipelines/[id]/page.tsx",
+      "location": "apps/arcyria-platform/app/workspace/data-pipelines/[id]/page.tsx",
       "bytes": 146,
       "words": 15,
       "lines": 6,
@@ -1443,7 +1443,7 @@
     },
     {
       "surface": "application",
-      "location": "apps/app/app/workspace/data-pipelines/[id]/transformations/[transformationId]/page.tsx",
+      "location": "apps/arcyria-platform/app/workspace/data-pipelines/[id]/transformations/[transformationId]/page.tsx",
       "bytes": 164,
       "words": 15,
       "lines": 6,
@@ -1451,7 +1451,7 @@
     },
     {
       "surface": "application",
-      "location": "apps/app/app/workspace/data-pipelines/new/page.tsx",
+      "location": "apps/arcyria-platform/app/workspace/data-pipelines/new/page.tsx",
       "bytes": 137,
       "words": 15,
       "lines": 6,
@@ -1459,7 +1459,7 @@
     },
     {
       "surface": "application",
-      "location": "apps/app/app/workspace/data-pipelines/page.tsx",
+      "location": "apps/arcyria-platform/app/workspace/data-pipelines/page.tsx",
       "bytes": 135,
       "words": 15,
       "lines": 6,
@@ -1467,7 +1467,7 @@
     },
     {
       "surface": "application",
-      "location": "apps/app/app/workspace/data-sources/[id]/page.tsx",
+      "location": "apps/arcyria-platform/app/workspace/data-sources/[id]/page.tsx",
       "bytes": 337,
       "words": 37,
       "lines": 13,
@@ -1475,7 +1475,7 @@
     },
     {
       "surface": "application",
-      "location": "apps/app/app/workspace/data-sources/[id]/query/page.tsx",
+      "location": "apps/arcyria-platform/app/workspace/data-sources/[id]/query/page.tsx",
       "bytes": 152,
       "words": 15,
       "lines": 6,
@@ -1483,7 +1483,7 @@
     },
     {
       "surface": "application",
-      "location": "apps/app/app/workspace/data-sources/[id]/query/view/page.tsx",
+      "location": "apps/arcyria-platform/app/workspace/data-sources/[id]/query/view/page.tsx",
       "bytes": 155,
       "words": 15,
       "lines": 6,
@@ -1491,7 +1491,7 @@
     },
     {
       "surface": "application",
-      "location": "apps/app/app/workspace/data-sources/new/page.tsx",
+      "location": "apps/arcyria-platform/app/workspace/data-sources/new/page.tsx",
       "bytes": 134,
       "words": 13,
       "lines": 6,
@@ -1499,7 +1499,7 @@
     },
     {
       "surface": "application",
-      "location": "apps/app/app/workspace/data-sources/page.tsx",
+      "location": "apps/arcyria-platform/app/workspace/data-sources/page.tsx",
       "bytes": 129,
       "words": 13,
       "lines": 6,
@@ -1507,7 +1507,7 @@
     },
     {
       "surface": "application",
-      "location": "apps/app/app/workspace/datasets/[id]/page.tsx",
+      "location": "apps/arcyria-platform/app/workspace/datasets/[id]/page.tsx",
       "bytes": 163,
       "words": 15,
       "lines": 6,
@@ -1515,7 +1515,7 @@
     },
     {
       "surface": "application",
-      "location": "apps/app/app/workspace/layout.tsx",
+      "location": "apps/arcyria-platform/app/workspace/layout.tsx",
       "bytes": 486,
       "words": 37,
       "lines": 16,
@@ -1523,7 +1523,7 @@
     },
     {
       "surface": "application",
-      "location": "apps/app/app/workspace/notifications/page.tsx",
+      "location": "apps/arcyria-platform/app/workspace/notifications/page.tsx",
       "bytes": 143,
       "words": 15,
       "lines": 6,
@@ -1531,7 +1531,7 @@
     },
     {
       "surface": "application",
-      "location": "apps/app/app/workspace/page.tsx",
+      "location": "apps/arcyria-platform/app/workspace/page.tsx",
       "bytes": 130,
       "words": 13,
       "lines": 6,
@@ -1539,7 +1539,7 @@
     },
     {
       "surface": "application",
-      "location": "apps/app/app/workspace/settings/page.tsx",
+      "location": "apps/arcyria-platform/app/workspace/settings/page.tsx",
       "bytes": 127,
       "words": 15,
       "lines": 6,
@@ -1547,7 +1547,7 @@
     },
     {
       "surface": "application",
-      "location": "apps/app/app/workspace/simulations/page.tsx",
+      "location": "apps/arcyria-platform/app/workspace/simulations/page.tsx",
       "bytes": 134,
       "words": 13,
       "lines": 6,
@@ -1555,7 +1555,7 @@
     },
     {
       "surface": "application",
-      "location": "apps/app/app/workspace/simulations/runs/[runId]/page.tsx",
+      "location": "apps/arcyria-platform/app/workspace/simulations/runs/[runId]/page.tsx",
       "bytes": 333,
       "words": 36,
       "lines": 13,
@@ -1563,7 +1563,7 @@
     },
     {
       "surface": "application",
-      "location": "apps/app/app/workspace/simulations/runs/page.tsx",
+      "location": "apps/arcyria-platform/app/workspace/simulations/runs/page.tsx",
       "bytes": 197,
       "words": 16,
       "lines": 6,
@@ -1571,7 +1571,7 @@
     },
     {
       "surface": "application",
-      "location": "apps/app/app/workspace/simulations/saved-tests/page.tsx",
+      "location": "apps/arcyria-platform/app/workspace/simulations/saved-tests/page.tsx",
       "bytes": 210,
       "words": 16,
       "lines": 6,
@@ -1579,7 +1579,7 @@
     },
     {
       "surface": "application",
-      "location": "apps/app/app/workspace/simulations/scenarios/page.tsx",
+      "location": "apps/arcyria-platform/app/workspace/simulations/scenarios/page.tsx",
       "bytes": 207,
       "words": 16,
       "lines": 6,
@@ -1587,7 +1587,7 @@
     },
     {
       "surface": "application",
-      "location": "apps/app/app/workspace/team/[id]/edit/page.tsx",
+      "location": "apps/arcyria-platform/app/workspace/team/[id]/edit/page.tsx",
       "bytes": 320,
       "words": 37,
       "lines": 13,
@@ -1595,7 +1595,7 @@
     },
     {
       "surface": "application",
-      "location": "apps/app/app/workspace/team/invite/page.tsx",
+      "location": "apps/arcyria-platform/app/workspace/team/invite/page.tsx",
       "bytes": 147,
       "words": 15,
       "lines": 6,
@@ -1603,7 +1603,7 @@
     },
     {
       "surface": "application",
-      "location": "apps/app/app/workspace/team/page.tsx",
+      "location": "apps/arcyria-platform/app/workspace/team/page.tsx",
       "bytes": 111,
       "words": 15,
       "lines": 6,
@@ -1611,7 +1611,7 @@
     },
     {
       "surface": "application",
-      "location": "apps/app/components/ai-elements/message.tsx",
+      "location": "apps/arcyria-platform/components/ai-elements/message.tsx",
       "bytes": 560,
       "words": 59,
       "lines": 23,
@@ -1619,7 +1619,7 @@
     },
     {
       "surface": "application",
-      "location": "apps/app/components/ai-elements/reasoning.tsx",
+      "location": "apps/arcyria-platform/components/ai-elements/reasoning.tsx",
       "bytes": 5039,
       "words": 470,
       "lines": 185,
@@ -1627,7 +1627,7 @@
     },
     {
       "surface": "application",
-      "location": "apps/app/components/ai-elements/shimmer.tsx",
+      "location": "apps/arcyria-platform/components/ai-elements/shimmer.tsx",
       "bytes": 1551,
       "words": 138,
       "lines": 65,
@@ -1635,7 +1635,7 @@
     },
     {
       "surface": "application",
-      "location": "apps/app/components/auth-page.tsx",
+      "location": "apps/arcyria-platform/components/auth-page.tsx",
       "bytes": 1731,
       "words": 124,
       "lines": 50,
@@ -1643,7 +1643,7 @@
     },
     {
       "surface": "application",
-      "location": "apps/app/components/custom-sidebar-trigger.tsx",
+      "location": "apps/arcyria-platform/components/custom-sidebar-trigger.tsx",
       "bytes": 686,
       "words": 63,
       "lines": 22,
@@ -1651,7 +1651,7 @@
     },
     {
       "surface": "application",
-      "location": "apps/app/lib/actions/dataset.ts",
+      "location": "apps/arcyria-platform/lib/actions/dataset.ts",
       "bytes": 2643,
       "words": 263,
       "lines": 83,
@@ -1659,7 +1659,7 @@
     },
     {
       "surface": "application",
-      "location": "apps/app/lib/actions/onboarding.ts",
+      "location": "apps/arcyria-platform/lib/actions/onboarding.ts",
       "bytes": 4536,
       "words": 449,
       "lines": 149,
@@ -1667,7 +1667,7 @@
     },
     {
       "surface": "application",
-      "location": "apps/app/lib/actions/team.ts",
+      "location": "apps/arcyria-platform/lib/actions/team.ts",
       "bytes": 11290,
       "words": 1183,
       "lines": 370,
@@ -1675,7 +1675,7 @@
     },
     {
       "surface": "application",
-      "location": "apps/app/lib/analytics/formatters.ts",
+      "location": "apps/arcyria-platform/lib/analytics/formatters.ts",
       "bytes": 3758,
       "words": 463,
       "lines": 141,
@@ -1683,7 +1683,7 @@
     },
     {
       "surface": "application",
-      "location": "apps/app/lib/api/client.ts",
+      "location": "apps/arcyria-platform/lib/api/client.ts",
       "bytes": 10288,
       "words": 1124,
       "lines": 407,
@@ -1691,7 +1691,7 @@
     },
     {
       "surface": "application",
-      "location": "apps/app/lib/api/config.ts",
+      "location": "apps/arcyria-platform/lib/api/config.ts",
       "bytes": 2714,
       "words": 355,
       "lines": 105,
@@ -1699,7 +1699,7 @@
     },
     {
       "surface": "application",
-      "location": "apps/app/lib/api/error-handler.ts",
+      "location": "apps/arcyria-platform/lib/api/error-handler.ts",
       "bytes": 1386,
       "words": 190,
       "lines": 52,
@@ -1707,7 +1707,7 @@
     },
     {
       "surface": "application",
-      "location": "apps/app/lib/api/hooks/use-analytics.ts",
+      "location": "apps/arcyria-platform/lib/api/hooks/use-analytics.ts",
       "bytes": 4932,
       "words": 455,
       "lines": 180,
@@ -1715,7 +1715,7 @@
     },
     {
       "surface": "application",
-      "location": "apps/app/lib/api/hooks/use-github.ts",
+      "location": "apps/arcyria-platform/lib/api/hooks/use-github.ts",
       "bytes": 9694,
       "words": 889,
       "lines": 323,
@@ -1723,7 +1723,7 @@
     },
     {
       "surface": "application",
-      "location": "apps/app/lib/api/hooks/use-global-search.ts",
+      "location": "apps/arcyria-platform/lib/api/hooks/use-global-search.ts",
       "bytes": 838,
       "words": 97,
       "lines": 30,
@@ -1731,7 +1731,7 @@
     },
     {
       "surface": "application",
-      "location": "apps/app/lib/api/hooks/use-organization-members.ts",
+      "location": "apps/arcyria-platform/lib/api/hooks/use-organization-members.ts",
       "bytes": 6079,
       "words": 592,
       "lines": 213,
@@ -1739,7 +1739,7 @@
     },
     {
       "surface": "application",
-      "location": "apps/app/lib/api/hooks/use-organizations.ts",
+      "location": "apps/arcyria-platform/lib/api/hooks/use-organizations.ts",
       "bytes": 7729,
       "words": 608,
       "lines": 261,
@@ -1747,7 +1747,7 @@
     },
     {
       "surface": "application",
-      "location": "apps/app/lib/api/hooks/use-slack.ts",
+      "location": "apps/arcyria-platform/lib/api/hooks/use-slack.ts",
       "bytes": 5567,
       "words": 473,
       "lines": 177,
@@ -1755,7 +1755,7 @@
     },
     {
       "surface": "application",
-      "location": "apps/app/lib/api/hooks/use-users.ts",
+      "location": "apps/arcyria-platform/lib/api/hooks/use-users.ts",
       "bytes": 3062,
       "words": 337,
       "lines": 116,
@@ -1763,7 +1763,7 @@
     },
     {
       "surface": "application",
-      "location": "apps/app/lib/api/plan-limit-events.ts",
+      "location": "apps/arcyria-platform/lib/api/plan-limit-events.ts",
       "bytes": 2870,
       "words": 298,
       "lines": 113,
@@ -1771,7 +1771,7 @@
     },
     {
       "surface": "application",
-      "location": "apps/app/lib/api/services/activity-logs.service.ts",
+      "location": "apps/arcyria-platform/lib/api/services/activity-logs.service.ts",
       "bytes": 2292,
       "words": 193,
       "lines": 82,
@@ -1779,7 +1779,7 @@
     },
     {
       "surface": "application",
-      "location": "apps/app/lib/api/services/email-jobs.service.ts",
+      "location": "apps/arcyria-platform/lib/api/services/email-jobs.service.ts",
       "bytes": 1686,
       "words": 169,
       "lines": 75,
@@ -1787,7 +1787,7 @@
     },
     {
       "surface": "application",
-      "location": "apps/app/lib/api/services/notifications.service.ts",
+      "location": "apps/arcyria-platform/lib/api/services/notifications.service.ts",
       "bytes": 2314,
       "words": 249,
       "lines": 91,
@@ -1795,7 +1795,7 @@
     },
     {
       "surface": "application",
-      "location": "apps/app/lib/api/services/search.service.ts",
+      "location": "apps/arcyria-platform/lib/api/services/search.service.ts",
       "bytes": 970,
       "words": 107,
       "lines": 48,
@@ -1803,7 +1803,7 @@
     },
     {
       "surface": "application",
-      "location": "apps/app/lib/api/types/activity-logs.ts",
+      "location": "apps/arcyria-platform/lib/api/types/activity-logs.ts",
       "bytes": 1403,
       "words": 177,
       "lines": 57,
@@ -1811,7 +1811,7 @@
     },
     {
       "surface": "application",
-      "location": "apps/app/lib/api/types/analytics.ts",
+      "location": "apps/arcyria-platform/lib/api/types/analytics.ts",
       "bytes": 2696,
       "words": 253,
       "lines": 120,
@@ -1819,7 +1819,7 @@
     },
     {
       "surface": "application",
-      "location": "apps/app/lib/api/types/github.ts",
+      "location": "apps/arcyria-platform/lib/api/types/github.ts",
       "bytes": 1831,
       "words": 184,
       "lines": 87,
@@ -1827,7 +1827,7 @@
     },
     {
       "surface": "application",
-      "location": "apps/app/lib/api/types/usage.ts",
+      "location": "apps/arcyria-platform/lib/api/types/usage.ts",
       "bytes": 780,
       "words": 88,
       "lines": 36,
@@ -1835,7 +1835,7 @@
     },
     {
       "surface": "application",
-      "location": "apps/app/lib/constants/data-pipelines.ts",
+      "location": "apps/arcyria-platform/lib/constants/data-pipelines.ts",
       "bytes": 8949,
       "words": 845,
       "lines": 391,
@@ -1843,7 +1843,7 @@
     },
     {
       "surface": "application",
-      "location": "apps/app/lib/constants/roles.ts",
+      "location": "apps/arcyria-platform/lib/constants/roles.ts",
       "bytes": 869,
       "words": 114,
       "lines": 34,
@@ -1851,7 +1851,7 @@
     },
     {
       "surface": "application",
-      "location": "apps/app/lib/explorer/execute-e2e-postgres-sql.ts",
+      "location": "apps/arcyria-platform/lib/explorer/execute-e2e-postgres-sql.ts",
       "bytes": 2034,
       "words": 228,
       "lines": 76,
@@ -1859,7 +1859,7 @@
     },
     {
       "surface": "application",
-      "location": "apps/app/lib/explorer/execute-remote-query.ts",
+      "location": "apps/arcyria-platform/lib/explorer/execute-remote-query.ts",
       "bytes": 3563,
       "words": 367,
       "lines": 138,
@@ -1867,7 +1867,7 @@
     },
     {
       "surface": "application",
-      "location": "apps/app/lib/explorer/explorer-context.tsx",
+      "location": "apps/arcyria-platform/lib/explorer/explorer-context.tsx",
       "bytes": 1640,
       "words": 175,
       "lines": 56,
@@ -1875,7 +1875,7 @@
     },
     {
       "surface": "application",
-      "location": "apps/app/lib/explorer/load-explorer-data.ts",
+      "location": "apps/arcyria-platform/lib/explorer/load-explorer-data.ts",
       "bytes": 2152,
       "words": 259,
       "lines": 75,
@@ -1883,7 +1883,7 @@
     },
     {
       "surface": "application",
-      "location": "apps/app/lib/pipelines/scheduling.ts",
+      "location": "apps/arcyria-platform/lib/pipelines/scheduling.ts",
       "bytes": 2356,
       "words": 308,
       "lines": 82,
@@ -1891,7 +1891,7 @@
     },
     {
       "surface": "application",
-      "location": "apps/app/lib/pipelines/schema-table.ts",
+      "location": "apps/arcyria-platform/lib/pipelines/schema-table.ts",
       "bytes": 5837,
       "words": 622,
       "lines": 195,
@@ -1899,7 +1899,7 @@
     },
     {
       "surface": "application",
-      "location": "apps/app/lib/providers/query-provider.tsx",
+      "location": "apps/arcyria-platform/lib/providers/query-provider.tsx",
       "bytes": 1541,
       "words": 173,
       "lines": 58,
@@ -1907,7 +1907,7 @@
     },
     {
       "surface": "application",
-      "location": "apps/app/lib/supabase/client.ts",
+      "location": "apps/arcyria-platform/lib/supabase/client.ts",
       "bytes": 648,
       "words": 66,
       "lines": 23,
@@ -1915,7 +1915,7 @@
     },
     {
       "surface": "application",
-      "location": "apps/app/lib/supabase/middleware.ts",
+      "location": "apps/arcyria-platform/lib/supabase/middleware.ts",
       "bytes": 2946,
       "words": 352,
       "lines": 81,
@@ -1923,7 +1923,7 @@
     },
     {
       "surface": "application",
-      "location": "apps/app/lib/supabase/server.ts",
+      "location": "apps/arcyria-platform/lib/supabase/server.ts",
       "bytes": 984,
       "words": 109,
       "lines": 35,
@@ -1931,7 +1931,7 @@
     },
     {
       "surface": "application",
-      "location": "apps/app/lib/types/data-sources.ts",
+      "location": "apps/arcyria-platform/lib/types/data-sources.ts",
       "bytes": 3695,
       "words": 423,
       "lines": 178,
@@ -1939,7 +1939,7 @@
     },
     {
       "surface": "application",
-      "location": "apps/app/lib/utils/google-fonts.ts",
+      "location": "apps/arcyria-platform/lib/utils/google-fonts.ts",
       "bytes": 6047,
       "words": 695,
       "lines": 253,
@@ -1947,7 +1947,7 @@
     },
     {
       "surface": "application",
-      "location": "apps/app/lib/utils/toast.ts",
+      "location": "apps/arcyria-platform/lib/utils/toast.ts",
       "bytes": 11719,
       "words": 1261,
       "lines": 368,
