@@ -129,6 +129,8 @@ When users log in, the app should call `posthog.identify()` (wire in product cod
 
 No extra PostHog UI toggle is required for identify — it is event-driven.
 
+The free cloud plan does not include Group Analytics. MantrixFlow stores `organization_id` and `organization_slug` as person properties for organization filters, survey targeting, and feature-flag targeting.
+
 ---
 
 ## Step 6 — Optional: Error tracking alerts → Slack
@@ -364,7 +366,8 @@ You do **not** re-run the install wizard for production if the repo is already w
 
 | Layer | Path |
 | --- | --- |
-| Next.js provider | `apps/arcyria-platform/components/providers/posthog-provider.tsx` |
+| Next.js provider | `apps/arcyria-platform/shared/providers/posthog-provider.tsx` |
+| Browser startup | `apps/arcyria-platform/instrumentation-client.ts` |
 | Client init | `apps/arcyria-platform/lib/posthog/client.ts` |
 | Server `onRequestError` | `apps/arcyria-platform/instrumentation.ts` |
 | Go API | `apps/server/arcyria-server/internal/observability/posthog.go` |
